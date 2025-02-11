@@ -1,0 +1,1 @@
+Get-WmiObject Win32_LogicalDisk | Where-Object { $_.DriveType -eq 3 } | Select-Object @{Name="Letra"; Expression={($_.DeviceID)}}, @{Name="Rótulo"; Expression={($_.VolumeName)}}, @{Name="Livre (GB)"; Expression={[math]::Round($_.FreeSpace / 1GB, 5)}}, @{Name="Total (GB)"; Expression={[math]::Round($_.Size / 1GB, 5)}}
