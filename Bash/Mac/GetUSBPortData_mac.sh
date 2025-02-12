@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "Starting to scan usb ports..."
 echo "------------------------"
 echo "USB PORT DATA (macOS)"
 echo "------------------------"
@@ -17,3 +17,4 @@ system_profiler SPUSBDataType | awk -F": " '
     printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\n", id, nome, fabricante, descricao, protocolo, pnp, status;
 }
 '
+read -p "Press Enter to exit"

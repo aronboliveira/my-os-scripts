@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Starting to scan folders..."
 startDir="${1:-/}"
 declare -A folderSizes
 counter=0
@@ -31,3 +32,4 @@ echo -e "\nCOMPLETE: Processed $counter files total.\n"
         fileCount=$(find "$folder" -type f 2>/dev/null | wc -l)
     printf "FolderPath: %s, TotalSizeGB: %s, TotalSizeMB: %s, FileCount: %s\n" "$folder" "$totalSizeGB" "$totalSizeMB" "$fileCount"
 done
+read -p "Press Enter to exit"

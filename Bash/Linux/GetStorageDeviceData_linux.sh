@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "Starting to scan storage devices..."
 echo "------------------------"
 echo "VOLUMES"
 echo "------------------------"
@@ -46,3 +46,4 @@ lsblk -d -o NAME,MODEL,SIZE,ROTA,TRAN | tail -n +2 | while read id model size ro
     fi
     printf "/dev/%s\t%s\t%s\t%s\t%s\t%s\n" "$id" "$model" "$partitions" "$size" "$interface" "$media"
 done
+read -p "Press Enter to exit"

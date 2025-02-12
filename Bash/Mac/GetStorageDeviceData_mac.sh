@@ -1,10 +1,9 @@
 #!/bin/bash
-
+echo "Starting to scan storage devices..."
 echo "------------------------"
 echo "VOLUMES"
 echo "------------------------"
 printf "ID do Volume\tRótulo\tNome\tDrive\tTipo de Drive\tSistema de Arquivos\tArmazenamento Total (GB)\tArmazenamento Restante (GB)\tOperabilidade\tDeduplicação\n"
-
 df -k | tail -n +2 | while read filesystem size used avail percent mount; do
         id=$(diskutil info "$filesystem" 2>/dev/null | awk -F: '/Volume UUID/ {print $2}' | xargs)
     [ -z "$id" ] && id="$filesystem"
@@ -48,3 +47,4 @@ diskutil list | grep "^/dev/disk" | awk '{print $1}' | while read disk; do
         totalSize=$(echo "$sizeStr" | awk '{print $1}')
     interface="Nulo"       media="Nulo"           printf "%s\t%s\t%s\t%s\t%s\t%s\n" "$disk" "$model" "$partitions" "$totalSize" "$interface" "$media"
 done
+read -p "Press Enter to exit"

@@ -1,4 +1,6 @@
-
+#!/bin/bash
+echo "Starting to scan processor..."
+read -p "Press Enter to exit"
 ID="Indefinido"
 ID_Processador="Indefinido"
 Numero_Serie="Indefinido"  
@@ -91,3 +93,4 @@ printf "%-25s: %s\n" "Estado" "$Estado"
 printf "%-25s: %s\n" "Disponibilidade" "$Disponibilidade"
 printf "%-25s: %s\n" "Status" "$Status"
 printf "%-25s: %s\n" "Info Status" "$Info_Status"
+read -p "Press Enter to exit"

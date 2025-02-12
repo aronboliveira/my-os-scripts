@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Starting to scan memory..."
 printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
 "Fabricante" "Nome_da_Parte" "Serial" "Capacidade_(GB)" "Potencial_de_Velocidade_de_Relógio_(GHz)" \
 "Velocidade_de_Relógio_em_Uso_(GHz)" "Versão_de_DDR" "Memória" "Localização" "Banco" \
@@ -67,3 +68,4 @@ $0 ~ /Memory Device/ {
         manuf, part, serial, capacity, potentialSpeed, speed, ddr, memDetail, locator, bank, \
         dataWidth, voltConfigured, voltMin, voltMax, removable, replaceable;
 }'
+read -p "Press Enter to exit"

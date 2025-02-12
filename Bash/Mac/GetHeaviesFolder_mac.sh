@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "Starting to scan folders..."
 if [[ "$(uname)" == "Darwin" ]]; then
     STAT_CMD='stat -f %z'
 else
@@ -40,3 +40,4 @@ awk '{ sizes[$1] += $2 } END { for (dir in sizes) print dir, sizes[dir] }' "$tem
     done
 
 rm "$tempFile"  
+read -p "Press Enter to exit"

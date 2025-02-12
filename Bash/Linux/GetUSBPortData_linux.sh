@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "Starting to scan usb ports..."
 echo "------------------------"
 echo "USB PORT DATA (Linux)"
 echo "------------------------"
@@ -16,3 +16,4 @@ lspci -nn | grep -i "USB controller" | while read -r line; do
 
     printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\n" "$id" "$nome" "$fabricante" "$descricao" "$protocolo" "$pnp" "$status"
 done
+read -p "Press Enter to exit"

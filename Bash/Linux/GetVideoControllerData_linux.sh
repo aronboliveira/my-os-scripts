@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "Starting to scan video controller..."
 echo "------------------------"
 echo "VIDEO CONTROLLERS (Linux)"
 echo "------------------------"
@@ -39,3 +39,4 @@ $0 ~ /VGA compatible controller/ {
         id, name, dedicatedMem, dac, availability, bpp, resH, resV, cores, minRefresh, maxRefresh, scanMode, dither, driverVersion, driverDate, infSection, infFile, driverPath, pnp, videoArch, memType, status;
 }
 '
+read -p "Press Enter to exit"

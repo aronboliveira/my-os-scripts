@@ -1,8 +1,9 @@
-
+#!/bin/bash
+echo "Starting to scan processor..."
+read -p "Press Enter to continue"
 ID="Indefinido"
 ID_Processador="Indefinido"
 Numero_Serie="Indefinido"
-
 Nome=$(lscpu | grep "Model name:" | sed 's/Model name:[[:space:]]*//')
 Legenda="$Nome"
 Fabricante=$(lscpu | grep "Vendor ID:" | awk '{print $3}')
@@ -42,7 +43,6 @@ else
   Cache_L3_MB="Indefinido"
 fi
 Vel_Cache_L2_GHz="Indefinido"  Vel_Cache_L3_GHz="Indefinido"
-
 Threads=$(lscpu | grep "^CPU(s):" | awk '{print $2}')
 
 Voltagem_Atual="Indefinido"
@@ -61,7 +61,6 @@ Estado="Indefinido"
 Disponibilidade="Indefinido"
 Status="Indefinido"
 Info_Status="Indefinido"
-
 printf "%-25s: %s\n" "ID" "$ID"
 printf "%-25s: %s\n" "ID do Processador" "$ID_Processador"
 printf "%-25s: %s\n" "Número de Série" "$Numero_Serie"
@@ -98,3 +97,4 @@ printf "%-25s: %s\n" "Estado" "$Estado"
 printf "%-25s: %s\n" "Disponibilidade" "$Disponibilidade"
 printf "%-25s: %s\n" "Status" "$Status"
 printf "%-25s: %s\n" "Info Status" "$Info_Status"
+read -p "Press Enter to exit"
