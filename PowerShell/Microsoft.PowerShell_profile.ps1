@@ -57,7 +57,7 @@ function Get-ServiceWMI {
     Get-WmiObject Win32_Service
 }
 function NetshWinsockVersionShowCatalog {
-    Netsh winsock version show catalog
+    Netsh winsock show catalog
 }
 function NetshWlan {
     Netsh wlan show all
