@@ -1,4 +1,34 @@
 # !!IMPORTANT!!! THIS FILE NEEDS TO BE PLACED IN [drive]:\Users\[name]\Documents\WindowsPowerShell to be read
+function Open-MyPC {
+    explorer.exe "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"
+}
+function Open-RecycleBin {
+    explorer.exe "::{645FF040-5081-101B-9F08-00AA002F954E}"
+}
+function Open-Documents {
+    explorer.exe "::{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}"
+}
+function Open-Networks {
+    explorer.exe "::{208D2C60-3AEA-1069-A2D7-08002B30309D}"
+}
+function Open-HomeGroup {
+    explorer.exe "::{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}"
+}
+function Open-NetworkConnections {
+    explorer.exe "::{7007ACC7-3202-11D1-AAD2-00805FC1270E}"
+}
+function Open-FileHistory {
+    explorer.exe "::{9343812E-1C37-4A49-A12E-4B2D830D63F0}"
+}
+function Diagnose-Memory {
+    explorer.exe "::{D17D1D6D-CC3F-4815-8FE3-607E7D5D10B3}"
+}
+function Open-Personalization {
+    explorer.exe "::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}"
+}
+function Open-Fonts {
+    explorer.exe "::{D20EA4E1-3957-11d2-A40B-0C5020524153}"
+}
 function Get-USBControllerDevice {
     Get-WmiObject Win32_USBControllerDevice
 }
@@ -118,8 +148,19 @@ Set-Alias -Name getnpc -Value Get-NetTCPConnection
 Set-Alias -Name netshv -Value NetshWinsockVersionShowCatalog
 Set-Alias -Name netsha -Value NetshWlan
 Set-Alias -Name getndv -Value GetNetDrivers
-
+Set-Alias 
 Set-Alias -Name im -Value Install-Module
 Set-Alias -Name cbin -Value Clear-RecycleBin
 Set-Alias -Name sttr -Value Start-Transcript
 Set-Alias -Name sptr -Value Stop-Transcript
+
+Set-Alias -Name mypc -Value Open-MyPC
+Set-Alias -Name recyclebin -Value Open-RecycleBin
+Set-Alias -Name documents -Value Open-Documents
+Set-Alias -Name networks -Value Open-Networks
+Set-Alias -Name homegroup -Value Open-HomeGroup
+Set-Alias -Name netconnections -Value Open-NetworkConnections
+Set-Alias -Name filehistory -Value Open-FileHistory
+Set-Alias -Name memdiag -Value Diagnose-Memory
+Set-Alias -Name fonts -Value Open-Fonts
+Set-Alias -Name personalization -Value Open-Personalization
