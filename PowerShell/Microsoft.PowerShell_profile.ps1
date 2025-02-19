@@ -148,7 +148,7 @@ Set-Alias -Name getnpc -Value Get-NetTCPConnection
 Set-Alias -Name netshv -Value NetshWinsockVersionShowCatalog
 Set-Alias -Name netsha -Value NetshWlan
 Set-Alias -Name getndv -Value GetNetDrivers
-Set-Alias 
+
 Set-Alias -Name im -Value Install-Module
 Set-Alias -Name cbin -Value Clear-RecycleBin
 Set-Alias -Name sttr -Value Start-Transcript
