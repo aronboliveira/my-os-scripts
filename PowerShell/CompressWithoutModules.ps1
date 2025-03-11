@@ -1,0 +1,1 @@
+$sourceDir = "C:\Your\Source\Directory"; $zipDestination = "C:\Output\Archive.zip"; $excludeDirs = @('node_modules', 'other_dir_to_exclude'); Compress-Archive -Path (Get-ChildItem -Path $sourceDir -Recurse -File | Where-Object { -not ($excludeDirs | Where-Object { $_.FullName -like "*\$dir*" }) }).FullName -DestinationPath $zipDestination -Force
