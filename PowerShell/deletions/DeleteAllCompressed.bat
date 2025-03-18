@@ -1,3 +1,3 @@
 @echo off
-set "scriptName=Microsoft.PowerShell_profile"
+set "scriptName=DeleteAllCompressed"
 powershell -ExecutionPolicy Bypass -NoProfile -NoExit -File "%~dp0%scriptName%.ps1

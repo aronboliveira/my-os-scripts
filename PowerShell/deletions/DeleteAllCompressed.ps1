@@ -1,0 +1,1 @@
+gci * | ? { $_.Extension -eq ".7z" -or $_.Extension -eq ".rar" -or $_.Extension -eq ".zip" } | rm -Force

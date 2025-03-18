@@ -1,4 +1,3 @@
-# !!IMPORTANT!!! THIS FILE NEEDS TO BE PLACED IN [drive]:\Users\[name]\Documents\WindowsPowerShell to be read
 function Open-MyPC {
     explorer.exe "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"
 }
