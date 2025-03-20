@@ -1,14 +1,14 @@
-gci -Path $(gl) -Recurse -File | % {
+gci -Path (Get-Location) -Recurse -File | foreach {
     $file = $_.FullName
     write "Checking $file"
     $found = $false
     $results = @()
-    ps | % {
+    ps | foreach {
         $process = $_
-        $_.Modules | % {
+        $_.Modules | foreach {
             if ($_.FileName -eq $file) {
-                $found = true
-                results += [PSCustomObject]@{
+                $found = $true
+                $results += [PSCustomObject]@{
                     ProcessName = $process.ProcessName
                     ProcessId   = $process.Id
                     FilePath    = $_.FileName
@@ -17,7 +17,7 @@ gci -Path $(gl) -Recurse -File | % {
         }
     }
     if ($found) {
-        $results | Format-Table -AutoSize
+        $results | ft -AutoSize
     } else {
         write "No process found for file"
     }
