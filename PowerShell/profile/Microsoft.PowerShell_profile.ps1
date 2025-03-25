@@ -1057,6 +1057,26 @@ function SearchInteractively {
         [Console]::ForegroundColor = $oc
     }
 }
+function GetConcatenatedGPTTokens {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [Alias('Path')]
+        [string]$JsonPath
+    )
+
+    process {
+        try {
+            $jsonContent = Get-Content -Path $JsonPath -Raw -ErrorAction Stop | ConvertFrom-Json
+            -join ($jsonContent | ForEach-Object {
+                $_.data.v -replace '\\u201c', '"' -replace '\\u201d', '"' -replace '\\"', '"'
+            } | ForEach-Object { "$_`n`n" }).TrimEnd()
+        }
+        catch {
+            Write-Error "Failed to process JSON file: $_"
+        }
+    }
+}
 # Complex Functions
 Set-Alias -Name sann -Value SanitizeNames
 Set-Alias -Name compweb -Value CompressCurrentDirectory
@@ -1071,6 +1091,7 @@ Set-Alias -Name gethwfull -Value GetGroupedHardware
 Set-Alias -Name getheavfiles -Value GetHeaviestFiles
 Set-Alias -Name getheavdirs -Value GetHeaviestFolders
 Set-Alias -Name isearch -Value SearchInteractively
+Set-Alias -Name getgpttokens -Value GetConcatenatedGPTTokens
 # File managament
 Set-Alias -Name np -Value notepad
 Set-Alias -Name touch -Value NewFile
