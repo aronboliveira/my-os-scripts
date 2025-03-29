@@ -1,106 +1,372 @@
+<#
+.SYNOPSIS
+Opens 'This PC' folder on Explorer
+.No Parameters
+.No Returns
+[Alias]: mypc
+#>
 function Open-MyPC {
     explorer.exe "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"
 }
+<#
+.SYNOPSIS
+Opens Recycle Bin on Explorer
+.No Parameters
+.No Returns
+[Alias]: recyclebin
+#>
 function Open-RecycleBin {
     explorer.exe "::{645FF040-5081-101B-9F08-00AA002F954E}"
 }
+<#
+.SYNOPSIS
+Opens Documents Folder on Explorer
+.No Parameters
+.No Returns
+[Alias]: documents
+#>
 function Open-Documents {
     explorer.exe "::{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}"
 }
+<#
+.SYNOPSIS
+Opens the Network folder showing on Explorer
+.No Parameters
+.No Returns
+[Alias]: networks
+#>
 function Open-Networks {
     explorer.exe "::{208D2C60-3AEA-1069-A2D7-08002B30309D}"
 }
+<#
+.SYNOPSIS
+Opens Local Networks on Explorer
+.No Parameters
+.No Returns
+[Alias]: homegroup
+#>
 function Open-HomeGroup {
     explorer.exe "::{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}"
 }
+<#
+.SYNOPSIS
+Opens Network Connections on Explorer
+.No Parameters
+.No Returns
+[Alias]: netconnections
+#>
 function Open-NetworkConnections {
     explorer.exe "::{7007ACC7-3202-11D1-AAD2-00805FC1270E}"
 }
+<#
+.SYNOPSIS
+Opens File History backup settings
+.No Parameters
+.No Returns
+[Alias]: filehistory
+#>
 function Open-FileHistory {
     explorer.exe "::{9343812E-1C37-4A49-A12E-4B2D830D63F0}"
 }
+<#
+.SYNOPSIS
+Launches Windows Memory Diagnostic tool
+.No Parameters
+.No Returns
+[Alias]: filehistory
+#>
 function Diagnose-Memory {
     explorer.exe "::{D17D1D6D-CC3F-4815-8FE3-607E7D5D10B3}"
 }
+<#
+.SYNOPSIS
+Opens Personalization settings (themes/backgrounds)
+.No Parameters
+.No Returns
+[Alias]: personalization
+#>
 function Open-Personalization {
     explorer.exe "::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}"
 }
+<#
+.SYNOPSIS
+Opens Fonts management folder
+.No Parameters
+.No Returns
+[Alias]: fonts
+#>
 function Open-Fonts {
     explorer.exe "::{D20EA4E1-3957-11d2-A40B-0C5020524153}"
 }
+<#
+.SYNOPSIS
+Gets all USB controller-device associations on the system
+.No Parameters
+.Returns Win32_USBControllerDevice object
+[Alias]: getusbcd
+#>
 function Get-USBControllerDevice {
-    Get-WmiObject Win32_USBControllerDevice
+    gwmi Win32_USBControllerDevice
 }
+<#
+.SYNOPSIS
+Gets processor information
+.No Parameter
+.Returns Win32_Processor WMI object
+[Alias]: getproc
+#>
 function Get-Processor {
-    Get-WmiObject Win32_Processor
+    gwmi Win32_Processor
 }
+<#
+.SYNOPSIS
+Gets USB host controller information
+.No Parameters
+.Returns Win32_USBController WMI object
+[Alias]: getusbc
+#>
 function Get-USBController {
-    Get-WmiObject Win32_USBController
+    gwmi Win32_USBController
 }
+<#
+.SYNOPSIS
+Gets physical memory details
+.No Parameters
+.Returns Win32_PhysicalMemory WMI object
+[Alias]: getpmem
+#>
 function Get-PhysicalMemory {
-    Get-WmiObject Win32_PhysicalMemory
+    gwmi Win32_PhysicalMemory
 }
+<#
+.SYNOPSIS
+Gets physical disk drive information
+.No Parameters
+.Returns Win32_DiskDrive WMI object
+[Alias]: getdd
+#>
 function Get-DiskDrive {
-    Get-WmiObject Win32_DiskDrive
+    gwmi Win32_DiskDrive
 }
+<#
+.SYNOPSIS
+Gets logical disk partitions information
+.No Parameters
+.Returns Win32_LogicalDisk WMI object
+[Alias]: getld
+#>
 function Get-LogicalDisk {
-    Get-WmiObject Win32_LogicalDisk
+    gwmi Win32_LogicalDisk
 }
+<#
+.SYNOPSIS
+Gets battery status information
+.No Parameters
+.Returns Win32_Battery WMI object
+[Alias]: getbt
+#>
 function Get-Battery {
-    Get-WmiObject Win32_Battery
+    gwmi Win32_Battery
 }
+<#
+.SYNOPSIS
+Gets power management settings
+.No Parameters
+.Returns Win32_PowerSetting WMI object
+[Alias]: getpws
+#>
 function Get-PowerSetting {
-    Get-WmiObject Win32_PowerSetting
+    gwmi Win32_PowerSetting
 }
+<#
+.SYNOPSIS
+Gets installed printer information
+.No Parameters
+.Returns Win32_Printer WMI object
+[Alias]: getprn
+#>
 function Get-PrinterWMI {
-    Get-WmiObject Win32_Printer
+    gwmi Win32_Printer
 }
+<#
+.SYNOPSIS
+Gets video controller/graphics card information
+.No Parameters
+.Returns Win32_VideoController WMI object
+[Alias]: getvc
+#>
 function Get-VideoController {
-    Get-WmiObject Win32_VideoController
+    gwmi Win32_VideoController
 }
+<#
+.SYNOPSIS
+Gets network adapter configuration
+.No Parameters
+.Returns Win32_NetworkAdapterConfiguration WMI object
+[Alias]: getnac
+#>
 function Get-NetworkAdapterConfiguration {
-    Get-WmiObject Win32_NetworkAdapterConfiguration
+    gwmi Win32_NetworkAdapterConfiguration
 }
+<#
+.SYNOPSIS
+Gets BIOS information
+.No Parameters
+.Returns Win32_BIOS WMI object
+[Alias]: getbios
+#>
 function Get-BIOS {
-    Get-WmiObject Win32_BIOS
+    gwmi Win32_BIOS
 }
+<#
+.SYNOPSIS
+Gets Windows event log entries
+.No Parameters
+.Returns Win32_NTLogEvent WMI object
+[Alias]: getntlog
+#>
 function Get-NTLogEvent {
-    Get-WmiObject Win32_NTLogEvent
+    gwmi Win32_NTLogEvent
 }
+<#
+.SYNOPSIS
+Gets user account information
+.No Parameters
+.Returns Win32_UserAccount WMI object
+[Alias]: getua
+#>
 function Get-UserAccount {
-    Get-WmiObject Win32_UserAccount
+    gwmi Win32_UserAccount
 }
+<#
+.SYNOPSIS
+Gets computer system information
+.No Parameters
+.Returns Win32_ComputerSystem WMI object
+[Alias]: getcs
+#>
 function Get-ComputerSystem {
-    Get-WmiObject Win32_ComputerSystem
+    gwmi Win32_ComputerSystem
 }
+<#
+.SYNOPSIS
+Gets group-user associations
+.No Parameters
+.Returns Win32_GroupUser WMI object
+[Alias]: getgu
+#>
 function Get-GroupUser {
-    Get-WmiObject Win32_GroupUser
+    gwmi Win32_GroupUser
 }
+<#
+.SYNOPSIS
+Gets operating system information
+.No Parameters
+.Returns Win32_OperatingSystem WMI object
+[Alias]: getos
+#>
 function Get-OperatingSystem {
-    Get-WmiObject Win32_OperatingSystem
+    gwmi Win32_OperatingSystem
 }
+<#
+.SYNOPSIS
+Gets installed software products
+.No Parameters
+.Returns Win32_Product WMI object
+[Alias]: getprod
+#>
 function Get-Product {
-    Get-WmiObject Win32_Product
+    gwmi Win32_Product
 }
+<#
+.SYNOPSIS
+Gets Windows service information
+.No Parameters
+.Returns Win32_Service WMI object
+[Alias]: getsvc
+#>
 function Get-ServiceWMI {
-    Get-WmiObject Win32_Service
+    gwmi Win32_Service
 }
+<#
+.SYNOPSIS
+Gets WDDM version from video controllers
+.No Parameters
+.Returns Custom object with WDDMVersion property
+[Alias]: getwddm
+#>
+function Get-WDDMVersion {
+    gcim -ClassName Win32_VideoController | select @{Name="WDDMVersion"; Expression={$_.DriverVersion.Split('.')[0]}}
+}
+<#
+.SYNOPSIS
+Shows Winsock catalog information
+.No Parameters
+.Returns Netsh winsock catalog data
+[Alias]: netshv
+#>
 function NetshWinsockVersionShowCatalog {
-    Netsh winsock show catalog
+    netsh winsock show catalog
 }
+<#
+.SYNOPSIS
+Shows all wireless network information
+.No Parameters
+.Outputs String results from netsh command
+[Alias]: netsha
+#>
 function NetshWlan {
-    Netsh wlan show all
+    netsh wlan show all
 }
+<#
+.SYNOPSIS
+Displays wireless network adapter capabilities
+.No Parameters
+.Outputs String results from netsh command
+#>
+function Get-WirelessCapabilities {
+    netsh wlan show wirelesscapabilities
+}
+<#
+.SYNOPSIS
+Gets network adapter driver versions
+.No Parameters
+.Returns Formatted list of network adapters
+[Alias]: getndv
+#>
 function GetNetDrivers {
     Get-NetAdapter | Format-List Name, DriverVersion
 }
+<#
+.SYNOPSIS
+Creates new file(s)
+.PARAMETER args
+Path(s) of file(s) to create
+.Returns FileSystemInfo object(s)
+[Alias]: touch
+#>
 function NewFile { 
     New-Item -ItemType File @args 
 }
+<#
+.SYNOPSIS
+Writes input to specified file
+.PARAMETER FilePath
+Target file path
+.No Returns
+[Alias]: outf
+#>
 function OutFile {
     param ([string]$FilePath)
     $input | Out-File -FilePath $FilePath
 }
+<#
+.SYNOPSIS
+Sanitizes filenames in current directory
+.No Parameters
+.No Returns
+[Alias]: sann
+#>
 function SanitizeNames {
     gci * -File | foreach {
         $newBaseName = ($_.BaseName -replace '[^a-zA-Z0-9_]', '__').ToLower()
@@ -113,6 +379,13 @@ function SanitizeNames {
         } 
     }
 }
+<#
+.SYNOPSIS
+Compresses current directory excluding node_modules/vendor
+.No Parameters
+.Returns Path to created zip file
+[Alias]: compweb
+#>
 function CompressCurrentDirectory {
     $sourceDir = gl
     $zipDestination = "$($sourceDir.Path).zip"
@@ -131,6 +404,13 @@ function CompressCurrentDirectory {
     
     return $zipDestination
 }
+<#
+.SYNOPSIS
+Extracts all supported archives in current directory
+.No Parameters
+.No Returns
+[Alias]: unzipall
+#>
 function UnzipAll {
     gci -r -inc *.zip, *.7z, *.rar | % {
         if ($_.Extension -eq ".zip") {
@@ -142,9 +422,27 @@ function UnzipAll {
         }
     }
 }
+<#
+.SYNOPSIS
+Deletes all compressed files in current directory
+.No Parameters
+.No Returns
+[Alias]: deletezip
+#>
 function DeleteAllCompressed {
     gci * | ? { $_.Extension -eq ".7z" -or $_.Extension -eq ".rar" -or $_.Extension -eq ".zip" } | rm -Force
 }
+<#
+.SYNOPSIS
+Gets detailed processor information with color formatting
+.No Parameters
+.Outputs Formatted processor properties including:
+- Clock speeds
+- Cache details
+- Architecture
+- Voltage information
+[Alias]: getprocfull
+#>
 function GetProcessorData {
     $originalColor = [Console]::ForegroundColor
     [Console]::ForegroundColor = 'DarkGray'
@@ -154,7 +452,7 @@ function GetProcessorData {
     [Console]::ForegroundColor = 'DarkGray'
     write "------------------------"
     [Console]::ForegroundColor = $originalColor
-    Get-WmiObject Win32_Processor | Select-Object @{Name="ID"; Expression={$_.DeviceID}},
+    gwmi Win32_Processor | Select-Object @{Name="ID"; Expression={$_.DeviceID}},
         @{Name="ID do Processador"; Expression={$_.ProcessorID}},
         @{Name="Número de Série"; Expression={
             if ($_.SerialNumber) { 
@@ -436,6 +734,17 @@ function GetProcessorData {
         }}
     [Console]::ForegroundColor = $originalColor
 }
+<#
+.SYNOPSIS
+Gets detailed physical memory information with color formatting
+.No Parameters
+.Outputs Formatted memory properties including:
+- Capacity
+- Clock speeds
+- DDR version
+- Voltage details
+[Alias]: getssramfull
+#>
 function GetSSRAMData {
     $originalColor = [Console]::ForegroundColor
     [Console]::ForegroundColor = "Cyan"
@@ -443,7 +752,7 @@ function GetSSRAMData {
     write "SSRAM"
     write "------------------------"
     [Console]::ForegroundColor = "Yellow"
-    Get-WmiObject Win32_PhysicalMemory | Select-Object @{
+    gwmi Win32_PhysicalMemory | Select-Object @{
         Name = "Fabricante"
         Expression = {if ($_.Manufacturer -and $_.Manufacturer.Trim() -ne "") { $_.Manufacturer } else { "Indefinido" }}
     }, @{
@@ -519,6 +828,16 @@ function GetSSRAMData {
     }
     [Console]::ForegroundColor = $originalColor
 }
+<#
+.SYNOPSIS
+Gets comprehensive storage device information
+.No Parameters
+.Outputs Formatted storage data including:
+- Volumes
+- Physical disks
+- Disk drives
+[Alias]: getstoragefull
+#>
 function GetStorageDeviceData {
     $originalColor = [Console]::ForegroundColor
     
@@ -666,7 +985,7 @@ function GetStorageDeviceData {
     write "------------------------"
     [Console]::ForegroundColor = "Yellow"
     
-    $diskDrives = Get-WmiObject Win32_DiskDrive | Select-Object @{
+    $diskDrives = gwmi Win32_DiskDrive | Select-Object @{
         Name = "ID"
         Expression = {$_.DeviceID -replace "^\\\\\.\\", ""}
     }, @{
@@ -704,6 +1023,16 @@ function GetStorageDeviceData {
     
     [Console]::ForegroundColor = $originalColor
 }
+<#
+.SYNOPSIS
+Gets USB controller and port information
+.No Parameters
+.Outputs Formatted USB properties including:
+- Controller protocols
+- Connection status
+- PNP IDs
+[Alias]: getusbportfull
+#>
 function GetUSBPortData {
     $originalColor = [Console]::ForegroundColor
     [Console]::ForegroundColor = "Cyan"
@@ -712,7 +1041,7 @@ function GetUSBPortData {
     write "------------------------"
     [Console]::ForegroundColor = "Yellow"
     
-    Get-WmiObject Win32_USBController | Select-Object @{
+    gwmi Win32_USBController | Select-Object @{
         Name = "ID"
         Expression = {$_.DeviceID}
     }, @{
@@ -800,6 +1129,16 @@ function GetUSBPortData {
     
     [Console]::ForegroundColor = $originalColor
 }
+<#
+.SYNOPSIS
+Gets detailed video controller information
+.No Parameters
+.Outputs Formatted GPU properties including:
+- Memory
+- Resolutions
+- Driver details
+[Alias]: getvcfull
+#>
 function GetVideoControllerData {
     $originalColor = [Console]::ForegroundColor
     [Console]::ForegroundColor = "Cyan"
@@ -808,7 +1147,7 @@ function GetVideoControllerData {
     write "------------------------"
     [Console]::ForegroundColor = "Yellow"
     
-    $videoControllers = Get-WmiObject Win32_VideoController | Select-Object @{
+    $videoControllers = gwmi Win32_VideoController | Select-Object @{
         Name = "ID"
         Expression = {$_.DeviceID}
     }, @{
@@ -953,9 +1292,27 @@ function GetVideoControllerData {
     
     [Console]::ForegroundColor = $originalColor
 }
+<#
+.SYNOPSIS
+Gets aggregated hardware information
+.No Parameters
+.Outputs Combined system data including:
+- CPU details
+- Memory specs
+- Storage information
+- USB controllers
+[Alias]: gethwfull
+#>
 function GetGroupedHardware {
-    write "------------------------"; write "CPUs"; write "------------------------"; Get-WmiObject Win32_Processor | Select-Object @{Name="ID"; Expression={$_.DeviceID}}, @{Name="ID do Processador"; Expression={$_.ProcessorID}}, @{Name="Número de Série"; Expression={if ($_.SerialNumber) {$_.SerialNumber} else {"Indefinido"}}}, @{Name="Nome"; Expression={$_.Name}}, @{Name="Legenda"; Expression={$_.Caption}}, @{Name="Fabricante"; Expression={$_.Manufacturer}}, @{Name="Tipo"; Expression={switch ($_.ProcessorType) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Central";} 4 {"Math";} 5 {"DSP";} 6 {"GPU";} default {"Indefinido"}}}}, @{Name="Núcleos Físicos"; Expression={$_.NumberOfCores}}, @{Name="Núcleos Ativos"; Expression={$_.NumberOfEnabledCores}}, @{Name="Processos Lógicos"; Expression={$_.NumberOfLogicalProcessors}}, @{Name="Soquete"; Expression={$_.SocketDesignation}}, @{Name="Função"; Expression={switch ($_.Role) {"CPU" {"Unidade Central";} "FPU" {"Unidade de Ponto Flutuante";} "CP+FPU" {"Combinado";} default {"Indefinido"}}}}, @{Name="Família"; Expression={switch ($_.Family) {1 {"Outro";} 2 {"Desconhecido";} 3 {"8086";} 4 {"80286";} 5 {"80386";} 6 {"80486";} 7 {"8087";} 8 {"80287";} 9 {"80387";} 10 {"80487";} 11 {"Pentium";} 12 {"Pentium Pro";} 13 {"Pentium II";} 14 {"Pentium MMX";} 15 {"Celeron";} 16 {"Pentium Xeon";} 17 {"Pentium III";} 18 {"M1";} 19 {"M2";} default {"Indefinido"}}}}, @{Name="Arquitetura"; Expression={switch ($_.Architecture) {0 {"x86";} 1 {"MIPS";} 2 {"Alpha";} 3 {"PowerPC";} 5 {"ARM";} 6 {"IA-64";} 9 {"x64";} 10 {"ARM64";} 12 {"RISC-V";} default {"Indefinido"}}}}, @{Name="Nível"; Expression={$_.Level}}, @{Name="PartNumber"; Expression={$_.PartNumber}}, @{Name="Características"; Expression={$features=@(); if ($_.Characteristics -band 1) {$features+="FPU Presente"}; if ($_.Characteristics -band 2) {$features+="Virtualização"}; if ($_.Characteristics -band 4) {$features+="Dep. Exec. Desativável"}; if ($_.Characteristics -band 8) {$features+="Monitor Térmico"}; $features -join ", "}}, @{Name="Descrição"; Expression={$_.Description}}, @{Name="Clock Atual (GHz)"; Expression={[math]::Round($_.CurrentClockSpeed/1000, 2)}}, @{Name="Clock Máximo (GHz)"; Expression={[math]::Round($_.MaxClockSpeed/1000, 2)}}, @{Name="Clock Externo (MHz)"; Expression={$_.ExtClock}}, @{Name="Cache L2 (MB)"; Expression={if ($_.L2CacheSize) {[math]::Round($_.L2CacheSize/1024, 1)} else {"Indefinido"}}}, @{Name="Vel. Cache L2 (GHz)"; Expression={if ($_.L2CacheSpeed) {[math]::Round($_.L2CacheSpeed/1000, 2)} else {"Indefinido"}}}, @{Name="Cache L3 (MB)"; Expression={if ($_.L3CacheSize) {[math]::Round($_.L3CacheSize/1024, 1)} else {"Indefinido"}}}, @{Name="Vel. Cache L3 (GHz)"; Expression={if ($_.L3CacheSpeed) {[math]::Round($_.L3CacheSpeed/1000, 2)} else {"Indefinido"}}}, @{Name="Threads"; Expression={$_.ThreadCount}}, @{Name="Voltagem Atual"; Expression={if ($_.CurrentVoltage) {"$($_.CurrentVoltage/10)V"} else {"Indefinido"}}}, @{Name="Voltagens Suportadas"; Expression={if ($_.VoltageCaps) {($_.VoltageCaps -split "," | foreach {"$($_/10)V"}) -join ", "} else {"Indefinido"}}}, @{Name="Virtualização Ativa"; Expression={if ($_.VirtualizationFirmwareEnabled) {"Sim"} else {"Não"}}}, @{Name="ID PNP"; Expression={$_.PNPDeviceID}}, @{Name="Largura Endereço"; Expression={"$($_.AddressWidth)-bit"}}, @{Name="Largura Dados"; Expression={"$($_.DataWidth)-bit"}}, @{Name="Estado"; Expression={switch ($_.CpuStatus) {0 {"Desconhecido";} 1 {"CPU Habilitada";} 2 {"CPU Desabilitada";} 3 {"CPU Parcial";} 4 {"CPU Ociosa";} 5 {"CPU Reservada";} 6 {"Offline";} 7 {"Falha";} default {"Indefinido"}}}}, @{Name="Disponibilidade"; Expression={switch ($_.Availability) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Em Execução";} 4 {"Aviso";} 5 {"Em Teste";} 6 {"Não Aplicável";} 7 {"Desligado";} 8 {"Offline";} 9 {"Fora de Serviço";} 10 {"Degradado";} 11 {"Não Instalado";} 12 {"Erro de Instalação";} default {"Indefinido"}}}}, @{Name="Status"; Expression={$_.Status}}, @{Name="Info Status"; Expression={switch ($_.StatusInfo) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Habilitado";} 4 {"Desabilitado";} 5 {"Não Aplicável";} default {"Indefinido"}}}}; write "------------------------"; write "SSRAM"; write "------------------------"; Get-WmiObject Win32_PhysicalMemory | Select-Object @{Name="Fabricante"; Expression={if ($_.Manufacturer -and $_.Manufacturer.Trim() -ne "") { $_.Manufacturer } else { "Indefinido" }}}, @{Name="Nome da Parte"; Expression={if ($_.PartNumber -and $_.PartNumber.Trim() -ne "") { $_.PartNumber } else { "Indefinido" }}}, @{Name="Serial"; Expression={$_.SerialNumber}}, @{Name="Capacidade (GB)"; Expression={if ($_.Capacity) {[math]::Round($_.Capacity / 1GB, 0)} else { "Indefinido" }}}, @{Name="Potencial de Velocidade de Relógio (GHz)"; Expression={if ($_.ConfiguredClockSpeed) {[math]::Round($_.ConfiguredClockSpeed / 1000, 2)} else { "Indefinido" }}}, @{Name="Velocidade de Relógio em Uso (GHz)"; Expression={if ($_.Speed) {[math]::Round($_.Speed / 1000, 2)} else { "Indefinido" }}}, @{Name="Versão de DDR"; Expression={switch ($_.SMBIOSMemoryType) {20 {"DDR"} 21 {"DDR2"} 24 {"DDR3"} 26 {"DDR4"} 34 {"DDR5"} default { "Indefinido" }}}}, @{Name="Memória"; Expression={switch($_.TypeDetail) {1 {"Reservado"} 2 {"Outro"} 4 {"Desconhecido"} 8 {"Rapidamente Paginado"} 16 {"Coluna Estática"} 32 {"Porção em Pipeline"} 64 {"Síncrono"} 128 {"Assíncrono"} 256 {"Suporta ECC"} 512 {"Registrado"} 1024 {"Não Registrado"} 2048 {"LRDIMM"} default {"Indefinido"}}}}, @{Name="Localização"; Expression={if ($_.DeviceLocator -and $_.DeviceLocator.Trim() -ne "") { $_.DeviceLocator } else { "Indefinido" }}}, @{Name="Banco"; Expression={if ($_.BankLabel -and $_.BankLabel.Trim() -ne "") { $_.BankLabel } else { "Indefinido" }}}, @{Name="Largura de Dados em Barramento"; Expression={switch ($_.DataWidth) {64 {"64 (Padrão)"} 72 {"72 (ECC)"} default {"Indefinido"}}}}, @{Name="Voltagem Configurada"; Expression={if ($_.ConfiguredVoltage) {($_.ConfiguredVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Voltagem Mínima"; Expression={if ($_.MinVoltage) {($_.MinVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Voltagem Máxima"; Expression={if ($_.MaxVoltage) {($_.MaxVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Removível"; Expression={if ($_.Removable -ne $null) { $_.Removable } else { "Indefinido" }}}, @{Name="Substituível"; Expression={if ($_.Replaceable -ne $null) { $_.Replaceable } else { "Indefinido" }}}; $traducaoUsage=@{"Auto-Select"="Seleção Automática";"Manual-Select"="Seleção Manual";"Hot Spare"="Reserva Quente";"Journal"="Jornal";"Retired"="Retirado";"Unassigned"="Não Atribuído"}; $traducaoOperabilidade=@{"OK"="Operacional";"Unknown"="Desconhecido";"No Media"="Sem Mídia";"Degraded"="Degradado";"Failed"="Falhou";"Offline"="Offline";"Online"="Online";"Read Only"="Somente Leitura";"Full Repair Needed"="Danificado"}; $traducaoDedupMode=@{"Disabled"="Desativado";"Enabled"="Ativado";"Unknown"="Desconhecido";"Savings Temporary"="Otimização Temporária";"Savings Calculation"="Cálculo de Otimização"}; $traducaoFileSystemType=@{"NTFS"="NTFS";"FAT32"="FAT32";"ReFS"="ReFS (Resilient File System)";"exFAT"="exFAT";"UDF"="UDF (Universal Disk Format)";"CDFS"="CDFS (Compact Disc File System)";"Unknown"="Desconhecido"}; write "------------------------"; write "VOLUMES"; write "------------------------"; $volumes=Get-Volume | Select-Object @{Name="ID do Volume"; Expression={$_.ObjectId}}, @{Name="Rótulo"; Expression={if ($_.FileSystemLabel -and $_.FileSystemLabel.Trim() -ne "") { $_.FileSystemLabel } else { "Nulo" }}}, @{Name="Nome"; Expression={if ($_.PSObject.Properties['FriendlyName'] -and $_.FriendlyName) { $_.FriendlyName } else { "Nulo" }}}, @{Name="Drive"; Expression={if ($_.DriveLetter) { $_.DriveLetter } else { "Nulo" }}}, @{Name="Tipo de Drive"; Expression={if ($_.DriveType) { $_.DriveType } else { "Nulo" }}}, @{Name="Sistema de Arquivos"; Expression={$fs=$_.FileSystemType; if ($fs -and $traducaoFileSystemType.ContainsKey($fs)) { $traducaoFileSystemType[$fs] } else { "Nulo" }}}, @{Name="Armazenamento Total (GB)"; Expression={if ($_.Size) {[math]::Round($_.Size/1GB,0)} else { "Nulo" }}}, @{Name="Armazenamento Restante (GB)"; Expression={if ($_.SizeRemaining) {[math]::Round($_.SizeRemaining/1GB,2)} else { "Nulo" }}}, @{Name="Operabilidade"; Expression={$opStatus=$_.OperationalStatus; if($opStatus -and $traducaoOperabilidade.ContainsKey($opStatus)) { $traducaoOperabilidade[$opStatus] } else { "Nulo" }}}, @{Name="Deduplicação"; Expression={$dedup=$_.DedupMode; if($dedup -and $traducaoDedupMode.ContainsKey($dedup)) { $traducaoDedupMode[$dedup] } else { "Nulo" }}}; $volumes | sort Rótulo | foreach { $_.PSObject.Properties | foreach { if (-not $_.Value -or $_.Value -eq "") { $_.Value = "Nulo" } }; $_ }; write "------------------------`n"; write "------------------------"; write "PHYSICAL DISKS"; write "------------------------"; $physicalDisks = Get-PhysicalDisk | Select-Object @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={if ($_.FriendlyName) { $_.FriendlyName -replace "\s", "" } else { "Nulo" }}}, @{Name="Serial"; Expression={if ($_.SerialNumber) { $_.SerialNumber } else { "Nulo" }}}, @{Name="Media"; Expression={if ($_.MediaType) { $_.MediaType } else { "Nulo" }}}, @{Name="Barramento"; Expression={if ($_.BusType) { $_.BusType } else { "Nulo" }}}, @{Name="Adicionável em Pool"; Expression={if ($null -ne $_.CanPool) { $_.CanPool } else { "Nulo" }}}; $physicalDisks | sort ID; $physicalDisks = Get-PhysicalDisk | Select-Object @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={if ($_.FriendlyName) { $_.FriendlyName -replace "\s", "" } else { "Nulo" }}}, @{Name="Serial"; Expression={if ($_.SerialNumber) { $_.SerialNumber } else { "Nulo" }}}, @{Name="Media"; Expression={if ($_.MediaType) { $_.MediaType } else { "Nulo" }}}, @{Name="Barramento"; Expression={if ($_.BusType) { $_.BusType } else { "Nulo" }}}, @{Name="Adicionável em Pool"; Expression={if ($null -ne $_.CanPool) { $_.CanPool } else { "Nulo" }}}; $physicalDisks | sort ID; write "------------------------`n"; write "------------------------"; write "DISK DRIVES"; write "------------------------"; $traducaoMediaType=@{"Fixed hard disk media"="Disco Rígido Fixo";"External hard disk media"="Disco Rígido Externo";"Removable media"="Mídia Removível"};$traducaoInterfaceType=@{"SCSI"="SCSI";"IDE"="IDE (Drive Eletrônico Integrado)";"USB"="USB";"SATA"="SATA";"SAS"="SAS (Serial Attached SCSI)";"NVMe"="NVMe";"Fibre Channel"="Canal de Fibra";"RAID"="RAID (Matriz Redundante de Discos Independentes)";"iSCSI"="iSCSI (SCSI sobre IP)";"ATA"="ATA (Tecnologia Avançada de Anexo)";"1394"="IEEE 1394 (FireWire)";"SD"="SD";"MMC"="MMC (MultiMediaCard)";"Virtual"="Disco Virtual";"SSA"="SSA";"External"="Disco Rígido Externo";"Fixed"="Disco Rígido Fixo"}; $traducaoMediaType=@{"Fixed hard disk media"="Disco Rígido Fixo";"External hard disk media"="Disco Rígido Externo";"Removable media"="Mídia Removível"};$traducaoInterfaceType=@{"SCSI"="SCSI";"IDE"="IDE (Drive Eletrônico Integrado)";"USB"="USB";"SATA"="SATA";"SAS"="SAS (Serial Attached SCSI)";"NVMe"="NVMe";"Fibre Channel"="Canal de Fibra";"RAID"="RAID (Matriz Redundante de Discos Independentes)";"iSCSI"="iSCSI (SCSI sobre IP)";"ATA"="ATA (Tecnologia Avançada de Anexo)";"1394"="IEEE 1394 (FireWire)";"SD"="SD";"MMC"="MMC (MultiMediaCard)";"Virtual"="Disco Virtual";"SSA"="SSA";"External"="Disco Rígido Externo";"Fixed"="Disco Rígido Fixo"}; $diskDrives = Get-WmiObject Win32_DiskDrive | Select-Object @{Name="ID"; Expression={$_.DeviceID -replace "^\\\\\.\\", ""}}, @{Name="Modelo"; Expression={$_.Model}}, @{Name="Partições"; Expression={$_.Partitions}}, @{Name="Tamanho (GB)"; Expression={[math]::Round($_.Size / 1GB, 0)}}, @{Name="Interface"; Expression={ $interface=$_.InterfaceType; if($interface -and $traducaoInterfaceType.ContainsKey($interface)) { $traducaoInterfaceType[$interface] } else { if($interface) { $interface } else { "Indefinido" }}}}, @{Name="Media"; Expression={ $m=$_.MediaType; if($m -and $traducaoMediaType.ContainsKey($m)) { $traducaoMediaType[$m] } else { if($m) { $m } else { "Indefinido" } }}}; $diskDrives | sort ID; write "------------------------"; write "USBs"; write "------------------------"; Get-WmiObject Win32_USBController | Select-Object @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={$_.Caption}}, @{Name="Fabricante"; Expression={$_.Manufacturer}}, @{Name="Descrição do Tipo"; Expression={$_.Description}}, @{Name="Protocolo (USB Version)"; Expression={switch ($_.ProtocolSupported) {1 {"Outro"} 2 {"Desconhecido"} 3 {"EISA"} 4 {"ISA"} 5 {"PCI"} 6 {"ATA/ATAPI"} 7 {"Disquete Flexível"} 8 {"1496"} 9 {"SCSI Paralelo"} 10 {"SCSI Fibre Channel"} 11 {"SCSI Serial Bus"} 12 {"SCSI Serial Bus-2 (1394)"} 13 {"SCSI Serial Storage Architecture"} 14 {"VESA"} 15 {"PCMCIA"} 16 {"USB (Universal Serial Bus)"} 17 {"Protocolo Paralelo"} 18 {"ESCON"} 19 {"Diagnóstico"} 20 {"I2C"} 21 {"Energia"} 22 {"HIPPI"} 23 {"MultiBus"} 24 {"VME"} 25 {"IPI"} 26 {"IEEE-488"} 27 {"RS232"} 28 {"IEEE 802.3 10BASE5"} 29 {"IEEE 802.3 10BASE2"} 30 {"IEEE 802.3 1BASE5"} 31 {"IEEE 802.3 10BROAD36"} 32 {"IEEE 802.3 100BASEVG"} 33 {"IEEE 802.5 Token-Ring"} 34 {"ANSI X3T9.5 FDDI"} 35 {"MCA"} 36 {"ESDI"} 37 {"IDE"} 38 {"CMD"} 39 {"ST506"} 40 {"DSSI"} 41 {"QIC2"} 42 {"Enhanced ATA/IDE"} 43 {"AGP"} 44 {"TWIRP (Two-Way Infrared)"} 45 {"FIR (Fast Infrared)"} 46 {"SIR (Serial Infrared)"} 47 {"IrBus"} default {"Indefinido"} }}}, @{Name="PNP ID"; Expression={$_.PNPDeviceID}}, @{Name="Status"; Expression={switch ($_.Status) {"OK" {"Operacional"} "Error" {"Erro"} "Degraded" {"Degradado"} "Unknown" {"Desconhecido"} "Pred Fail" {"Falha Iminente"} "Starting" {"Iniciando"} "Stopping" {"Parando"} "Service" {"Em Serviço"} "Stressed" {"Sob Stress"} "NonRecover" {"Não Recuperável"} "No Contact" {"Sem Contato"} "Lost Comm" {"Comunicação Perdida"} default {"Indefinido"}}}}
+    write "------------------------"; write "CPUs"; write "------------------------"; gwmi Win32_Processor | Select-Object @{Name="ID"; Expression={$_.DeviceID}}, @{Name="ID do Processador"; Expression={$_.ProcessorID}}, @{Name="Número de Série"; Expression={if ($_.SerialNumber) {$_.SerialNumber} else {"Indefinido"}}}, @{Name="Nome"; Expression={$_.Name}}, @{Name="Legenda"; Expression={$_.Caption}}, @{Name="Fabricante"; Expression={$_.Manufacturer}}, @{Name="Tipo"; Expression={switch ($_.ProcessorType) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Central";} 4 {"Math";} 5 {"DSP";} 6 {"GPU";} default {"Indefinido"}}}}, @{Name="Núcleos Físicos"; Expression={$_.NumberOfCores}}, @{Name="Núcleos Ativos"; Expression={$_.NumberOfEnabledCores}}, @{Name="Processos Lógicos"; Expression={$_.NumberOfLogicalProcessors}}, @{Name="Soquete"; Expression={$_.SocketDesignation}}, @{Name="Função"; Expression={switch ($_.Role) {"CPU" {"Unidade Central";} "FPU" {"Unidade de Ponto Flutuante";} "CP+FPU" {"Combinado";} default {"Indefinido"}}}}, @{Name="Família"; Expression={switch ($_.Family) {1 {"Outro";} 2 {"Desconhecido";} 3 {"8086";} 4 {"80286";} 5 {"80386";} 6 {"80486";} 7 {"8087";} 8 {"80287";} 9 {"80387";} 10 {"80487";} 11 {"Pentium";} 12 {"Pentium Pro";} 13 {"Pentium II";} 14 {"Pentium MMX";} 15 {"Celeron";} 16 {"Pentium Xeon";} 17 {"Pentium III";} 18 {"M1";} 19 {"M2";} default {"Indefinido"}}}}, @{Name="Arquitetura"; Expression={switch ($_.Architecture) {0 {"x86";} 1 {"MIPS";} 2 {"Alpha";} 3 {"PowerPC";} 5 {"ARM";} 6 {"IA-64";} 9 {"x64";} 10 {"ARM64";} 12 {"RISC-V";} default {"Indefinido"}}}}, @{Name="Nível"; Expression={$_.Level}}, @{Name="PartNumber"; Expression={$_.PartNumber}}, @{Name="Características"; Expression={$features=@(); if ($_.Characteristics -band 1) {$features+="FPU Presente"}; if ($_.Characteristics -band 2) {$features+="Virtualização"}; if ($_.Characteristics -band 4) {$features+="Dep. Exec. Desativável"}; if ($_.Characteristics -band 8) {$features+="Monitor Térmico"}; $features -join ", "}}, @{Name="Descrição"; Expression={$_.Description}}, @{Name="Clock Atual (GHz)"; Expression={[math]::Round($_.CurrentClockSpeed/1000, 2)}}, @{Name="Clock Máximo (GHz)"; Expression={[math]::Round($_.MaxClockSpeed/1000, 2)}}, @{Name="Clock Externo (MHz)"; Expression={$_.ExtClock}}, @{Name="Cache L2 (MB)"; Expression={if ($_.L2CacheSize) {[math]::Round($_.L2CacheSize/1024, 1)} else {"Indefinido"}}}, @{Name="Vel. Cache L2 (GHz)"; Expression={if ($_.L2CacheSpeed) {[math]::Round($_.L2CacheSpeed/1000, 2)} else {"Indefinido"}}}, @{Name="Cache L3 (MB)"; Expression={if ($_.L3CacheSize) {[math]::Round($_.L3CacheSize/1024, 1)} else {"Indefinido"}}}, @{Name="Vel. Cache L3 (GHz)"; Expression={if ($_.L3CacheSpeed) {[math]::Round($_.L3CacheSpeed/1000, 2)} else {"Indefinido"}}}, @{Name="Threads"; Expression={$_.ThreadCount}}, @{Name="Voltagem Atual"; Expression={if ($_.CurrentVoltage) {"$($_.CurrentVoltage/10)V"} else {"Indefinido"}}}, @{Name="Voltagens Suportadas"; Expression={if ($_.VoltageCaps) {($_.VoltageCaps -split "," | foreach {"$($_/10)V"}) -join ", "} else {"Indefinido"}}}, @{Name="Virtualização Ativa"; Expression={if ($_.VirtualizationFirmwareEnabled) {"Sim"} else {"Não"}}}, @{Name="ID PNP"; Expression={$_.PNPDeviceID}}, @{Name="Largura Endereço"; Expression={"$($_.AddressWidth)-bit"}}, @{Name="Largura Dados"; Expression={"$($_.DataWidth)-bit"}}, @{Name="Estado"; Expression={switch ($_.CpuStatus) {0 {"Desconhecido";} 1 {"CPU Habilitada";} 2 {"CPU Desabilitada";} 3 {"CPU Parcial";} 4 {"CPU Ociosa";} 5 {"CPU Reservada";} 6 {"Offline";} 7 {"Falha";} default {"Indefinido"}}}}, @{Name="Disponibilidade"; Expression={switch ($_.Availability) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Em Execução";} 4 {"Aviso";} 5 {"Em Teste";} 6 {"Não Aplicável";} 7 {"Desligado";} 8 {"Offline";} 9 {"Fora de Serviço";} 10 {"Degradado";} 11 {"Não Instalado";} 12 {"Erro de Instalação";} default {"Indefinido"}}}}, @{Name="Status"; Expression={$_.Status}}, @{Name="Info Status"; Expression={switch ($_.StatusInfo) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Habilitado";} 4 {"Desabilitado";} 5 {"Não Aplicável";} default {"Indefinido"}}}}; write "------------------------"; write "SSRAM"; write "------------------------"; gwmi Win32_PhysicalMemory | Select-Object @{Name="Fabricante"; Expression={if ($_.Manufacturer -and $_.Manufacturer.Trim() -ne "") { $_.Manufacturer } else { "Indefinido" }}}, @{Name="Nome da Parte"; Expression={if ($_.PartNumber -and $_.PartNumber.Trim() -ne "") { $_.PartNumber } else { "Indefinido" }}}, @{Name="Serial"; Expression={$_.SerialNumber}}, @{Name="Capacidade (GB)"; Expression={if ($_.Capacity) {[math]::Round($_.Capacity / 1GB, 0)} else { "Indefinido" }}}, @{Name="Potencial de Velocidade de Relógio (GHz)"; Expression={if ($_.ConfiguredClockSpeed) {[math]::Round($_.ConfiguredClockSpeed / 1000, 2)} else { "Indefinido" }}}, @{Name="Velocidade de Relógio em Uso (GHz)"; Expression={if ($_.Speed) {[math]::Round($_.Speed / 1000, 2)} else { "Indefinido" }}}, @{Name="Versão de DDR"; Expression={switch ($_.SMBIOSMemoryType) {20 {"DDR"} 21 {"DDR2"} 24 {"DDR3"} 26 {"DDR4"} 34 {"DDR5"} default { "Indefinido" }}}}, @{Name="Memória"; Expression={switch($_.TypeDetail) {1 {"Reservado"} 2 {"Outro"} 4 {"Desconhecido"} 8 {"Rapidamente Paginado"} 16 {"Coluna Estática"} 32 {"Porção em Pipeline"} 64 {"Síncrono"} 128 {"Assíncrono"} 256 {"Suporta ECC"} 512 {"Registrado"} 1024 {"Não Registrado"} 2048 {"LRDIMM"} default {"Indefinido"}}}}, @{Name="Localização"; Expression={if ($_.DeviceLocator -and $_.DeviceLocator.Trim() -ne "") { $_.DeviceLocator } else { "Indefinido" }}}, @{Name="Banco"; Expression={if ($_.BankLabel -and $_.BankLabel.Trim() -ne "") { $_.BankLabel } else { "Indefinido" }}}, @{Name="Largura de Dados em Barramento"; Expression={switch ($_.DataWidth) {64 {"64 (Padrão)"} 72 {"72 (ECC)"} default {"Indefinido"}}}}, @{Name="Voltagem Configurada"; Expression={if ($_.ConfiguredVoltage) {($_.ConfiguredVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Voltagem Mínima"; Expression={if ($_.MinVoltage) {($_.MinVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Voltagem Máxima"; Expression={if ($_.MaxVoltage) {($_.MaxVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Removível"; Expression={if ($_.Removable -ne $null) { $_.Removable } else { "Indefinido" }}}, @{Name="Substituível"; Expression={if ($_.Replaceable -ne $null) { $_.Replaceable } else { "Indefinido" }}}; $traducaoUsage=@{"Auto-Select"="Seleção Automática";"Manual-Select"="Seleção Manual";"Hot Spare"="Reserva Quente";"Journal"="Jornal";"Retired"="Retirado";"Unassigned"="Não Atribuído"}; $traducaoOperabilidade=@{"OK"="Operacional";"Unknown"="Desconhecido";"No Media"="Sem Mídia";"Degraded"="Degradado";"Failed"="Falhou";"Offline"="Offline";"Online"="Online";"Read Only"="Somente Leitura";"Full Repair Needed"="Danificado"}; $traducaoDedupMode=@{"Disabled"="Desativado";"Enabled"="Ativado";"Unknown"="Desconhecido";"Savings Temporary"="Otimização Temporária";"Savings Calculation"="Cálculo de Otimização"}; $traducaoFileSystemType=@{"NTFS"="NTFS";"FAT32"="FAT32";"ReFS"="ReFS (Resilient File System)";"exFAT"="exFAT";"UDF"="UDF (Universal Disk Format)";"CDFS"="CDFS (Compact Disc File System)";"Unknown"="Desconhecido"}; write "------------------------"; write "VOLUMES"; write "------------------------"; $volumes=Get-Volume | Select-Object @{Name="ID do Volume"; Expression={$_.ObjectId}}, @{Name="Rótulo"; Expression={if ($_.FileSystemLabel -and $_.FileSystemLabel.Trim() -ne "") { $_.FileSystemLabel } else { "Nulo" }}}, @{Name="Nome"; Expression={if ($_.PSObject.Properties['FriendlyName'] -and $_.FriendlyName) { $_.FriendlyName } else { "Nulo" }}}, @{Name="Drive"; Expression={if ($_.DriveLetter) { $_.DriveLetter } else { "Nulo" }}}, @{Name="Tipo de Drive"; Expression={if ($_.DriveType) { $_.DriveType } else { "Nulo" }}}, @{Name="Sistema de Arquivos"; Expression={$fs=$_.FileSystemType; if ($fs -and $traducaoFileSystemType.ContainsKey($fs)) { $traducaoFileSystemType[$fs] } else { "Nulo" }}}, @{Name="Armazenamento Total (GB)"; Expression={if ($_.Size) {[math]::Round($_.Size/1GB,0)} else { "Nulo" }}}, @{Name="Armazenamento Restante (GB)"; Expression={if ($_.SizeRemaining) {[math]::Round($_.SizeRemaining/1GB,2)} else { "Nulo" }}}, @{Name="Operabilidade"; Expression={$opStatus=$_.OperationalStatus; if($opStatus -and $traducaoOperabilidade.ContainsKey($opStatus)) { $traducaoOperabilidade[$opStatus] } else { "Nulo" }}}, @{Name="Deduplicação"; Expression={$dedup=$_.DedupMode; if($dedup -and $traducaoDedupMode.ContainsKey($dedup)) { $traducaoDedupMode[$dedup] } else { "Nulo" }}}; $volumes | sort Rótulo | foreach { $_.PSObject.Properties | foreach { if (-not $_.Value -or $_.Value -eq "") { $_.Value = "Nulo" } }; $_ }; write "------------------------`n"; write "------------------------"; write "PHYSICAL DISKS"; write "------------------------"; $physicalDisks = Get-PhysicalDisk | Select-Object @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={if ($_.FriendlyName) { $_.FriendlyName -replace "\s", "" } else { "Nulo" }}}, @{Name="Serial"; Expression={if ($_.SerialNumber) { $_.SerialNumber } else { "Nulo" }}}, @{Name="Media"; Expression={if ($_.MediaType) { $_.MediaType } else { "Nulo" }}}, @{Name="Barramento"; Expression={if ($_.BusType) { $_.BusType } else { "Nulo" }}}, @{Name="Adicionável em Pool"; Expression={if ($null -ne $_.CanPool) { $_.CanPool } else { "Nulo" }}}; $physicalDisks | sort ID; $physicalDisks = Get-PhysicalDisk | Select-Object @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={if ($_.FriendlyName) { $_.FriendlyName -replace "\s", "" } else { "Nulo" }}}, @{Name="Serial"; Expression={if ($_.SerialNumber) { $_.SerialNumber } else { "Nulo" }}}, @{Name="Media"; Expression={if ($_.MediaType) { $_.MediaType } else { "Nulo" }}}, @{Name="Barramento"; Expression={if ($_.BusType) { $_.BusType } else { "Nulo" }}}, @{Name="Adicionável em Pool"; Expression={if ($null -ne $_.CanPool) { $_.CanPool } else { "Nulo" }}}; $physicalDisks | sort ID; write "------------------------`n"; write "------------------------"; write "DISK DRIVES"; write "------------------------"; $traducaoMediaType=@{"Fixed hard disk media"="Disco Rígido Fixo";"External hard disk media"="Disco Rígido Externo";"Removable media"="Mídia Removível"};$traducaoInterfaceType=@{"SCSI"="SCSI";"IDE"="IDE (Drive Eletrônico Integrado)";"USB"="USB";"SATA"="SATA";"SAS"="SAS (Serial Attached SCSI)";"NVMe"="NVMe";"Fibre Channel"="Canal de Fibra";"RAID"="RAID (Matriz Redundante de Discos Independentes)";"iSCSI"="iSCSI (SCSI sobre IP)";"ATA"="ATA (Tecnologia Avançada de Anexo)";"1394"="IEEE 1394 (FireWire)";"SD"="SD";"MMC"="MMC (MultiMediaCard)";"Virtual"="Disco Virtual";"SSA"="SSA";"External"="Disco Rígido Externo";"Fixed"="Disco Rígido Fixo"}; $traducaoMediaType=@{"Fixed hard disk media"="Disco Rígido Fixo";"External hard disk media"="Disco Rígido Externo";"Removable media"="Mídia Removível"};$traducaoInterfaceType=@{"SCSI"="SCSI";"IDE"="IDE (Drive Eletrônico Integrado)";"USB"="USB";"SATA"="SATA";"SAS"="SAS (Serial Attached SCSI)";"NVMe"="NVMe";"Fibre Channel"="Canal de Fibra";"RAID"="RAID (Matriz Redundante de Discos Independentes)";"iSCSI"="iSCSI (SCSI sobre IP)";"ATA"="ATA (Tecnologia Avançada de Anexo)";"1394"="IEEE 1394 (FireWire)";"SD"="SD";"MMC"="MMC (MultiMediaCard)";"Virtual"="Disco Virtual";"SSA"="SSA";"External"="Disco Rígido Externo";"Fixed"="Disco Rígido Fixo"}; $diskDrives = gwmi Win32_DiskDrive | Select-Object @{Name="ID"; Expression={$_.DeviceID -replace "^\\\\\.\\", ""}}, @{Name="Modelo"; Expression={$_.Model}}, @{Name="Partições"; Expression={$_.Partitions}}, @{Name="Tamanho (GB)"; Expression={[math]::Round($_.Size / 1GB, 0)}}, @{Name="Interface"; Expression={ $interface=$_.InterfaceType; if($interface -and $traducaoInterfaceType.ContainsKey($interface)) { $traducaoInterfaceType[$interface] } else { if($interface) { $interface } else { "Indefinido" }}}}, @{Name="Media"; Expression={ $m=$_.MediaType; if($m -and $traducaoMediaType.ContainsKey($m)) { $traducaoMediaType[$m] } else { if($m) { $m } else { "Indefinido" } }}}; $diskDrives | sort ID; write "------------------------"; write "USBs"; write "------------------------"; gwmi Win32_USBController | Select-Object @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={$_.Caption}}, @{Name="Fabricante"; Expression={$_.Manufacturer}}, @{Name="Descrição do Tipo"; Expression={$_.Description}}, @{Name="Protocolo (USB Version)"; Expression={switch ($_.ProtocolSupported) {1 {"Outro"} 2 {"Desconhecido"} 3 {"EISA"} 4 {"ISA"} 5 {"PCI"} 6 {"ATA/ATAPI"} 7 {"Disquete Flexível"} 8 {"1496"} 9 {"SCSI Paralelo"} 10 {"SCSI Fibre Channel"} 11 {"SCSI Serial Bus"} 12 {"SCSI Serial Bus-2 (1394)"} 13 {"SCSI Serial Storage Architecture"} 14 {"VESA"} 15 {"PCMCIA"} 16 {"USB (Universal Serial Bus)"} 17 {"Protocolo Paralelo"} 18 {"ESCON"} 19 {"Diagnóstico"} 20 {"I2C"} 21 {"Energia"} 22 {"HIPPI"} 23 {"MultiBus"} 24 {"VME"} 25 {"IPI"} 26 {"IEEE-488"} 27 {"RS232"} 28 {"IEEE 802.3 10BASE5"} 29 {"IEEE 802.3 10BASE2"} 30 {"IEEE 802.3 1BASE5"} 31 {"IEEE 802.3 10BROAD36"} 32 {"IEEE 802.3 100BASEVG"} 33 {"IEEE 802.5 Token-Ring"} 34 {"ANSI X3T9.5 FDDI"} 35 {"MCA"} 36 {"ESDI"} 37 {"IDE"} 38 {"CMD"} 39 {"ST506"} 40 {"DSSI"} 41 {"QIC2"} 42 {"Enhanced ATA/IDE"} 43 {"AGP"} 44 {"TWIRP (Two-Way Infrared)"} 45 {"FIR (Fast Infrared)"} 46 {"SIR (Serial Infrared)"} 47 {"IrBus"} default {"Indefinido"} }}}, @{Name="PNP ID"; Expression={$_.PNPDeviceID}}, @{Name="Status"; Expression={switch ($_.Status) {"OK" {"Operacional"} "Error" {"Erro"} "Degraded" {"Degradado"} "Unknown" {"Desconhecido"} "Pred Fail" {"Falha Iminente"} "Starting" {"Iniciando"} "Stopping" {"Parando"} "Service" {"Em Serviço"} "Stressed" {"Sob Stress"} "NonRecover" {"Não Recuperável"} "No Contact" {"Sem Contato"} "Lost Comm" {"Comunicação Perdida"} default {"Indefinido"}}}}
 }
+<#
+.SYNOPSIS
+Finds largest files on the system with progress logging
+.No Parameters
+.Outputs Top 200 files by size with logging to %TEMP%\FileScanLog.txt
+[Alias]: getheavfiles
+#>
 function GetHeaviestFiles {
     $logFile = "$env:TEMP\FileScanLog.txt"
     [Console]::ForegroundColor = "Cyan"
@@ -996,6 +1353,13 @@ function GetHeaviestFiles {
     
     return $heaviestFiles
 }
+<#
+.SYNOPSIS
+Identifies largest folders by aggregate file size
+.No Parameters
+.Outputs Top 200 folders with size metrics and file counts
+[Alias]: getheavdirs
+#>
 function GetHeaviestFolders {
     $folderSizes = @{}
     $counter = 0
@@ -1034,6 +1398,13 @@ function GetHeaviestFolders {
     
     return $results
 }
+<#
+.SYNOPSIS
+Interactive file search with real-time feedback
+.No Parameters
+.Outputs Color-coded search results
+[Alias]: isearch
+#>
 function SearchInteractively {
     $targetFile = Read-Host "Enter the filename or pattern to search"
     $foundFiles = @()
@@ -1057,6 +1428,51 @@ function SearchInteractively {
         [Console]::ForegroundColor = $oc
     }
 }
+<#
+.SYNOPSIS
+Opens file in VS Code by directory index
+.PARAMETER Path (Position 0) Target directory
+.PARAMETER Index (Position 1) File index
+.Returns Opens file in VS Code
+[Alias]: idxcode
+#>
+function OpenVSCodeByIndex {
+    [CmdletBinding()]
+    param (
+        [Parameter(Position=0)]
+        [Alias("p")]
+        [string]$Path = ".",
+
+        [Parameter(Position=1)]
+        [Alias("i")]
+        [int]$Index = 0
+    )
+    $files = @(gci $Path)
+    try {
+        if ($Index -lt 0 -or $Index -ge $files.Count) {
+            throw "Index out of range. Valid indexes: 0 to $($files.Count - 1)"
+        }
+        $selectedFile = $files[$Index].FullName
+        code $selectedFile
+    }
+    catch {
+        Write-Error "Error: $_"
+        if ($files) {
+            if ($Index -lt 0 -or $Index -ge $files.Count) {
+                throw "Index out of range. Valid indexes: 0 to $($files.Count - 1)"
+            }
+            write "Available files:" -ForegroundColor Yellow
+            $files | foreach -Begin { $i = 0 } -Process { "[$i] $($_.Name)"; $i++ }
+        }
+    }
+}
+<#
+.SYNOPSIS
+Processes GPT token data from JSON files
+.PARAMETER JsonPath Path to JSON file
+.Outputs Concatenated token string
+[Alias]: getgpttokens
+#>
 function GetConcatenatedGPTTokens {
     [CmdletBinding()]
     param(
@@ -1077,6 +1493,13 @@ function GetConcatenatedGPTTokens {
         }
     }
 }
+<#
+.SYNOPSIS
+Counts Java files and lines with progress
+.No Parameters
+.Returns PSCustomObject with file/line counts
+[Alias]: getjavadata
+#>
 function GetJavaFilesData {
     write "Searching for Java files... 🌋"
     $result = (gci . -Recurse -File -Filter "*.java" | % { 
@@ -1093,6 +1516,13 @@ function GetJavaFilesData {
         'Total of Java Lines' = $result.Sum
     }
 }
+<#
+.SYNOPSIS
+Counts JavaScript/TypeScript files and lines
+.No Parameters
+.Returns PSCustomObject with file/line counts
+[Alias]: getjsdata
+#>
 function GetJavaScriptFilesData {
     write "Searching for JavaScript-like files... 🌐"
     $result = (gci . -Recurse -File -Include *.js,*.cjs,*.mjs,*.jsx,*.ts,*.cts,*.mts,*.tsx,*.vue | % { 
@@ -1109,6 +1539,13 @@ function GetJavaScriptFilesData {
         'Total of JavaScript (or derivate) Lines' = $result.Sum
     }
 }
+<#
+.SYNOPSIS
+Counts PHP files and lines
+.No Parameters
+.Returns PSCustomObject with file/line counts
+[Alias]: getphpdata
+#>
 function GetPhpFilesData {
     write "Searching for PHP... 🐘"
     $result = (gci . -Recurse -File -Filter "*.php" | % { 
@@ -1125,6 +1562,13 @@ function GetPhpFilesData {
         'Total of PHP Lines' = $result.Sum
     }
 }
+<#
+.SYNOPSIS
+Counts Python files and lines
+.No Parameters
+.Returns PSCustomObject with file/line counts
+[Alias]: getpydata
+#>
 function GetPythonFilesData {
     write "Searching for Python... 🐍"
     $result = (gci . -Recurse -File -Filter "*.py" | % { 
@@ -1141,6 +1585,13 @@ function GetPythonFilesData {
         'Total of Python Lines' = $result.Sum
     }
 }
+<#
+.SYNOPSIS
+Counts lines in custom file types
+.PARAMETER args File extensions to search
+.Returns PSCustomObject with totals
+[Alias]: getplngdata
+#>
 function GetProgramLanguageFilesData {
     write "Searching for included programming languages... 👨‍💻"
     $result = (gci . -Recurse -File -Include $args | % { 
@@ -1171,12 +1622,13 @@ Set-Alias -Name gethwfull -Value GetGroupedHardware
 Set-Alias -Name getheavfiles -Value GetHeaviestFiles
 Set-Alias -Name getheavdirs -Value GetHeaviestFolders
 Set-Alias -Name isearch -Value SearchInteractively
+Set-Alias -Name idxcode -Value openVSCodeByIndex
 Set-Alias -Name getgpttokens -Value GetConcatenatedGPTTokens
-Set-Alias getjavadata GetJavaFilesData
-Set-Alias getjsdata GetJavaScriptFilesData
-Set-Alias getphpdata GetPhpFilesData
-Set-Alias getpydata GetPythonFilesData
-Set-Alias getplngdata GetProgramLanguageFilesData
+Set-Alias -Name getjavadata -Value GetJavaFilesData
+Set-Alias -Name getjsdata -Value GetJavaScriptFilesData
+Set-Alias -Name getphpdata -Value GetPhpFilesData
+Set-Alias -Name getpydata -Value GetPythonFilesData
+Set-Alias -Name getplngdata -Value GetProgramLanguageFilesData
 # File managament
 Set-Alias -Name np -Value notepad
 Set-Alias -Name touch -Value NewFile
@@ -1205,6 +1657,7 @@ Set-Alias -Name getpmem -Value Get-PhysicalMemory
 Set-Alias -Name getdd -Value Get-DiskDrive
 Set-Alias -Name getld -Value Get-LogicalDisk
 Set-Alias -Name getvc -Value Get-VideoController
+Set-Alias -Name getwddm -Value Get-WDDMVersion
 # Core parts
 Set-Alias -Name getbt -Value Get-Battery
 Set-Alias -Name getpws -Value Get-PowerSetting
@@ -1225,6 +1678,7 @@ Set-Alias -Name getna -Value Get-NetAdapter
 Set-Alias -Name getnpc -Value Get-NetTCPConnection
 Set-Alias -Name netshv -Value NetshWinsockVersionShowCatalog
 Set-Alias -Name netsha -Value NetshWlan
+Set-Alias -Name netshc -Value Get-WirelessCapabilities
 Set-Alias -Name getndv -Value GetNetDrivers
 Set-Alias -Name im -Value Install-Module
 # Writting
