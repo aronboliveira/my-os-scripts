@@ -23,10 +23,60 @@ function Open-RecycleBin {
 Opens Documents Folder on Explorer
 .No Parameters
 .No Returns
-[Alias]: documents
+[Alias]: documents | docs
 #>
 function Open-Documents {
     explorer.exe "::{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}"
+}
+<#
+.SYNOPSIS
+Opens Desktop Folder on Explorer
+.No Parameters
+.No Returns
+[Alias]: desktop | dkt
+#>
+function Open-Desktop {
+	explorer.exe "shell:Desktop"
+}
+<#
+.SYNOPSIS
+Opens Pictures Folder on Explorer
+.No Parameters
+.No Returns
+[Alias]: pictures | pct
+#>
+function Open-Pictures {
+	explorer.exe "shell:Pictures"
+}
+<#
+.SYNOPSIS
+Opens Documents Folder on Explorer
+.No Parameters
+.No Returns
+[Alias]: musics
+#>
+function Open-Music {
+	explorer.exe "shell:Music"
+}
+<#
+.SYNOPSIS
+Opens Documents Folder on Explorer
+.No Parameters
+.No Returns
+[Alias]: videos
+#>
+function Open-Videos {
+	explorer.exe "shell:Videos"
+}
+<#
+.SYNOPSIS
+Opens Documents Folder on Explorer
+.No Parameters
+.No Returns
+[Alias]: downloads | dwns
+#>
+function Open-Downloads {
+    explorer.exe "shell:Downloads"
 }
 <#
 .SYNOPSIS
@@ -1738,6 +1788,15 @@ Set-Alias -Name sptr -Value Stop-Transcript
 Set-Alias -Name mypc -Value Open-MyPC
 Set-Alias -Name recyclebin -Value Open-RecycleBin
 Set-Alias -Name documents -Value Open-Documents
+Set-Alias -Name docs -Value Open-Documents
+Set-Alias -Name desktop -Value Open-Desktop
+Set-Alias -Name dkt -Value Open-Desktop
+Set-Alias -Name pictures -Value Open-Pictures
+Set-Alias -Name pct -Value Open-Pictures
+Set-Alias -Name downloads -Value Open-Downloads
+Set-Alias -Name dwns -Value Open-Downloads
+Set-Alias -Name musics -Value Open-Music
+Set-Alias -Name videos -Value Open-Videos
 Set-Alias -Name networks -Value Open-Networks
 Set-Alias -Name homegroup -Value Open-HomeGroup
 Set-Alias -Name netconnections -Value Open-NetworkConnections
