@@ -1783,7 +1783,10 @@ Set-Alias -Name getndv -Value GetNetDrivers
 Set-Alias -Name im -Value Install-Module
 # Writting
 Set-Alias -Name sttr -Value Start-Transcript
+Set-Alias -Name startts -Value Start-Transcript 
 Set-Alias -Name sptr -Value Stop-Transcript
+Set-Alias -Name stopts -Value Stop-Transcript
+Set-Alias -Name ghistory -Value notepad (Get-PSReadlineOption).HistorySavePath
 # Encoded
 Set-Alias -Name mypc -Value Open-MyPC
 Set-Alias -Name recyclebin -Value Open-RecycleBin
