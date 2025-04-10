@@ -431,6 +431,162 @@ function SanitizeNames {
 }
 <#
 .SYNOPSIS
+Main entry point for PascalCase to snake_case file conversion
+.PARAMETER None
+.Returns None
+[Alias]: Convert-FileNames
+#>
+function Invoke-PascalToSnake {
+    [CmdletBinding()]
+    param()
+    $oc = [Console]::ForegroundColor
+    try {
+        $path = Read-Host "Enter a file or directory path"
+        $resolvedPath = Resolve-PathStrategy -InputPath $path
+        if (Test-Path -Path $resolvedPath -PathType Container) {
+            Process-Directory -Path $resolvedPath        } elseif (Test-Path -Path $resolvedPath -PathType Leaf) {
+            Process-File -Path $resolvedPath
+        } else {
+            throw "Invalid Path: $resolvedPath"
+        }
+    } catch {
+        [Console]::ForegroundColor = 'Red'
+        Write-Error "Error: $_"
+    } finally {
+        [Console]::ForegroundColor = $oc
+    }
+}
+<#
+.SYNOPSIS
+Resolves and validates absolute/relative paths
+.PARAMETER InputPath User-provided path string
+.Returns Verified full path
+#>
+function Resolve-PathStrategy {
+    param([string]$InputPath)
+    if ($InputPath -match '^[A-Z]:') {
+        if (-not (Test-Path $InputPath)) {
+            throw "Absolute path not found: $InputPath"
+        }
+        return $InputPath
+    }
+    else {
+        $resolved = Join-Path (Get-Location) $InputPath
+        if (-not (Test-Path $resolved)) {
+            throw "Relative path not found: $InputPath"
+        }
+        return $resolved
+    }
+}
+<#
+.SYNOPSIS
+Processes directories recursively for file renaming
+.PARAMETER Path Valid directory path
+.Returns None
+#>
+function Process-Directory {
+    param([string]$Path)
+       [Console]::ForegroundColor = 'Cyan'
+    $mode = Read-Host "Directory mode: Type 1 for non-interactive, Enter for interactive"
+    $interactive = $mode -ne '1'
+       Get-ChildItem -Path $Path -Recurse -File | ForEach-Object {
+        if (IsPascalCased($_.BaseName)) {
+            if ($interactive) {
+                [Console]::ForegroundColor = 'Yellow'
+                $confirm = Read-Host "Rename $($_.Name)? [Enter=Yes/0=Yes, Any=Skip]"
+                if ($confirm -in ('', '0')) {
+                    Rename-FileWithStrategy -File $_
+                }
+            }
+            else {
+                Rename-FileWithStrategy -File $_
+            }
+        }
+    }
+}
+<#
+.SYNOPSIS
+Processes individual files for PascalCase conversion
+.PARAMETER Path Valid file path
+.Returns None
+#>
+function Process-File {
+    param([string]$Path)
+       $file = Get-Item $Path
+    if (IsPascalCased($file.BaseName)) {
+        Rename-FileWithStrategy -File $file
+    }
+    else {
+        [Console]::ForegroundColor = 'Yellow'
+        write "File already in snake_case: $($file.Name)"
+    }
+}
+<#
+.SYNOPSIS
+Executes safe file renaming with conflict checks
+.PARAMETER File FileInfo object to process
+.Returns None
+#>
+function Rename-FileWithStrategy {
+    param([System.IO.FileInfo]$File)
+    try {
+        $baseName = $File.BaseName
+        $newBase = $null
+        Write-Host "Processing: $($File.Name)" -ForegroundColor Cyan
+        if ($baseName -cmatch '^[A-Z][a-z0-9-]*$' -and $baseName -notmatch '_') {
+            $newBase = $baseName.ToLower()
+            Write-Host "  Pattern 1 matched (simple PascalCase)" -ForegroundColor Magenta
+        }
+        else {
+            $snakeCase = $baseName -creplace '(?<!^)(?=[A-Z])', '_'
+            $newBase = $snakeCase.ToLower()
+            Write-Host "  Complex conversion: $baseName - $newBase" -ForegroundColor Magenta
+        }
+        if ([string]::IsNullOrEmpty($newBase)) {
+            Write-Host "  No conversion pattern matched" -ForegroundColor Yellow
+            return
+        }
+        $newName = "${newBase}$($File.Extension)"
+        $newPath = Join-Path $File.Directory.FullName $newName
+        if (Test-Path -LiteralPath $newPath -PathType Leaf) {
+            $targetItem = Get-Item -LiteralPath $newPath
+            if ($File.FullName -ne $targetItem.FullName) {
+                Write-Host "Skipped: $($File.Name) - Target exists: $newName" -ForegroundColor Yellow
+                return
+            }
+        }
+        Rename-Item -LiteralPath $File.FullName -NewName $newName -ErrorAction Stop
+        Write-Host "Renamed: $($File.Name) - $newName" -ForegroundColor Green
+    }
+    catch {
+        Write-Host "Failed: $($File.Name) - $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
+<#
+.SYNOPSIS
+Validates PascalCase naming convention
+.PARAMETER Name String to validate
+.Returns Boolean validation result
+#>
+function IsPascalCased {
+    param([string]$Name)
+    return $Name -cmatch '^[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]+)*$' -and $Name -notmatch '_'
+}
+<#
+.SYNOPSIS
+Converts PascalCase strings to snake_case
+.PARAMETER Name String to convert
+.Returns snake_case formatted string
+#>
+function ConvertTo-SnakeCase {
+    param([string]$Name)
+    return [Regex]::Replace(
+        $Name,
+        '([a-z0-9])([A-Z])',        { param($m) "$($m.Groups[1].Value)_$($m.Groups[2].Value.ToLower())" }
+    ).ToLower()
+}
+<#
+.SYNOPSIS
 Compresses current directory excluding node_modules/vendor
 .No Parameters
 .Returns Path to created zip file
@@ -1719,6 +1875,14 @@ function Open-PSHistory {
 }
 # Complex Functions
 Set-Alias -Name sann -Value SanitizeNames
+Set-Alias -Name sanitize -Value SanitizeNames
+Set-Alias -Name pascaltosnake -Value Invoke-PascalToSnake
+Set-Alias -Name resptstg -Value Resolve-PathStrategy
+Set-Alias -Name processdir -Value Process-Directory
+Set-Alias -Name processfile -Value Process-File
+Set-Alias -Name rnstg -Value Rename-FileWithStrategy
+Set-Alias -Name ispascal -Value IsPascalCased
+Set-Alias -Name tosnake -Value ConvertTo-SnakeCase
 Set-Alias -Name compweb -Value CompressCurrentDirectory
 Set-Alias -Name unzipall -Value UnzipAll
 Set-Alias -Name deletezip -Value DeleteAllCompressed
@@ -1748,6 +1912,8 @@ Set-Alias -Name outf -Value OutFile
 Set-Alias -Name no -Value New-Object
 Set-Alias -Name spt -Value Split-Path
 Set-Alias -Name tpt -Value Test-Path
+Set-Alias -Name readh -Value Read-Host
+Set-Alias -Name testpt -Value Test-Path
 # Processes
 Set-Alias -Name spp -Value Start-Process
 Set-Alias -Name sep -Value Set-ExecutionPolicy
