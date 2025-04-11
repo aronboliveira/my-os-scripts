@@ -538,8 +538,7 @@ function Rename-FileWithStrategy {
             Write-Host "  Pattern 1 matched (simple PascalCase)" -ForegroundColor Magenta
         }
         else {
-            $snakeCase = $baseName -creplace '(?<!^)(?=[A-Z])', '_'
-            $newBase = $snakeCase.ToLower()
+            $newBase = ConvertTo-SnakeCase $baseName
             Write-Host "  Complex conversion: $baseName - $newBase" -ForegroundColor Magenta
         }
         if ([string]::IsNullOrEmpty($newBase)) {
@@ -580,10 +579,15 @@ Converts PascalCase strings to snake_case
 #>
 function ConvertTo-SnakeCase {
     param([string]$Name)
-    return [Regex]::Replace(
-        $Name,
-        '([a-z0-9])([A-Z])',        { param($m) "$($m.Groups[1].Value)_$($m.Groups[2].Value.ToLower())" }
-    ).ToLower()
+    $step = [Regex]::Replace($Name, '([A-Z]{2,})', {
+        param($m)
+        $match = $m.Groups[1].Value
+        $lastChar = $match.Substring($match.Length - 1)
+        $restOfMatch = $match.Substring(0, $match.Length - 1)
+        return "###_${restOfMatch}_###$lastChar"
+    })
+    $step = [Regex]::Replace($step, '([a-z0-9])([A-Z])', '$1_$2')
+    return $step.ToLower() -replace '###', ''
 }
 <#
 .SYNOPSIS
