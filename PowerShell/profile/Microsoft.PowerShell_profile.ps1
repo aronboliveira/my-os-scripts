@@ -513,12 +513,14 @@ Processes individual files for PascalCase conversion
 function Process-File {
     param([string]$Path)
        $file = Get-Item $Path
+       $oc = [Console]::ForegroundColor
     if (IsPascalCased($file.BaseName)) {
         Rename-FileWithStrategy -File $file
     }
     else {
         [Console]::ForegroundColor = 'Yellow'
         write "File already in snake_case: $($file.Name)"
+        [Console]::ForegroundColor = $oc
     }
 }
 <#
@@ -532,17 +534,17 @@ function Rename-FileWithStrategy {
     try {
         $baseName = $File.BaseName
         $newBase = $null
-        Write-Host "Processing: $($File.Name)" -ForegroundColor Cyan
+        write "Processing: $($File.Name)" -ForegroundColor Cyan
         if ($baseName -cmatch '^[A-Z][a-z0-9-]*$' -and $baseName -notmatch '_') {
             $newBase = $baseName.ToLower()
-            Write-Host "  Pattern 1 matched (simple PascalCase)" -ForegroundColor Magenta
+            write "  Pattern 1 matched (simple PascalCase)" -ForegroundColor Magenta
         }
         else {
             $newBase = ConvertTo-SnakeCase $baseName
-            Write-Host "  Complex conversion: $baseName - $newBase" -ForegroundColor Magenta
+            write "  Complex conversion: $baseName - $newBase" -ForegroundColor Magenta
         }
         if ([string]::IsNullOrEmpty($newBase)) {
-            Write-Host "  No conversion pattern matched" -ForegroundColor Yellow
+            write "  No conversion pattern matched" -ForegroundColor Yellow
             return
         }
         $newName = "${newBase}$($File.Extension)"
@@ -550,15 +552,15 @@ function Rename-FileWithStrategy {
         if (Test-Path -LiteralPath $newPath -PathType Leaf) {
             $targetItem = Get-Item -LiteralPath $newPath
             if ($File.FullName -ne $targetItem.FullName) {
-                Write-Host "Skipped: $($File.Name) - Target exists: $newName" -ForegroundColor Yellow
+                write "Skipped: $($File.Name) - Target exists: $newName" -ForegroundColor Yellow
                 return
             }
         }
-        Rename-Item -LiteralPath $File.FullName -NewName $newName -ErrorAction Stop
-        Write-Host "Renamed: $($File.Name) - $newName" -ForegroundColor Green
+        rni -LiteralPath $File.FullName -NewName $newName -ErrorAction Stop
+        write "Renamed: $($File.Name) - $newName" -ForegroundColor Green
     }
     catch {
-        Write-Host "Failed: $($File.Name) - $($_.Exception.Message)" -ForegroundColor Red
+        write "Failed: $($File.Name) - $($_.Exception.Message)" -ForegroundColor Red
     }
 }
 <#
@@ -589,6 +591,175 @@ function ConvertTo-SnakeCase {
     $step = [Regex]::Replace($step, '([a-z0-9])([A-Z])', '$1_$2')
     return $step.ToLower() -replace '###', ''
 }
+
+<#
+.SYNOPSIS
+Converts filenames from snake_case to PascalCase format.
+
+.DESCRIPTION
+This module provides functions to rename files from snake_case format (like "my_file_name.txt")
+to PascalCase format (like "MyFileName.txt"). It can process individual files or recursively
+process all files in a directory structure, with options for interactive or non-interactive operation.
+
+.PARAMETER None
+The main function Invoke-SnakeToPascal does not accept parameters directly but prompts for input.
+
+.EXAMPLE
+PS> Invoke-SnakeToPascal
+Enter a file or directory path: C:\Projects\my_project
+Directory mode: Type 1 for non-interactive, Enter for interactive: 1
+Processing: my_file_name.txt
+  Snake to Pascal conversion: my_file_name - MyFileName
+Renamed: my_file_name.txt - MyFileName.txt
+
+.EXAMPLE
+PS> Invoke-SnakeToPascal
+Enter a file or directory path: C:\Projects\my_project\my_file.txt
+Processing: my_file.txt
+  Snake to Pascal conversion: my_file - MyFile
+Renamed: my_file.txt - MyFile.txt
+
+.NOTES
+File extensions are preserved during renaming.
+The script provides color-coded output for better visibility of operations.
+Files that are already in PascalCase will not be modified.
+
+#>
+function Invoke-SnakeToPascal {
+    [CmdletBinding()]
+    param()
+    $oc = [Console]::ForegroundColor
+    try {
+        $path = Read-Host "Enter a file or directory path"
+        $resolvedPath = Resolve-PathPascalStrategy -InputPath $path
+        if (Test-Path -Path $resolvedPath -PathType Container) {
+            Process-PascalCasedDirectory -Path $resolvedPath
+        } elseif (Test-Path -Path $resolvedPath -PathType Leaf) {
+            Process-PascalCasedFile -Path $resolvedPath
+        } else {
+            throw "Invalid Path: $resolvedPath"
+        }
+    } catch {
+        [Console]::ForegroundColor = 'Red'
+        Write-Error "Error: $_"
+    } finally {
+        [Console]::ForegroundColor = $oc
+    }
+}
+function Resolve-PathPascalStrategy {
+    param([string]$InputPath)
+    if ($InputPath -match '^[A-Z]:') {
+        if (-not (Test-Path $InputPath)) {
+            throw "Absolute path not found: $InputPath"
+        }
+        return $InputPath
+    }
+    else {
+        $resolved = Join-Path (Get-Location) $InputPath
+        if (-not (Test-Path $resolved)) {
+            throw "Relative path not found: $InputPath"
+        }
+        return $resolved
+    }
+}
+function Process-PascalCasedDirectory {
+    param([string]$Path)
+    [Console]::ForegroundColor = 'Cyan'
+    $mode = Read-Host "Directory mode: Type 1 for non-interactive, Enter for interactive"
+    $interactive = $mode -ne '1'
+    gci -Path $Path -Recurse -File | foreach {
+        if (IsSnakeCased($_.BaseName)) {
+            if ($interactive) {
+                [Console]::ForegroundColor = 'Yellow'
+                $confirm = Read-Host "Rename $($_.Name)? [Enter=Yes/0=Yes, Any=Skip]"
+                if ($confirm -in ('', '0')) {
+                    Rename-PascalCasedFileWithStrategy -File $_
+                }
+            }
+            else {
+                Rename-PascalCasedFileWithStrategy -File $_
+            }
+        }
+    }
+}
+function Process-PascalCasedFile {
+    param([string]$Path)
+    $file = gi $Path
+    $oc = [Console]::ForegroundColor
+    if (IsSnakeCased($file.BaseName)) {
+        Rename-PascalCasedFileWithStrategy -File $file
+    }
+    else {
+        [Console]::ForegroundColor = 'Yellow'
+        write "File already in PascalCase: $($file.Name)"
+        [Console]::ForegroundColor = $oc
+    }
+}
+function Rename-PascalCasedFileWithStrategy {
+    param([System.IO.FileInfo]$File)
+    try {
+        $baseName = $File.BaseName
+        $newBase = $null
+        write "Processing: $($File.Name)" -ForegroundColor Cyan
+        if ($baseName -match '^[a-z0-9_]+$' -and $baseName -match '_') {
+            $newBase = ConvertTo-PascalCase $baseName
+            write "  Snake to Pascal conversion: $baseName - $newBase" -ForegroundColor Magenta
+        }
+        else {
+            write "  No conversion pattern matched" -ForegroundColor Yellow
+            return
+        }
+        
+        if ([string]::IsNullOrEmpty($newBase)) {
+            write "  No conversion pattern matched" -ForegroundColor Yellow
+            return
+        }
+        
+        $newName = "${newBase}$($File.Extension)"
+        $newPath = Join-Path $File.Directory.FullName $newName
+        if (Test-Path -LiteralPath $newPath -PathType Leaf) {
+            $targetItem = gi -LiteralPath $newPath
+            if ($File.FullName -ne $targetItem.FullName) {
+                write "Skipped: $($File.Name) - Target exists: $newName" -ForegroundColor Yellow
+                return
+            }
+        }
+        rni -LiteralPath $File.FullName -NewName $newName -ErrorAction Stop
+        write "Renamed: $($File.Name) - $newName" -ForegroundColor Green
+    }
+    catch {
+        write "Failed: $($File.Name) - $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
+function IsSnakeCased {
+    param([string]$Name)
+    return $Name -match '^[a-z0-9]' -and $Name -match '_' -and $Name -notmatch '[A-Z]'
+}
+function ConvertTo-PascalCase {
+    param([string]$Name)
+    $result = $Name.Substring(0, 1).ToUpper() + $Name.Substring(1)
+    $result = [Regex]::Replace(
+        $result, 
+        '([a-z0-9A-Z])_([a-z0-9A-Z])', 
+        {
+            param($m)
+            return $m.Groups[1].Value + $m.Groups[2].Value.Substring(0, 1).ToUpper() + $m.Groups[2].Value.Substring(1)
+        }
+    )
+    while ($result -match '_') {
+        $result = [Regex]::Replace(
+            $result, 
+            '([a-z0-9A-Z])_([a-z0-9A-Z])', 
+            {
+                param($m)
+                return $m.Groups[1].Value + $m.Groups[2].Value.Substring(0, 1).ToUpper() + $m.Groups[2].Value.Substring(1)
+            }
+        )
+    }
+    
+    return $result
+}
+
 <#
 .SYNOPSIS
 Compresses current directory excluding node_modules/vendor
@@ -1887,6 +2058,7 @@ Set-Alias -Name processfile -Value Process-File
 Set-Alias -Name rnstg -Value Rename-FileWithStrategy
 Set-Alias -Name ispascal -Value IsPascalCased
 Set-Alias -Name tosnake -Value ConvertTo-SnakeCase
+Set-Alias -Name snaketopascal -Value Invoke-SnakeToPascal
 Set-Alias -Name compweb -Value CompressCurrentDirectory
 Set-Alias -Name unzipall -Value UnzipAll
 Set-Alias -Name deletezip -Value DeleteAllCompressed
