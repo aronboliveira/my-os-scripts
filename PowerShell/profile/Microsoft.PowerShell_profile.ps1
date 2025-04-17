@@ -1512,6 +1512,70 @@ function GetUSBPortData {
 }
 <#
 .SYNOPSIS
+    Gets PnP Devices with filtering options.
+.DESCRIPTION
+    Retrieves Plug-and-Play signed drivers with options to filter by name and output format.
+.PARAMETER Match
+    String pattern to match against device names (supports wildcards).
+.PARAMETER Type
+    Output format: 'full', 'concise', 'name-only', or 'default'.
+.PARAMETER ErrorHandling
+    Error handling mode: 's' (SilentlyContinue), 'v' (Verbose), or 't' (Throw).
+.EXAMPLE
+    Get-PnPSignedDriver -Match "HyperX" -Type concise
+.EXAMPLE
+    getpnpdrv "H510" -t name-only -e v
+.NOTES
+    Alias: getpnpdrv
+#>
+function Get-PnPSignedDriver {
+    [CmdletBinding()]
+    [Alias('getpnpdrv')]
+    param (
+        [Parameter(position=0)]
+        [Alias('m')]
+        [string]$Match = '*',
+
+        [Parameter(position=1)]
+        [Alias("t")]
+        [ValidateSet('default', 'full', 'concise', 'name-only')]
+        [string]$Type = 'default',
+
+        [Parameter(position=2)]
+        [ValidateSet('s', 'v', 't')]
+        [string]$ErrorHandle = 's'
+    )
+    $ErrorHandlePreference = switch ($ErrorHandle) {
+        'v' { 'Continue'; Write-Verbose "Running in verbose mode" }
+        't' { 'Stop' }
+        default { 'SilentlyContinue' } 
+    }
+    try {
+        $drivers = Get-WmiObject Win32_PnPSignedDriver -ErrorAction $ErrorHandlePreference | 
+                   where { $_.DeviceName -like $Match }
+
+        switch ($Type) {
+            'full' {
+                $drivers | select *
+            }
+            'concise' {
+                $drivers | select DeviceName, Manufacturer, DeviceID, DriverVersion, IsSigned
+            }
+            'name only' {
+                $drivers | select DeviceName, DeviceID
+            }
+            default {
+                $drivers
+            }
+        }
+    }
+    catch {
+        Write-Warning "Error retrieving drivers: $_"
+        if ($ErrorHandle -eq 't') { throw }
+    }
+}
+<#
+.SYNOPSIS
 Gets detailed video controller information
 .No Parameters
 .Outputs Formatted GPU properties including:
