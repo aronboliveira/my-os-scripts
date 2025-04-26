@@ -2112,6 +2112,60 @@ Opens the global history of powershell cmds in notepad
 function Open-PSHistory {
     notepad (Get-PSReadlineOption).HistorySavePath
 }
+<#
+.SYNOPSIS
+Compare a nested directory with an ancestral directory and returns the % nested according to a filter (defaulted to *)
+[Alias]: filedistrib
+#>
+function MeasureFileDistribution {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true, Position=0)]
+        [ValidateScript({Test-Path $_ -PathType Container})]
+        [Alias("rp")]
+        [string]$RootPath = '.',        [Parameter(Mandatory=$true, Position=1)]
+        [Alias("np")]
+        [string]$SubDirectory,        [Parameter(Position = 2)]
+        [Alias("f")]
+        [string]$Filter = "*"
+    )
+       try {
+        [Console]::ForegroundColor = 'Cyan'
+        [Console]::WriteLine("Starting search in the root folder...")
+        [Console]::ResetColor()
+        sleep -Seconds 1
+               $rootFiles = @(gci -Recurse -Path $RootPath -Filter $Filter -File -ErrorAction Stop)
+        $rootCount = $rootFiles.Count
+               [Console]::ForegroundColor = 'Green'
+        [Console]::WriteLine("Found $rootCount files in root folder")
+        [Console]::ResetColor();
+        sleep -Seconds 2
+        [Console]::ForegroundColor = 'Cyan'
+        [Console]::WriteLine("Starting search in the subfolder...")
+        [Console]::ResetColor()
+               $subPath = Join-Path -Path $RootPath -ChildPath $SubDirectory
+        if (-not (Test-Path $subPath -PathType Container)) {
+            throw "Subdirectory '$SubDirectory' not found in $RootPath"
+        }
+        $subFiles = @(gci -Path $subPath -Filter $Filter -File -ErrorAction Stop)
+        $subCount = $subFiles.Count
+               [Console]::ForegroundColor = 'Green'
+        [Console]::WriteLine("Found $subCount files in subfolder")
+        [Console]::ResetColor()
+        $percentage = if ($rootCount -gt 0) {            [math]::Round(($subCount / $rootCount) * 100, 2)        } else {            0        }
+        [PSCustomObject]@{
+            'Root Files Count'    = $rootCount
+            'Nested Files Count'  = $subCount
+            'Percentage Nested'   = "$percentage%"
+            'Filter Applied'      = $Filter
+        } | Format-Table -AutoSize    }
+    catch {
+        [Console]::ForegroundColor = 'Red'
+        [Console]::WriteLine("Error: $($_.Exception.Message)")
+        [Console]::ResetColor()
+        throw $_
+    }
+}
 # Complex Functions
 Set-Alias -Name sann -Value SanitizeNames
 Set-Alias -Name sanitize -Value SanitizeNames
@@ -2143,6 +2197,7 @@ Set-Alias -Name getjsdata -Value GetJavaScriptFilesData
 Set-Alias -Name getphpdata -Value GetPhpFilesData
 Set-Alias -Name getpydata -Value GetPythonFilesData
 Set-Alias -Name getplngdata -Value GetProgramLanguageFilesData
+Set-Alias -Name filedistrib -Value MeasureFileDistribution
 # File managament
 Set-Alias -Name np -Value notepad
 Set-Alias -Name touch -Value NewFile
