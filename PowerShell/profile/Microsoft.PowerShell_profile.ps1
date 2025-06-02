@@ -489,7 +489,7 @@ function Process-Directory {
        [Console]::ForegroundColor = 'Cyan'
     $mode = Read-Host "Directory mode: Type 1 for non-interactive, Enter for interactive"
     $interactive = $mode -ne '1'
-       Get-ChildItem -Path $Path -Recurse -File | ForEach-Object {
+       ls -Path $Path -Recurse -File | foreach {
         if (IsPascalCased($_.BaseName)) {
             if ($interactive) {
                 [Console]::ForegroundColor = 'Yellow'
@@ -2164,6 +2164,74 @@ function MeasureFileDistribution {
         [Console]::WriteLine("Error: $($_.Exception.Message)")
         [Console]::ResetColor()
         throw $_
+    }
+}
+<#
+.SYNOPSIS
+Remove matches of multiple underscores found in file names recursively within a directory tree, and replace with single underscores.
+Can be interactive, using proper argumentation.
+#>
+function RemoveMultipleUnderscores {
+    [CmdletBinding()]
+    [Alias('rmmultius')]
+    param(
+        [string]$Path = ".",
+        [switch]$Interactive = $true
+    )
+    ls -Path $Path -Recurse -File | 
+    where { 
+        $_.BaseName -match '__+'
+    } | 
+    foreach { 
+        $old = $_.Name
+        $new = $_.BaseName -replace '__+', '_'
+        $newName = "$new$($_.Extension)"
+        $shouldRename = $false
+        if ($Interactive) {
+            [Console]::ForegroundColor = 'Yellow'
+            [Console]::Write("Do you want to replace `"")
+            [Console]::ForegroundColor = 'Red'
+            [Console]::Write($old)
+            [Console]::ForegroundColor = 'Yellow'
+            [Console]::Write("`" with `"")
+            [Console]::ForegroundColor = 'Green'
+            [Console]::Write($newName)
+            [Console]::ForegroundColor = 'Yellow'
+            [Console]::Write("`" ? (y/N): ")
+            [Console]::ResetColor()
+            $response = Read-Host
+            $shouldRename = $response -match '^y(es)?'
+        } else {
+            $shouldRename = $true
+            [Console]::ForegroundColor = 'Cyan'
+            [Console]::Write("Renaming `"")
+            [Console]::ForegroundColor = 'Red'
+            [Console]::Write($old)
+            [Console]::ForegroundColor = 'Cyan'
+            [Console]::Write("`" to `"")
+            [Console]::ForegroundColor = 'Green'
+            [Console]::Write($newName)
+            [Console]::ForegroundColor = 'Cyan'
+            [Console]::WriteLine("`"")
+            [Console]::ResetColor()
+        }
+        if ($shouldRename) {
+            try {
+                rni $_.FullName $newName -ErrorAction Stop
+                [Console]::ForegroundColor = 'Green'
+                [Console]::WriteLine("√ Renamed successfully")
+                [Console]::ResetColor()
+            }
+            catch {
+                [Console]::ForegroundColor = 'Red'
+                [Console]::WriteLine("❌ Error: $($_.Exception.Message)")
+                [Console]::ResetColor()
+            }
+        } elseif ($Interactive) {
+            [Console]::ForegroundColor = 'Gray'
+            [Console]::WriteLine("Skipped")
+            [Console]::ResetColor()
+        }
     }
 }
 # Complex Functions
