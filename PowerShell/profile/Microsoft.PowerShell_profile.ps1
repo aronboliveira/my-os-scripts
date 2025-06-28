@@ -2234,6 +2234,180 @@ function RemoveMultipleUnderscores {
         }
     }
 }
+function .. { Set-Location .. }
+function ... { Set-Location ..\.. }
+function .ilv { Set-Location _inc\laravel }
+function artmrs { 
+    php artisan migrate:reset
+}
+function artmsd { 
+    php artisan migrate:fresh --seed
+}
+function artmst { 
+    php artisan migrate:status
+}
+function artmrs-sd { 
+    php artisan migrate:status
+    php artisan migrate:reset
+    php artisan migrate:fresh --seed
+}
+function artcl {
+    php artisan permission:cache-reset
+    php artisan config:clear
+    php artisan cache:clear
+    php artisan optimize:clear
+    php artisan route:clear
+    php artisan view:clear
+    php artisan clear-compiled
+}
+function artsv { 
+    php artisan serve
+}
+function artrtl { 
+    php artisan route:list --sort=uri
+}
+function artclrs { 
+    php artisan permission:cache-reset
+    php artisan config:clear
+    php artisan cache:clear
+    php artisan optimize:clear
+    php artisan route:clear
+    php artisan view:clear
+    php artisan clear-compiled
+    Remove-Item -Force bootstrap/cache/services.php -ErrorAction SilentlyContinue
+    Remove-Item -Force bootstrap/cache/packages.php -ErrorAction SilentlyContinue
+    Remove-Item -Force bootstrap/cache/compiled.php -ErrorAction SilentlyContinue
+    Remove-Item -Force bootstrap/cache/routes.php -ErrorAction SilentlyContinue
+    composer dump-autoload -o
+    php artisan migrate:status
+    php artisan migrate:reset
+    php artisan migrate:fresh --seed
+    php artisan route:list --sort=uri
+    php artisan serve
+}
+function mkd { mkdir @args }
+function desk { Set-Location ~/Desktop }
+function gra { git remote add @args }
+function gra-o { git remote add origin @args }
+function ga { git add @args }
+function gal { git add . }
+function gc { git commit @args }
+function gca { git commit -a -m @args }
+function galps {
+    $root = git rev-parse --show-toplevel 2>$null
+    if ($root) { Set-Location $root; git add .; git commit -am @args }
+}
+function gl { git log @args }
+function gl-o { git log --oneline @args }
+function gs { git status }
+function gsw { git show @args }
+function grl { git reflog }
+function gsl { git shortlog }
+function glr { git ls-remote @args }
+function glt { git ls-tree @args }
+function glost { git fsck --lost-found }
+function gps { git push @args }
+function gps-oh { git push origin HEAD }
+function gps-ohm { git push origin HEAD:main }
+function gpl { git pull @args }
+function gf { git fetch @args }
+function gd { git diff @args }
+function gb { git branch @args }
+function gbv { git branch -v }
+function gco { git checkout @args }
+function gsc { git switch -c @args }
+function gtop { git rev-parse --show-toplevel }
+function gm { git merge @args }
+function grb { git rebase @args }
+function grs { git reset @args }
+function grs-h { git reset --hard @args }
+function grs-s { git reset --soft @args }
+function grs--1 { git reset HEAD~1 }
+function grs-h--1 { git reset --hard HEAD~1 }
+function grs-s--1 { git reset --soft HEAD~1 }
+function grs--og { git reset origin @args }
+function grs-h--og { git reset --hard origin @args }
+function grs-s--og { git reset --soft origin @args }
+function grv { git revert @args }
+function grv-nc { git revert --no-commit @args }
+function grv--h { git revert HEAD }
+function grv-m--1 { git revert -m 1 @args }
+function gst { git stash @args }
+function gst-ps { git stash push @args }
+function gst-pp-u { git stash push --include-untracked }
+function gst-pp-a { git stash push --all }
+function gst-pp-ki { git stash push --keep-index }
+function gst-pp { git stash pop }
+function gst-a { git stash apply }
+function gst-d { git stash drop }
+function gst-l { git stash list }
+function gst-s { git stash show }
+function gst-c { git stash clear }
+function lrv-rm-cache {
+    Remove-Item -Force bootstrap/cache/services.php -ErrorAction SilentlyContinue
+    Remove-Item -Force bootstrap/cache/packages.php -ErrorAction SilentlyContinue
+    Remove-Item -Force bootstrap/cache/compiled.php -ErrorAction SilentlyContinue
+    Remove-Item -Force bootstrap/cache/routes.php -ErrorAction SilentlyContinue
+}
+function compdp { composer dump-autoload -o }
+function mysqlr { mysql -u root -p }
+function Invoke-PythonManage {
+    [CmdletBinding()]
+    [Alias('pymng', 'django')]
+    param(
+        [Parameter(Position=0, ValueFromRemainingArguments=$true)]
+        [string[]]$Arguments
+    )
+
+    if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
+        Write-Error "Python not found in PATH. Ensure Python is installed and added to your environment variables."
+        return
+    }
+    if (-not (Test-Path "./manage.py")) {
+        Write-Error "No manage.py found in current directory. Navigate to your Django project root."
+        return
+    }
+
+    try {
+        python manage.py @Arguments
+
+        if ($Arguments -contains "runserver") {
+            Write-Host "`n[Django] Server running. Press Ctrl+C to stop." -ForegroundColor Cyan
+        }
+    }
+    catch {
+        Write-Error "Command failed: $_"
+    }
+}
+function Kill-Chrome {
+    [CmdletBinding()]
+    [Alias('killchrome')]
+    param()
+    if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+        Start-Process PowerShell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+        exit
+    }
+    Write-Host "Terminating all Google Chrome processes..." -ForegroundColor Red
+    Get-Process -Name "chrome" -ErrorAction SilentlyContinue | Stop-Process -Force
+    Get-Process -Name "chrome.exe" -ErrorAction SilentlyContinue | Stop-Process -Force
+    $chromeHelpers = @(
+        "crashpad*",
+        "chrome_proxy",
+        "GoogleCrashHandler*",
+        "GoogleCrashHandler64*"
+    )
+    foreach ($helper in $chromeHelpers) {
+        Get-Process -Name $helper -ErrorAction SilentlyContinue | Stop-Process -Force
+    }
+    Write-Host "`nAll Chrome processes terminated." -ForegroundColor Green
+    $remaining = Get-Process | Where-Object { $_.ProcessName -like "*chrome*" }
+    if ($remaining) {
+        Write-Host "`nRemaining Chrome processes:" -ForegroundColor Yellow
+        $remaining | Format-Table Name, Id -AutoSize
+    } else {
+        Write-Host "`nNo Chrome processes remaining." -ForegroundColor Green
+    }
+}
 # Complex Functions
 Set-Alias -Name sann -Value SanitizeNames
 Set-Alias -Name sanitize -Value SanitizeNames
