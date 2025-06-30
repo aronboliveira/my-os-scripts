@@ -248,6 +248,13 @@ Gets video controller/graphics card information
 function Get-VideoController {
     gwmi Win32_VideoController
 }
+function Get-Monitors {
+    Get-CimInstance -Namespace root\wmi -ClassName WmiMonitorID | foreach {
+        $Model = ($_.UserFriendlyName -ne 0 | foreach { [char]$_ }) -join ""
+        $Serial = ($_.SerialNumberID -ne 0 | foreach { [char]$_ }) -join ""
+        Write-Output "Model: $Model, Serial: $Serial"
+    }
+}
 <#
 .SYNOPSIS
 Gets network adapter configuration
