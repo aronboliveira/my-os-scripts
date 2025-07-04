@@ -113,6 +113,7 @@ system_update() {
     apt update -y && apt upgrade -y
     echo -e "${CYAN}Updating initramfs…${NC}"
     update-initramfs -u
+    update-grub
 	echo
     sleep 2
 }
@@ -212,7 +213,7 @@ fi
 
 system_update
 install_packages "Compression Tools" zip unzip gzip tar gdebi flatpak git
-install_packages "Utilities" file xdg-utils ca-certificates gnupg lsb-release ncal trash-cli plocate nload libreoffice alacarte rfkill hwinfo
+install_packages "Utilities" file xdg-utils ca-certificates gnupg lsb-release ncal trash-cli plocate nload libreoffice alacarte rfkill hwinfo xdotool ydotool
 install_packages "Monitoring Tools" htop iotop net-tools traceroute mesa-utils mesa-va-drivers mesa-vulkan-drivers memtester vainfo
 install_packages "System Packages" libgl1-mesa-dri stress-ng systemd-sysv curl bluez-tools bluetooth iw ethtool wget
 
@@ -446,6 +447,11 @@ else
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
         fi
         nvm install 22
+        if command -v node &>/dev/null && command -v npm &>/dev/null; then
+            log_install "Node & npm packages" 0
+            echo "  • Node.js v22 and npm already installed, skipping"
+        else
+            apt install -y nodejs npm
         npm install -g typescript sass react react-dom react-native vue express jest \
             @testing-library/angular @angular/cli create-vite create-next-app nuxi \
             @wordpress/scripts \
