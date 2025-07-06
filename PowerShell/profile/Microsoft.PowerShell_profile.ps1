@@ -1756,6 +1756,9 @@ Gets aggregated hardware information
 [Alias]: gethwfull
 #>
 function GetGroupedHardware {
+    [CmdletBinding()]
+    [Alias('lshw')]
+    param()
     write "------------------------"; write "CPUs"; write "------------------------"; gwmi Win32_Processor | select @{Name="ID"; Expression={$_.DeviceID}}, @{Name="ID do Processador"; Expression={$_.ProcessorID}}, @{Name="Número de Série"; Expression={if ($_.SerialNumber) {$_.SerialNumber} else {"Indefinido"}}}, @{Name="Nome"; Expression={$_.Name}}, @{Name="Legenda"; Expression={$_.Caption}}, @{Name="Fabricante"; Expression={$_.Manufacturer}}, @{Name="Tipo"; Expression={switch ($_.ProcessorType) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Central";} 4 {"Math";} 5 {"DSP";} 6 {"GPU";} default {"Indefinido"}}}}, @{Name="Núcleos Físicos"; Expression={$_.NumberOfCores}}, @{Name="Núcleos Ativos"; Expression={$_.NumberOfEnabledCores}}, @{Name="Processos Lógicos"; Expression={$_.NumberOfLogicalProcessors}}, @{Name="Soquete"; Expression={$_.SocketDesignation}}, @{Name="Função"; Expression={switch ($_.Role) {"CPU" {"Unidade Central";} "FPU" {"Unidade de Ponto Flutuante";} "CP+FPU" {"Combinado";} default {"Indefinido"}}}}, @{Name="Família"; Expression={switch ($_.Family) {1 {"Outro";} 2 {"Desconhecido";} 3 {"8086";} 4 {"80286";} 5 {"80386";} 6 {"80486";} 7 {"8087";} 8 {"80287";} 9 {"80387";} 10 {"80487";} 11 {"Pentium";} 12 {"Pentium Pro";} 13 {"Pentium II";} 14 {"Pentium MMX";} 15 {"Celeron";} 16 {"Pentium Xeon";} 17 {"Pentium III";} 18 {"M1";} 19 {"M2";} default {"Indefinido"}}}}, @{Name="Arquitetura"; Expression={switch ($_.Architecture) {0 {"x86";} 1 {"MIPS";} 2 {"Alpha";} 3 {"PowerPC";} 5 {"ARM";} 6 {"IA-64";} 9 {"x64";} 10 {"ARM64";} 12 {"RISC-V";} default {"Indefinido"}}}}, @{Name="Nível"; Expression={$_.Level}}, @{Name="PartNumber"; Expression={$_.PartNumber}}, @{Name="Características"; Expression={$features=@(); if ($_.Characteristics -band 1) {$features+="FPU Presente"}; if ($_.Characteristics -band 2) {$features+="Virtualização"}; if ($_.Characteristics -band 4) {$features+="Dep. Exec. Desativável"}; if ($_.Characteristics -band 8) {$features+="Monitor Térmico"}; $features -join ", "}}, @{Name="Descrição"; Expression={$_.Description}}, @{Name="Clock Atual (GHz)"; Expression={[math]::Round($_.CurrentClockSpeed/1000, 2)}}, @{Name="Clock Máximo (GHz)"; Expression={[math]::Round($_.MaxClockSpeed/1000, 2)}}, @{Name="Clock Externo (MHz)"; Expression={$_.ExtClock}}, @{Name="Cache L2 (MB)"; Expression={if ($_.L2CacheSize) {[math]::Round($_.L2CacheSize/1024, 1)} else {"Indefinido"}}}, @{Name="Vel. Cache L2 (GHz)"; Expression={if ($_.L2CacheSpeed) {[math]::Round($_.L2CacheSpeed/1000, 2)} else {"Indefinido"}}}, @{Name="Cache L3 (MB)"; Expression={if ($_.L3CacheSize) {[math]::Round($_.L3CacheSize/1024, 1)} else {"Indefinido"}}}, @{Name="Vel. Cache L3 (GHz)"; Expression={if ($_.L3CacheSpeed) {[math]::Round($_.L3CacheSpeed/1000, 2)} else {"Indefinido"}}}, @{Name="Threads"; Expression={$_.ThreadCount}}, @{Name="Voltagem Atual"; Expression={if ($_.CurrentVoltage) {"$($_.CurrentVoltage/10)V"} else {"Indefinido"}}}, @{Name="Voltagens Suportadas"; Expression={if ($_.VoltageCaps) {($_.VoltageCaps -split "," | foreach {"$($_/10)V"}) -join ", "} else {"Indefinido"}}}, @{Name="Virtualização Ativa"; Expression={if ($_.VirtualizationFirmwareEnabled) {"Sim"} else {"Não"}}}, @{Name="ID PNP"; Expression={$_.PNPDeviceID}}, @{Name="Largura Endereço"; Expression={"$($_.AddressWidth)-bit"}}, @{Name="Largura Dados"; Expression={"$($_.DataWidth)-bit"}}, @{Name="Estado"; Expression={switch ($_.CpuStatus) {0 {"Desconhecido";} 1 {"CPU Habilitada";} 2 {"CPU Desabilitada";} 3 {"CPU Parcial";} 4 {"CPU Ociosa";} 5 {"CPU Reservada";} 6 {"Offline";} 7 {"Falha";} default {"Indefinido"}}}}, @{Name="Disponibilidade"; Expression={switch ($_.Availability) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Em Execução";} 4 {"Aviso";} 5 {"Em Teste";} 6 {"Não Aplicável";} 7 {"Desligado";} 8 {"Offline";} 9 {"Fora de Serviço";} 10 {"Degradado";} 11 {"Não Instalado";} 12 {"Erro de Instalação";} default {"Indefinido"}}}}, @{Name="Status"; Expression={$_.Status}}, @{Name="Info Status"; Expression={switch ($_.StatusInfo) {1 {"Outro";} 2 {"Desconhecido";} 3 {"Habilitado";} 4 {"Desabilitado";} 5 {"Não Aplicável";} default {"Indefinido"}}}}; write "------------------------"; write "SSRAM"; write "------------------------"; gwmi Win32_PhysicalMemory | select @{Name="Fabricante"; Expression={if ($_.Manufacturer -and $_.Manufacturer.Trim() -ne "") { $_.Manufacturer } else { "Indefinido" }}}, @{Name="Nome da Parte"; Expression={if ($_.PartNumber -and $_.PartNumber.Trim() -ne "") { $_.PartNumber } else { "Indefinido" }}}, @{Name="Serial"; Expression={$_.SerialNumber}}, @{Name="Capacidade (GB)"; Expression={if ($_.Capacity) {[math]::Round($_.Capacity / 1GB, 0)} else { "Indefinido" }}}, @{Name="Potencial de Velocidade de Relógio (GHz)"; Expression={if ($_.ConfiguredClockSpeed) {[math]::Round($_.ConfiguredClockSpeed / 1000, 2)} else { "Indefinido" }}}, @{Name="Velocidade de Relógio em Uso (GHz)"; Expression={if ($_.Speed) {[math]::Round($_.Speed / 1000, 2)} else { "Indefinido" }}}, @{Name="Versão de DDR"; Expression={switch ($_.SMBIOSMemoryType) {20 {"DDR"} 21 {"DDR2"} 24 {"DDR3"} 26 {"DDR4"} 34 {"DDR5"} default { "Indefinido" }}}}, @{Name="Memória"; Expression={switch($_.TypeDetail) {1 {"Reservado"} 2 {"Outro"} 4 {"Desconhecido"} 8 {"Rapidamente Paginado"} 16 {"Coluna Estática"} 32 {"Porção em Pipeline"} 64 {"Síncrono"} 128 {"Assíncrono"} 256 {"Suporta ECC"} 512 {"Registrado"} 1024 {"Não Registrado"} 2048 {"LRDIMM"} default {"Indefinido"}}}}, @{Name="Localização"; Expression={if ($_.DeviceLocator -and $_.DeviceLocator.Trim() -ne "") { $_.DeviceLocator } else { "Indefinido" }}}, @{Name="Banco"; Expression={if ($_.BankLabel -and $_.BankLabel.Trim() -ne "") { $_.BankLabel } else { "Indefinido" }}}, @{Name="Largura de Dados em Barramento"; Expression={switch ($_.DataWidth) {64 {"64 (Padrão)"} 72 {"72 (ECC)"} default {"Indefinido"}}}}, @{Name="Voltagem Configurada"; Expression={if ($_.ConfiguredVoltage) {($_.ConfiguredVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Voltagem Mínima"; Expression={if ($_.MinVoltage) {($_.MinVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Voltagem Máxima"; Expression={if ($_.MaxVoltage) {($_.MaxVoltage/1000).ToString() + "V"} else { "Indefinido" }}}, @{Name="Removível"; Expression={if ($_.Removable -ne $null) { $_.Removable } else { "Indefinido" }}}, @{Name="Substituível"; Expression={if ($_.Replaceable -ne $null) { $_.Replaceable } else { "Indefinido" }}}; $traducaoUsage=@{"Auto-Select"="Seleção Automática";"Manual-Select"="Seleção Manual";"Hot Spare"="Reserva Quente";"Journal"="Jornal";"Retired"="Retirado";"Unassigned"="Não Atribuído"}; $traducaoOperabilidade=@{"OK"="Operacional";"Unknown"="Desconhecido";"No Media"="Sem Mídia";"Degraded"="Degradado";"Failed"="Falhou";"Offline"="Offline";"Online"="Online";"Read Only"="Somente Leitura";"Full Repair Needed"="Danificado"}; $traducaoDedupMode=@{"Disabled"="Desativado";"Enabled"="Ativado";"Unknown"="Desconhecido";"Savings Temporary"="Otimização Temporária";"Savings Calculation"="Cálculo de Otimização"}; $traducaoFileSystemType=@{"NTFS"="NTFS";"FAT32"="FAT32";"ReFS"="ReFS (Resilient File System)";"exFAT"="exFAT";"UDF"="UDF (Universal Disk Format)";"CDFS"="CDFS (Compact Disc File System)";"Unknown"="Desconhecido"}; write "------------------------"; write "VOLUMES"; write "------------------------"; $volumes=Get-Volume | select @{Name="ID do Volume"; Expression={$_.ObjectId}}, @{Name="Rótulo"; Expression={if ($_.FileSystemLabel -and $_.FileSystemLabel.Trim() -ne "") { $_.FileSystemLabel } else { "Nulo" }}}, @{Name="Nome"; Expression={if ($_.PSObject.Properties['FriendlyName'] -and $_.FriendlyName) { $_.FriendlyName } else { "Nulo" }}}, @{Name="Drive"; Expression={if ($_.DriveLetter) { $_.DriveLetter } else { "Nulo" }}}, @{Name="Tipo de Drive"; Expression={if ($_.DriveType) { $_.DriveType } else { "Nulo" }}}, @{Name="Sistema de Arquivos"; Expression={$fs=$_.FileSystemType; if ($fs -and $traducaoFileSystemType.ContainsKey($fs)) { $traducaoFileSystemType[$fs] } else { "Nulo" }}}, @{Name="Armazenamento Total (GB)"; Expression={if ($_.Size) {[math]::Round($_.Size/1GB,0)} else { "Nulo" }}}, @{Name="Armazenamento Restante (GB)"; Expression={if ($_.SizeRemaining) {[math]::Round($_.SizeRemaining/1GB,2)} else { "Nulo" }}}, @{Name="Operabilidade"; Expression={$opStatus=$_.OperationalStatus; if($opStatus -and $traducaoOperabilidade.ContainsKey($opStatus)) { $traducaoOperabilidade[$opStatus] } else { "Nulo" }}}, @{Name="Deduplicação"; Expression={$dedup=$_.DedupMode; if($dedup -and $traducaoDedupMode.ContainsKey($dedup)) { $traducaoDedupMode[$dedup] } else { "Nulo" }}}; $volumes | sort Rótulo | foreach { $_.PSObject.Properties | foreach { if (-not $_.Value -or $_.Value -eq "") { $_.Value = "Nulo" } }; $_ }; write "------------------------`n"; write "------------------------"; write "PHYSICAL DISKS"; write "------------------------"; $physicalDisks = Get-PhysicalDisk | select @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={if ($_.FriendlyName) { $_.FriendlyName -replace "\s", "" } else { "Nulo" }}}, @{Name="Serial"; Expression={if ($_.SerialNumber) { $_.SerialNumber } else { "Nulo" }}}, @{Name="Media"; Expression={if ($_.MediaType) { $_.MediaType } else { "Nulo" }}}, @{Name="Barramento"; Expression={if ($_.BusType) { $_.BusType } else { "Nulo" }}}, @{Name="Adicionável em Pool"; Expression={if ($null -ne $_.CanPool) { $_.CanPool } else { "Nulo" }}}; $physicalDisks | sort ID; $physicalDisks = Get-PhysicalDisk | select @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={if ($_.FriendlyName) { $_.FriendlyName -replace "\s", "" } else { "Nulo" }}}, @{Name="Serial"; Expression={if ($_.SerialNumber) { $_.SerialNumber } else { "Nulo" }}}, @{Name="Media"; Expression={if ($_.MediaType) { $_.MediaType } else { "Nulo" }}}, @{Name="Barramento"; Expression={if ($_.BusType) { $_.BusType } else { "Nulo" }}}, @{Name="Adicionável em Pool"; Expression={if ($null -ne $_.CanPool) { $_.CanPool } else { "Nulo" }}}; $physicalDisks | sort ID; write "------------------------`n"; write "------------------------"; write "DISK DRIVES"; write "------------------------"; $traducaoMediaType=@{"Fixed hard disk media"="Disco Rígido Fixo";"External hard disk media"="Disco Rígido Externo";"Removable media"="Mídia Removível"};$traducaoInterfaceType=@{"SCSI"="SCSI";"IDE"="IDE (Drive Eletrônico Integrado)";"USB"="USB";"SATA"="SATA";"SAS"="SAS (Serial Attached SCSI)";"NVMe"="NVMe";"Fibre Channel"="Canal de Fibra";"RAID"="RAID (Matriz Redundante de Discos Independentes)";"iSCSI"="iSCSI (SCSI sobre IP)";"ATA"="ATA (Tecnologia Avançada de Anexo)";"1394"="IEEE 1394 (FireWire)";"SD"="SD";"MMC"="MMC (MultiMediaCard)";"Virtual"="Disco Virtual";"SSA"="SSA";"External"="Disco Rígido Externo";"Fixed"="Disco Rígido Fixo"}; $traducaoMediaType=@{"Fixed hard disk media"="Disco Rígido Fixo";"External hard disk media"="Disco Rígido Externo";"Removable media"="Mídia Removível"};$traducaoInterfaceType=@{"SCSI"="SCSI";"IDE"="IDE (Drive Eletrônico Integrado)";"USB"="USB";"SATA"="SATA";"SAS"="SAS (Serial Attached SCSI)";"NVMe"="NVMe";"Fibre Channel"="Canal de Fibra";"RAID"="RAID (Matriz Redundante de Discos Independentes)";"iSCSI"="iSCSI (SCSI sobre IP)";"ATA"="ATA (Tecnologia Avançada de Anexo)";"1394"="IEEE 1394 (FireWire)";"SD"="SD";"MMC"="MMC (MultiMediaCard)";"Virtual"="Disco Virtual";"SSA"="SSA";"External"="Disco Rígido Externo";"Fixed"="Disco Rígido Fixo"}; $diskDrives = gwmi Win32_DiskDrive | select @{Name="ID"; Expression={$_.DeviceID -replace "^\\\\\.\\", ""}}, @{Name="Modelo"; Expression={$_.Model}}, @{Name="Partições"; Expression={$_.Partitions}}, @{Name="Tamanho (GB)"; Expression={[math]::Round($_.Size / 1GB, 0)}}, @{Name="Interface"; Expression={ $interface=$_.InterfaceType; if($interface -and $traducaoInterfaceType.ContainsKey($interface)) { $traducaoInterfaceType[$interface] } else { if($interface) { $interface } else { "Indefinido" }}}}, @{Name="Media"; Expression={ $m=$_.MediaType; if($m -and $traducaoMediaType.ContainsKey($m)) { $traducaoMediaType[$m] } else { if($m) { $m } else { "Indefinido" } }}}; $diskDrives | sort ID; write "------------------------"; write "USBs"; write "------------------------"; gwmi Win32_USBController | select @{Name="ID"; Expression={$_.DeviceID}}, @{Name="Nome"; Expression={$_.Caption}}, @{Name="Fabricante"; Expression={$_.Manufacturer}}, @{Name="Descrição do Tipo"; Expression={$_.Description}}, @{Name="Protocolo (USB Version)"; Expression={switch ($_.ProtocolSupported) {1 {"Outro"} 2 {"Desconhecido"} 3 {"EISA"} 4 {"ISA"} 5 {"PCI"} 6 {"ATA/ATAPI"} 7 {"Disquete Flexível"} 8 {"1496"} 9 {"SCSI Paralelo"} 10 {"SCSI Fibre Channel"} 11 {"SCSI Serial Bus"} 12 {"SCSI Serial Bus-2 (1394)"} 13 {"SCSI Serial Storage Architecture"} 14 {"VESA"} 15 {"PCMCIA"} 16 {"USB (Universal Serial Bus)"} 17 {"Protocolo Paralelo"} 18 {"ESCON"} 19 {"Diagnóstico"} 20 {"I2C"} 21 {"Energia"} 22 {"HIPPI"} 23 {"MultiBus"} 24 {"VME"} 25 {"IPI"} 26 {"IEEE-488"} 27 {"RS232"} 28 {"IEEE 802.3 10BASE5"} 29 {"IEEE 802.3 10BASE2"} 30 {"IEEE 802.3 1BASE5"} 31 {"IEEE 802.3 10BROAD36"} 32 {"IEEE 802.3 100BASEVG"} 33 {"IEEE 802.5 Token-Ring"} 34 {"ANSI X3T9.5 FDDI"} 35 {"MCA"} 36 {"ESDI"} 37 {"IDE"} 38 {"CMD"} 39 {"ST506"} 40 {"DSSI"} 41 {"QIC2"} 42 {"Enhanced ATA/IDE"} 43 {"AGP"} 44 {"TWIRP (Two-Way Infrared)"} 45 {"FIR (Fast Infrared)"} 46 {"SIR (Serial Infrared)"} 47 {"IrBus"} default {"Indefinido"} }}}, @{Name="PNP ID"; Expression={$_.PNPDeviceID}}, @{Name="Status"; Expression={switch ($_.Status) {"OK" {"Operacional"} "Error" {"Erro"} "Degraded" {"Degradado"} "Unknown" {"Desconhecido"} "Pred Fail" {"Falha Iminente"} "Starting" {"Iniciando"} "Stopping" {"Parando"} "Service" {"Em Serviço"} "Stressed" {"Sob Stress"} "NonRecover" {"Não Recuperável"} "No Contact" {"Sem Contato"} "Lost Comm" {"Comunicação Perdida"} default {"Indefinido"}}}}
 }
 <#
@@ -1805,6 +1808,120 @@ function GetHeaviestFiles {
     
     return $heaviestFiles
 }
+function Calc-Storage {
+    [CmdletBinding()]
+    param(
+        [string]$TargetInput = 'C:'
+    )
+    $driveLetter = $TargetInput.Substring(0,1).ToLower() -replace '[^a-z]', ''
+    $targetDir   = "$driveLetter`:\"
+    [Console]::Error.WriteLine("Calculating storage for: $targetDir")
+    $lastDir   = ''
+    $totalSize = 0
+    ls -Path $targetDir -Recurse -File -ErrorAction SilentlyContinue |
+    foreach {
+        $dir = $_.DirectoryName
+        if ($dir -ne $lastDir) {
+            [Console]::Error.WriteLine("Reading directory: $dir")
+            $lastDir = $dir
+        }
+        $totalSize += $_.Length
+    }
+    $gb = [math]::Round($totalSize / 1GB, 2)
+    Write-Output "Total: $gb GB"
+}
+function du-sh {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$false, Position=0)]
+        [ValidatePattern('^[A-Za-z]:$')]
+        [string]$TargetInput = 'C:'
+    )
+    $disk = Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DeviceID='$TargetInput'" -ErrorAction Stop
+    $totalBytes = $disk.Size
+    $freeBytes  = $disk.FreeSpace
+    $usedBytes  = $totalBytes - $freeBytes
+    $usedGB  = [math]::Round($usedBytes  / 1e9,  2)
+    $usedGiB = [math]::Round($usedBytes  / 1GB,  2)
+    "Used: $usedGB GB  ($usedGiB GiB) of $([math]::Round($totalBytes/1e9,2)) GB total"
+}
+function du-sh--shadow {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$false, Position=0)]
+        [ValidatePattern('^[A-Za-z]:$')]
+        [string]$Drive = 'C:'
+    )
+    $driveRoot = if ($Drive.EndsWith('\')) { $Drive } else { "$Drive\" }
+    write "[$(Get-Date -Format 'HH:mm:ss')] Step 1: Checking pagefile.sys in $driveRoot"
+    $pf = Join-Path $driveRoot 'pagefile.sys'
+    if (Test-Path $pf) {
+        $pageFileBytes = (Get-Item -Force $pf).Length
+        write "  → Found pagefile.sys: $([math]::Round($pageFileBytes/1GB,2)) GB"
+    }
+    else {
+        $pageFileBytes = 0
+    }
+    write "[$(Get-Date -Format 'HH:mm:ss')] Step 2: Checking hiberfil.sys in $driveRoot"
+    $hf = Join-Path $driveRoot 'hiberfil.sys'
+    if (Test-Path $hf) {
+        $hiberFileBytes = (Get-Item -Force $hf).Length
+        write "  → Found hiberfil.sys: $([math]::Round($hiberFileBytes/1GB,2)) GB"
+    }
+    else {
+        $hiberFileBytes = 0
+    }
+    write "[$(Get-Date -Format 'HH:mm:ss')] Step 3: Scanning `$Recycle.Bin` under $driveRoot"
+    $rbPath = Join-Path $driveRoot '$Recycle.Bin'
+    if (Test-Path $rbPath) {
+        $rbSum = ls $rbPath -Recurse -Force -ErrorAction SilentlyContinue | where { -not $_.PSIsContainer } | Measure-Object -Property Length -Sum
+        $recycleBinBytes = $rbSum.Sum
+        write "  → Shadow Recycle Bin total: $([math]::Round($recycleBinBytes/1GB,2)) GB"
+    } else {
+        $recycleBinBytes = 0
+    }
+    write "[$(Get-Date -Format 'HH:mm:ss')] Step 4: Querying NTFS metadata (MFT size) on $Drive"
+    $mftBytes = 0
+    $ntfsInfo = & fsutil fsinfo ntfsinfo $Drive 2>$null
+    if ($ntfsInfo) {
+        $line = $ntfsInfo | where { $_ -match 'MFT Valid Data Length' }
+        if ($line) {
+            $mftBytes = [int64](([regex]::Match($line, 'MTF Valid Data Length\s*:\s*(\d+)'))).Groups[1].Value
+            write "  → MFT Valid Data Length: $([math]::Round($mftBytes/1GB,2)) GB"
+        }
+    }
+    write "[$(Get-Date -Format 'HH:mm:ss')] Step 5: Listing shadow-copy storage usage for $Drive"
+    $shadowBytes = 0
+    $args = "for=$driveRoot"
+    $vss = & vssadmin list shadowstorage $args 2>$null
+    if ($vss) {
+        $usedLine = $vss | where { $_ -match 'Used Shadow Copy Storage space' }
+        if ($usedLine) {
+            $m = [regex]::Match($usedLine, '\(([\d,]+)\s*bytes\)')
+            if ($m.Success) {
+                $shadowBytes = [int64]($m.Groups[1].Value -replace ',', '')
+                write "  → Shadow Copy usage: $([math]::Round($shadowBytes/1GB,2)) GB"
+            }
+        }
+    }
+    write "[$(Get-Date -Format 'HH:mm:ss')] Step 6: Summary"
+    $totalBytes = $pageFileBytes + $hiberFileBytes + $recycleBinBytes + $mftBytes + $shadowBytes
+    $totalGB    = [math]::Round($totalBytes/1GB, 2)
+    write "  → Total of all tracked items: $totalGB GB"
+    [PSCustomObject]@{
+        Drive               = $Drive
+        PageFileBytes       = $pageFileBytes
+        HiberFileBytes      = $hiberFileBytes
+        RecycleBinBytes     = $recycleBinBytes
+        MFTSizeBytes        = $mftBytes
+        ShadowStorageBytes  = $shadowBytes
+        PageFileGB       = '{0:N2}' -f ($pageFileBytes      /1GB)
+        HiberFileGB      = '{0:N2}' -f ($hiberFileBytes     /1GB)
+        RecycleBinGB     = '{0:N2}' -f ($recycleBinBytes    /1GB)
+        MFTSizeGB        = '{0:N2}' -f ($mftBytes           /1GB)
+        ShadowStorageGB  = '{0:N2}' -f ($shadowBytes        /1GB)
+    }
+}
 <#
 .SYNOPSIS
 Identifies largest folders by aggregate file size
@@ -1813,10 +1930,15 @@ Identifies largest folders by aggregate file size
 [Alias]: getheavdirs
 #>
 function GetHeaviestFolders {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true, Position=0)]
+        [string]$RootPath = 'C:\',
+        [int]$TopResults = 200
+    )
     $folderSizes = @{}
     $counter = 0
-    
-    gci -Path C:\ -Recurse -File -ErrorAction SilentlyContinue | foreach {
+       gci -Path $RootPath -Recurse -File -ErrorAction SilentlyContinue | foreach {
         $currentFolder = $_.Directory
         while ($currentFolder) {
             if ($folderSizes[$currentFolder.FullName]) {
@@ -1826,20 +1948,17 @@ function GetHeaviestFolders {
             }
             $currentFolder = $currentFolder.Parent
         }
-        
-        $counter++
+               $counter++
         if ($counter % 1000 -eq 0) {
             [Console]::ForegroundColor = "Cyan"
             write "Scanned $counter files... Current location: $($_.Directory)"
             [Console]::ResetColor()
         }
     }
-    
-    [Console]::ForegroundColor = "Green"
+       [Console]::ForegroundColor = "Green"
     write "`nCOMPLETE: Processed $counter files total.`n"
     [Console]::ResetColor()
-    
-    $results = $folderSizes.GetEnumerator() | sort Value -Descending | select -First 200 | foreach {
+       $results = $folderSizes.GetEnumerator() | sort Value -Descending | select -First $TopResults | foreach {
         New-Object PSCustomObject -Property @{
             FolderPath = $_.Key
             TotalSizeGB = [math]::Round($_.Value/1GB, 2)
@@ -1847,8 +1966,7 @@ function GetHeaviestFolders {
             FileCount = (gci $_.Key -File -Recurse -ErrorAction SilentlyContinue).Count
         }
     } | ft -AutoSize
-    
-    return $results
+       return $results
 }
 <#
 .SYNOPSIS
