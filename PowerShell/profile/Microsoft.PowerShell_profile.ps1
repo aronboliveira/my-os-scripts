@@ -1908,6 +1908,13 @@ function du-sh--shadow {
     $totalBytes = $pageFileBytes + $hiberFileBytes + $recycleBinBytes + $mftBytes + $shadowBytes
     $totalGB    = [math]::Round($totalBytes/1GB, 2)
     write "  → Total of all tracked items: $totalGB GB"
+    $winsxs = ls 'C:\Windows\WinSxS' -Recurse -Force -ErrorAction SilentlyContinue |
+           where { -not $_.PSIsContainer } |
+           Measure-Object -Property Length -Sum
+    "WinSxS folder: {0:N2} GB" -f ($winsxs.Sum/1GB)
+    $pdata= (Get-ChildItem 'C:\ProgramData'          -Recurse -Force -ErrorAction SilentlyContinue |
+            Measure-Object -Property Length -Sum).Sum
+    "ProgramData: {0:N2} GB"         -f ($pdata/1GB)
     [PSCustomObject]@{
         Drive               = $Drive
         PageFileBytes       = $pageFileBytes
@@ -1915,11 +1922,103 @@ function du-sh--shadow {
         RecycleBinBytes     = $recycleBinBytes
         MFTSizeBytes        = $mftBytes
         ShadowStorageBytes  = $shadowBytes
+        WinSxSBytes         = $winsxs.Sum
+        TotalBytes          = $totalBytes
+        ProgramDataBytes    = $pdata
         PageFileGB       = '{0:N2}' -f ($pageFileBytes      /1GB)
         HiberFileGB      = '{0:N2}' -f ($hiberFileBytes     /1GB)
         RecycleBinGB     = '{0:N2}' -f ($recycleBinBytes    /1GB)
         MFTSizeGB        = '{0:N2}' -f ($mftBytes           /1GB)
         ShadowStorageGB  = '{0:N2}' -f ($shadowBytes        /1GB)
+    }
+}
+function cbin--shadow {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$false, Position=0)]
+        [ValidatePattern('^[A-Za-z]$')]
+        [string]$Drive = 'C'
+    )
+    Clear-RecycleBin -DriveLetter $Drive -Force
+}
+function Get-SurfaceFolderSizes {
+    [CmdletBinding()]
+    [Alias('du-surface')]
+    param(
+        [Parameter(Mandatory=$false, Position=0)]
+        [string]$Path = '.'
+    )
+    try {
+        $root = (Resolve-Path -Path $Path).ProviderPath
+    }
+    catch {
+        Throw "Path not found: $Path"
+    }
+    $dirs = Get-ChildItem -Path $root -Directory -Force -ErrorAction SilentlyContinue
+    if (-not $dirs) {
+        Write-Host "No subdirectories found in $root"
+        return
+    }
+    $results = foreach ($dir in $dirs) {
+        $now = Get-Date -Format 'HH:mm:ss'
+        Write-Host "[$now] Scanning top-level folder: $($dir.FullName)"
+        $sumBytes   = 0
+        $lastFolder = $null
+        Get-ChildItem -Path $dir.FullName -Recurse -File -Force -ErrorAction SilentlyContinue |
+        ForEach-Object {
+            $folderPath = $_.DirectoryName
+            if ($folderPath -ne $lastFolder) {
+                $t = Get-Date -Format 'HH:mm:ss'
+                Write-Host "  [$t] Reading subfolder: $folderPath"
+                $lastFolder = $folderPath
+            }
+            $sumBytes += $_.Length
+        }
+        [PSCustomObject]@{
+            Name      = $dir.Name
+            FullName  = $dir.FullName
+            SizeBytes = $sumBytes
+            SizeGB    = [math]::Round($sumBytes/1GB, 2)
+        }
+    }
+
+    # Return results sorted largest → smallest
+    $results | Sort-Object SizeBytes -Descending
+}
+function Optimize-DockerVhd {
+    [CmdletBinding()]
+    param(
+        [Parameter(Position=0, Mandatory=$false)]
+        [string]$VhdPath = "$env:LOCALAPPDATA\Docker\wsl\disk\docker_data.vhdx"
+    )
+    if (-not (Test-Path -LiteralPath $VhdPath)) {
+        Throw "VHD not found at path: $VhdPath"
+    }
+    Write-Host "Step 1: Pruning unused Docker data..." -ForegroundColor Cyan
+    docker system prune --all --volumes --force
+    Write-Host "Step 2: Shutting down WSL to unlock VHD..." -ForegroundColor Cyan
+    wsl --shutdown
+    $beforeBytes = (Get-Item -LiteralPath $VhdPath).Length
+    $beforeGB    = [math]::Round($beforeBytes / 1GB, 2)
+    Write-Host "  VHD size before compaction: $beforeGB GB" -ForegroundColor Yellow
+    Write-Host "Step 3: Compacting VHD at $VhdPath ..." -ForegroundColor Cyan
+    if (-not (Get-Command Optimize-VHD -ErrorAction SilentlyContinue)) {
+        Import-Module Hyper-V -ErrorAction Stop
+    }
+    Optimize-VHD -Path $VhdPath -Mode Full
+    $afterBytes = (Get-Item -LiteralPath $VhdPath).Length
+    $afterGB    = [math]::Round($afterBytes / 1GB, 2)
+    $freedGB    = [math]::Round(($beforeBytes - $afterBytes) / 1GB, 2)
+    Write-Host "  VHD size after compaction : $afterGB GB" -ForegroundColor Yellow
+    Write-Host "  Space reclaimed           : $freedGB GB" -ForegroundColor Green
+    return [PSCustomObject]@{
+        VhdPath        = $VhdPath
+        BeforeBytes    = $beforeBytes
+        AfterBytes     = $afterBytes
+        FreedBytes     = $beforeBytes - $afterBytes
+        BeforeGB       = $beforeGB
+        AfterGB        = $afterGB
+        FreedGB        = $freedGB
     }
 }
 <#
