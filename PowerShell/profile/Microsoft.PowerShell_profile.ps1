@@ -353,7 +353,36 @@ Gets WDDM version from video controllers
 [Alias]: getwddm
 #>
 function Get-WDDMVersion {
-    gcim -ClassName Win32_VideoController | select @{Name="WDDMVersion"; Expression={$_.DriverVersion.Split('.')[0]}}
+    $videoControllers = Get-CimInstance -ClassName Win32_VideoController | 
+        Select-Object Name, @{Name="DriverVersion"; Expression={$_.DriverVersion}}
+    $tempFile = [System.IO.Path]::GetTempFileName() + ".txt"
+    try {
+        $dxdiag = Start-Process -FilePath "dxdiag" -ArgumentList "/t", $tempFile -Wait -NoNewWindow -PassThru
+        if (Test-Path $tempFile) {
+            $content = Get-Content $tempFile
+            $wddmLine = $content | Where-Object { $_ -match "Driver Model:" }
+            $wddmVersion = if ($wddmLine) { 
+                $wddmLine -replace ".*Driver Model:\s*", "" 
+            } else { 
+                "Unknown" 
+            }
+        } else {
+            $wddmVersion = "dxdiag failed"
+        }
+    }
+    catch {
+        $wddmVersion = "Error: $($_.Exception.Message)"
+    }
+    finally {
+        if (Test-Path $tempFile) {
+            Remove-Item $tempFile -ErrorAction SilentlyContinue
+        }
+    }
+    $result = [PSCustomObject]@{
+        WDDMVersion = $wddmVersion
+        VideoControllers = $videoControllers
+    }
+    return $result
 }
 <#
 .SYNOPSIS
@@ -2116,6 +2145,43 @@ function RecursiveSearchFiles {
         [Console]::ForegroundColor = $oc
     }
 }
+function cd-by-index {
+    [CmdletBinding()]
+    [Alias('cd-i')]
+    param(
+        [Parameter(Mandatory=$false, Position=0)]
+        [int]$Index = 0
+    )
+    $dirs = @(ls -Directory | select -ExpandProperty Name)
+    if ($dirs.Count -eq 0) {
+        Write-Error "No directories found in current location."
+        return
+    }
+    if ($Index -lt 0 -or $Index -ge $dirs.Count) {
+        Write-Error "Index out of range. Valid indexes: 0 to $($dirs.Count - 1)"
+        write "Available directories:" -ForegroundColor Yellow
+        $dirs | foreach -Begin { $i = 0 } -Process { "[$i] $($_)"; $i++ }
+        return
+    }
+    try {
+        $selectedDir = $dirs[$Index]
+        cd $selectedDir
+    }
+    catch {
+        Write-Error "Error changing directory: $_"
+        write "Available directories:" -ForegroundColor Yellow
+        $dirs | foreach -Begin { $i = 0 } -Process { "[$i] $($_)"; $i++ }
+    }
+}
+function expand-all-7z {
+    [CmdletBinding()]
+    [Alias('exp-7z')]
+    param(
+        [Parameter(Mandatory=$false, Position=0)]
+        [string]$Path = "."
+    )
+    ls $Path | where { $_.Name -like "*.7z" } | foreach { 7z x $_ }
+}
 <#
 .SYNOPSIS
 Interactive file search with real-time feedback
@@ -2744,3 +2810,143 @@ Set-Alias -Name filehistory -Value Open-FileHistory
 Set-Alias -Name memdiag -Value Diagnose-Memory
 Set-Alias -Name fonts -Value Open-Fonts
 Set-Alias -Name personalization -Value Open-Personalization
+
+
+### Debian-based emulation ###
+
+# Hardware - lshw style aliases
+Set-Alias -Name lshw-cpu -Value GetProcessorData
+Set-Alias -Name lshw-proc -Value GetProcessorData
+Set-Alias -Name lshw-memory -Value GetSSRAMData
+Set-Alias -Name lshw-mem -Value GetSSRAMData
+Set-Alias -Name lshw-storage -Value GetStorageDeviceData
+Set-Alias -Name lshw-disk -Value GetStorageDeviceData
+Set-Alias -Name lsusb-ports -Value GetUSBPortData
+Set-Alias -Name lsusb-full -Value GetUSBPortData
+Set-Alias -Name lshw-video -Value GetVideoControllerData
+Set-Alias -Name lshw-all -Value GetGroupedHardware
+
+# Storage - df/fdisk style aliases
+Set-Alias -Name df-volumes -Value Get-Volume
+Set-Alias -Name fdisk-list -Value Get-Partition
+Set-Alias -Name lsblk-physical -Value Get-PhysicalDisk
+Set-Alias -Name lsblk-disks -Value Get-Disk
+Set-Alias -Name lsblk -Value Get-Disk
+Set-Alias -Name rm-trash -Value Clear-RecycleBin
+
+# USB - lsusb style aliases
+Set-Alias -Name lsusb-controllers -Value Get-USBControllerDevice
+Set-Alias -Name lsusb-hubs -Value Get-USBController
+
+# Processor and Memory - /proc style aliases
+Set-Alias -Name cat-cpuinfo -Value Get-Processor
+Set-Alias -Name cat-meminfo -Value Get-PhysicalMemory
+Set-Alias -Name lsblk-drives -Value Get-DiskDrive
+Set-Alias -Name df-logical -Value Get-LogicalDisk
+Set-Alias -Name lspci-vga -Value Get-VideoController
+Set-Alias -Name lsmod-display -Value Get-WDDMVersion
+
+# Core parts - acpi/dmidecode style aliases
+Set-Alias -Name acpi-battery -Value Get-Battery
+Set-Alias -Name acpi-power -Value Get-PowerSetting
+Set-Alias -Name lpstat-printers -Value Get-PrinterWMI
+Set-Alias -Name dmidecode-bios -Value Get-BIOS
+Set-Alias -Name dmidecode-system -Value Get-ComputerSystem
+Set-Alias -Name uname-all -Value Get-OperatingSystem
+Set-Alias -Name dmidecode-product -Value Get-Product
+Set-Alias -Name systemctl-status -Value Get-ServiceWMI
+
+# Administration - passwd/group style aliases
+Set-Alias -Name getent-passwd -Value Get-UserAccount
+Set-Alias -Name getent-group -Value Get-GroupUser
+Set-Alias -Name id-users -Value Get-LocalUser
+Set-Alias -Name journalctl-system -Value Get-NTLogEvent
+
+# Network - ip/ifconfig/netstat style aliases
+Set-Alias -Name ip-config -Value Get-NetworkAdapterConfiguration
+Set-Alias -Name ip-link -Value Get-NetAdapter
+Set-Alias -Name netstat-tcp -Value Get-NetTCPConnection
+Set-Alias -Name netstat-version -Value NetshWinsockVersionShowCatalog
+Set-Alias -Name iwconfig-scan -Value NetshWlan
+Set-Alias -Name iwlist-capabilities -Value Get-WirelessCapabilities
+Set-Alias -Name lsmod-network -Value GetNetDrivers
+Set-Alias -Name apt-install -Value Install-Module
+# Hardware - lshw style aliases
+Set-Alias -Name lshw-cpu -Value GetProcessorData
+Set-Alias -Name lshw-memory -Value GetSSRAMData
+Set-Alias -Name lshw-storage -Value GetStorageDeviceData
+Set-Alias -Name lshw-disk -Value GetStorageDeviceData
+Set-Alias -Name lsusb-ports -Value GetUSBPortData
+Set-Alias -Name lsusb-full -Value GetUSBPortData
+Set-Alias -Name lshw-video -Value GetVideoControllerData
+Set-Alias -Name lshw-all -Value GetGroupedHardware
+
+# Storage - df/fdisk style aliases
+Set-Alias -Name df-volumes -Value Get-Volume
+Set-Alias -Name fdisk-list -Value Get-Partition
+Set-Alias -Name lsblk-physical -Value Get-PhysicalDisk
+Set-Alias -Name lsblk-disks -Value Get-Disk
+Set-Alias -Name rm-trash -Value Clear-RecycleBin
+
+# USB - lsusb style aliases
+Set-Alias -Name lsusb-controllers -Value Get-USBControllerDevice
+Set-Alias -Name lsusb-hubs -Value Get-USBController
+
+# Processor and Memory - /proc style aliases
+Set-Alias -Name cat-cpuinfo -Value Get-Processor
+Set-Alias -Name cat-meminfo -Value Get-PhysicalMemory
+Set-Alias -Name lsblk-drives -Value Get-DiskDrive
+Set-Alias -Name df-logical -Value Get-LogicalDisk
+Set-Alias -Name lspci-vga -Value Get-VideoController
+Set-Alias -Name lsmod-display -Value Get-WDDMVersion
+
+# Core parts - acpi/dmidecode style aliases
+Set-Alias -Name acpi-battery -Value Get-Battery
+Set-Alias -Name acpi-power -Value Get-PowerSetting
+Set-Alias -Name lpstat-printers -Value Get-PrinterWMI
+Set-Alias -Name dmidecode-bios -Value Get-BIOS
+Set-Alias -Name dmidecode-system -Value Get-ComputerSystem
+Set-Alias -Name uname-all -Value Get-OperatingSystem
+Set-Alias -Name dmidecode-product -Value Get-Product
+Set-Alias -Name systemctl-status -Value Get-ServiceWMI
+
+# Administration - passwd/group style aliases
+Set-Alias -Name getent-passwd -Value Get-UserAccount
+Set-Alias -Name getent-group -Value Get-GroupUser
+Set-Alias -Name id-users -Value Get-LocalUser
+Set-Alias -Name journalctl-system -Value Get-NTLogEvent
+
+# Network - ip/ifconfig/netstat style aliases
+Set-Alias -Name ip-config -Value Get-NetworkAdapterConfiguration
+Set-Alias -Name ip-link -Value Get-NetAdapter
+Set-Alias -Name netstat-tcp -Value Get-NetTCPConnection
+Set-Alias -Name netstat-version -Value NetshWinsockVersionShowCatalog
+Set-Alias -Name iwconfig-scan -Value NetshWlan
+Set-Alias -Name iwlist-capabilities -Value Get-WirelessCapabilities
+Set-Alias -Name lsmod-network -Value GetNetDrivers
+Set-Alias -Name apt-install -Value Install-Module
+
+# Writing/Logging - script/tee style aliases
+Set-Alias -Name script-start -Value Start-Transcript
+Set-Alias -Name script-begin -Value Start-Transcript
+Set-Alias -Name script-stop -Value Stop-Transcript
+Set-Alias -Name script-end -Value Stop-Transcript
+Set-Alias -Name history-open -Value Open-PSHistory
+
+# File System Navigation - cd/ls/xdg-open style aliases
+Set-Alias -Name xdg-computer -Value Open-MyPC
+Set-Alias -Name xdg-trash -Value Open-RecycleBin
+Set-Alias -Name xdg-documents -Value Open-Documents
+Set-Alias -Name xdg-docs -Value Open-Documents
+Set-Alias -Name xdg-desktop -Value Open-Desktop
+Set-Alias -Name xdg-pictures -Value Open-Pictures
+Set-Alias -Name xdg-downloads -Value Open-Downloads
+Set-Alias -Name xdg-music -Value Open-Music
+Set-Alias -Name xdg-videos -Value Open-Videos
+Set-Alias -Name xdg-network -Value Open-Networks
+Set-Alias -Name xdg-homegroup -Value Open-HomeGroup
+Set-Alias -Name xdg-netconnections -Value Open-NetworkConnections
+Set-Alias -Name xdg-filehistory -Value Open-FileHistory
+Set-Alias -Name memtest-start -Value Diagnose-Memory
+Set-Alias -Name fc-list -Value Open-Fonts
+Set-Alias -Name xdg-appearance -Value Open-Personalization
