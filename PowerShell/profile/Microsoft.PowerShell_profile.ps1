@@ -1,3 +1,10 @@
+function OpenProfile {
+    [CmdletBinding()]
+    [Alias('psprofile')]
+    param()
+    $profilePath = Join-Path $env:USERPROFILE 'Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+    code $profilePath
+}
 <#
 .SYNOPSIS
 Opens 'This PC' folder on Explorer
@@ -1965,10 +1972,20 @@ function cbin--shadow {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$false, Position=0)]
-        [ValidatePattern('^[A-Za-z]$')]
+        [ValidatePattern('^[A-Za-z]:?$')]
         [string]$Drive = 'C'
     )
+    $Drive = $Drive.TrimEnd(':')
+    $RecycleBinPath = "$Drive`:\`$Recycle.Bin"
+    if (Test-Path $RecycleBinPath) {
+        Write-Verbose "Clearing Recycle Bin at: $RecycleBinPath"
+        Get-ChildItem -Path $RecycleBinPath -Force -Recurse -ErrorAction SilentlyContinue | 
+            Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+    } else {
+        Write-Warning "Recycle Bin not found at: $RecycleBinPath"
+    }
     Clear-RecycleBin -DriveLetter $Drive -Force
+    write "Recycle Bin cleared for drive $Drive`:"
 }
 function Get-SurfaceFolderSizes {
     [CmdletBinding()]
