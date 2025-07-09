@@ -2067,6 +2067,25 @@ function Optimize-DockerVhd {
         FreedGB        = $freedGB
     }
 }
+function robo-backup {
+    [CmdletBinding()]
+    param(
+        [Alias('s','Src')]
+        [Parameter(Mandatory=$true)]
+        [string]$Source,
+
+        [Alias('d','Dst')]
+        [Parameter(Mandatory=$true)]
+        [string]$Destination,
+
+        [Alias('r','Retry')]
+        [int]$RetryCount  = 3,
+
+        [Alias('w','Wait')]
+        [int]$WaitSeconds = 5
+    )
+    robocopy $Source $Destination /E /COPYALL /R:$RetryCount /W:$WaitSeconds
+}
 <#
 .SYNOPSIS
 Identifies largest folders by aggregate file size
