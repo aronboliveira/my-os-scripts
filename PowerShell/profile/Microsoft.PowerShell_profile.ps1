@@ -2734,6 +2734,9 @@ function Kill-Chrome {
         Write-Host "`nNo Chrome processes remaining." -ForegroundColor Green
     }
 }
+function Set-Power-Sleep {
+    rundll32.exe powrprof.dll,SetSuspendState 0,1,0
+}
 # Complex Functions
 Set-Alias -Name sann -Value SanitizeNames
 Set-Alias -Name sanitize -Value SanitizeNames
