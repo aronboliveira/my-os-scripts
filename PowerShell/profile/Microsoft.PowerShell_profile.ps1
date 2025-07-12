@@ -2989,3 +2989,7 @@ Set-Alias -Name xdg-filehistory -Value Open-FileHistory
 Set-Alias -Name memtest-start -Value Diagnose-Memory
 Set-Alias -Name fc-list -Value Open-Fonts
 Set-Alias -Name xdg-appearance -Value Open-Personalization
+
+# Others
+Set-Alias -Name zip -Value Compress-Archive
+Set-Alias -Name unzip -Value Expand-Archive
