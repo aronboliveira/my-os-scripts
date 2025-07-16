@@ -1,3 +1,5 @@
+Set-Alias -Name touch -Value NewFile
+Set-ALias -Name read -Value Read-Host
 function OpenProfile {
     [CmdletBinding()]
     [Alias('psprofile')]
@@ -255,6 +257,10 @@ Gets video controller/graphics card information
 function Get-VideoController {
     gwmi Win32_VideoController
 }
+<#
+.SYNOPSIS
+Retrieves monitor identification details including model and serial numbers.
+#>
 function Get-Monitors {
     Get-CimInstance -Namespace root\wmi -ClassName WmiMonitorID | foreach {
         $Model = ($_.UserFriendlyName -ne 0 | foreach { [char]$_ }) -join ""
@@ -460,17 +466,168 @@ Sanitizes filenames in current directory
 .No Returns
 [Alias]: sann
 #>
-function SanitizeNames {
-    gci * -File | foreach {
-        $newBaseName = ($_.BaseName -replace '[^a-zA-Z0-9_]', '__').ToLower()
-        $newName = "$newBaseName$($_.Extension)"
-            if($newBaseName -ne $_.BaseName) {
+function Sanitize-Dirnames {
+    param([switch]$r)
+    $dirs = @()
+    
+    if ($r) {
+        $dirs = ls . -Recurse -Directory
+    } else {
+        $dirs = ls . -Directory
+    }
+
+    $dirs | % {
+        $newBase = ($_.BaseName -replace '[^a-zA-Z0-9_]', '__').ToLower()
+        $newName = "$newBase$($_.Extension)"
+        if ($newName -ne $_.Name) {
             [Console]::ForegroundColor = 'Green'
             echo "`nRenaming '$($_.Name)' to '$newName'`n"
             [Console]::ResetColor()
-            ren $_.FullName -NewName $newName
-        } 
+            ren $_.FullName $newName
+        }
     }
+
+    if ($r) {
+        $dirs = ls . -Recurse -Directory
+    } else {
+        $dirs = ls . -Directory 
+    }
+
+    [Console]::ForegroundColor = 'Cyan'
+    $choice = Read-Host "`nReplace multiple underscores with single? [Y/N] "
+    if ($choice -in 'Y','y') {
+        $dirs | % {
+            $newBase = $_.BaseName -replace '__+', '_'
+            $newName = "$newBase$($_.Extension)"
+            if ($newName -ne $_.Name) {
+                [Console]::ForegroundColor = 'Green'
+                echo "`nRenaming '$($_.Name)' to '$newName'`n"
+                [Console]::ResetColor()
+                ren $_.FullName $newName
+            }
+        }
+        
+        if ($r) {
+            $dirs = ls . -Recurse -Directory
+        } else {
+            $dirs = ls . -Directory
+        }
+    }
+
+    [Console]::ForegroundColor = 'Cyan'
+    $choice_2 = Read-Host "`nTrim long file names to 255 characters? [Y/N] "
+    if ($choice_2 -in 'Y','y') {
+        $dirs | % {
+            $maxBaseLen = 255
+            $currentBase = $_.BaseName
+            
+            if ($currentBase.Length -gt $maxBaseLen) {
+                $newBase = $currentBase.Substring(0, $maxBaseLen)
+                $newName = "$newBase$($_.Extension)"
+                
+                [Console]::ForegroundColor = 'Yellow'
+                echo "`nTrimming '$($_.Name)' (length $($_.Name.Length)) to '$newName'`n"
+                [Console]::ResetColor()
+                ren $_.FullName $newName
+            }
+        }
+    }
+    [Console]::ResetColor()
+}
+<#
+.SYNOPSIS
+Sanitizes file names by replacing special characters with underscores, collapsing multiple underscores, 
+and trimming base names to fit within 255-character limit including extension. Operates in current or recursive mode.
+#>
+function Sanitize-Filenames {
+    param([switch]$r)
+    $files = @()
+    
+    if ($r) {
+        $files = ls . -Recurse -File
+    } else {
+        $files = ls . -File
+    }
+
+    $files | % {
+        $newBase = ($_.BaseName -replace '[^a-zA-Z0-9_]', '__').ToLower()
+        $newName = "$newBase$($_.Extension)"
+        if ($newName -ne $_.Name) {
+            [Console]::ForegroundColor = 'Green'
+            echo "`nRenaming '$($_.Name)' to '$newName'`n"
+            [Console]::ResetColor()
+            ren $_.FullName $newName
+        }
+    }
+
+    if ($r) {
+        $files = ls . -Recurse -File
+    } else {
+        $files = ls . -File
+    }
+
+    [Console]::ForegroundColor = 'Cyan'
+    $choice = Read-Host "`nReplace multiple underscores with single? [Y/N] "
+    if ($choice -in 'Y','y') {
+        $files | % {
+            $newBase = $_.BaseName -replace '__+', '_'
+            $newName = "$newBase$($_.Extension)"
+            if ($newName -ne $_.Name) {
+                [Console]::ForegroundColor = 'Green'
+                echo "`nRenaming '$($_.Name)' to '$newName'`n"
+                [Console]::ResetColor()
+                ren $_.FullName $newName
+            }
+        }
+        
+        if ($r) {
+            $files = ls . -Recurse -File
+        } else {
+            $files = ls . -File
+        }
+    }
+
+    [Console]::ForegroundColor = 'Cyan'
+    $choice_2 = Read-Host "`nTrim long file names to 255 characters? [Y/N] "
+    if ($choice_2 -in 'Y','y') {
+        $files | % {
+            $maxBaseLen = 255 - $_.Extension.Length
+            $currentBase = $_.BaseName
+            
+            if ($currentBase.Length -gt $maxBaseLen) {
+                $newBase = $currentBase.Substring(0, $maxBaseLen)
+                $newName = "$newBase$($_.Extension)"
+                
+                [Console]::ForegroundColor = 'Yellow'
+                echo "`nTrimming '$($_.Name)' (length $($_.Name.Length)) to '$newName'`n"
+                [Console]::ResetColor()
+                ren $_.FullName $newName
+            }
+        }
+    }
+    [Console]::ResetColor()
+}
+<#
+.SYNOPSIS
+Orchestrates comprehensive sanitization of both directory and file names through interactive prompts. 
+Allows selective processing of directories and/or files with recursive option.
+#>
+function Sanitize-Names {
+    param([switch]$r)
+    [Console]::ForegroundColor = 'Cyan'
+    $choice_dirs = Read-Host "`nSanitize directory names? [Y/N] "
+    if ($choice_dirs -in 'Y','y') {
+        echo "Sanitizing directory names..."
+        [Console]::ResetColor()
+        Sanitize-Dirnames -r:$r
+    }
+    $choice_files = Read-Host "`nSanitize file names? [Y/N] "
+    if ($choice_files -in 'Y','y') {
+        echo "Sanitizing file names..."
+        [Console]::ResetColor()
+        Sanitize-Filenames -r:$r
+    }
+    [Console]::ResetColor()
 }
 <#
 .SYNOPSIS
@@ -1844,6 +2001,10 @@ function GetHeaviestFiles {
     
     return $heaviestFiles
 }
+<#
+.SYNOPSIS
+Calculates total file storage usage for a drive by recursively summing file sizes.
+#>
 function Calc-Storage {
     [CmdletBinding()]
     param(
@@ -1866,6 +2027,10 @@ function Calc-Storage {
     $gb = [math]::Round($totalSize / 1GB, 2)
     Write-Output "Total: $gb GB"
 }
+<#
+.SYNOPSIS
+Reports disk usage statistics for a specified drive in GB and GiB.
+#>
 function du-sh {
     [CmdletBinding()]
     param(
@@ -1881,6 +2046,10 @@ function du-sh {
     $usedGiB = [math]::Round($usedBytes  / 1GB,  2)
     "Used: $usedGB GB  ($usedGiB GiB) of $([math]::Round($totalBytes/1e9,2)) GB total"
 }
+<#
+.SYNOPSIS
+Analyzes "shadow" storage consumption including pagefile, hibernation, recycle bin, MFT, and VSS.
+#>
 function du-sh--shadow {
     [CmdletBinding()]
     param(
@@ -1968,6 +2137,10 @@ function du-sh--shadow {
         ShadowStorageGB  = '{0:N2}' -f ($shadowBytes        /1GB)
     }
 }
+<#
+.SYNOPSIS
+Clears both standard and shadow recycle bin ($Recycle.Bin) contents for a specified drive.
+#>
 function cbin--shadow {
     [CmdletBinding()]
     param(
@@ -1987,6 +2160,10 @@ function cbin--shadow {
     Clear-RecycleBin -DriveLetter $Drive -Force
     write "Recycle Bin cleared for drive $Drive`:"
 }
+<#
+.SYNOPSIS
+Calculates and reports sizes of top-level directories with detailed recursive scanning progress.
+#>
 function Get-SurfaceFolderSizes {
     [CmdletBinding()]
     [Alias('du-surface')]
@@ -2031,6 +2208,10 @@ function Get-SurfaceFolderSizes {
     # Return results sorted largest → smallest
     $results | Sort-Object SizeBytes -Descending
 }
+<#
+.SYNOPSIS
+Reduces Docker WSL virtual disk footprint by pruning unused data and compacting VHDX.
+#>
 function Optimize-DockerVhd {
     [CmdletBinding()]
     param(
@@ -2067,6 +2248,10 @@ function Optimize-DockerVhd {
         FreedGB        = $freedGB
     }
 }
+<#
+.SYNOPSIS
+Executes robust file copy operations using Robocopy with configurable retry logic.
+#>
 function robo-backup {
     [CmdletBinding()]
     param(
@@ -2181,6 +2366,10 @@ function RecursiveSearchFiles {
         [Console]::ForegroundColor = $oc
     }
 }
+<#
+.SYNOPSIS
+Changes directory using numeric index from a dynamically generated list of subdirectories.
+#>
 function cd-by-index {
     [CmdletBinding()]
     [Alias('cd-i')]
@@ -2209,6 +2398,10 @@ function cd-by-index {
         $dirs | foreach -Begin { $i = 0 } -Process { "[$i] $($_)"; $i++ }
     }
 }
+<#
+.SYNOPSIS
+Recursively extracts all 7z archives in the current or specified directory.
+#>
 function expand-all-7z {
     [CmdletBinding()]
     [Alias('exp-7z')]
@@ -2562,7 +2755,6 @@ function RemoveMultipleUnderscores {
 }
 function .. { Set-Location .. }
 function ... { Set-Location ..\.. }
-function .ilv { Set-Location _inc\laravel }
 function artmrs { 
     php artisan migrate:reset
 }
@@ -2705,6 +2897,10 @@ function Invoke-PythonManage {
         Write-Error "Command failed: $_"
     }
 }
+<#
+.SYNOPSIS
+Force-terminates all Chrome processes and helpers, including elevated instances.
+#>
 function Kill-Chrome {
     [CmdletBinding()]
     [Alias('killchrome')]
@@ -2734,6 +2930,10 @@ function Kill-Chrome {
         Write-Host "`nNo Chrome processes remaining." -ForegroundColor Green
     }
 }
+<#
+.SYNOPSIS
+Initiates system sleep state using Windows power management API.
+#>
 function Set-Power-Sleep {
     rundll32.exe powrprof.dll,SetSuspendState 0,1,0
 }
@@ -2771,7 +2971,6 @@ Set-Alias -Name getplngdata -Value GetProgramLanguageFilesData
 Set-Alias -Name filedistrib -Value MeasureFileDistribution
 # File managament
 Set-Alias -Name np -Value notepad
-Set-Alias -Name touch -Value NewFile
 Set-Alias -Name comp -Value Compress-Archive
 Set-Alias -Name exp -Value Expand-Archive
 Set-Alias -Name outf -Value OutFile
