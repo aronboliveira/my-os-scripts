@@ -1145,3 +1145,36 @@ alias deb-st-msconfig='systemd-manager'
 alias deb-st-cmd='xfce4-terminal'
 alias deb-st-powershell='xfce4-terminal'
 alias deb-st-run='xfce4-appfinder --collapsed'
+alias ls-nomount='sudo blkid -o list | grep "not mounted"'
+mount_ntfs_media_drive() {
+    local media_path="$1"
+    local device="$2"
+    if [ -z "$media_path" ] || [ -z "$device" ]; then
+       echo "Usage: mount_media_drive '/media/username/Drive Name' /dev/sdX1"
+        echo "Example: mount_media_drive '/media/aronboliveira/Seagate Expansion Drive1' /dev/sdc1"
+        return 1
+    fi
+    if [ ! -b "$device" ]; then
+        echo "Error: Device $device does not exist"
+        return 1
+    fi
+    sudo bash -c "
+        set -e
+        DEV='$device'
+        M='$media_path'
+        MPT=\$(findmnt -no TARGET \"\$DEV\" 2>/dev/null || true)
+        [ -n \"\$MPT\" ] && umount \"\$MPT\" || true
+        ntfsfix \"\$DEV\"
+        mkdir -p \"\$M\"
+        UUID=\$(blkid -s UUID -o value \"\$DEV\")
+        M_ESC=\$(printf \"%s\" \"\$M\" | sed \"s/ /\\\\\\\\040/g\")
+        LINE=\"UUID=\$UUID \$M_ESC ntfs uid=1000,gid=1000,dmask=022,fmask=133,windows_names,noatime,x-systemd.automount,nofail,x-systemd.device-timeout=5s 0 0\"
+        sed -i.bak -e \"/UUID=\$UUID[[:space:]]/d\" -e \"\|[[:space:]]\$M_ESC[[:space:]]|d\" /etc/fstab
+        printf \"%s\n\" \"\$LINE\" >> /etc/fstab
+        systemctl daemon-reload
+        mount -a
+        ls \"\$M\" >/dev/null
+        findmnt \"\$M\"
+    "
+}
+alias mount-recover-ntfs='mount_ntfs_media_drive'
