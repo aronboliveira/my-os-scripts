@@ -1,3 +1,52 @@
+alias check-ecc='sudo dmidecode -t memory | grep -i "error\|ecc\|correction'
+# REPLACE SDB3 WITH YOUR ACTUAL VOLUME, CHECKED WITH lsblk
+alias setup-luks-sdb3='sudo cryptsetup luksOpen /dev/sdb3 sdb3'
+alias disconnect-all-bt='for device in $(bluetoothctl devices Connected | awk '"'"'{print $2}'"'"'); do bluetoothctl disconnect "$device"; done'
+alias bt-on='bluetoothctl power on'
+alias bt-off='bluetoothctl power off'
+alias bt-scan='bluetoothctl scan on'
+alias bt-devices='bluetoothctl devices'
+alias mount-sdb3='\
+    sudo lvdisplay; \
+    sudo vgchange -ay ubuntu-vg; \
+    sudo mkdir -p /mnt/ubuntu--vg/ubuntu--lv; \
+    sudo mount /dev/mapper/ubuntu--vg-ubuntu--lv /mnt/ubuntu--vg/ubuntu--lv; \
+    echo "Successfully mounted /dev/sdb3 to /mnt/ubuntu--vg/ubuntu--lv";'
+alias disconnect-all-bt='for device in $(bluetoothctl devices Connected | awk '"'"'{print $2}'"'"'); do bluetoothctl disconnect "$device"; done'
+alias git-log-pretty='git log --all --pretty=format:"%ae - %cd - %s" --date=short'
+alias git-stats='\
+    AUTHOR="${1:-$(git config user.email)}"; \
+    echo "Author email: $AUTHOR"; \
+    echo ""; \
+    git log --author="$AUTHOR" --pretty=tformat: --numstat 2>/dev/null | \
+    awk '\''{ add += $1; subs += $2; loc += $1 - $2 } END { \
+        printf "Lines added: %s\nLines removed: %s\nNet lines (changed): %s\n", add, subs, loc \
+    }'\''; \
+    echo ""; \
+    echo "Total number of lines in the project (ignoring vendors):"; \
+    find . -type f \
+        ! -path '\''*/vendor/*'\'' \
+        ! -path '\''*/node_modules/*'\'' \
+        ! -path '\''*/.git/*'\'' \
+        ! -path '\''*/dist/*'\'' \
+        ! -path '\''*/build/*'\'' \
+        ! -path '\''*/./*'\'' \
+        -exec wc -l {} + 2>/dev/null | tail -1 | awk '\''{print $1}'\''; \
+    echo "Total number of files in the project (ignoring vendors):"; \
+    find . -type f \
+        ! -path '\''*/vendor/*'\'' \
+        ! -path '\''*/node_modules/*'\'' \
+        ! -path '\''*/.git/*'\'' \
+        ! -path '\''*/dist/*'\'' \
+        ! -path '\''*/build/*'\'' \
+        ! -path '\''*/./*'\'' \
+        | wc -l 2>/dev/null; \
+    echo ""; \
+    echo "Total number of commits registered for the remote repository:"; \
+    git rev-list --count --all 2>/dev/null || echo "No remote repository"; \
+    echo "Total number of commits registered for the branch:"; \
+    git rev-list --count HEAD 2>/dev/null;'
+alias gst-filter-rdm='git filter-branch --force --prune-empty --index-filter "git rm --cached --ignore-unmatch README.md" cat -- --all'
 alias mkd='mkdir'
 alias gra='git remote add'
 alias gra-o='git remote add origin'
