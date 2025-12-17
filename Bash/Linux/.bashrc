@@ -1,4 +1,4 @@
-alias check-ecc='sudo dmidecode -t memory | grep -i "error\|ecc\|correction'
+alias check-ecc='sudo dmidecode -t memory | grep -i "error\|ecc\|correction"'
 # REPLACE SDB3 WITH YOUR ACTUAL VOLUME, CHECKED WITH lsblk
 alias setup-luks-sdb3='sudo cryptsetup luksOpen /dev/sdb3 sdb3'
 alias disconnect-all-bt='for device in $(bluetoothctl devices Connected | awk '"'"'{print $2}'"'"'); do bluetoothctl disconnect "$device"; done'
