@@ -1,3 +1,16 @@
+show_recent_files() {
+  local search_term="${1:-.}"
+  strings ~/.local/share/recently-used.xbel | \
+    grep -o 'href="[^"]*"' | \
+    sed 's/href="file:\/\///' | \
+    sed 's/"//' | \
+    while read line; do 
+      echo "${line//\%/\\x}"
+    done | \
+    xargs -0 printf "%b" | \
+    grep -i "$search_term"
+}
+alias ls-rec-files='show_recent_files'
 alias check-ecc='sudo dmidecode -t memory | grep -i "error\|ecc\|correction"'
 # REPLACE SDB3 WITH YOUR ACTUAL VOLUME, CHECKED WITH lsblk
 alias setup-luks-sdb3='sudo cryptsetup luksOpen /dev/sdb3 sdb3'
