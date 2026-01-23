@@ -1,3 +1,4 @@
+# ADD THIS TO systemd/user/timers.target.wants && Remove the comment
 [Unit]
 Description=Run wallpaper switcher hourly
 
