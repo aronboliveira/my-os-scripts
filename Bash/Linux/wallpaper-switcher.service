@@ -1,0 +1,7 @@
+# Add in system/user/ && remove comment
+[Unit]
+Description=Wallpaper and Theme Switcher
+
+[Service]
+Type=oneshot
+ExecStart=/home/YOUR_USER_HERE/.config/alternating-desktop-service.sh
