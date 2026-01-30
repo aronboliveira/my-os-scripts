@@ -10,6 +10,32 @@ show_recent_files() {
     xargs -0 printf "%b" | \
     grep -i "$search_term"
 }
+has_multiple_blank_lines() {
+  local file="$1"
+  if [ ! -f "$file" ]; then
+    echo "File not found: $file" >&2
+    return 1
+  fi
+  awk "/^[[:space:]]*$/ {blank++} !/^[[:space:]]*$/ {if(blank>=2) exit 0; blank=0} END{exit !(blank>=2)}" "$1" && echo "File does have multiple blank lines" || echo "File does not have multiple blank lines"
+}
+show_multiple_blank_lines_files() {
+  find . -maxdepth 1 -type f -exec awk '
+    /^[[:space:]]*$/ { blank++ }
+    !/^[[:space:]]*$/ { 
+      if (blank >= 2) { 
+        print FILENAME ": has multiple consecutive blank lines"
+        exit 
+      }
+      blank = 0 
+    }
+    END { 
+      if (blank >= 2) 
+        print FILENAME ": has multiple consecutive blank lines" 
+    }
+  ' {} \;
+}
+alias ls-mblank='show_multiple_blank_lines_files'
+alias is-mblank='has_multiple_blank_lines'
 alias ls-rec-files='show_recent_files'
 alias check-ecc='sudo dmidecode -t memory | grep -i "error\|ecc\|correction"'
 # REPLACE SDB3 WITH YOUR ACTUAL VOLUME, CHECKED WITH lsblk
