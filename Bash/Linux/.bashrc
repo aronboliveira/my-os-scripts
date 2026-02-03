@@ -34,6 +34,11 @@ show_multiple_blank_lines_files() {
     }
   ' {} \;
 }
+ls_lah_859() {
+  local path="${1:-.}"
+  ls -lah "$path" | awk 'BEGIN{FS=" "}; {print $8, $5, $9}'
+}
+alias ls-lah-859='ls_lah_859'
 alias ls-mblank='show_multiple_blank_lines_files'
 alias is-mblank='has_multiple_blank_lines'
 alias ls-rec-files='show_recent_files'
