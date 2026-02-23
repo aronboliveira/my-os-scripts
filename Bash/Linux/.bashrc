@@ -1,3 +1,25 @@
+## BASED ON LUKE SMITH SCRIPT: https://www.youtube.com/watch?v=cvDyQUpaFf4
+cat_band() {
+  init="$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"
+  printf "Recording bandwidth.. Press enter to stop."
+  read -r "stop"
+  fin="$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"
+  printf "%4sB of bandwith used.\\n" $(numfmt --to=iec $(($fin-$init)))
+}
+alias cat-band='cat_band'
+alias backup_projects='rsync -aHAXv --progress --checksum \
+  --exclude="node_modules/" \
+  --exclude="venv/" \
+  --exclude=".venv/" \
+  --exclude="__pycache__/" \
+  --exclude=".gradle/" \
+  --exclude=".m2/" \
+  --exclude="vendor/" \
+  --exclude="target/" \
+  --exclude=".next/" \
+  --exclude="dist/" \
+  --exclude="build/"'
+alias backup-projects='backup_projects'
 show_recent_files() {
   local search_term="${1:-.}"
   strings ~/.local/share/recently-used.xbel | \
