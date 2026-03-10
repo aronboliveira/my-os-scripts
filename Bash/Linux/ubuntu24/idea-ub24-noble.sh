@@ -2,7 +2,6 @@
 # ============================================================
 #  IntelliJ IDEA – Desktop & App Menu shortcut installer
 #  Target: KDE Plasma on X11, Ubuntu 24.04 LTS (Noble Numbat)
-#  Source: /home/aronboliveira/Downloads/idea-IU-253.31033.145
 # ============================================================
 
 set -euo pipefail
