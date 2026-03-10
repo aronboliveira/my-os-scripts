@@ -2,7 +2,6 @@
 # ============================================================
 #  IntelliJ IDEA – Desktop & App Menu shortcut installer
 #  Target: KDE Plasma on X11, Ubuntu 25.04 (Plucky Puffin)
-#  Source: /home/aronboliveira/Downloads/idea-IU-253.31033.145
 # ============================================================
 
 set -euo pipefail
