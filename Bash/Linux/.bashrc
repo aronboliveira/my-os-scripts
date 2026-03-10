@@ -1,3 +1,8 @@
+alias prune-snap='sudo snap list --all | awk "/disabled/{print \$1, \$3}" | while read snapname revision; do sudo snap remove "$snapname" --revision="$revision"; done'
+alias artisan='php artisan'
+alias brave='brave-browser'
+alias brave-tor='brave-browser --incognito --tor'
+alias cat-band-tee='cat-band | grep -o "[0-9][0-9.]*[KMGT]*B.*" | tee "$HOME/.logs/cat-band/$(date +%Y%m%d_%H%M%S)"'
 ## BASED ON LUKE SMITH SCRIPT: https://www.youtube.com/watch?v=cvDyQUpaFf4
 cat_band() {
   init="$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"
