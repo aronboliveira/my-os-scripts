@@ -79,6 +79,69 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       ip route get "$ip" 2>/dev/null || true
     }
     alias net-probe='net_probe'
+
+    ## @description Run powerstat (RAPL) and tee output to a timestamped log,
+    ##   with the Watts column moved from last to second position.
+    ## @param $1 {number} duration - Recording duration in seconds (default: 3600)
+    ## @param $2 {number} tick     - Sampling interval in seconds (default: 1)
+    track_power_usage() {
+      local duration=${1:-3600}
+      local tick=${2:-1}
+      if ! command -v powerstat &>/dev/null; then
+        echo -e "❌ \033[1;31mpowerstat not found.\033[0m Install with: sudo apt install powerstat"
+        return 1
+      fi
+      mkdir -p "$HOME/.logs"
+      local log="$HOME/.logs/powerstat-$(date +%Y-%m-%d_%H-%M-%S).log"
+      echo -e "⚡ \033[1;36mRecording power stats for ${duration}s (tick: ${tick}s) → $log\033[0m"
+      sudo stdbuf -oL powerstat -Rn "$tick" "$duration" 2>&1 | \
+        awk '{
+          if (NF >= 2 && $NF ~ /^[0-9.]/) {
+            w = $NF
+            printf "%-8s %-8s", $1, w
+            for (i = 2; i < NF; i++) printf " %-6s", $i
+            printf "\n"
+          } else { print }
+        }' | tee "$log"
+    }
+    alias track-power-usage='track_power_usage'
+
+    ## @description Like cat_band but tee the bandwidth result to a timestamped
+    ##   log file in ~/.logs/cat-band/.
+    cat_band_tee() {
+      mkdir -p "$HOME/.logs/cat-band"
+      local log="$HOME/.logs/cat-band/$(date +%Y%m%d_%H%M%S)"
+      echo -e "📡 \033[1;36mCapturing bandwidth... Press Enter to stop.\033[0m"
+      local init fin
+      init="$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"
+      read -r _
+      fin="$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"
+      local result
+      result=$(printf "%4sB of bandwidth used.\n" "$(numfmt --to=iec $(( fin - init )))")
+      echo "$result" | tee "$log"
+      echo -e "\033[2;37mSaved to $log\033[0m"
+    }
+    alias cat-band-tee='cat_band_tee'
+
+    ## @description Like cat_band_tee but with an automatic duration (in seconds)
+    ##   instead of waiting for Enter. Samples rx_bytes at start, sleeps for
+    ##   the given duration, then samples again and tees the result.
+    ## @param $1 {number} seconds - Duration to track (default: 60)
+    cat_band_tee_d() {
+      local secs=${1:-60}
+      mkdir -p "$HOME/.logs/cat-band"
+      local log="$HOME/.logs/cat-band/$(date +%Y%m%d_%H%M%S)"
+      echo -e "📡 \033[1;36mTracking bandwidth for ${secs}s...\033[0m"
+      local init fin
+      init="$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"
+      sleep "$secs"
+      fin="$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"
+      local result
+      result=$(printf "%4sB of bandwidth used in %ss.\n" "$(numfmt --to=iec $(( fin - init )))" "$secs")
+      echo "$result" | tee "$log"
+      echo -e "\033[2;37mSaved to $log\033[0m"
+    }
+    alias cat-band-tee-d='cat_band_tee_d'
   #endregion Network_Procedures
 
   #region User_Management
@@ -190,6 +253,58 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mThunar hidden from MIME associations.\033[0m"
     }
     alias hide-thunar-mime='hide_thunar_mime'
+
+    ## @description List running compositor/window manager processes.
+    alias ps-compositors='ps aux | grep -E "(gnome-shell|xfwm4|mutter|kwin|compositor)" | grep -v grep'
+
+    ## @description Show Mutter experimental features.
+    alias get-mutter-features='gsettings get org.gnome.mutter experimental-features 2>/dev/null || echo "Mutter settings not available"'
+
+    ## @description Reset Mutter experimental features to empty (with confirmation).
+    reset_mutter_features() {
+      echo -e "\033[1;33m⚠️  This will reset org.gnome.mutter experimental-features to []\033[0m"
+      local current
+      current=$(gsettings get org.gnome.mutter experimental-features 2>/dev/null)
+      echo "  Current value: ${current:-unknown}"
+      read -rp "Proceed? (y/N): " confirm
+      if [[ ! "$confirm" =~ ^[yY] ]]; then
+        echo "Aborted."
+        return 0
+      fi
+      gsettings set org.gnome.mutter experimental-features "[]"
+      echo -e "✅ \033[1;32mMutter experimental features reset.\033[0m"
+    }
+    alias reset-mutter-features='reset_mutter_features'
+
+    ## @description Show root window geometry (width, height, depth).
+    alias xwin-root-info='xwininfo -root 2>/dev/null | grep -E "(Width|Height|Depth)"'
+
+    ## @description List connected monitors via xrandr.
+    alias ls-monitors='xrandr --listmonitors 2>/dev/null'
+
+    ## @description Check availability of DE-related programs (KDE/GNOME/XFCE).
+    check_de_programs() {
+      local programs=(
+        "plasma-systemmonitor"
+        "gnome-system-monitor"
+        "plasma-discover"
+        "system-config-printer"
+        "plasma-interactiveconsole"
+        "plasma-emojier"
+        "plasma-open-settings"
+        "ksystemstats"
+      )
+      for prog in "${programs[@]}"; do
+        echo -e "\033[1;36m=== $prog ===\033[0m"
+        if command -v "$prog" &>/dev/null; then
+          echo -e "  \033[1;32m✓\033[0m $(which "$prog")"
+        else
+          echo -e "  \033[1;31m✗\033[0m not found"
+        fi
+        echo ""
+      done
+    }
+    alias check-de-programs='check_de_programs'
   #endregion Desktop_Environment
 
   #region System_Info_Aliases
@@ -222,6 +337,9 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       alias stringify-snapd='sudo strings /lib/snapd/snapd'
       alias ls-sys-services='sudo ls /lib/systemd/system/'
       alias ls-mod-dkms='sudo ls "/lib/modules/$(uname -r)/updates/dkms/"'
+
+      ## @description Show OpenGL renderer, version, and direct rendering status.
+      alias glx-info='glxinfo 2>/dev/null | grep -E "(OpenGL renderer|OpenGL version|direct rendering)" || echo "glxinfo not available (install mesa-utils)"'
     #endregion Drivers_and_Modules
 
     #region System_Config_Files
@@ -272,6 +390,40 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       alias cat-sys-log='sudo cat /var/log/syslog'
       alias cat-history-log='sudo cat /var/log/apt/history.log'
       alias cat-term-log='sudo cat /var/log/apt/term.log'
+
+      ## @description Extract strings from Xorg log files.
+      stringify_xorg_logs() {
+        sudo find /var/log/ -maxdepth 1 -name "Xorg*" -type f \
+          -exec sh -c 'echo "=== $1 ==="; strings "$1" 2>/dev/null' _ {} \;
+      }
+      alias stringify-xorg-logs='stringify_xorg_logs'
+
+      ## @description Show GPU/display/compositor errors from current boot journal.
+      ## @param $1 {number} lines - Number of journal lines to scan (default: 200)
+      journal_gpu_errors() {
+        local n="${1:-200}"
+        sudo journalctl -b -n "$n" --no-pager | \
+          grep -i -E "(error|crash|gpu|display|render|compositor|window manager|fullscreen|xorg)"
+      }
+      alias journal-gpu-errors='journal_gpu_errors'
+
+      ## @description Show GNOME Shell errors from user journal.
+      ## @param $1 {number} lines - Number of journal lines to scan (default: 100)
+      journal_gnome_errors() {
+        local n="${1:-100}"
+        journalctl --user -u gnome-shell -n "$n" --no-pager 2>/dev/null | \
+          grep -i -E "(error|warning|fail|crash)"
+      }
+      alias journal-gnome-errors='journal_gnome_errors'
+
+      ## @description List xsession error files and Xorg log directory.
+      alias ls-xsession-errors='ls -lh ~/.xsession-errors* ~/.local/share/xorg/ 2>/dev/null'
+
+      ## @description Grep Xorg log for errors (EE) and warnings (WW).
+      alias grep-xorg-errors='grep -i -E "(EE|WW).*" ~/.local/share/xorg/Xorg.0.log 2>/dev/null'
+
+      ## @description Extract crash-relevant strings from VS Code crash files.
+      alias stringify-vscode-crash='sudo strings /var/crash/_usr_share_code_code.1000.crash 2>/dev/null | grep -i -E "(segfault|sigsegv|sigabrt|exception|display|render|gpu|compositor|fullscreen)"'
     #endregion Logs_and_Crashes
 
     #region Applications_and_Icons
@@ -279,6 +431,13 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       alias ls-apps-u='ls ~/.local/share/applications/'
       alias ls-icons='sudo ls /usr/share/icons/'
       alias stringify-sign-files='sudo strings "/usr/src/linux-headers-$(uname -r)/scripts/sign-file"'
+
+      ## @description Find system/KDE/Plasma binaries in /usr/bin.
+      find_system_kde_bins() {
+        find /usr/bin -maxdepth 1 -type f -regextype posix-extended \
+          -iregex '.*(system|kde|plasma).*' -print 2>/dev/null | sort
+      }
+      alias find-system-kde-bins='find_system_kde_bins'
     #endregion Applications_and_Icons
 
     #region VSCode_and_GTK
@@ -290,6 +449,61 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       alias cat-vscode-sqlite-state='sudo cat ~/.config/Code/User/globalStorage/state.vscdb'
       alias stringify-vscode-logs='sudo find ~/.config/Code/logs -type f -exec strings {} \;'
       alias stringify-recent-xbel='sudo find ~/.local/share/recently-used.xbel -type f -exec strings {} \;'
+
+      ## @description Extract strings from Copilot chat context files.
+      stringify_copilot_context() {
+        find ~/.config/Code/User/workspaceStorage/*/Github.copilot-chat/chat-session-resources/*/*/ \
+          -type f -name "context*" \
+          -exec sh -c 'echo "=== $1 ==="; strings "$1" 2>/dev/null' _ {} \; 2>/dev/null
+      }
+      alias stringify-copilot-context='stringify_copilot_context'
+
+      ## @description Find VS Code GPU process log files.
+      alias find-vscode-gpu-logs='find ~/.config/Code/logs/*/ -name "gpu-process.log" -o -name "gpuprocess.log" 2>/dev/null'
+
+      ## @description Show GPU/render/display entries from VS Code shared process log.
+      alias cat-vscode-sharedprocess-gpu='cat ~/.config/Code/logs/*/sharedprocess.log 2>/dev/null | grep -i -E "(gpu|render|display|error|warning)"'
+
+      ## @description Show VS Code argv.json (launch flags).
+      alias cat-vscode-argv='cat ~/.config/Code/User/argv.json 2>/dev/null || echo "No argv.json found"'
+
+      ## @description Disable GPU in VS Code argv.json (with backup).
+      vscode_disable_gpu() {
+        local argv="$HOME/.config/Code/User/argv.json"
+        if [ ! -f "$argv" ]; then
+          echo "❌ argv.json not found at $argv"
+          return 1
+        fi
+        echo -e "\033[1;33m⚠️  This will add disable-gpu flags to VS Code argv.json\033[0m"
+        echo "  File: $argv"
+        echo ""
+        cat "$argv"
+        echo ""
+        read -rp "Proceed? (y/N): " confirm
+        if [[ ! "$confirm" =~ ^[yY] ]]; then
+          echo "Aborted."
+          return 0
+        fi
+        cp "$argv" "${argv}.bak.$(date +%Y%m%d%H%M%S)"
+        # Use python3/jq to merge properly if available, otherwise sed
+        if command -v python3 &>/dev/null; then
+          python3 -c "
+import json, sys
+with open('$argv') as f:
+    data = json.load(f)
+data['disable-gpu'] = True
+data['disable-gpu-compositing'] = True
+with open('$argv','w') as f:
+    json.dump(data, f, indent=4)
+print('✅ GPU disabled in argv.json')
+"
+        else
+          # Fallback: insert before closing brace
+          sed -i 's/^}$/,\n  "disable-gpu": true,\n  "disable-gpu-compositing": true\n}/' "$argv"
+          echo "✅ GPU disabled in argv.json (sed fallback)"
+        fi
+      }
+      alias vscode-disable-gpu='vscode_disable_gpu'
     #endregion VSCode_and_GTK
   #endregion System_Info_Aliases
 
@@ -467,6 +681,22 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
         ' _ {} \;
         _pretty_ftr
       }
+
+      glx-info-pretty() {
+        _pretty_hdr "OpenGL / GLX Information"
+        if command -v glxinfo &>/dev/null; then
+          glxinfo 2>/dev/null | grep -E "(OpenGL renderer|OpenGL version|direct rendering)" | \
+            sed \
+              -e "s/OpenGL renderer/$(printf '\033[1;32m')OpenGL renderer$(printf '\033[0m')/" \
+              -e "s/OpenGL version/$(printf '\033[1;34m')OpenGL version$(printf '\033[0m')/" \
+              -e "s/direct rendering: Yes/$(printf '\033[1;32m')direct rendering: Yes$(printf '\033[0m')/" \
+              -e "s/direct rendering: No/$(printf '\033[1;31m')direct rendering: No$(printf '\033[0m')/" | \
+            _pretty_nl
+        else
+          echo -e "  \033[1;31m✗\033[0m glxinfo not available (install mesa-utils)"
+        fi
+        _pretty_ftr
+      }
     #endregion Pretty_Drivers_Modules
 
     #region Pretty_System_Config
@@ -607,6 +837,70 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
         sudo cat /var/log/apt/term.log 2>/dev/null | tail -200 | _pretty_nl
         _pretty_ftr
       }
+
+      stringify-xorg-logs-pretty() {
+        _pretty_hdr "Xorg Log Strings — /var/log/Xorg*"
+        sudo find /var/log/ -maxdepth 1 -name "Xorg*" -type f -exec sh -c '
+          printf "\033[1;35m── %s ──\033[0m\n" "$1"
+          strings "$1" 2>/dev/null | tail -40
+          echo -e "\033[2;37m  (last 40 lines shown)\033[0m"
+          echo ""
+        ' _ {} \;
+        _pretty_ftr
+      }
+
+      journal-gpu-errors-pretty() {
+        local n="${1:-200}"
+        _pretty_hdr "GPU/Display Errors — journalctl (last $n lines)"
+        sudo journalctl -b -n "$n" --no-pager 2>/dev/null | \
+          grep -i -E "(error|crash|gpu|display|render|compositor|window manager|fullscreen|xorg)" | \
+          sed \
+            -e "s/\(error\|Error\|ERROR\)/$(printf '\033[1;31m')\1$(printf '\033[0m')/gi" \
+            -e "s/\(crash\|Crash\|CRASH\)/$(printf '\033[1;31m')\1$(printf '\033[0m')/gi" \
+            -e "s/\(gpu\|GPU\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/gi" | \
+          _pretty_nl
+        _pretty_ftr
+      }
+
+      journal-gnome-errors-pretty() {
+        local n="${1:-100}"
+        _pretty_hdr "GNOME Shell Errors — user journal (last $n lines)"
+        journalctl --user -u gnome-shell -n "$n" --no-pager 2>/dev/null | \
+          grep -i -E "(error|warning|fail|crash)" | \
+          sed \
+            -e "s/\(error\|fail\)/$(printf '\033[1;31m')\1$(printf '\033[0m')/gi" \
+            -e "s/\(warning\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/gi" | \
+          _pretty_nl
+        _pretty_ftr
+      }
+
+      ls-xsession-errors-pretty() {
+        _pretty_hdr "XSession Error Files"
+        ls -lh ~/.xsession-errors* ~/.local/share/xorg/ 2>/dev/null | \
+          sed "s/^\(.*\)/  \033[1;33m📄\033[0m \1/" | _pretty_nl
+        _pretty_ftr
+      }
+
+      grep-xorg-errors-pretty() {
+        _pretty_hdr "Xorg Errors & Warnings — Xorg.0.log"
+        grep -i -E "(EE|WW).*" ~/.local/share/xorg/Xorg.0.log 2>/dev/null | \
+          sed \
+            -e "s/\(\(EE\)\)/$(printf '\033[1;31m')\1$(printf '\033[0m')/g" \
+            -e "s/\(\(WW\)\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/g" | \
+          _pretty_nl
+        _pretty_ftr
+      }
+
+      stringify-vscode-crash-pretty() {
+        _pretty_hdr "VS Code Crash Analysis — /var/crash/"
+        sudo strings /var/crash/_usr_share_code_code.1000.crash 2>/dev/null | \
+          grep -i -E "(segfault|sigsegv|sigabrt|exception|display|render|gpu|compositor|fullscreen)" | \
+          sed \
+            -e "s/\(segfault\|sigsegv\|sigabrt\)/$(printf '\033[1;31m')\1$(printf '\033[0m')/gi" \
+            -e "s/\(exception\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/gi" | \
+          _pretty_nl
+        _pretty_ftr
+      }
     #endregion Pretty_Logs
 
     #region Pretty_Apps_Icons
@@ -634,6 +928,18 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
         _pretty_hdr "Sign-File Strings — linux-headers sign-file"
         sudo strings "/usr/src/linux-headers-$(uname -r)/scripts/sign-file" 2>/dev/null | head -100 | _pretty_nl
         echo -e "  \033[2;37m(showing first 100 lines)\033[0m"
+        _pretty_ftr
+      }
+
+      find-system-kde-bins-pretty() {
+        _pretty_hdr "System/KDE/Plasma Binaries — /usr/bin"
+        find /usr/bin -maxdepth 1 -type f -regextype posix-extended \
+          -iregex '.*(system|kde|plasma).*' -print 2>/dev/null | sort | \
+          sed \
+            -e "s/\(.*plasma.*\)/$(printf '\033[1;34m')\1$(printf '\033[0m')/" \
+            -e "s/\(.*kde.*\)/$(printf '\033[1;35m')\1$(printf '\033[0m')/" \
+            -e "s/\(.*system.*\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/" | \
+          _pretty_nl
         _pretty_ftr
       }
     #endregion Pretty_Apps_Icons
@@ -705,12 +1011,129 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
           _pretty_nl
         _pretty_ftr
       }
+
+      stringify-copilot-context-pretty() {
+        _pretty_hdr "Copilot Chat Context Files"
+        find ~/.config/Code/User/workspaceStorage/*/Github.copilot-chat/chat-session-resources/*/*/ \
+          -type f -name "context*" 2>/dev/null | while read -r f; do
+          printf "\033[1;35m── %s ──\033[0m\n" "$f"
+          strings "$f" 2>/dev/null | head -30 | _pretty_nl
+          echo -e "  \033[2;37m(first 30 lines shown)\033[0m"
+          echo ""
+        done
+        _pretty_ftr
+      }
+
+      find-vscode-gpu-logs-pretty() {
+        _pretty_hdr "VS Code GPU Process Logs"
+        find ~/.config/Code/logs/*/ -name "gpu-process.log" -o -name "gpuprocess.log" 2>/dev/null | \
+          while read -r f; do
+            printf "\033[1;35m── %s ──\033[0m\n" "$f"
+            tail -20 "$f" 2>/dev/null | _pretty_nl
+            echo ""
+          done
+        _pretty_ftr
+      }
+
+      cat-vscode-sharedprocess-gpu-pretty() {
+        _pretty_hdr "VS Code Shared Process — GPU/Render entries"
+        cat ~/.config/Code/logs/*/sharedprocess.log 2>/dev/null | \
+          grep -i -E "(gpu|render|display|error|warning)" | \
+          sed \
+            -e "s/\(error\)/$(printf '\033[1;31m')\1$(printf '\033[0m')/gi" \
+            -e "s/\(warning\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/gi" \
+            -e "s/\(gpu\)/$(printf '\033[1;34m')\1$(printf '\033[0m')/gi" | \
+          _pretty_nl
+        _pretty_ftr
+      }
+
+      cat-vscode-argv-pretty() {
+        _pretty_hdr "VS Code Launch Flags — argv.json"
+        cat ~/.config/Code/User/argv.json 2>/dev/null | \
+          python3 -m json.tool 2>/dev/null | _pretty_nl || \
+          cat ~/.config/Code/User/argv.json 2>/dev/null | _pretty_nl || \
+          echo -e "  \033[1;31m✗\033[0m No argv.json found"
+        _pretty_ftr
+      }
     #endregion Pretty_VSCode_GTK
+
+    #region Pretty_Desktop_Environment
+      ps-compositors-pretty() {
+        _pretty_hdr "Running Compositors / Window Managers"
+        ps aux | grep -E "(gnome-shell|xfwm4|mutter|kwin|compositor)" | grep -v grep | \
+          awk '{printf "\033[1;32m%-12s\033[0m PID=\033[1;33m%-6s\033[0m %s\n", $11, $2, $0}' | \
+          _pretty_nl
+        _pretty_ftr
+      }
+
+      get-mutter-features-pretty() {
+        _pretty_hdr "Mutter Experimental Features"
+        local val
+        val=$(gsettings get org.gnome.mutter experimental-features 2>/dev/null)
+        if [ -n "$val" ]; then
+          echo -e "  \033[1;33m⚙\033[0m  $val"
+        else
+          echo -e "  \033[1;31m✗\033[0m Mutter settings not available"
+        fi
+        _pretty_ftr
+      }
+
+      xwin-root-info-pretty() {
+        _pretty_hdr "Root Window Geometry"
+        xwininfo -root 2>/dev/null | grep -E "(Width|Height|Depth)" | \
+          sed "s/^\(.*\)/  \033[1;36m🖥\033[0m \1/" | _pretty_nl
+        _pretty_ftr
+      }
+
+      ls-monitors-pretty() {
+        _pretty_hdr "Connected Monitors — xrandr"
+        xrandr --listmonitors 2>/dev/null | \
+          sed "s/^\( [0-9]:\)/$(printf '\033[1;32m')\1$(printf '\033[0m')/" | \
+          _pretty_nl
+        _pretty_ftr
+      }
+
+      check-de-programs-pretty() {
+        _pretty_hdr "Desktop Environment Programs"
+        local programs=(
+          "plasma-systemmonitor"
+          "gnome-system-monitor"
+          "plasma-discover"
+          "system-config-printer"
+          "plasma-interactiveconsole"
+          "plasma-emojier"
+          "plasma-open-settings"
+          "ksystemstats"
+        )
+        for prog in "${programs[@]}"; do
+          if command -v "$prog" &>/dev/null; then
+            printf "  \033[1;32m✓\033[0m \033[1m%-30s\033[0m %s\n" "$prog" "$(which "$prog")"
+          else
+            printf "  \033[1;31m✗\033[0m \033[2m%-30s\033[0m not found\n" "$prog"
+          fi
+        done
+        _pretty_ftr
+      }
+    #endregion Pretty_Desktop_Environment
   #endregion Pretty_Aliases
 
   #region Utilities
     #region Package_Management
       alias prune-snap='sudo snap list --all | awk "/disabled/{print \$1, \$3}" | while read snapname revision; do sudo snap remove "$snapname" --revision="$revision"; done'
+
+      ## @description Install Portuguese (pt) language packs (with confirmation).
+      install_pt_lang_pack() {
+        echo -e "\033[1;36m📦 This will install:\033[0m"
+        echo "  • language-pack-pt"
+        echo "  • language-pack-gnome-pt"
+        read -rp "Proceed with installation? (y/N): " confirm
+        if [[ ! "$confirm" =~ ^[yY] ]]; then
+          echo "Aborted."
+          return 0
+        fi
+        sudo apt update -y && sudo apt install -y language-pack-pt language-pack-gnome-pt
+      }
+      alias install-pt-lang-pack='install_pt_lang_pack'
     #endregion Package_Management
 
     #region Network_Monitoring
@@ -742,54 +1165,6 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     #endregion Backup
 
     #region File_Analysis
-      show_recent_files() {
-        local search_term="${1:-.}"
-        strings ~/.local/share/recently-used.xbel | \
-          grep -o 'href="[^"]*"' | \
-          sed 's/href="file:\/\///' | \
-          sed 's/"//' | \
-          while read line; do 
-            echo "${line//\%/\\x}"
-          done | \
-          xargs -0 printf "%b" | \
-          grep -i "$search_term"
-      }
-
-      has_multiple_blank_lines() {
-        local file="$1"
-        if [ ! -f "$file" ]; then
-          echo "File not found: $file" >&2
-          return 1
-        fi
-        awk "/^[[:space:]]*$/ {blank++} !/^[[:space:]]*$/ {if(blank>=2) exit 0; blank=0} END{exit !(blank>=2)}" "$1" && echo "File does have multiple blank lines" || echo "File does not have multiple blank lines"
-      }
-
-      show_multiple_blank_lines_files() {
-        find . -maxdepth 1 -type f -exec awk '
-          /^[[:space:]]*$/ { blank++ }
-          !/^[[:space:]]*$/ { 
-            if (blank >= 2) { 
-              print FILENAME ": has multiple consecutive blank lines"
-              exit 
-            }
-            blank = 0 
-          }
-          END { 
-            if (blank >= 2) 
-              print FILENAME ": has multiple consecutive blank lines" 
-          }
-        ' {} \;
-      }
-
-      ls_lah_859() {
-        local path="${1:-.}"
-        ls -lah "$path" | awk 'BEGIN{FS=" "}; {print $8, $5, $9}'
-      }
-
-      alias ls-lah-859='ls_lah_859'
-      alias ls-mblank='show_multiple_blank_lines_files'
-      alias is-mblank='has_multiple_blank_lines'
-      alias ls-rec-files='show_recent_files'
       ## @description Show recently used files from XDG recent files database.
       ## @param $1 {string} search_term - Optional filter pattern (default: ".")
       show_recent_files() {
