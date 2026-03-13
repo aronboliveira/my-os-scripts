@@ -1,4 +1,3 @@
-# THIS IS MEANT TO BE A LARGE CHUNK OF CODE TO PASTE IN THE MIDDLE OF YOUR .bashrc ⤐ NOT IN THE START, NOT IN THE END, AT THE MIDDLE
 ### * START OF PUBLICABLE CODE * ###
 #region PUBLICABLE_CODE
 
@@ -542,11 +541,14 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
 
       ## @description Extract strings from Copilot chat context files.
       stringify_copilot_context() {
-        find ~/.config/Code/User/workspaceStorage/*/Github.copilot-chat/chat-session-resources/*/*/ \
-          -type f -name "context*" \
-          -exec sh -c 'echo "=== $1 ==="; strings "$1" 2>/dev/null' _ {} \; 2>/dev/null
+        find ~/.config/Code/User/workspaceStorage/ -type f -name "content.txt" -exec sh -c 'echo "=== $(basename $(dirname "$1")) ==="; sleep 5; strings "$1" 2>/dev/null; echo "--------------------"; echo "#####END#####"; echo "--------------------"; echo ""; sleep 30;' _ {} \; 2>/dev/null
       }
       alias stringify-copilot-context='stringify_copilot_context'
+      ## @description List unique workspaceStorage files (potentially containing chat context, logs, etc.).
+      find_all_vscode_workspace_files() {
+        find ~/.config/Code/User/workspaceStorage/ -type f | xargs -I{} basename {} | sort -u
+      }
+      alias find-all-vscode-workspace-files='find_all_vscode_workspace_files'
 
       ## @description Find VS Code GPU process log files.
       alias find-vscode-gpu-logs='find ~/.config/Code/logs/*/ -name "gpu-process.log" -o -name "gpuprocess.log" 2>/dev/null'
