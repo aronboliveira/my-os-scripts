@@ -1,3 +1,4 @@
+# THIS IS MEANT TO BE A LARGE CHUNK OF CODE TO PASTE IN THE MIDDLE OF YOUR .bashrc ⤐ NOT IN THE START, NOT IN THE END, AT THE MIDDLE
 ### * START OF PUBLICABLE CODE * ###
 #region PUBLICABLE_CODE
 
@@ -37,6 +38,95 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mSoftware GL rendering active.\033[0m"
     }
     alias setup-software-gl='setup_software_gl'
+
+    ## @description Show current display session type (x11 or wayland).
+    alias show-display-session="echo \$XDG_SESSION_TYPE"
+
+    ## @description Show current desktop session name.
+    alias show-desktop-session="echo \$XDG_SESSION_DESKTOP"
+
+    ## @description Show the active display manager service unit name.
+    alias show-display-manager='systemctl show -p Id display-manager.service'
+
+    ## @description Show the default display manager binary from X11 config.
+    alias show-display-manager-x11='sudo cat /etc/X11/default-display-manager'
+
+    ## @description Show the current desktop environment identifier.
+    alias show-current-de='echo \$XDG_CURRENT_DESKTOP'
+
+    ## @description Detect the active display manager and show its greeter
+    ##   configuration. Supports LightDM, GDM3, SDDM, LXDM, XDM, and SLiM.
+    show_greeter() {
+      local dm
+      dm=$(cat /etc/X11/default-display-manager 2>/dev/null | xargs basename)
+
+      if [[ -z "$dm" ]]; then
+        dm=$(systemctl status display-manager 2>/dev/null | grep -oP '(?<=Loaded: loaded \().*?(?=;)' | xargs basename)
+      fi
+
+      case "$dm" in
+        lightdm)
+          grep -r "greeter-session" /etc/lightdm/ 2>/dev/null | grep -v "^#"
+          ;;
+        gdm3|gdm)
+          echo "=== GDM3 Display Manager ==="
+          echo "Greeter: GNOME Shell (built-in, no separate process)"
+          echo ""
+          echo "=== GDM Daemon Config ==="
+          cat /etc/gdm3/daemon.conf 2>/dev/null
+          echo ""
+          echo "=== GDM Custom Config ==="
+          cat /etc/gdm3/custom.conf 2>/dev/null
+          ;;
+        sddm)
+          grep -i "theme\|greeter" /etc/sddm.conf /etc/sddm.conf.d/*.conf 2>/dev/null | grep -v "^#"
+          ;;
+        lxdm)
+          grep -i "theme\|greeter" /etc/lxdm/lxdm.conf 2>/dev/null | grep -v "^#"
+          ;;
+        xdm)
+          echo "XDM: built-in greeter, config at /etc/X11/xdm/"
+          ls /etc/X11/xdm/ 2>/dev/null
+          ;;
+        slim)
+          grep -i "theme\|greeter" /etc/slim.conf 2>/dev/null | grep -v "^#"
+          ;;
+        *)
+          echo "Unknown or undetected display manager: '$dm'"
+          echo "Hint: try 'systemctl status display-manager'"
+          ;;
+      esac
+    }
+    alias show-greeter='show_greeter'
+
+    ## @description Show SDDM KDE settings from /etc/sddm.conf.d/kde_settings.conf.
+    alias cat-kde-settings='sudo cat /etc/sddm.conf.d/kde_settings.conf 2>/dev/null || echo "No KDE settings found"'
+    ## @description Show GDM3 main config from /etc/gdm3/gdm3.conf.
+    alias cat-gdm3-conf='sudo cat /etc/gdm3/gdm3.conf 2>/dev/null || echo "No GDM3 config found"'
+    ## @description Show GDM3 daemon config from /etc/gdm3/daemon.conf.
+    alias cat-gdm3-daemon='sudo cat /etc/gdm3/daemon.conf 2>/dev/null || echo "No GDM3 daemon config found"'
+    ## @description Show GDM3 custom config from /etc/gdm3/custom.conf.
+    alias cat-gdm3-custom='sudo cat /etc/gdm3/custom.conf 2>/dev/null || echo "No GDM3 custom config found"'
+
+    ## @description Install wmctrl and show window manager info via wmctrl -m.
+    alias show-win-mng-m='sudo apt install -y wmctrl 2>/dev/null && wmctrl -m || echo "wmctrl not available"'
+
+    ## @description Detect which window manager is running by scanning process
+    ##   list against a comprehensive list of known X11/Wayland WMs.
+    show_win_mng() {
+      local WM_PATTERN='openbox|fluxbox|icewm|jwm|fvwm3|compiz|blackbox|metacity|mutter|kwin|xfwm4|afterstep|windowmaker|enlightenment|ctwm|9wm|aewm\+\+|amiwm|evilwm|flwm|lwm|marco|muffin|pekwm|ratpoison|subtle|twm|ukwm|windowlab|wm2|i3|awesome|bspwm|herbstluftwm|spectrwm|qtile|river|niri|dwm|xmonad|stumpwm|sawfish|wmii|notion|sway|weston|labwc|wayfire|hyprland|cage|phoc|cosmic-comp'
+      ps aux | grep -E "$WM_PATTERN" | grep -v grep | awk '{print $11}' | xargs -I{} basename {}
+    }
+    alias show-win-mng='show_win_mng'
+
+    ## @description Show running screen compositor processes (picom, compton, kwin, etc.).
+    alias show-screen-compositor='ps aux | grep -E "picom|compton|kwin|mutter|xfwm|wayfire" | grep -v grep'
+
+    ## @description Show running screen locker processes (xscreensaver, swaylock, i3lock, etc.).
+    alias show-screen-locker='ps aux | grep -E "xscreensaver|light-locker|swaylock|i3lock|gnome-screensaver" | grep -v grep'
+
+    ## @description List installed GUI toolkit runtime libraries (GTK and Qt).
+    alias show-installed-tks='dpkg -l | grep -E "libgtk|libqt" | grep -v dev'
 
     alias install-plasma-backends='sudo apt install -y plasma-discover-backend-flatpak plasma-discover-backend-snap'
   #endregion System_Setup
@@ -1112,6 +1202,196 @@ print('✅ GPU disabled in argv.json')
             printf "  \033[1;31m✗\033[0m \033[2m%-30s\033[0m not found\n" "$prog"
           fi
         done
+        _pretty_ftr
+      }
+
+      show-display-session-pretty() {
+        _pretty_hdr "Display Session Type"
+        echo -e "  \033[1;33m⬢\033[0m Session: \033[1;32m${XDG_SESSION_TYPE:-unknown}\033[0m"
+        _pretty_ftr
+      }
+
+      show-desktop-session-pretty() {
+        _pretty_hdr "Desktop Session"
+        echo -e "  \033[1;33m⬢\033[0m Desktop: \033[1;32m${XDG_SESSION_DESKTOP:-unknown}\033[0m"
+        _pretty_ftr
+      }
+
+      show-display-manager-pretty() {
+        _pretty_hdr "Display Manager — systemd"
+        systemctl show -p Id display-manager.service 2>/dev/null | \
+          sed "s/^Id=/  \033[1;34mService:\033[0m /" | _pretty_nl
+        _pretty_ftr
+      }
+
+      show-display-manager-x11-pretty() {
+        _pretty_hdr "Display Manager — /etc/X11"
+        local dm
+        dm=$(sudo cat /etc/X11/default-display-manager 2>/dev/null)
+        if [ -n "$dm" ]; then
+          echo -e "  \033[1;34mBinary:\033[0m $dm"
+        else
+          echo -e "  \033[1;31m✗\033[0m File not found or empty"
+        fi
+        _pretty_ftr
+      }
+
+      show-current-de-pretty() {
+        _pretty_hdr "Current Desktop Environment"
+        echo -e "  \033[1;33m⬢\033[0m DE: \033[1;32m${XDG_CURRENT_DESKTOP:-unknown}\033[0m"
+        _pretty_ftr
+      }
+
+      show-greeter-pretty() {
+        _pretty_hdr "Display Manager Greeter"
+        local dm
+        dm=$(cat /etc/X11/default-display-manager 2>/dev/null | xargs basename)
+        [[ -z "$dm" ]] && dm=$(systemctl status display-manager 2>/dev/null | grep -oP '(?<=Loaded: loaded \().*?(?=;)' | xargs basename)
+        echo -e "  \033[1;34mDM detected:\033[0m \033[1;32m${dm:-unknown}\033[0m"
+        echo ""
+        case "$dm" in
+          lightdm)
+            echo -e "  \033[1;35m── LightDM Greeter Config ──\033[0m"
+            grep -r "greeter-session" /etc/lightdm/ 2>/dev/null | grep -v "^#" | _pretty_nl
+            ;;
+          gdm3|gdm)
+            echo -e "  \033[1;35m── GDM3 ──\033[0m  Greeter: GNOME Shell (built-in)"
+            echo ""
+            echo -e "  \033[1;35m── daemon.conf ──\033[0m"
+            cat /etc/gdm3/daemon.conf 2>/dev/null | _pretty_nl
+            echo ""
+            echo -e "  \033[1;35m── custom.conf ──\033[0m"
+            cat /etc/gdm3/custom.conf 2>/dev/null | _pretty_nl
+            ;;
+          sddm)
+            echo -e "  \033[1;35m── SDDM Greeter Config ──\033[0m"
+            grep -i "theme\|greeter" /etc/sddm.conf /etc/sddm.conf.d/*.conf 2>/dev/null | grep -v "^#" | _pretty_nl
+            ;;
+          lxdm)
+            echo -e "  \033[1;35m── LXDM Greeter Config ──\033[0m"
+            grep -i "theme\|greeter" /etc/lxdm/lxdm.conf 2>/dev/null | grep -v "^#" | _pretty_nl
+            ;;
+          xdm)
+            echo -e "  \033[1;35m── XDM Config ──\033[0m"
+            ls /etc/X11/xdm/ 2>/dev/null | _pretty_nl
+            ;;
+          slim)
+            echo -e "  \033[1;35m── SLiM Greeter Config ──\033[0m"
+            grep -i "theme\|greeter" /etc/slim.conf 2>/dev/null | grep -v "^#" | _pretty_nl
+            ;;
+          *)
+            echo -e "  \033[1;31m✗\033[0m Unknown DM: '$dm' — try 'systemctl status display-manager'"
+            ;;
+        esac
+        _pretty_ftr
+      }
+
+      cat-kde-settings-pretty() {
+        _pretty_hdr "KDE Settings — SDDM"
+        if sudo test -f /etc/sddm.conf.d/kde_settings.conf 2>/dev/null; then
+          sudo cat /etc/sddm.conf.d/kde_settings.conf 2>/dev/null | sed \
+            -e "s/^\(\[[^]]*\]\)/$(printf '\033[1;36m')\1$(printf '\033[0m')/" \
+            -e "s/^\([A-Za-z_]*=\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/" | _pretty_nl
+        else
+          echo -e "  \033[1;31m✗\033[0m No KDE settings found"
+        fi
+        _pretty_ftr
+      }
+
+      cat-gdm3-conf-pretty() {
+        _pretty_hdr "GDM3 Main Config — gdm3.conf"
+        if sudo test -f /etc/gdm3/gdm3.conf 2>/dev/null; then
+          sudo cat /etc/gdm3/gdm3.conf 2>/dev/null | sed \
+            -e "s/^\(\[[^]]*\]\)/$(printf '\033[1;36m')\1$(printf '\033[0m')/" \
+            -e "s/^\([A-Za-z_]*=\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/" | _pretty_nl
+        else
+          echo -e "  \033[1;31m✗\033[0m No GDM3 config found"
+        fi
+        _pretty_ftr
+      }
+
+      cat-gdm3-daemon-pretty() {
+        _pretty_hdr "GDM3 Daemon Config — daemon.conf"
+        if sudo test -f /etc/gdm3/daemon.conf 2>/dev/null; then
+          sudo cat /etc/gdm3/daemon.conf 2>/dev/null | sed \
+            -e "s/^\(\[[^]]*\]\)/$(printf '\033[1;36m')\1$(printf '\033[0m')/" \
+            -e "s/^\([A-Za-z_]*=\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/" | _pretty_nl
+        else
+          echo -e "  \033[1;31m✗\033[0m No GDM3 daemon config found"
+        fi
+        _pretty_ftr
+      }
+
+      cat-gdm3-custom-pretty() {
+        _pretty_hdr "GDM3 Custom Config — custom.conf"
+        if sudo test -f /etc/gdm3/custom.conf 2>/dev/null; then
+          sudo cat /etc/gdm3/custom.conf 2>/dev/null | sed \
+            -e "s/^\(\[[^]]*\]\)/$(printf '\033[1;36m')\1$(printf '\033[0m')/" \
+            -e "s/^\([A-Za-z_]*=\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/" | _pretty_nl
+        else
+          echo -e "  \033[1;31m✗\033[0m No GDM3 custom config found"
+        fi
+        _pretty_ftr
+      }
+
+      show-win-mng-m-pretty() {
+        _pretty_hdr "Window Manager Info — wmctrl"
+        if ! command -v wmctrl &>/dev/null; then
+          echo -e "  \033[1;33m⚠\033[0m  wmctrl not installed, attempting install..."
+          sudo apt install -y wmctrl 2>/dev/null
+        fi
+        if command -v wmctrl &>/dev/null; then
+          wmctrl -m 2>/dev/null | sed \
+            -e "s/^\([A-Za-z ]*:\)/$(printf '\033[1;34m')\1$(printf '\033[0m')/" | _pretty_nl
+        else
+          echo -e "  \033[1;31m✗\033[0m wmctrl not available"
+        fi
+        _pretty_ftr
+      }
+
+      show-win-mng-pretty() {
+        _pretty_hdr "Running Window Manager(s)"
+        local WM_PATTERN='openbox|fluxbox|icewm|jwm|fvwm3|compiz|blackbox|metacity|mutter|kwin|xfwm4|afterstep|windowmaker|enlightenment|ctwm|9wm|aewm\+\+|amiwm|evilwm|flwm|lwm|marco|muffin|pekwm|ratpoison|subtle|twm|ukwm|windowlab|wm2|i3|awesome|bspwm|herbstluftwm|spectrwm|qtile|river|niri|dwm|xmonad|stumpwm|sawfish|wmii|notion|sway|weston|labwc|wayfire|hyprland|cage|phoc|cosmic-comp'
+        local found
+        found=$(ps aux | grep -E "$WM_PATTERN" | grep -v grep | awk '{print $11}' | xargs -I{} basename {} 2>/dev/null)
+        if [ -n "$found" ]; then
+          echo "$found" | while read -r wm; do
+            echo -e "  \033[1;32m►\033[0m $wm"
+          done
+        else
+          echo -e "  \033[1;31m✗\033[0m No known window manager detected"
+        fi
+        _pretty_ftr
+      }
+
+      show-screen-compositor-pretty() {
+        _pretty_hdr "Running Screen Compositors"
+        local found
+        found=$(ps aux | grep -E "picom|compton|kwin|mutter|xfwm|wayfire" | grep -v grep)
+        if [ -n "$found" ]; then
+          echo "$found" | awk '{printf "  \033[1;32m►\033[0m PID=\033[1;33m%-6s\033[0m %s\n", $2, $11}'
+        else
+          echo -e "  \033[1;31m✗\033[0m No compositor detected"
+        fi
+        _pretty_ftr
+      }
+
+      show-screen-locker-pretty() {
+        _pretty_hdr "Running Screen Lockers"
+        local found
+        found=$(ps aux | grep -E "xscreensaver|light-locker|swaylock|i3lock|gnome-screensaver" | grep -v grep)
+        if [ -n "$found" ]; then
+          echo "$found" | awk '{printf "  \033[1;32m►\033[0m PID=\033[1;33m%-6s\033[0m %s\n", $2, $11}'
+        else
+          echo -e "  \033[2;37m(no screen locker process detected)\033[0m"
+        fi
+        _pretty_ftr
+      }
+
+      show-installed-tks-pretty() {
+        _pretty_hdr "Installed GUI Toolkit Libraries"
+        dpkg -l 2>/dev/null | grep -E "libgtk|libqt" | grep -v dev | \
+          awk '{printf "  \033[1;34m%-40s\033[0m \033[0;32m%s\033[0m\n", $2, $3}'
         _pretty_ftr
       }
     #endregion Pretty_Desktop_Environment
