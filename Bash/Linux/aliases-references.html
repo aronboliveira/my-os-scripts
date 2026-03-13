@@ -1,0 +1,2512 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Comprehensive Bash aliases and functions reference documentation with syntax-highlighted code examples."
+    />
+    <meta name="author" content="Aron Boliveira" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Bash Aliases Reference</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent-primary: #0d6efd;
+        --accent-secondary: #6c757d;
+        --bg-code: #1e1e2e;
+        --bg-code-header: #313244;
+        --color-bash-builtin: #89b4fa;
+        --color-bash-comment: #6c7086;
+        --color-bash-flag: #fab387;
+        --color-bash-keyword: #cba6f7;
+        --color-bash-string: #a6e3a1;
+        --color-bash-variable: #f9e2af;
+        --scrollbar-thumb: #45475a;
+        --scrollbar-track: #181825;
+        --transition-fast: 0.15s ease;
+        --transition-normal: 0.25s ease;
+      }
+      [data-bs-theme="dark"] {
+        --accent-primary: #89b4fa;
+        --bg-code: #11111b;
+        --bg-code-header: #1e1e2e;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          sans-serif;
+        line-height: 1.6;
+      }
+      h1::first-letter,
+      h2::first-letter {
+        color: var(--accent-primary);
+        font-size: 1.15em;
+        font-weight: 700;
+      }
+      ::selection {
+        background-color: var(--accent-primary);
+        color: #fff;
+      }
+      a {
+        text-decoration: none;
+        transition:
+          color var(--transition-fast),
+          opacity var(--transition-fast);
+      }
+      a:active,
+      a:hover {
+        opacity: 0.85;
+        text-decoration: underline;
+      }
+      .btn:active,
+      .btn:hover {
+        filter: brightness(0.92);
+        transform: translateY(1px);
+      }
+      .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+      .btn:enabled {
+        cursor: pointer;
+      }
+      ::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+      #mainNav {
+        backdrop-filter: blur(10px);
+        background: rgba(var(--bs-body-bg-rgb), 0.85);
+        transition: box-shadow var(--transition-normal);
+      }
+      #mainNav.scrolled {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .nav-link:hover {
+        color: var(--accent-primary) !important;
+      }
+      #tocSidebar {
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        position: sticky;
+        top: 80px;
+      }
+      #tocSidebar .nav-link {
+        border-left: 2px solid transparent;
+        font-size: 0.875rem;
+        padding: 0.35rem 0.75rem;
+        transition: all var(--transition-fast);
+      }
+      #tocSidebar .nav-link:hover {
+        border-left-color: var(--accent-primary);
+      }
+      #tocSidebar .nav-link.active {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border-left-color: var(--accent-primary);
+        font-weight: 600;
+      }
+      .accordion-button {
+        font-weight: 600;
+        transition:
+          background-color var(--transition-fast),
+          color var(--transition-fast);
+      }
+      .accordion-button:not(.collapsed) {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--accent-primary);
+      }
+      .accordion-button:active,
+      .accordion-button:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.05);
+      }
+      .accordion-button::after {
+        transition: transform var(--transition-normal);
+      }
+      .alias-card {
+        border-left: 3px solid var(--accent-primary);
+        margin-bottom: 1rem;
+        transition:
+          border-color var(--transition-fast),
+          box-shadow var(--transition-fast);
+      }
+      .alias-card:hover {
+        border-left-color: var(--bs-success);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      .alias-card:nth-child(2n) {
+        border-left-color: var(--bs-info);
+      }
+      .alias-card:nth-child(2n):hover {
+        border-left-color: var(--bs-warning);
+      }
+      .alias-name {
+        color: var(--accent-primary);
+        font-family:
+          SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+      details.code-details {
+        border-radius: 0.5rem;
+        margin-top: 0.75rem;
+        overflow: hidden;
+      }
+      details.code-details summary {
+        background: var(--bg-code-header);
+        color: #cdd6f4;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: background-color var(--transition-fast);
+        user-select: none;
+      }
+      details.code-details summary:hover {
+        background: #45475a;
+      }
+      details.code-details summary:active {
+        background: #585b70;
+      }
+      details.code-details summary::marker {
+        color: var(--color-bash-keyword);
+      }
+      details.code-details[open] summary {
+        border-bottom: 1px solid #45475a;
+      }
+      details.code-details::details-content {
+        background: var(--bg-code);
+      }
+      .code-block {
+        background: var(--bg-code);
+        border-radius: 0 0 0.5rem 0.5rem;
+        color: #cdd6f4;
+        font-family:
+          SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        margin: 0;
+        max-height: 400px;
+        overflow: auto;
+        padding: 1rem;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .code-block::first-line {
+        font-weight: 600;
+      }
+      .bash-builtin {
+        color: var(--color-bash-builtin);
+      }
+      .bash-comment {
+        color: var(--color-bash-comment);
+        font-style: italic;
+      }
+      .bash-flag {
+        color: var(--color-bash-flag);
+      }
+      .bash-keyword {
+        color: var(--color-bash-keyword);
+        font-weight: 600;
+      }
+      .bash-string {
+        color: var(--color-bash-string);
+      }
+      .bash-variable {
+        color: var(--color-bash-variable);
+      }
+      .badge-alias {
+        font-size: 0.7rem;
+        font-weight: 500;
+        vertical-align: middle;
+      }
+      .badge:empty {
+        display: none;
+      }
+      #aliasSearch::placeholder {
+        color: var(--accent-secondary);
+        font-style: italic;
+        opacity: 0.7;
+      }
+      #aliasSearch:valid {
+        border-color: var(--bs-success);
+      }
+      #aliasSearch:invalid:not(:placeholder-shown) {
+        border-color: var(--bs-danger);
+      }
+      #aliasSearch:required {
+        background-image: none;
+      }
+      #backToTop {
+        bottom: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        right: 2rem;
+        transition:
+          opacity var(--transition-normal),
+          transform var(--transition-normal);
+        z-index: 1050;
+      }
+      #backToTop.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #backToTop:active,
+      #backToTop:hover {
+        transform: translateY(-3px);
+      }
+      #themeToggle:checked + label {
+        background-color: var(--bs-dark);
+      }
+      @container (max-width:400px) {
+        .alias-card .card-body {
+          padding: 0.75rem;
+        }
+        .alias-name {
+          font-size: 0.95rem;
+        }
+      }
+      .alias-container {
+        container-type: inline-size;
+      }
+      @media (pointer: coarse) {
+        .accordion-button,
+        .btn,
+        details.code-details summary {
+          min-height: 44px;
+          padding: 0.75rem 1rem;
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-bs-theme="light"]) {
+          --bg-code: #11111b;
+          --bg-code-header: #1e1e2e;
+        }
+      }
+      @media (max-width: 991.98px) {
+        #tocSidebar {
+          display: none;
+        }
+      }
+      @media (max-width: 767.98px) {
+        .alias-name {
+          font-size: 0.95rem;
+        }
+        .code-block {
+          font-size: 0.75rem;
+          padding: 0.75rem;
+        }
+        h1 {
+          font-size: 1.75rem;
+        }
+      }
+      @media print {
+        #backToTop,
+        #mainNav,
+        #tocSidebar,
+        .btn,
+        .no-print {
+          display: none !important;
+        }
+        .accordion-collapse {
+          display: block !important;
+        }
+        .alias-card {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        .code-block {
+          max-height: none;
+          overflow: visible;
+          white-space: pre-wrap;
+        }
+        body {
+          font-size: 10pt;
+        }
+        details.code-details[open] {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="visually-hidden-focusable" href="#mainContent">
+      <span>Skip to main content</span>
+    </a>
+    <nav
+      aria-label="Navega\u00e7\u00e3o principal"
+      class="navbar navbar-expand-lg fixed-top"
+      id="mainNav"
+      role="navigation"
+    >
+      <div class="container-fluid px-4">
+        <a
+          class="navbar-brand fw-bold"
+          href="#"
+          aria-label="Bash Aliases Reference home"
+        >
+          <i aria-hidden="true" class="bi bi-terminal-fill me-2"></i>
+          <span>Bash Aliases</span>
+        </a>
+        <button
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+          class="navbar-toggler"
+          data-bs-target="#navbarContent"
+          data-bs-toggle="collapse"
+          type="button"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#systemSetup">
+                <span>System</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gitAliases">
+                <span>Git</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#prettyAliases">
+                <span>Pretty</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#utilities">
+                <span>Utilities</span>
+              </a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <div
+              class="input-group input-group-sm no-print"
+              style="max-width: 250px"
+            >
+              <span class="input-group-text" id="searchIcon">
+                <i aria-hidden="true" class="bi bi-search"></i>
+              </span>
+              <input
+                aria-describedby="searchIcon"
+                aria-label="Search aliases"
+                class="form-control"
+                id="aliasSearch"
+                placeholder="Search aliases..."
+                type="search"
+              />
+            </div>
+            <button
+              aria-label="Toggle dark mode"
+              class="btn btn-sm btn-outline-secondary no-print"
+              id="themeBtn"
+              type="button"
+            >
+              <i aria-hidden="true" class="bi bi-moon-stars-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main class="container-fluid" id="mainContent" role="main">
+      <div class="row">
+        <aside
+          aria-label="Table of contents"
+          class="col-lg-3 col-xl-2 d-none d-lg-block no-print"
+          id="tocSidebar"
+        >
+          <nav class="nav flex-column py-3">
+            <span class="text-muted small fw-bold px-3 mb-2">
+              <span>SECTIONS</span>
+            </span>
+            <a class="nav-link" href="#systemSetup">
+              <i aria-hidden="true" class="bi bi-gear me-2"></i>
+              <span>System Setup</span>
+            </a>
+            <a class="nav-link" href="#networkProcedures">
+              <i aria-hidden="true" class="bi bi-wifi me-2"></i>
+              <span>Network</span>
+            </a>
+            <a class="nav-link" href="#desktopEnvironment">
+              <i aria-hidden="true" class="bi bi-display me-2"></i>
+              <span>Desktop Environment</span>
+            </a>
+            <a class="nav-link" href="#systemInfoAliases">
+              <i aria-hidden="true" class="bi bi-info-circle me-2"></i>
+              <span>System Info</span>
+            </a>
+            <a class="nav-link" href="#prettyAliases">
+              <i aria-hidden="true" class="bi bi-palette me-2"></i>
+              <span>Pretty Output</span>
+            </a>
+            <a class="nav-link" href="#utilities">
+              <i aria-hidden="true" class="bi bi-tools me-2"></i>
+              <span>Utilities</span>
+            </a>
+            <a class="nav-link" href="#gitAliases">
+              <i aria-hidden="true" class="bi bi-git me-2"></i>
+              <span>Git Aliases</span>
+            </a>
+            <a class="nav-link" href="#navigationAliases">
+              <i aria-hidden="true" class="bi bi-folder me-2"></i>
+              <span>Navigation</span>
+            </a>
+            <a class="nav-link" href="#laravelPhp">
+              <i aria-hidden="true" class="bi bi-filetype-php me-2"></i>
+              <span>Laravel/PHP</span>
+            </a>
+            <a class="nav-link" href="#powershellEquivalents">
+              <i aria-hidden="true" class="bi bi-terminal me-2"></i>
+              <span>PowerShell Equivalents</span>
+            </a>
+            <a class="nav-link" href="#xfceSettings">
+              <i aria-hidden="true" class="bi bi-sliders me-2"></i>
+              <span>XFCE Settings</span>
+            </a>
+          </nav>
+        </aside>
+        <section class="col-lg-9 col-xl-10 py-5 px-4">
+          <header class="mb-5 pb-4 border-bottom">
+            <h1 class="display-5 fw-bold mb-3">
+              <i
+                aria-hidden="true"
+                class="bi bi-terminal-fill text-primary me-3"
+              ></i>
+              <span>Bash Aliases Reference</span>
+            </h1>
+            <p class="lead text-muted">
+              <span>
+                Comprehensive documentation of custom bash aliases and functions
+                for system administration, development, and daily terminal
+                workflows.
+              </span>
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="badge bg-primary badge-alias" role="status">
+                <span>200+ Aliases</span>
+              </span>
+              <span class="badge bg-success badge-alias" role="status">
+                <span>Syntax Highlighted</span>
+              </span>
+              <span class="badge bg-info badge-alias" role="status">
+                <span>Collapsible Code</span>
+              </span>
+            </div>
+          </header>
+          <div id="aliasApp">
+            <article
+              aria-labelledby="systemSetupHeading"
+              class="mb-5"
+              id="systemSetup"
+            >
+              <h2 class="h3 mb-4" id="systemSetupHeading">
+                <i
+                  aria-hidden="true"
+                  class="bi bi-gear-fill text-primary me-2"
+                ></i>
+                <span>System Setup</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span>
+                  Aliases and functions for configuring monitors, window
+                  managers, and desktop environment detection.
+                </span>
+              </p>
+              <div class="accordion" id="systemSetupAccordion">
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapseDisplayAliases"
+                      aria-expanded="true"
+                      class="accordion-button"
+                      data-bs-target="#collapseDisplayAliases"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-display me-2"></i>
+                      <span>Display &amp; Session</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse show"
+                    id="collapseDisplayAliases"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="setup-software-gl"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>setup-software-gl</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Enables
+                              <b>software GL rendering</b>
+                              using the Mesa llvmpipe driver. Persists the
+                              environment variables in
+                            </span>
+                            <code>~/.bashrc</code>
+                            <span
+                              >and optionally disables X11 compositing for
+                              XFWM4.</span
+                            >
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span>function</span>
+                            </span>
+                            <span
+                              class="badge bg-warning text-dark badge-alias"
+                            >
+                              <span>--no-persist</span>
+                            </span>
+                            <span
+                              class="badge bg-warning text-dark badge-alias"
+                            >
+                              <span>--no-composite</span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for setup-software-gl"
+                            ><code><span class="bash-keyword">setup_software_gl</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">persist</span>=1 <span class="bash-variable">composite</span>=1
+  <span class="bash-keyword">while</span> [[ <span class="bash-string">"${1:-}"</span> == --* ]]; <span class="bash-keyword">do</span>
+    <span class="bash-keyword">case</span> <span class="bash-string">"$1"</span> <span class="bash-keyword">in</span>
+      <span class="bash-flag">--no-persist</span>)   <span class="bash-variable">persist</span>=0; <span class="bash-builtin">shift</span> ;;
+      <span class="bash-flag">--no-composite</span>) <span class="bash-variable">composite</span>=0; <span class="bash-builtin">shift</span> ;;
+      <span class="bash-flag">--help</span>|<span class="bash-flag">-h</span>) <span class="bash-builtin">echo</span> <span class="bash-string">-e "📖 \033[1msetup-software-gl\033[0m [--no-persist] [--no-composite]"</span>; <span class="bash-builtin">return</span> 0 ;;
+      *) <span class="bash-builtin">echo</span> <span class="bash-string">-e "❌ Unknown flag: $1"</span>; <span class="bash-builtin">return</span> 1 ;;
+    <span class="bash-keyword">esac</span>
+  <span class="bash-keyword">done</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">vars</span>=<span class="bash-string">'export LIBGL_ALWAYS_SOFTWARE=1
+export GALLIUM_DRIVER=llvmpipe
+export MESA_GL_VERSION_OVERRIDE=3.3'</span>
+  <span class="bash-keyword">if</span> (( <span class="bash-variable">persist</span> )); <span class="bash-keyword">then</span>
+    <span class="bash-keyword">if</span> ! <span class="bash-builtin">grep</span> <span class="bash-flag">-q</span> <span class="bash-string">"LIBGL_ALWAYS_SOFTWARE"</span> ~/.bashrc; <span class="bash-keyword">then</span>
+      <span class="bash-builtin">printf</span> <span class="bash-string">'\n%s\n'</span> <span class="bash-string">"$vars"</span> >> ~/.bashrc
+    <span class="bash-keyword">fi</span>
+  <span class="bash-keyword">fi</span>
+  <span class="bash-builtin">export</span> <span class="bash-variable">LIBGL_ALWAYS_SOFTWARE</span>=1
+  <span class="bash-builtin">export</span> <span class="bash-variable">GALLIUM_DRIVER</span>=llvmpipe
+  <span class="bash-builtin">export</span> <span class="bash-variable">MESA_GL_VERSION_OVERRIDE</span>=3.3
+}
+<span class="bash-builtin">alias</span> setup-software-gl=<span class="bash-string">'setup_software_gl'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-display-session"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-display-session</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Displays the current session type (
+                              <em>x11</em>
+                              or
+                              <em>wayland</em>
+                              ) from the environment variable
+                            </span>
+                            <code>$XDG_SESSION_TYPE</code>
+                            <span>.</span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span>simple alias</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for show-display-session"
+                            ><code><span class="bash-builtin">alias</span> show-display-session=<span class="bash-string">"echo \$XDG_SESSION_TYPE"</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-desktop-session"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-desktop-session</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Displays the current desktop session name
+                              from</span
+                            >
+                            <code>$XDG_SESSION_DESKTOP</code>
+                            <span>.</span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span>simple alias</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for show-desktop-session"
+                            ><code><span class="bash-builtin">alias</span> show-desktop-session=<span class="bash-string">"echo \$XDG_SESSION_DESKTOP"</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-display-manager"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-display-manager</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Displays the service unit name of the active
+                              display manager via</span
+                            >
+                            <code>systemctl</code>
+                            <span>.</span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span>simple alias</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for show-display-manager"
+                            ><code><span class="bash-builtin">alias</span> show-display-manager=<span class="bash-string">'systemctl show -p Id display-manager.service'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-greeter"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-greeter</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Detects the active display manager and shows its
+                              <mark>greeter configuration</mark>
+                              . Supports
+                              <b>LightDM</b>
+                              ,
+                              <b>GDM3</b>
+                              ,
+                              <b>SDDM</b>
+                              ,
+                              <b>LXDM</b>
+                              ,
+                              <b>XDM</b>
+                              and
+                              <b>SLiM</b>
+                              .
+                            </span>
+                          </p>
+                          <span class="badge bg-secondary badge-alias">
+                            <span>function</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for show-greeter"
+                            ><code><span class="bash-keyword">show_greeter</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">dm</span>
+  <span class="bash-variable">dm</span>=$(<span class="bash-builtin">cat</span> /etc/X11/default-display-manager 2>/dev/null | <span class="bash-builtin">xargs</span> basename)
+  <span class="bash-keyword">if</span> [[ <span class="bash-flag">-z</span> <span class="bash-string">"$dm"</span> ]]; <span class="bash-keyword">then</span>
+    <span class="bash-variable">dm</span>=$(<span class="bash-builtin">systemctl</span> status display-manager 2>/dev/null | <span class="bash-builtin">grep</span> <span class="bash-flag">-oP</span> <span class="bash-string">'(?&lt;=Loaded: loaded \().*?(?=;)'</span> | <span class="bash-builtin">xargs</span> basename)
+  <span class="bash-keyword">fi</span>
+  <span class="bash-keyword">case</span> <span class="bash-string">"$dm"</span> <span class="bash-keyword">in</span>
+    lightdm)
+      <span class="bash-builtin">grep</span> <span class="bash-flag">-r</span> <span class="bash-string">"greeter-session"</span> /etc/lightdm/ 2>/dev/null | <span class="bash-builtin">grep</span> <span class="bash-flag">-v</span> <span class="bash-string">"^#"</span>
+      ;;
+    gdm3|gdm)
+      <span class="bash-builtin">echo</span> <span class="bash-string">"=== GDM3 Display Manager ==="</span>
+      <span class="bash-builtin">cat</span> /etc/gdm3/daemon.conf 2>/dev/null
+      <span class="bash-builtin">cat</span> /etc/gdm3/custom.conf 2>/dev/null
+      ;;
+    sddm)
+      <span class="bash-builtin">grep</span> <span class="bash-flag">-i</span> <span class="bash-string">"theme\|greeter"</span> /etc/sddm.conf /etc/sddm.conf.d/*.conf 2>/dev/null
+      ;;
+    *)
+      <span class="bash-builtin">echo</span> <span class="bash-string">"Unknown DM: '$dm'"</span>
+      ;;
+  <span class="bash-keyword">esac</span>
+}
+<span class="bash-builtin">alias</span> show-greeter=<span class="bash-string">'show_greeter'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-win-mng"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-win-mng</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Detects which
+                              <b>window manager</b>
+                              is running by scanning the process list against
+                              <em>50+ known X11/Wayland WMs</em>
+                              including i3, awesome, bspwm, sway, hyprland and
+                              more.
+                            </span>
+                          </p>
+                          <span class="badge bg-secondary badge-alias">
+                            <span>function</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for show-win-mng"
+                            ><code><span class="bash-keyword">show_win_mng</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">WM_PATTERN</span>=<span class="bash-string">'openbox|fluxbox|icewm|jwm|fvwm3|compiz|blackbox|metacity|mutter|kwin|xfwm4|i3|awesome|bspwm|herbstluftwm|spectrwm|qtile|river|niri|dwm|xmonad|sway|weston|labwc|wayfire|hyprland|cage|phoc|cosmic-comp'</span>
+  <span class="bash-builtin">ps</span> aux | <span class="bash-builtin">grep</span> <span class="bash-flag">-E</span> <span class="bash-string">"$WM_PATTERN"</span> | <span class="bash-builtin">grep</span> <span class="bash-flag">-v</span> grep | <span class="bash-builtin">awk</span> <span class="bash-string">'{print $11}'</span> | <span class="bash-builtin">xargs</span> <span class="bash-flag">-I{}</span> basename {}
+}
+<span class="bash-builtin">alias</span> show-win-mng=<span class="bash-string">'show_win_mng'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="networkProceduresHeading"
+              class="mb-5"
+              id="networkProcedures"
+            >
+              <h2 class="h3 mb-4" id="networkProceduresHeading">
+                <i aria-hidden="true" class="bi bi-wifi text-primary me-2"></i>
+                <span>Network Procedures</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span
+                  >Network probing, bandwidth monitoring, and power consumption
+                  tracking utilities.</span
+                >
+              </p>
+              <div class="alias-container">
+                <div class="card alias-card shadow-sm" data-alias="net-probe">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>net-probe</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Probes a network host with
+                        <b>ARP</b>
+                        ,
+                        <b>ping</b>
+                        ,
+                        <b>netcat</b>
+                        and route query. Full network diagnostic in a single
+                        command.
+                      </span>
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 mb-2">
+                      <span class="badge bg-secondary badge-alias">
+                        <span>function</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$1: IP</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$2: port</span>
+                      </span>
+                      <span class="badge bg-warning text-dark badge-alias">
+                        <span>--gateway</span>
+                      </span>
+                      <span class="badge bg-warning text-dark badge-alias">
+                        <span>--local</span>
+                      </span>
+                    </div>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>View Code</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Bash code for net-probe"
+                      ><code><span class="bash-keyword">net_probe</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">ip</span>=<span class="bash-string">""</span> <span class="bash-variable">port</span>=<span class="bash-string">""</span>
+  <span class="bash-keyword">while</span> [[ $# <span class="bash-flag">-gt</span> 0 ]]; <span class="bash-keyword">do</span>
+    <span class="bash-keyword">case</span> <span class="bash-string">"$1"</span> <span class="bash-keyword">in</span>
+      <span class="bash-flag">--gateway</span>)
+        <span class="bash-variable">ip</span>=$(<span class="bash-builtin">ip</span> route | <span class="bash-builtin">awk</span> <span class="bash-string">'/default/{print $3; exit}'</span>)
+        <span class="bash-builtin">shift</span> ;;
+      <span class="bash-flag">--local</span>)
+        <span class="bash-variable">ip</span>=<span class="bash-string">"192.168.1.1"</span>; <span class="bash-variable">port</span>=<span class="bash-string">"22"</span>
+        <span class="bash-builtin">shift</span> ;;
+      *)
+        <span class="bash-keyword">if</span> [ <span class="bash-flag">-z</span> <span class="bash-string">"$ip"</span> ]; <span class="bash-keyword">then</span> <span class="bash-variable">ip</span>=<span class="bash-string">"$1"</span>; <span class="bash-keyword">else</span> <span class="bash-variable">port</span>=<span class="bash-string">"$1"</span>; <span class="bash-keyword">fi</span>; <span class="bash-builtin">shift</span> ;;
+    <span class="bash-keyword">esac</span>
+  <span class="bash-keyword">done</span>
+  <span class="bash-builtin">arp</span> <span class="bash-flag">-a</span> 2>/dev/null
+  <span class="bash-builtin">ping</span> <span class="bash-flag">-c</span> 4 <span class="bash-string">"$ip"</span>
+  [ <span class="bash-flag">-n</span> <span class="bash-string">"$port"</span> ] && <span class="bash-builtin">nc</span> <span class="bash-flag">-vz</span> <span class="bash-string">"$ip"</span> <span class="bash-string">"$port"</span>
+  <span class="bash-builtin">ip</span> route get <span class="bash-string">"$ip"</span>
+}
+<span class="bash-builtin">alias</span> net-probe=<span class="bash-string">'net_probe'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div class="card alias-card shadow-sm" data-alias="cat-band">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>cat-band</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Measures
+                        <b>bandwidth usage</b>
+                        between start and Enter. Based on the script by
+                      </span>
+                      <a
+                        href="https://www.youtube.com/watch?v=cvDyQUpaFf4"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <span>Luke Smith</span>
+                      </a>
+                      <span>. Reads from</span>
+                      <code>/sys/class/net/[ew]*/statistics/rx_bytes</code>
+                      <span>.</span>
+                    </p>
+                    <span class="badge bg-secondary badge-alias">
+                      <span>function</span>
+                    </span>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>View Code</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Bash code for cat-band"
+                      ><code><span class="bash-keyword">cat_band</span>() {
+  <span class="bash-variable">init</span>=<span class="bash-string">"$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"</span>
+  <span class="bash-builtin">printf</span> <span class="bash-string">"Recording bandwidth.. Press enter to stop."</span>
+  <span class="bash-builtin">read</span> <span class="bash-flag">-r</span> <span class="bash-string">"stop"</span>
+  <span class="bash-variable">fin</span>=<span class="bash-string">"$(($(cat /sys/class/net/[ew]*/statistics/rx_bytes | paste -sd '+')))"</span>
+  <span class="bash-builtin">printf</span> <span class="bash-string">"%4sB of bandwidth used.\\n"</span> $(<span class="bash-builtin">numfmt</span> <span class="bash-flag">--to=iec</span> $((<span class="bash-variable">$fin</span>-<span class="bash-variable">$init</span>)))
+}
+<span class="bash-builtin">alias</span> cat-band=<span class="bash-string">'cat_band'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="track-power-usage"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>track-power-usage</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Runs
+                        <b>powerstat</b>
+                        (RAPL) and saves the output to a timestamped log in
+                      </span>
+                      <code>~/.logs/</code>
+                      <span>.</span>
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 mb-2">
+                      <span class="badge bg-secondary badge-alias">
+                        <span>function</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$1: duration (3600)</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$2: tick (1)</span>
+                      </span>
+                    </div>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>View Code</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Bash code for track-power-usage"
+                      ><code><span class="bash-keyword">track_power_usage</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">duration</span>=${1:-3600}
+  <span class="bash-keyword">local</span> <span class="bash-variable">tick</span>=${2:-1}
+  <span class="bash-keyword">if</span> ! <span class="bash-builtin">command</span> <span class="bash-flag">-v</span> powerstat &>/dev/null; <span class="bash-keyword">then</span>
+    <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"❌ \033[1;31mpowerstat not found.\033[0m Install with: sudo apt install powerstat"</span>
+    <span class="bash-builtin">return</span> 1
+  <span class="bash-keyword">fi</span>
+  <span class="bash-builtin">mkdir</span> <span class="bash-flag">-p</span> <span class="bash-string">"$HOME/.logs"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">log</span>=<span class="bash-string">"$HOME/.logs/powerstat-$(date +%Y-%m-%d_%H-%M-%S).log"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"⚡ \033[1;36mRecording power stats for ${duration}s (tick: ${tick}s) → $log\033[0m"</span>
+  <span class="bash-builtin">sudo</span> stdbuf <span class="bash-flag">-oL</span> powerstat <span class="bash-flag">-R</span> <span class="bash-string">"$tick"</span> <span class="bash-string">"$duration"</span> | <span class="bash-builtin">tee</span> <span class="bash-string">"$log"</span>
+}
+<span class="bash-builtin">alias</span> track-power-usage=<span class="bash-string">'track_power_usage'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="gitAliasesHeading"
+              class="mb-5"
+              id="gitAliases"
+            >
+              <h2 class="h3 mb-4" id="gitAliasesHeading">
+                <i aria-hidden="true" class="bi bi-git text-primary me-2"></i>
+                <span>Git Aliases</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span>
+                  Shorthand aliases for common Git operations: staging, commits,
+                  branches, stash, and more.
+                </span>
+              </p>
+              <div class="accordion" id="gitAccordion">
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapseGitBasic"
+                      aria-expanded="true"
+                      class="accordion-button"
+                      data-bs-target="#collapseGitBasic"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-plus-circle me-2"></i>
+                      <span>Basic Operations</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse show"
+                    id="collapseGitBasic"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="ga"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>ga</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Shorthand for</span>
+                                <code>git add</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> ga=<span class="bash-string">'git add'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="gal"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>gal</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Add all files:</span>
+                                <code>git add .</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> gal=<span class="bash-string">'git add .'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="gc"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>gc</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Shorthand for</span>
+                                <code>git commit</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> gc=<span class="bash-string">'git commit'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="gca"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>gca</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Commit all with message:</span>
+                                <code>git commit -a -m</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> gca=<span class="bash-string">'git commit -a -m'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapseGitRemote"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapseGitRemote"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-cloud-arrow-up me-2"
+                      ></i>
+                      <span>Remote Operations</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapseGitRemote"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="gps"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>gps</code>
+                              </h4>
+                              <p class="mb-2">
+                                <code>git push</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> gps=<span class="bash-string">'git push'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="gpl"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>gpl</code>
+                              </h4>
+                              <p class="mb-2">
+                                <code>git pull</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> gpl=<span class="bash-string">'git pull'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="gps-oh"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>gps-oh</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Push current HEAD to origin:</span>
+                                <code>git push origin HEAD</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> gps-oh=<span class="bash-string">'git push origin HEAD'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="gf"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>gf</code>
+                              </h4>
+                              <p class="mb-2">
+                                <code>git fetch</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> gf=<span class="bash-string">'git fetch'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapseGitReset"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapseGitReset"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-arrow-counterclockwise me-2"
+                      ></i>
+                      <span>Reset &amp; Revert</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapseGitReset"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="grs"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>grs</code>
+                              </h4>
+                              <p class="mb-2">
+                                <code>git reset</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> grs=<span class="bash-string">'git reset'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="grs-h"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>grs-h</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Reset hard:</span>
+                                <code>git reset --hard</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> grs-h=<span class="bash-string">'git reset --hard'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="grs--1"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>grs--1</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Undo last commit (keeps changes):</span>
+                                <code>git reset HEAD~1</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> grs--1=<span class="bash-string">'git reset HEAD~1'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="grv"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>grv</code>
+                              </h4>
+                              <p class="mb-2">
+                                <code>git revert</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> grv=<span class="bash-string">'git revert'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="utilitiesHeading"
+              class="mb-5"
+              id="utilities"
+            >
+              <h2 class="h3 mb-4" id="utilitiesHeading">
+                <i aria-hidden="true" class="bi bi-tools text-primary me-2"></i>
+                <span>Utilities</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span
+                  >File analysis, backup, hardware shortcuts, and everyday
+                  utilities.</span
+                >
+              </p>
+              <div class="accordion" id="utilitiesAccordion">
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapseFileAnalysis"
+                      aria-expanded="true"
+                      class="accordion-button"
+                      data-bs-target="#collapseFileAnalysis"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-file-earmark-text me-2"
+                      ></i>
+                      <span>File Analysis</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse show"
+                    id="collapseFileAnalysis"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="wc-l-novendors"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>wc-l-novendors</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Counts total lines in the directory,
+                              <em>excluding</em>
+                            </span>
+                            <code>vendor/</code>
+                            <span>,</span>
+                            <code>node_modules/</code>
+                            <span>and</span>
+                            <code>.git/</code>
+                            <span
+                              >. Displays the running total during
+                              execution.</span
+                            >
+                          </p>
+                          <span class="badge bg-secondary badge-alias">
+                            <span>function</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for wc-l-novendors"
+                            ><code><span class="bash-keyword">wc_lines_novendors</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">files</span>=0 <span class="bash-variable">total</span>=0
+  <span class="bash-keyword">while</span> IFS= <span class="bash-builtin">read</span> <span class="bash-flag">-r -d</span> $<span class="bash-string">'\0'</span> file; <span class="bash-keyword">do</span>
+    <span class="bash-variable">lines</span>=$(<span class="bash-builtin">wc</span> <span class="bash-flag">-l</span> < <span class="bash-string">"$file"</span>)
+    <span class="bash-variable">total</span>=$((<span class="bash-variable">total</span>+<span class="bash-variable">lines</span>))
+    <span class="bash-variable">files</span>=$((<span class="bash-variable">files</span>+1))
+    <span class="bash-builtin">printf</span> <span class="bash-string">"%s %d\n"</span> <span class="bash-string">"$file"</span> <span class="bash-string">"$total"</span>
+  <span class="bash-keyword">done</span> < <(<span class="bash-builtin">find</span> . <span class="bash-flag">-type</span> f \
+        ! <span class="bash-flag">-path</span> <span class="bash-string">'*/vendor/*'</span> \
+        ! <span class="bash-flag">-path</span> <span class="bash-string">'*/node_modules/*'</span> \
+        ! <span class="bash-flag">-path</span> <span class="bash-string">'*/.git/*'</span> \
+        <span class="bash-flag">-print0</span>)
+  <span class="bash-builtin">echo</span> <span class="bash-string">"-> TOTAL: $total lines in $files files"</span>
+}
+<span class="bash-builtin">alias</span> wc-l-novendors=<span class="bash-string">'wc_lines_novendors'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div class="card alias-card shadow-sm" data-alias="hfold">
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>hfold</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Shows the
+                              <b>heaviest folders</b>
+                              by size in GB.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span>function</span>
+                            </span>
+                            <span class="badge bg-primary badge-alias">
+                              <span>$1: root (.)</span>
+                            </span>
+                            <span class="badge bg-primary badge-alias">
+                              <span>$2: top N (10)</span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                            ><code><span class="bash-keyword">heavy_folders</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">root</span>=${1:-.} <span class="bash-variable">top</span>=${2:-10}
+  <span class="bash-builtin">du</span> <span class="bash-flag">-Sb</span> <span class="bash-string">"$root"</span>/* 2>/dev/null \
+    | <span class="bash-builtin">sort</span> <span class="bash-flag">-nr</span> \
+    | <span class="bash-builtin">head</span> <span class="bash-flag">-n</span> <span class="bash-string">"$top"</span> \
+    | <span class="bash-builtin">awk</span> <span class="bash-string">'{printf "%.2fGB\t%s\n",$1/1024/1024/1024,$2}'</span>
+}
+<span class="bash-builtin">alias</span> hfold=<span class="bash-string">'heavy_folders'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapseHardware"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapseHardware"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-cpu me-2"></i>
+                      <span>Hardware Shortcuts</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapseHardware"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="btctl"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>btctl</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Shortcut for</span>
+                                <code>bluetoothctl</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> btctl=<span class="bash-string">'bluetoothctl'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="stctl"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>stctl</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>Shortcut for</span>
+                                <code>systemctl</code>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> stctl=<span class="bash-string">'systemctl'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="check-ecc"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>check-ecc</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Checks
+                                  <b>ECC</b>
+                                  memory support via dmidecode.
+                                </span>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> check-ecc=<span class="bash-string">'sudo dmidecode -t memory | grep -i "error\|ecc\|correction"'</span></code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="prettyAliasesHeading"
+              class="mb-5"
+              id="prettyAliases"
+            >
+              <h2 class="h3 mb-4" id="prettyAliasesHeading">
+                <i
+                  aria-hidden="true"
+                  class="bi bi-palette-fill text-primary me-2"
+                ></i>
+                <span>Pretty Output Aliases</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span>
+                  Enhanced versions of system info commands with
+                  <mark>colorized output</mark>
+                  , headers, footers, and syntax highlighting.
+                </span>
+              </p>
+              <div class="accordion" id="prettyAccordion">
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapsePrettyKernel"
+                      aria-expanded="true"
+                      class="accordion-button"
+                      data-bs-target="#collapsePrettyKernel"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-pc-display me-2"></i>
+                      <span>Kernel &amp; OS</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse show"
+                    id="collapsePrettyKernel"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="cat-k-os-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>cat-k-os-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Displays the OS kernel version with
+                                  header/footer decorations.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">cat-k-os-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Kernel OS Release"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  \033[1;32m►\033[0m $(sudo cat /proc/sys/kernel/osrelease 2>/dev/null)"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="cat-etc-os-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>cat-etc-os-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Displays
+                                  <code>/etc/os-release</code>
+                                  with highlighted keys.
+                                </span>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">cat-etc-os-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"OS Release Info — /etc/os-release"</span>
+  <span class="bash-builtin">sudo</span> cat /etc/os-release 2>/dev/null | <span class="bash-builtin">sed</span> \
+    <span class="bash-flag">-e</span> <span class="bash-string">"s/^\([A-Z_]*\)=/\033[1;34m\1\033[0m=/"</span> | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="navigationAliasesHeading"
+              class="mb-5"
+              id="navigationAliases"
+            >
+              <h2 class="h3 mb-4" id="navigationAliasesHeading">
+                <i
+                  aria-hidden="true"
+                  class="bi bi-folder2-open text-primary me-2"
+                ></i>
+                <span>Navigation Aliases</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span>Quick shortcuts for directory navigation.</span>
+              </p>
+              <div class="alias-container">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="card alias-card shadow-sm" data-alias="desk">
+                      <div class="card-body">
+                        <h4 class="alias-name mb-2">
+                          <code>desk</code>
+                        </h4>
+                        <p class="mb-2">
+                          <code>cd ~/Desktop</code>
+                        </p>
+                        <details class="code-details">
+                          <summary role="button" aria-expanded="false">
+                            <i
+                              aria-hidden="true"
+                              class="bi bi-code-slash me-2"
+                            ></i>
+                            <span>View Code</span>
+                          </summary>
+                          <pre
+                            class="code-block"
+                          ><code><span class="bash-builtin">alias</span> desk=<span class="bash-string">'cd ~/Desktop'</span></code></pre>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card alias-card shadow-sm" data-alias="docs">
+                      <div class="card-body">
+                        <h4 class="alias-name mb-2">
+                          <code>docs</code>
+                        </h4>
+                        <p class="mb-2">
+                          <code>cd ~/Documents</code>
+                        </p>
+                        <details class="code-details">
+                          <summary role="button" aria-expanded="false">
+                            <i
+                              aria-hidden="true"
+                              class="bi bi-code-slash me-2"
+                            ></i>
+                            <span>View Code</span>
+                          </summary>
+                          <pre
+                            class="code-block"
+                          ><code><span class="bash-builtin">alias</span> docs=<span class="bash-string">'cd ~/Documents'</span></code></pre>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card alias-card shadow-sm" data-alias="..">
+                      <div class="card-body">
+                        <h4 class="alias-name mb-2">
+                          <code>..</code>
+                        </h4>
+                        <p class="mb-2">
+                          <span>Go up one directory level</span>
+                        </p>
+                        <details class="code-details">
+                          <summary role="button" aria-expanded="false">
+                            <i
+                              aria-hidden="true"
+                              class="bi bi-code-slash me-2"
+                            ></i>
+                            <span>View Code</span>
+                          </summary>
+                          <pre
+                            class="code-block"
+                          ><code><span class="bash-builtin">alias</span> ..=<span class="bash-string">'cd ..'</span></code></pre>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="laravelPhpHeading"
+              class="mb-5"
+              id="laravelPhp"
+            >
+              <h2 class="h3 mb-4" id="laravelPhpHeading">
+                <i
+                  aria-hidden="true"
+                  class="bi bi-filetype-php text-primary me-2"
+                ></i>
+                <span>Aliases Laravel / PHP</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span
+                  >Artisan commands, migrations, and Laravel development
+                  shortcuts.</span
+                >
+              </p>
+              <div class="alias-container">
+                <div class="card alias-card shadow-sm" data-alias="artclrs">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>artclrs</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Full Laravel reset: clears all caches, removes bootstrap
+                        cache files, runs dump-autoload, resets &amp; re-seeds
+                        migrations, lists routes, and starts the server.
+                      </span>
+                    </p>
+                    <span class="badge bg-danger badge-alias">
+                      <span>destructive</span>
+                    </span>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>View Code</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                      ><code><span class="bash-builtin">alias</span> artclrs=<span class="bash-string">'
+php artisan permission:cache-reset; \
+php artisan config:clear; \
+php artisan cache:clear; \
+php artisan optimize:clear; \
+php artisan route:clear; \
+php artisan view:clear; \
+php artisan clear-compiled; \
+rm -f bootstrap/cache/services.php bootstrap/cache/packages.php bootstrap/cache/compiled.php bootstrap/cache/routes.php; \
+composer dump-autoload -o; \
+php artisan migrate:status; \
+php artisan migrate:reset; \
+php artisan migrate:fresh --seed; \
+php artisan route:list --sort=uri; \
+php artisan serve
+'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="moreInfoHeading"
+              class="mb-5 text-center py-5 bg-body-secondary rounded-3"
+            >
+              <h2 class="h4 mb-3" id="moreInfoHeading">
+                <span role="img" aria-label="Rocket">
+                  <span>🚀</span>
+                </span>
+                <span>More aliases available in the full reference</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span
+                  >This documentation covers a selection of the most commonly
+                  used aliases. The full</span
+                >
+                <code>.bashrc.pub.sh</code>
+                <span>
+                  file contains
+                  <b>200+ aliases and functions</b>
+                  organized into categories.
+                </span>
+              </p>
+              <a class="btn btn-primary" href="./.bashrc.pub.sh" role="button">
+                <i aria-hidden="true" class="bi bi-file-code me-2"></i>
+                <span>View Full Source</span>
+              </a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+    <button
+      aria-label="Back to top"
+      class="btn btn-primary btn-lg rounded-circle shadow"
+      id="backToTop"
+      type="button"
+    >
+      <i aria-hidden="true" class="bi bi-arrow-up"></i>
+    </button>
+    <footer class="bg-body-tertiary py-4 mt-5" role="contentinfo">
+      <div class="container text-center">
+        <p class="text-muted mb-0">
+          <span role="img" aria-label="Terminal icon">
+            <span>⌨️</span>
+          </span>
+          <span>Bash Aliases Reference</span>
+          <span class="mx-2">|</span>
+          <span>Last updated:</span>
+          <time datetime="2026-03-13">
+            <span>March 13, 2026</span>
+          </time>
+        </p>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script>
+      /**
+       * @fileoverview Bash Aliases Reference — Interactive JavaScript
+       * @description Search filtering, theme toggle, scroll behavior, and Vue.js integration.
+       *              Uses `DOMStringMap` (`data-*`) boolean markers on elements to prevent
+       *              duplicate listener attachment across Vue remounts/rerenders.
+       *              Immutable config objects are recursively deep-frozen at startup.
+       * @module AliasesReference
+       */
+      (() => {
+        "use strict";
+
+        /**
+         * Recursively freezes an object graph. Handles plain objects,
+         * Arrays, Maps, Sets, Dates, and RegExps. WeakMap / WeakSet are
+         * frozen at the shell level only (entries are not enumerable).
+         * Skips DOM nodes, primitives, symbols, functions, and
+         * already-frozen references to avoid side-effects.
+         * @template {Record<string, unknown> | unknown[] | Map<unknown, unknown> | Set<unknown> | Date | RegExp} T
+         * @param {T} obj - Root value to freeze
+         * @returns {Readonly<T>} The same reference, now deeply frozen
+         */
+        const deepFreeze = (/** @type {T} */ obj) => {
+          if (obj === null || obj === undefined) return obj;
+          const t = typeof obj;
+          if (
+            t === "number" ||
+            t === "string" ||
+            t === "boolean" ||
+            t === "bigint" ||
+            t === "symbol"
+          )
+            return obj;
+          if (typeof obj !== "object" && typeof obj !== "function") return obj;
+          if (obj instanceof Node || Object.isFrozen(obj)) return obj;
+          Object.freeze(obj);
+          if (obj instanceof Map) {
+            for (const [k, v] of obj) {
+              deepFreeze(k);
+              deepFreeze(v);
+            }
+            return obj;
+          }
+          if (obj instanceof Set) {
+            for (const v of obj) deepFreeze(v);
+            return obj;
+          }
+          if (obj instanceof WeakMap || obj instanceof WeakSet) return obj;
+          if (obj instanceof Date || obj instanceof RegExp) return obj;
+          if (Array.isArray(obj)) {
+            for (let i = 0; i < obj.length; i++) deepFreeze(obj[i]);
+            return obj;
+          }
+          for (const v of Object.values(obj))
+            if (
+              v !== null &&
+              typeof v === "object" &&
+              !(v instanceof Node) &&
+              !Object.isFrozen(v)
+            )
+              deepFreeze(v);
+          return obj;
+        };
+
+        /**
+         * Dataset keys used as boolean flags to track listener attachment.
+         * Each maps to a `data-bound-*` attribute on the target element or `document.body`.
+         * @type {Readonly<Record<string, string>>}
+         */
+        const BOUND = deepFreeze(
+            /** @type {const} */ ({
+              error: "boundError",
+              scroll: "boundScroll",
+              search: "boundSearch",
+              theme: "boundTheme",
+              topClick: "boundTopClick",
+              tocScroll: "boundTocScroll",
+              unhandledrejection: "boundUnhandledrejection",
+            }),
+          ),
+          /** @type {Readonly<Record<string, string>>} CSS selectors map */
+          SELECTORS = deepFreeze(
+            /** @type {const} */ ({
+              aliasCard: ".alias-card",
+              aliasSearch: "#aliasSearch",
+              backToTop: "#backToTop",
+              mainNav: "#mainNav",
+              themeBtn: "#themeBtn",
+              tocLinks: "#tocSidebar .nav-link",
+            }),
+          ),
+          /** @type {Readonly<Record<string, string>>} Togglable class names */
+          CLASSES = deepFreeze(
+            /** @type {const} */ ({
+              active: "active",
+              scrolled: "scrolled",
+              visible: "visible",
+            }),
+          ),
+          /**
+           * Canonical DOM event names reused across multiple listeners.
+           * @type {Readonly<Record<string, string>>}
+           */
+          EVENTS = deepFreeze(
+            /** @type {const} */ ({
+              click: "click",
+              error: "error",
+              input: "input",
+              scroll: "scroll",
+              unhandledrejection: "unhandledrejection",
+            }),
+          ),
+          /**
+           * Window-level error event names to listen for.
+           * Iterated in {@link initErrorHandlers}.
+           * @type {ReadonlyArray<string>}
+           */
+          ERROR_EVENTS = deepFreeze([EVENTS.error, EVENTS.unhandledrejection]),
+          /**
+           * Reusable passive-listener options object (frozen to prevent tampering).
+           * @type {Readonly<AddEventListenerOptions>}
+           */
+          PASSIVE = deepFreeze({ passive: true }),
+          /**
+           * Bootstrap theme data-attribute name.
+           * @type {string}
+           */
+          BS_THEME_ATTR = "data-bs-theme",
+          /**
+           * Theme identifiers.
+           * @type {string}
+           */
+          THEME_DARK = "dark",
+          /** @type {string} */
+          THEME_LIGHT = "light",
+          /**
+           * Icon class names for the theme toggle button.
+           * @type {string}
+           */
+          ICON_SUN = "bi bi-sun-fill",
+          /** @type {string} */
+          ICON_MOON = "bi bi-moon-stars-fill",
+          /**
+           * Selector for elements carrying dataset-bound flags inside the Vue root.
+           * @type {string}
+           */
+          BOUND_RESET_SEL = "[data-bound-search],[data-bound-theme]",
+          /** @type {number} Scroll distance in px before showing controls */
+          SCROLL_THRESHOLD = 100,
+          /**
+           * Inline styles for the error alert banner.
+           * @type {string}
+           */
+          ALERT_STYLE = [
+            "position:fixed",
+            "top:0",
+            "left:0",
+            "width:100%",
+            "z-index:99999",
+            "padding:.75rem 1rem",
+            "margin:0",
+            "background:#dc3545",
+            "color:#fff",
+            "font:600 .9rem/1.4 system-ui,sans-serif",
+            "text-align:center",
+            "box-shadow:0 2px 8px rgba(0,0,0,.3)",
+          ].join(";"),
+          /**
+           * ID for the error alert element (prevents duplicate banners).
+           * @type {string}
+           */
+          ALERT_ID = "__fatalAlert";
+
+        /**
+         * Queries a single element.
+         * @template {Element} T
+         * @param {string} selector - CSS selector
+         * @returns {T | null}
+         */
+        const qs = (/** @type {string} */ selector) =>
+          document.querySelector(selector);
+
+        /**
+         * Guards against duplicate listener attachment by checking a `data-*` flag
+         * on the element's {@link DOMStringMap}. If the flag is already set, returns
+         * `true` (bound). Otherwise sets the flag and returns `false` (fresh).
+         * @param {HTMLElement} el - Target element whose dataset to mark
+         * @param {string} key - camelCase dataset key (e.g. `"boundTheme"` → `data-bound-theme`)
+         * @returns {boolean} `true` if the listener was already attached
+         */
+        const isBound = (
+          /** @type {HTMLElement} */ el,
+          /** @type {string} */ key,
+        ) => {
+          if (el.dataset[key]) return true;
+          el.dataset[key] = "1";
+          return false;
+        };
+
+        /**
+         * Clears all `data-bound-*` flags from an element's dataset,
+         * signalling that listeners should be re-attached on next init pass.
+         * Called by Vue's `onMounted` / `onUpdated` hooks before re-running init.
+         * @param {HTMLElement} el - Target element to reset
+         * @returns {void}
+         */
+        const resetBound = (/** @type {HTMLElement} */ el) => {
+          for (const key of Object.values(BOUND)) delete el.dataset[key];
+        };
+
+        /**
+         * Shared callback for `window` `"error"` and `"unhandledrejection"` events.
+         * Injects a fixed-position red banner at the top of the viewport
+         * (vanilla HTML/CSS, no framework dependency). Only one banner is
+         * ever shown; subsequent errors append lines to the same element.
+         * @param {ErrorEvent | PromiseRejectionEvent} ev - The caught event
+         * @returns {void}
+         */
+        const onFatalError = (
+          /** @type {ErrorEvent | PromiseRejectionEvent} */ ev,
+        ) => {
+          const msg =
+            ev instanceof ErrorEvent
+              ? ev.message || "Unknown error"
+              : `Unhandled rejection: ${ev.reason}`;
+          let banner = /** @type {HTMLElement | null} */ (
+            document.getElementById(ALERT_ID)
+          );
+          if (!banner) {
+            banner = document.createElement("div");
+            banner.id = ALERT_ID;
+            banner.setAttribute("role", "alert");
+            banner.setAttribute("style", ALERT_STYLE);
+            (document.body || document.documentElement).prepend(banner);
+          }
+          const line = document.createElement("div");
+          line.textContent = `\u26A0\uFE0F ${msg}`;
+          banner.appendChild(line);
+        };
+
+        /**
+         * Registers `"error"` and `"unhandledrejection"` listeners on `window`.
+         * Each is guarded by its own `data-bound-*` flag on `document.body`
+         * to prevent duplicate attachment across re-init calls.
+         * @returns {void}
+         */
+        function initErrorHandlers() {
+          for (const name of ERROR_EVENTS) {
+            const key = BOUND[name];
+            if (!key || isBound(document.body, key)) continue;
+            window.addEventListener(name, onFatalError);
+          }
+        }
+
+        /**
+         * Binds dark/light theme switching to the theme button.
+         * Toggles `data-bs-theme` on `<html>` and swaps the button icon class.
+         * Guarded by `data-bound-theme` on the button element.
+         * @returns {void}
+         */
+        function initThemeToggle() {
+          const btn = /** @type {HTMLElement | null} */ (
+            qs(SELECTORS.themeBtn)
+          );
+          if (!btn || isBound(btn, BOUND.theme)) return;
+          btn.addEventListener(EVENTS.click, () => {
+            try {
+              const next =
+                document.documentElement.getAttribute(BS_THEME_ATTR) ===
+                THEME_DARK
+                  ? THEME_LIGHT
+                  : THEME_DARK;
+              document.documentElement.setAttribute(BS_THEME_ATTR, next);
+              btn.querySelector("i").className =
+                next === THEME_DARK ? ICON_SUN : ICON_MOON;
+            } catch (e) {
+              console.error("Theme toggle error:", e);
+            }
+          });
+        }
+
+        /**
+         * Attaches a real-time search filter to `#aliasSearch`.
+         * Matches against each card's `data-alias` attribute and text content.
+         * Guarded by `data-bound-search` on the input element.
+         * @returns {void}
+         */
+        function initSearch() {
+          const input = /** @type {HTMLInputElement | null} */ (
+            qs(SELECTORS.aliasSearch)
+          );
+          if (!input || isBound(input, BOUND.search)) return;
+          input.addEventListener(EVENTS.input, (e) => {
+            try {
+              const query = /** @type {HTMLInputElement} */ (e.target).value
+                .toLowerCase()
+                .trim();
+              for (const card of document.querySelectorAll(SELECTORS.aliasCard))
+                card.style.display =
+                  !query ||
+                  (card.dataset.alias || "").includes(query) ||
+                  card.textContent.toLowerCase().includes(query)
+                    ? ""
+                    : "none";
+            } catch (e) {
+              console.error("Search error:", e);
+            }
+          });
+        }
+
+        /**
+         * Sets up scroll-driven UI:
+         *  - Adds `.scrolled` shadow to the navbar after {@link SCROLL_THRESHOLD} px.
+         *  - Shows/hides the back-to-top FAB.
+         *  - Smooth-scrolls to top on FAB click.
+         * Click listener guarded by `data-bound-top-click`, scroll listener
+         * guarded by `data-bound-scroll` on `document.body`.
+         * @returns {void}
+         */
+        function initScroll() {
+          const nav = /** @type {HTMLElement | null} */ (qs(SELECTORS.mainNav)),
+            backToTop = /** @type {HTMLElement | null} */ (
+              qs(SELECTORS.backToTop)
+            );
+          if (backToTop && !isBound(backToTop, BOUND.topClick))
+            backToTop.addEventListener(EVENTS.click, () =>
+              window.scrollTo({ top: 0, behavior: "smooth" }),
+            );
+          if (!isBound(document.body, BOUND.scroll))
+            window.addEventListener(
+              EVENTS.scroll,
+              () => {
+                const scrolled = window.scrollY > SCROLL_THRESHOLD;
+                nav?.classList.toggle(CLASSES.scrolled, scrolled);
+                backToTop?.classList.toggle(CLASSES.visible, scrolled);
+              },
+              PASSIVE,
+            );
+        }
+
+        /**
+         * Tracks the viewport position and toggles `.active` on TOC sidebar
+         * links whose target `<article>` is currently in view.
+         * Guarded by `data-bound-toc-scroll` on `document.body`.
+         * @returns {void}
+         */
+        function initTocTracking() {
+          if (isBound(document.body, BOUND.tocScroll)) return;
+          /** @type {Array<{link: Element, section: Element}>} */
+          const sections = [];
+          for (const link of document.querySelectorAll(SELECTORS.tocLinks)) {
+            const href = link.getAttribute("href");
+            if (!href?.startsWith("#")) continue;
+            const section = qs(href);
+            if (section) sections.push(Object.freeze({ link, section }));
+          }
+          if (!sections.length) return;
+          Object.freeze(sections);
+          window.addEventListener(
+            EVENTS.scroll,
+            () => {
+              const scrollPos = window.scrollY + 150;
+              for (const { link, section } of sections)
+                link.classList.toggle(
+                  CLASSES.active,
+                  scrollPos >= section.offsetTop &&
+                    scrollPos < section.offsetTop + section.offsetHeight,
+                );
+            },
+            PASSIVE,
+          );
+        }
+
+        /**
+         * Mounts a minimal Vue 3 app on `#aliasApp` for reactive section toggling.
+         * Gracefully skips if Vue is not loaded. On mount and update, resets
+         * dataset-bound flags on elements inside the Vue root so that
+         * listeners guarding by `data-bound-*` can re-attach if the DOM was
+         * replaced by Vue's render cycle.
+         * @returns {void}
+         */
+        function initVueApp() {
+          if (typeof Vue === "undefined") return;
+          try {
+            Vue.createApp({
+              /** @returns {{ searchQuery: string, expandedSections: Set<string> }} */
+              data: () => ({ searchQuery: "", expandedSections: new Set() }),
+              methods: {
+                /**
+                 * Toggle a section's expanded state by ID.
+                 * @param {string} id - Section element ID
+                 * @returns {void}
+                 */
+                toggleSection(id) {
+                  this.expandedSections.has(id)
+                    ? this.expandedSections.delete(id)
+                    : this.expandedSections.add(id);
+                },
+              },
+              /**
+               * Re-bind listeners after Vue replaces DOM nodes on mount.
+               * Resets `data-bound-*` flags on elements that may have been
+               * recreated, then re-runs the relevant init functions.
+               * @returns {void}
+               */
+              mounted() {
+                this.$nextTick(() => {
+                  const root = /** @type {HTMLElement | null} */ (
+                    this.$el?.parentElement
+                  );
+                  if (!root) return;
+                  for (const el of /** @type {NodeListOf<HTMLElement>} */ (
+                    root.querySelectorAll(BOUND_RESET_SEL)
+                  ))
+                    resetBound(el);
+                  initSearch();
+                  initThemeToggle();
+                });
+              },
+              /**
+               * After reactive updates that may swap DOM subtrees,
+               * re-evaluate whether listeners need re-attachment.
+               * @returns {void}
+               */
+              updated() {
+                this.$nextTick(() => {
+                  const search = /** @type {HTMLElement | null} */ (
+                    qs(SELECTORS.aliasSearch)
+                  );
+                  if (search && !search.dataset[BOUND.search]) initSearch();
+                });
+              },
+            }).mount("#aliasApp");
+          } catch (e) {
+            console.error("Vue initialization error:", e);
+          }
+        }
+
+        /** @returns {void} */
+        function init() {
+          initErrorHandlers();
+          initThemeToggle();
+          initSearch();
+          initScroll();
+          initTocTracking();
+          initVueApp();
+        }
+
+        initErrorHandlers();
+        document.readyState === "loading"
+          ? document.addEventListener("DOMContentLoaded", init)
+          : init();
+      })();
+    </script>
+  </body>
+</html>

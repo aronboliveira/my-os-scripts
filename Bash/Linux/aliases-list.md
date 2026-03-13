@@ -88,7 +88,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - net-probe
 
-[Run powerstat (RAPL) with Watts column moved to 2nd position, tee output to ~/.logs/ — $1: duration in seconds (default: 3600), $2: sampling interval in seconds (default: 1)]
+[Run powerstat (RAPL) and tee output to ~/.logs/ — $1: duration in seconds (default: 3600), $2: sampling interval in seconds (default: 1)]
 
 - track-power-usage
 
@@ -385,6 +385,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Extract strings from GitHub Copilot chat context files]
 
 - stringify-copilot-context
+
+[List unique workspaceStorage files (potentially containing chat context, logs, etc.).]
+
+- find-all-vscode-workspace-files
 
 [Find VS Code GPU process log files]
 

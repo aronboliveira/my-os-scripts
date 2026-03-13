@@ -1,3 +1,5 @@
+# THIS CODE IS MEANT TO BE PASTED IN THE *MIDDLE* OF YOUR .bashrc ⤐ NOT IN THE START, NOT AT THE END, AND DEFINITLY NOT REPLACING EVERYTHING (YOU WILL BREAK BASH DOING THIS)
+
 ### * START OF PUBLICABLE CODE * ###
 #region PUBLICABLE_CODE
 
@@ -183,15 +185,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       mkdir -p "$HOME/.logs"
       local log="$HOME/.logs/powerstat-$(date +%Y-%m-%d_%H-%M-%S).log"
       echo -e "⚡ \033[1;36mRecording power stats for ${duration}s (tick: ${tick}s) → $log\033[0m"
-      sudo stdbuf -oL powerstat -Rn "$tick" "$duration" 2>&1 | \
-        awk '{
-          if (NF >= 2 && $NF ~ /^[0-9.]/) {
-            w = $NF
-            printf "%-8s %-8s", $1, w
-            for (i = 2; i < NF; i++) printf " %-6s", $i
-            printf "\n"
-          } else { print }
-        }' | tee "$log"
+      sudo stdbuf -oL powerstat -R "$tick" "$duration" | tee "$log"
     }
     alias track-power-usage='track_power_usage'
 
