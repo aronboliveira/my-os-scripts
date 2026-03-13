@@ -18,6 +18,66 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - setup-software-gl
 
+[Show current display session type (x11 or wayland)]
+
+- show-display-session
+
+[Show current desktop session name]
+
+- show-desktop-session
+
+[Show the active display manager service unit name via systemctl]
+
+- show-display-manager
+
+[Show the default display manager binary from /etc/X11/default-display-manager]
+
+- show-display-manager-x11
+
+[Show the current desktop environment identifier ($XDG_CURRENT_DESKTOP)]
+
+- show-current-de
+
+[Detect active display manager and show its greeter config (supports LightDM, GDM3, SDDM, LXDM, XDM, SLiM)]
+
+- show-greeter
+
+[Show SDDM KDE settings from /etc/sddm.conf.d/kde_settings.conf]
+
+- cat-kde-settings
+
+[Show GDM3 main config from /etc/gdm3/gdm3.conf]
+
+- cat-gdm3-conf
+
+[Show GDM3 daemon config from /etc/gdm3/daemon.conf]
+
+- cat-gdm3-daemon
+
+[Show GDM3 custom config from /etc/gdm3/custom.conf]
+
+- cat-gdm3-custom
+
+[Install wmctrl if missing and show window manager info via wmctrl -m]
+
+- show-win-mng-m
+
+[Detect running window manager by scanning process list against 50+ known X11/Wayland WMs]
+
+- show-win-mng
+
+[Show running screen compositor processes (picom, compton, kwin, mutter, xfwm, wayfire)]
+
+- show-screen-compositor
+
+[Show running screen locker processes (xscreensaver, light-locker, swaylock, i3lock)]
+
+- show-screen-locker
+
+[List installed GUI toolkit runtime libraries (GTK and Qt, excluding -dev packages)]
+
+- show-installed-tks
+
 [Install plasma-discover Flatpak and Snap backends]
 
 - install-plasma-backends
@@ -625,6 +685,66 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Pretty-check DE-related programs with checkmark/cross status]
 
 - check-de-programs-pretty
+
+[Pretty-print display session type with header]
+
+- show-display-session-pretty
+
+[Pretty-print desktop session name with header]
+
+- show-desktop-session-pretty
+
+[Pretty-print display manager service name with header]
+
+- show-display-manager-pretty
+
+[Pretty-print display manager binary path from X11 config]
+
+- show-display-manager-x11-pretty
+
+[Pretty-print current desktop environment with header]
+
+- show-current-de-pretty
+
+[Pretty-print greeter configuration with DM detection and per-section headers]
+
+- show-greeter-pretty
+
+[Pretty-print SDDM KDE settings with colored section headers and keys]
+
+- cat-kde-settings-pretty
+
+[Pretty-print GDM3 main config with colored section headers and keys]
+
+- cat-gdm3-conf-pretty
+
+[Pretty-print GDM3 daemon config with colored section headers and keys]
+
+- cat-gdm3-daemon-pretty
+
+[Pretty-print GDM3 custom config with colored section headers and keys]
+
+- cat-gdm3-custom-pretty
+
+[Pretty-print wmctrl window manager info with colored fields]
+
+- show-win-mng-m-pretty
+
+[Pretty-print detected window manager(s) with indicator arrows]
+
+- show-win-mng-pretty
+
+[Pretty-print running screen compositors with PID]
+
+- show-screen-compositor-pretty
+
+[Pretty-print running screen lockers with PID]
+
+- show-screen-locker-pretty
+
+[Pretty-print installed GTK/Qt runtime libraries with version columns]
+
+- show-installed-tks-pretty
 
 ### Utilities
 
