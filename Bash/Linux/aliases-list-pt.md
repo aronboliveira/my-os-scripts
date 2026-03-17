@@ -18,6 +18,18 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - setup-software-gl
 
+[Lista todas as variáveis de ambiente (env), ordenadas alfabeticamente]
+
+- show-all-env-vars
+
+[Lista todas as variáveis exportadas (printenv), ordenadas alfabeticamente]
+
+- show-all-printenv-vars
+
+[Lista todas as variáveis do shell (set -o posix; set), ordenadas alfabeticamente]
+
+- show-all-sh-vars
+
 [Mostra o tipo de sessão de display atual (x11 ou wayland)]
 
 - show-display-session
@@ -82,6 +94,58 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - install-plasma-backends
 
+[Mostra a lista de caminhos de diretórios de dados do XDG ($XDG_DATA_DIRS)]
+
+- show-datadirs-session
+
+[Mostra o tipo de máquina host (ex: x86_64)]
+
+- show-hostype
+
+[Mostra o caminho do diretório home do usuário atual]
+
+- show-home
+
+[Mostra o nome de usuário atual]
+
+- show-user
+
+[Mostra o caminho do binário do shell atual]
+
+- show-shell
+
+[Mostra o diretório de trabalho atual (alias para pwd)]
+
+- show-wrkdir
+
+[Mostra o código do tipo de servidor de display (x11 ou wayland)]
+
+- show-display-server-code
+
+[Mostra informações legíveis sobre o servidor de display]
+
+- show-display-server
+
+[Mostra o endereço do barramento de sessão do D-Bus]
+
+- show-dbus-addr
+
+[Mostra o identificador do ambiente desktop atual (alias para show-current-de)]
+
+- show-desktop-env
+
+[Mostra a configuração detalhada do greeter/gerenciador de display]
+
+- show-greeter-verbose
+
+[Mostra informações abrangentes do ambiente de display (sessão, DM, greeter, compositor, WM)]
+
+- show-full-display-info
+
+[Mostra um resumo compacto do ambiente desktop]
+
+- show-desktop
+
 ### Network_Procedures
 
 [Sonda um host de rede com ARP, ping, netcat e busca de rota — $1: IP alvo (obrigatório), $2: porta alvo (opcional) — flags: --gateway, --local]
@@ -97,6 +161,14 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Cria um novo usuário e o adiciona ao grupo sudo — $1: nome de usuário (obrigatório)]
 
 - add-sudo-user
+
+[Exibe o conteúdo do arquivo sudoers (requer permissões)]
+
+- cat-sudoers
+
+[Mostra a configuração timestamp_timeout do sudoers]
+
+- cat-sudoers-timestamp
 
 ### Desktop_Environment
 
@@ -136,6 +208,30 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - check-de-programs
 
+[Marca um arquivo .desktop como confiável para GNOME/DING — $1: nome do arquivo ou caminho]
+
+- trust-desktop
+
+[Instala pacotes KDE essenciais para integração GTK e produtividade (configs, backends Discover, KDE Connect, plugins Dolphin, Okular)]
+
+- install-kde-pkgs
+
+[Garante que o diretório ~/Templates e o modelo "Empty File" existam]
+
+- ensure-templates
+
+[Instala extensões do Nautilus (nautilus-admin, gnome-terminal, image-converter) e garante o diretório Templates]
+
+- install-nautilus-ext
+
+[Cria um script do Nautilus para criar novos arquivos via caixa de diálogo Zenity]
+
+- create-nautilus-newfile
+
+[Instala Docker e ferramentas de desenvolvimento abrangentes apenas no Debian 13 Trixie]
+
+- install-trixie-devtools
+
 ### System_Info_Aliases
 
 #### Kernel_and_OS
@@ -163,6 +259,18 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Mostra versão do Linux de /proc/version]
 
 - cat-linux-v
+
+[Mostra o ID da distro (debian, ubuntu, fedora, etc.)]
+
+- cat-distro-n
+
+[Mostra o número da versão da distro]
+
+- cat-distro-v
+
+[Mostra o nome completo da distro com a versão]
+
+- cat-distro
 
 [Mostra hostname do kernel de /proc/sys/kernel/hostname]
 
@@ -193,6 +301,42 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Mostra informações de memória de /proc/meminfo]
 
 - cat-mem-inf
+
+[Exibe configuração do daemon OOM do systemd de /etc/systemd/oomd.conf]
+
+- cat-oom-conf
+
+[Exibe valor sysctl vm.oom_kill_allocating_task (0=mata processo aleatório, 1=mata tarefa alocadora)]
+
+- show-oom-kill-alloc
+
+[Acompanha saída do daemon earlyoom com relatório detalhado em intervalo definido — $1: intervalo em segundos (padrão: 2)]
+
+- follow-early-oom
+
+[Monitora processos que consomem mais memória ordenados por RSS em tempo real — $1: intervalo de atualização em segundos (padrão: 0,25)]
+
+- watch-mem-hogs
+
+[Exibe pontuação OOM de morte para um processo — $1: pid (obrigatório)]
+
+- cat-pid-oom-kill-score
+
+[Exibe pontuação de ajuste OOM para um processo (-1000 a 1000) — $1: pid (obrigatório)]
+
+- cat-pid-oom-adj-score
+
+[Exibe pontuação OOM e pontuação de ajuste OOM para um processo — $1: pid (obrigatório)]
+
+- cat-pid-oom-scores
+
+[Acompanha o journal systemd do earlyoom]
+
+- journal-earlyoom
+
+[Acompanha o journal do systemd-oomd]
+
+- journal-sysoomd
 
 #### Storage_and_Partitions
 
@@ -243,6 +387,10 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Mostra configuração do servidor SSH de /etc/ssh/sshd_config]
 
 - cat-ssh-cfg
+
+[Mostra o arquivo de unidade do serviço SSH do systemd]
+
+- cat-ssh-service
 
 [Mostra arquivo sudoers de /etc/sudoers]
 
@@ -463,6 +611,42 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Imprime informações de memória formatadas com nomes de campo destacados]
 
 - cat-mem-inf-pretty
+
+[Imprime configuração do daemon OOM do systemd formatada]
+
+- cat-oom-conf-pretty
+
+[Imprime valor sysctl vm.oom_kill_allocating_task formatado com explicação]
+
+- show-oom-kill-alloc-pretty
+
+[Acompanha saída do earlyoom com cabeçalho formatado — $1: intervalo em segundos (padrão: 2)]
+
+- follow-early-oom-pretty
+
+[Monitora processos que consomem mais memória com cabeçalho formatado — $1: intervalo em segundos (padrão: 0,25)]
+
+- watch-mem-hogs-pretty
+
+[Imprime pontuação OOM de morte para um processo formatada — $1: pid (obrigatório)]
+
+- cat-pid-oom-kill-score-pretty
+
+[Imprime pontuação de ajuste OOM para um processo formatada — $1: pid (obrigatório)]
+
+- cat-pid-oom-adj-score-pretty
+
+[Imprime ambas as pontuações OOM para um processo formatadas — $1: pid (obrigatório)]
+
+- cat-pid-oom-scores-pretty
+
+[Imprime journal systemd do earlyoom formatado]
+
+- journal-earlyoom-pretty
+
+[Imprime journal do systemd-oomd formatado]
+
+- journal-sysoomd-pretty
 
 #### Pretty_Storage
 
@@ -750,6 +934,70 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - show-installed-tks-pretty
 
+#### Pretty_System_Setup
+
+[Imprime todas as variáveis de ambiente formatadas com cabeçalho e linhas numeradas]
+
+- show-all-env-vars-pretty
+
+[Imprime todas as variáveis exportadas formatadas com cabeçalho e linhas numeradas]
+
+- show-all-printenv-vars-pretty
+
+[Imprime todas as variáveis do shell formatadas com cabeçalho e linhas numeradas]
+
+- show-all-sh-vars-pretty
+
+#### Pretty_System_Config
+
+[Imprime arquivo de unidade do serviço SSH do systemd formatado com cabeçalho e linhas numeradas]
+
+- cat-ssh-service-pretty
+
+#### Pretty_Basic_Commands
+
+[Abre GNOME Text Editor formatado com mensagem de cabeçalho]
+
+- gted-pretty
+
+[Decodifica URI formatado mostrando entrada e saída decodificada]
+
+- uri-decode-pretty
+
+[Imprime resultado do printf-tr com cabeçalho formatado]
+
+- printf-tr-pretty
+
+[Lista arquivos por índice formatada com exibição opcional de conteúdo]
+
+- cat-indexed-pretty
+
+[Executa múltiplos comandos formatados contra um alvo com saída por comando]
+
+- run-cmds-pretty
+
+#### Pretty_HTML_CSS_Tools
+
+[Remove comentários HTML formatado mostrando contagem antes/depois]
+
+- strip-html-comments-pretty
+
+[Extrai e minifica CSS formatado com comparação de tamanho em bytes]
+
+- extract-min-css-pretty
+
+[Conta comentários HTML e linhas em um arquivo formatado]
+
+- count-html-comments-pretty
+
+[Verifica disponibilidade de minificador CSS formatado com status de check/cross]
+
+- check-css-minifier-pretty
+
+[Injeta CSS minificado em HTML formatado com comparação de contagem de linhas]
+
+- inject-min-css-pretty
+
 ### Utilities
 
 #### Package_Management
@@ -835,6 +1083,26 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Grep com saída colorida automática]
 
 - grep
+
+[Abre o Editor de Texto GNOME]
+
+- gted
+
+[Decodifica uma string URI codificada por porcentagem (ex. %20 → espaço) — $1: uri (obrigatório)]
+
+- uri-decode
+
+[Printf com largura de campo, delimitador e substituição baseada em tr — $1: delimitador, $2: largura, $3: tipo, $4: alvo (obrigatório), $5: padrão (obrigatório), $6: substituto (obrigatório), $7: tr_de, $8: tr_para]
+
+- printf-tr
+
+[Lista arquivos com números de índice e exibe conteúdo do arquivo por índice — $1: índice (padrão: 1)]
+
+- cat-indexed
+
+[Executa múltiplos comandos contra um único argumento alvo — $1: alvo (obrigatório), $@: comandos]
+
+- run-cmds
 
 [Baixa ISO Desktop amd64 do Ubuntu 24.04.3]
 
@@ -1519,6 +1787,28 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Limpa cache fetch do Chrome/Chromium (variante duplicada)]
 
 - rmchrome-fetch
+
+### HTML_CSS_Tools
+
+[Remove todos os comentários HTML de um arquivo e reformata com Prettier]
+
+- strip-html-comments
+
+[Extrai conteúdo &lt;style&gt; de um arquivo HTML, minifica com clean-css-cli e exibe tamanhos original vs minificado em bytes]
+
+- extract-min-css
+
+[Conta comentários HTML e total de linhas em um arquivo]
+
+- count-html-comments
+
+[Verifica qual CLI de minificação CSS está disponível (csso ou clean-css-cli)]
+
+- check-css-minifier
+
+[Injeta um arquivo CSS minificado no bloco &lt;style&gt; de um arquivo HTML, restaurando at-rules @media e @container colapsadas pela minificação]
+
+- inject-min-css
 
 ### Android_ADB
 

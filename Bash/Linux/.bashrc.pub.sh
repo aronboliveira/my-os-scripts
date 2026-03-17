@@ -1,5 +1,3 @@
-# THIS CODE IS MEANT TO BE PASTED IN THE *MIDDLE* OF YOUR .bashrc ⤐ NOT IN THE START, NOT AT THE END, AND DEFINITLY NOT REPLACING EVERYTHING (YOU WILL BREAK BASH DOING THIS)
-
 ### * START OF PUBLICABLE CODE * ###
 #region PUBLICABLE_CODE
 
@@ -40,11 +38,79 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     }
     alias setup-software-gl='setup_software_gl'
 
+    ## @description List all environment variables (env), sorted alphabetically.
+    alias show-all-env-vars='env | grep -v "^$" | sort'
+
+    ## @description List all exported variables (printenv), sorted alphabetically.
+    alias show-all-printenv-vars='printenv | grep -v "^$" | sort'
+
+    ## @description List all shell variables (set -o posix; set), sorted alphabetically.
+    alias show-all-sh-vars='( set -o posix; set ) | grep -v "^$" | sort'
+
     ## @description Show current display session type (x11 or wayland).
     alias show-display-session="echo \$XDG_SESSION_TYPE"
 
-    ## @description Show current desktop session name.
+    ## @description Show current desktop session name (e.g., gnome, plasma).
     alias show-desktop-session="echo \$XDG_SESSION_DESKTOP"
+
+    ## @description Show XDG data directories path list.
+    alias show-datadirs-session="echo \$XDG_DATA_DIRS"
+
+    ## @description Show host machine type (e.g., x86_64).
+    alias show-hostype="echo \$HOSTTYPE"
+
+    ## @description Show current user's home directory path.
+    alias show-home="echo \$HOME"
+
+    ## @description Show current username.
+    alias show-user="echo \$USER"
+
+    ## @description Show current shell binary path.
+    alias show-shell="echo \$SHELL"
+
+    ## @description Show current working directory (alias for pwd).
+    alias show-wrkdir="echo \$PWD"
+
+    ## @description Show display server type code (x11 or wayland).
+    alias show-display-server-code="echo \$XDG_SESSION_TYPE"
+
+    ## @description Show human-readable description of the current display server.
+    show_display_server() {
+      local display="${DISPLAY:-unset}"
+      
+      case "$display" in
+        unset)
+          echo "No display server - headless environment or TTY"
+          ;;
+        :0)
+          echo "X11 server on local machine (primary display)"
+          ;;
+        :0.0)
+          echo "X11 server on local machine, screen 0"
+          ;;
+        :1)
+          echo "Second X11 server"
+          ;;
+        :1.0)
+          echo "Second X11 server, screen 0"
+          ;;
+        :2)
+          echo "Third X11 server"
+          ;;
+        :10|:11|:20|:30|:99)
+          echo "Nested X server or virtual display"
+          ;;
+        *)
+          echo "Display: $display (custom or remote X server)"
+          ;;
+      esac
+    }
+
+    ## @description Show human-readable display server info.
+    alias show-display-server='show_display_server'
+
+    ## @description Show D-Bus session bus address.
+    alias show-dbus-addr="echo \$DBUS_SESSION_BUS_ADDRESS"
 
     ## @description Show the active display manager service unit name.
     alias show-display-manager='systemctl show -p Id display-manager.service'
@@ -53,11 +119,14 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias show-display-manager-x11='sudo cat /etc/X11/default-display-manager'
 
     ## @description Show the current desktop environment identifier.
-    alias show-current-de='echo \$XDG_CURRENT_DESKTOP'
+    alias show-current-de="echo \$XDG_CURRENT_DESKTOP"
+
+    ## @description Show current desktop environment identifier (alias for show-current-de).
+    alias show-desktop-env="echo \$XDG_CURRENT_DESKTOP"
 
     ## @description Detect the active display manager and show its greeter
     ##   configuration. Supports LightDM, GDM3, SDDM, LXDM, XDM, and SLiM.
-    show_greeter() {
+    show_greeter_verbose() {
       local dm
       dm=$(cat /etc/X11/default-display-manager 2>/dev/null | xargs basename)
 
@@ -98,7 +167,10 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
           ;;
       esac
     }
-    alias show-greeter='show_greeter'
+    ## @description Show verbose greeter/display-manager configuration.
+    alias show-greeter-verbose='show_greeter_verbose'
+    ## @description Show only the greeter line from display-manager config.
+    alias show-greeter='show-greeter-verbose | grep "Greeter:"'
 
     ## @description Show SDDM KDE settings from /etc/sddm.conf.d/kde_settings.conf.
     alias cat-kde-settings='sudo cat /etc/sddm.conf.d/kde_settings.conf 2>/dev/null || echo "No KDE settings found"'
@@ -125,6 +197,12 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
 
     ## @description Show running screen locker processes (xscreensaver, swaylock, i3lock, etc.).
     alias show-screen-locker='ps aux | grep -E "xscreensaver|light-locker|swaylock|i3lock|gnome-screensaver" | grep -v grep'
+
+    ## @description Show comprehensive display environment info (session, DM, greeter, compositor, WM).
+    alias show-full-display-info='show-desktop && show-display-session && show-display-manager && show-greeter && show-screen-compositor && show-win-mng'
+
+    ## @description Show compact desktop environment summary.
+    alias show-desktop="show-display-session; show-display-server; show-desktop-session; show-desktop-env; show-display-manager; show-win-mng"
 
     ## @description List installed GUI toolkit runtime libraries (GTK and Qt).
     alias show-installed-tks='dpkg -l | grep -E "libgtk|libqt" | grep -v dev'
@@ -242,6 +320,10 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mUser '$username' created and added to sudo group.\033[0m"
     }
     alias add-sudo-user='add_sudo_user'
+    ## @description Display sudoers file content (requires permissions).
+    alias cat-sudoers='cat /etc/sudoers 2>/dev/null || echo "Cannot read sudoers file"'
+    ## @description Show sudoers timestamp_timeout setting.
+    alias cat-sudoers-timestamp='sudo cat /etc/sudoers | grep timestamp_timeout 2>/dev/null || echo "No timestamp_timeout setting found in sudoers"'
   #endregion User_Management
 
   #region Desktop_Environment
@@ -388,6 +470,218 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       done
     }
     alias check-de-programs='check_de_programs'
+
+    ## @description Mark a .desktop file as trusted for GNOME/DI NG.
+    ## @param $1 {string} filename or path - Desktop entry file to trust
+    trust_desktop_entry() {
+      local input="$1"
+      if [[ -z "$input" ]]; then
+        echo "Usage: trust_desktop_entry <filename|path>" >&2
+        return 1
+      fi
+      local desktop_file
+      if [[ "$input" == "$HOME/Desktop/"* ]]; then
+        desktop_file="$input"
+      else
+        desktop_file="$HOME/Desktop/$(basename "$input")"
+      fi
+      if [[ ! -f "$desktop_file" ]]; then
+        echo "Error: '$(basename "$desktop_file")' not found on the Desktop ($desktop_file)." >&2
+        return 1
+      fi
+      if [[ "$desktop_file" != *.desktop ]]; then
+        echo "Warning: '$(basename "$desktop_file")' does not have a .desktop extension." >&2
+      fi
+      local desktop_dir_perms
+      desktop_dir_perms=$(stat -c "%a" "$HOME/Desktop" 2>/dev/null)
+      if [[ "${desktop_dir_perms: -1}" =~ [2367] ]]; then
+        echo "Warning: ~/Desktop is world-writable (mode $desktop_dir_perms). DING will still reject the file as untrusted." >&2
+        echo "         Fix with: chmod o-w \"$HOME/Desktop\"" >&2
+      fi
+      chmod 755 "$desktop_file"
+      gio set "$desktop_file" metadata::trusted true
+      echo "✓ '$(basename "$desktop_file")' marked trusted with 755 permissions."
+      local distro_id distro_ver
+      distro_id=$(. /etc/os-release 2>/dev/null && echo "${ID:-unknown}")
+      distro_ver=$(. /etc/os-release 2>/dev/null && echo "${VERSION_ID:-0}")
+      case "${distro_id}:${distro_ver}" in
+
+        ubuntu:25.*)
+          if pgrep -f 'ding@rastersoft' > /dev/null 2>&1; then
+            kill "$(pgrep -f 'ding@rastersoft')" 2>/dev/null
+            echo "✓ DING restarted (Ubuntu 25)."
+          else
+            echo "Info: DING process not found on Ubuntu 25 — no restart needed."
+          fi
+          ;;
+
+        ubuntu:24.*)
+          if pgrep -f 'ding@rastersoft' > /dev/null 2>&1; then
+            kill "$(pgrep -f 'ding@rastersoft')" 2>/dev/null
+            sleep 1
+            echo "✓ DING restarted (Ubuntu 24)."
+          else
+            echo "Info: DING process not found on Ubuntu 24 — no restart needed."
+          fi
+          ;;
+
+        debian:13)
+          if pgrep -f 'ding@rastersoft' > /dev/null 2>&1; then
+            kill "$(pgrep -f 'ding@rastersoft')" 2>/dev/null
+            echo "✓ DING restarted (Debian 13)."
+          elif [[ -d "$HOME/.local/share/gnome-shell/extensions/ding@rastersoft.com" ]] || \
+              [[ -d "/usr/share/gnome-shell/extensions/ding@rastersoft.com" ]]; then
+            echo "Info: DING extension found but not running on Debian 13." >&2
+            echo "      Enable it with: gnome-extensions enable ding@rastersoft.com" >&2
+          else
+            echo "Info: DING not installed — trust metadata was set, but desktop icons" >&2
+            echo "      may be managed directly by Nautilus on Debian 13." >&2
+          fi
+          ;;
+
+        *)
+          echo "Warning: unrecognised distro '${distro_id} ${distro_ver}', attempting generic DING restart." >&2
+          if pgrep -f 'ding@rastersoft' > /dev/null 2>&1; then
+            kill "$(pgrep -f 'ding@rastersoft')" 2>/dev/null
+            echo "✓ DING restarted (generic)."
+          else
+            echo "Info: DING process not found — no restart needed."
+          fi
+          ;;
+
+      esac
+    }
+    ## @description Mark desktop entry as trusted.
+    alias trust-desktop='trust_desktop_entry'
+
+    ## @description Install essential KDE packages for GTK integration and productivity.
+    install_kde_apt_packages() {
+      echo -e "📦 \033[1;36mInstalling KDE packages...\033[0m"
+      sudo apt update && sudo apt install -y \
+        kde-config-gtk-style \
+        kde-config-gtk-style-preview \
+        plasma-discover-backend-flatpak \
+        kdeconnect \
+        dolphin-plugins \
+        okular
+      echo -e "✅ \033[1;32mKDE packages installed.\033[0m"
+    }
+    alias install-kde-pkgs='install_kde_apt_packages'
+
+    ## @description Ensure ~/Templates directory and "Empty File" template exist.
+    ensure_templates_dir() {
+      [[ -d "$HOME/Templates" ]] || mkdir -p "$HOME/Templates"
+      [[ -f "$HOME/Templates/Empty File" ]] || touch "$HOME/Templates/Empty File"
+      echo -e "✅ \033[1;32m~/Templates and 'Empty File' template ensured.\033[0m"
+    }
+    alias ensure-templates='ensure_templates_dir'
+
+    ## @description Install Nautilus extensions and ensure Templates directory.
+    install_nautilus_extensions() {
+      echo -e "📦 \033[1;36mInstalling Nautilus extensions...\033[0m"
+      sudo apt update && sudo apt install -y \
+        nautilus-extension-gnome-terminal \
+        nautilus-admin \
+        nautilus-image-converter
+      ensure_templates_dir
+      echo -e "✅ \033[1;32mNautilus extensions installed.\033[0m"
+    }
+    alias install-nautilus-ext='install_nautilus_extensions'
+
+    ## @description Create a Nautilus script for creating new files via Zenity dialog.
+    create_nautilus_newfile_script() {
+      local script_dir="$HOME/.local/share/nautilus/scripts"
+      local script_path="$script_dir/New File"
+      mkdir -p "$script_dir"
+      cat > "$script_path" << 'EOF'
+#!/bin/bash
+# Nautilus script: Create New File with Zenity dialog
+
+uri_decode() {
+  printf '%b' "${1//%/\\x}"
+}
+
+# Resolve current directory: prefer URI, fallback to selected file's dir, then PWD
+if [ -n "$NAUTILUS_SCRIPT_CURRENT_URI" ]; then
+    CURRENT_DIR=$(uri_decode "${NAUTILUS_SCRIPT_CURRENT_URI#file://}")
+elif [ -n "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ]; then
+    CURRENT_DIR=$(dirname "$(echo "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" | head -n1)")
+else
+    CURRENT_DIR="$PWD"
+fi
+
+FILENAME=$(zenity --entry --text="Enter filename:" --title="Create New File" 2>/dev/null)
+if [ -n "$FILENAME" ]; then
+    FULL_PATH="$CURRENT_DIR/$FILENAME"
+    if touch "$FULL_PATH"; then
+        zenity --info --text="Created: $FULL_PATH" --title="Done" 2>/dev/null
+    else
+        zenity --error --text="Failed to create file in:\n$CURRENT_DIR" --title="Error" 2>/dev/null
+    fi
+fi
+EOF
+      chmod +x "$script_path"
+      echo -e "✅ \033[1;32mNautilus 'New File' script created at:\033[0m $script_path"
+    }
+    alias create-nautilus-newfile='create_nautilus_newfile_script'
+
+    ## @description Install Docker and comprehensive dev tools on Debian 13 Trixie only.
+    ## @note Uses bookworm Docker repo; installs NVM, Node 24, PHP 8.4, Brave, and many CLI tools.
+    install_debian_trixie_devtools() {
+      local distro_id distro_codename
+      distro_id=$(. /etc/os-release 2>/dev/null && echo "${ID:-}")
+      distro_codename=$(. /etc/os-release 2>/dev/null && echo "${VERSION_CODENAME:-}")
+
+      if [[ "$distro_id" != "debian" ]] || [[ "$distro_codename" != "trixie" ]]; then
+        echo -e "❌ \033[1;31mThis function is only for Debian 13 (Trixie).\033[0m"
+        echo -e "   Detected: $distro_id $distro_codename"
+        return 1
+      fi
+
+      echo -e "🚀 \033[1;36mStarting Debian Trixie devtools installation...\033[0m"
+
+      sudo apt-get update && \
+      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        ca-certificates curl gnupg lsb-release apt-transport-https && \
+      sudo mkdir -p /etc/apt/keyrings && \
+      sudo rm -f /etc/apt/keyrings/docker.gpg && \
+      curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" | \
+        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+      sudo apt-get update && \
+      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        build-essential curl wget git htop tmux openssh-server linux-headers-$(uname -r) \
+        apt-transport-https ca-certificates lsb-release gcc g++ gdb clang llvm make cmake \
+        python3 python3-pip python3-venv python3-dev openjdk-21-jdk maven gradle golang-go \
+        rustc cargo ruby-full perl cpanminus lua5.4 luarocks autoconf automake libtool \
+        pkg-config meson ninja-build bison flex gettext patchelf gitk git-gui subversion \
+        mercurial gh meld valgrind strace ltrace linux-perf heaptrack massif-visualizer \
+        sqlite3 libsqlite3-dev postgresql postgresql-client libpq-dev mariadb-server \
+        mariadb-client libmariadb-dev redis-server nginx apache2 haproxy squid podman \
+        buildah skopeo net-tools iproute2 nmap tcpdump wireshark httpie jq vim neovim \
+        nano emacs zsh fish fonts-powerline fzf ripgrep fd-find bat tree tldr-py man-db \
+        manpages-dev texlive pandoc doxygen graphviz python3-sphinx libssl-dev libreadline-dev \
+        zlib1g-dev libbz2-dev libffi-dev libncurses-dev libxml2-dev libxslt1-dev libyaml-dev \
+        unzip zip rsync sshfs screenfetch ack silversearcher-ag shellcheck shfmt moreutils \
+        parallel docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
+      curl -fsS https://dl.brave.com/install.sh | sh && \
+      /bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.4)" && \
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash && \
+      export NVM_DIR="$HOME/.nvm" && \
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+      nvm install 24 && \
+      sudo systemctl start docker && \
+      sudo systemctl enable docker && \
+      sudo usermod -aG docker "$USER" && \
+      echo -e "\\n✅ \033[1;32mInstallation complete!\033[0m" && \
+      echo -e "   Docker: $(docker --version)" && \
+      echo -e "   PHP: $(php -v | head -n1)" && \
+      echo -e "   Composer: $(composer --version 2>/dev/null || echo 'run newgrp docker first')" && \
+      echo -e "   Node: $(node -v)" && \
+      echo -e "   npm: $(npm -v)"
+    }
+    alias install-trixie-devtools='install_debian_trixie_devtools'
+
   #endregion Desktop_Environment
 
   #region System_Info_Aliases
@@ -398,6 +692,12 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       alias cat-etc-os='sudo cat /etc/os-release'
       alias cat-os-v='sudo cat /proc/version'
       alias cat-linux-v='sudo cat /proc/version'
+      ## @description Show distro ID (debian, ubuntu, fedora, etc.).
+      alias cat-distro-n='(. /etc/os-release 2>/dev/null && echo "${ID:-unknown}")'
+      ## @description Show distro version number.
+      alias cat-distro-v='(. /etc/os-release 2>/dev/null && echo "${VERSION_ID:-unknown}")'
+      ## @description Show full distro name with version.
+      alias cat-distro='(. /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-unknown}")'
       alias cat-k-host='sudo cat /proc/sys/kernel/hostname'
       alias cat-cmdline='sudo cat /proc/cmdline'
     #endregion Kernel_and_OS
@@ -408,6 +708,54 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       alias cat-vm-over-ratio='sudo cat /proc/sys/vm/overcommit_ratio'
       alias cat-cpu-inf='sudo cat /proc/cpuinfo'
       alias cat-mem-inf='sudo cat /proc/meminfo'
+      ## @description Show systemd OOM daemon configuration from /etc/systemd/oomd.conf.
+      alias cat-oom-conf='sudo cat /etc/systemd/oomd.conf 2>/dev/null || echo "No OOM config file found"'
+      ## @description Show the vm.oom_kill_allocating_task sysctl value (0=kill random, 1=kill allocating task).
+      alias show-oom-kill-alloc='sudo sysctl vm.oom_kill_allocating_task'
+      ## @description Follow earlyoom daemon output with verbose reporting at a set interval.
+      ## @param $1 {int} interval - Reporting interval in seconds (default: 2)
+      follow_early_oom_rec() {
+        local interval="${1:-2}"
+        earlyoom -vr "$interval"
+      }
+      alias follow-early-oom='follow_early_oom_rec'
+      ## @description Watch memory-hungry processes sorted by RSS in real time.
+      ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
+      watch_mem_hogs() {
+        local interval="${1:-0.25}"
+        watch -n "$interval" 'ps aux --sort=-%mem | awk "{print \$1,\$2,\$4,\$5,\$6,\$11}"'
+      }
+      alias watch-mem-hogs='watch_mem_hogs'
+      ## @description Show the OOM kill score for a process (higher = more likely to be killed).
+      ## @param $1 {int} pid - Process ID (required)
+      cat_pid_oom_kill_score() {
+        local pid="${1?"Usage: cat-pid-oom-kill-score <pid>"}"
+        echo ==== "OOM SCORE (TO BE KILLED)" ====
+        sudo cat /proc/"$pid"/oom_score 2>/dev/null || echo "No OOM score info available"
+      }
+      alias cat-pid-oom-kill-score='cat_pid_oom_kill_score'
+      ## @description Show the OOM adjustment score for a process (-1000 to 1000; lower = less likely to be killed).
+      ## @param $1 {int} pid - Process ID (required)
+      cat_pid_oom_adj_score() {
+        local pid="${1?"Usage: cat-pid-oom-adj-score <pid>"}"
+        echo ==== "OOM SCORE (TO BE ADJUSTED)" ====
+        sudo cat /proc/"$pid"/oom_score_adj 2>/dev/null || echo "No OOM adj info available"
+      }
+      alias cat-pid-oom-adj-score='cat_pid_oom_adj_score'
+      ## @description Show both OOM kill score and adjustment score for a process.
+      ## @param $1 {int} pid - Process ID (required)
+      cat_pid_oom_scores() {
+        local pid="${1?"Usage: cat-pid-oom-scores <pid>"}"
+        echo ==== "OOM SCORE (TO BE KILLED)" ====
+        sudo cat /proc/"$pid"/oom_score 2>/dev/null || echo "No OOM score info available"
+        echo ==== "OOM SCORE (TO BE ADJUSTED)" ====
+        sudo cat /proc/"$pid"/oom_score_adj 2>/dev/null || echo "No OOM adj info available"
+      }
+      alias cat-pid-oom-scores='cat_pid_oom_scores'
+      ## @description Follow the earlyoom systemd journal (sudo journalctl -u earlyoom).
+      alias journal-earlyoom='sudo journalctl -u earlyoom'
+      ## @description Follow the systemd-oomd journal (sudo journalctl -u systemd-oomd).
+      alias journal-sysoomd='sudo journalctl -u systemd-oomd'
     #endregion VM_and_Memory
 
     #region Storage_and_Partitions
@@ -430,6 +778,8 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       alias cat-hosts='sudo cat /etc/hosts'
       alias cat-users='sudo cat /etc/passwd | cut -d: -f1'
       alias cat-ssh-cfg='sudo cat /etc/ssh/sshd_config'
+      ## @description Show the SSH systemd service unit file.
+      alias cat-ssh-service='sudo cat /lib/systemd/system/ssh.service 2>/dev/null || echo "SSH service file not found"'
       alias cat-sudoers='sudo cat /etc/sudoers'
 
       _cat_sysctl_conf() {
@@ -708,6 +1058,89 @@ print('✅ GPU disabled in argv.json')
         _pretty_hdr "Memory Information — /proc/meminfo"
         sudo cat /proc/meminfo 2>/dev/null | sed \
           -e "s/^\([A-Za-z_()]*\):/$(printf '\033[1;34m')\1$(printf '\033[0m'):/" | _pretty_nl
+        _pretty_ftr
+      }
+
+      ## @description Pretty-print systemd OOM daemon configuration.
+      cat-oom-conf-pretty() {
+        _pretty_hdr "OOM Daemon Config — /etc/systemd/oomd.conf"
+        sudo cat /etc/systemd/oomd.conf 2>/dev/null | _pretty_nl || echo "No OOM config file found"
+        _pretty_ftr
+      }
+
+      ## @description Pretty-print vm.oom_kill_allocating_task sysctl value.
+      show-oom-kill-alloc-pretty() {
+        _pretty_hdr "OOM Kill Allocating Task"
+        local val
+        val=$(sudo sysctl vm.oom_kill_allocating_task 2>/dev/null)
+        echo -e "  \033[1;33m${val}\033[0m  (0=kill random process 1=kill allocating task)"
+        _pretty_ftr
+      }
+
+      ## @description Follow earlyoom daemon output with pretty header and a set interval.
+      ## @param $1 {int} interval - Reporting interval in seconds (default: 2)
+      follow-early-oom-pretty() {
+        local interval="${1:-2}"
+        _pretty_hdr "earlyoom — verbose reporting (interval: ${interval}s)"
+        follow_early_oom_rec "$interval"
+        _pretty_ftr
+      }
+
+      ## @description Watch memory-hungry processes sorted by RSS with pretty header.
+      ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
+      watch-mem-hogs-pretty() {
+        local interval="${1:-0.25}"
+        _pretty_hdr "Memory Hogs — top RSS consumers (interval: ${interval}s)"
+        watch_mem_hogs "$interval"
+        _pretty_ftr
+      }
+
+      ## @description Pretty-print OOM kill score for a process.
+      ## @param $1 {int} pid - Process ID (required)
+      cat-pid-oom-kill-score-pretty() {
+        local pid="${1?"Usage: cat-pid-oom-kill-score-pretty <pid>"}"
+        _pretty_hdr "OOM Kill Score — PID ${pid}"
+        local val
+        val=$(sudo cat /proc/"$pid"/oom_score 2>/dev/null)
+        echo -e "  \033[1;33mOOM Score:\033[0m ${val:-N/A}  (higher = more likely to be killed)"
+        _pretty_ftr
+      }
+
+      ## @description Pretty-print OOM adjustment score for a process.
+      ## @param $1 {int} pid - Process ID (required)
+      cat-pid-oom-adj-score-pretty() {
+        local pid="${1?"Usage: cat-pid-oom-adj-score-pretty <pid>"}"
+        _pretty_hdr "OOM Adjustment Score — PID ${pid}"
+        local val
+        val=$(sudo cat /proc/"$pid"/oom_score_adj 2>/dev/null)
+        echo -e "  \033[1;33mOOM Score Adj:\033[0m ${val:-N/A}  (-1000=never kill  0=normal  1000=always kill)"
+        _pretty_ftr
+      }
+
+      ## @description Pretty-print both OOM scores for a process.
+      ## @param $1 {int} pid - Process ID (required)
+      cat-pid-oom-scores-pretty() {
+        local pid="${1?"Usage: cat-pid-oom-scores-pretty <pid>"}"
+        _pretty_hdr "OOM Scores — PID ${pid}"
+        local kill_score adj_score
+        kill_score=$(sudo cat /proc/"$pid"/oom_score 2>/dev/null)
+        adj_score=$(sudo cat /proc/"$pid"/oom_score_adj 2>/dev/null)
+        echo -e "  \033[1;33mOOM Score:\033[0m     ${kill_score:-N/A}  (higher = more likely to be killed)"
+        echo -e "  \033[1;33mOOM Score Adj:\033[0m ${adj_score:-N/A}  (-1000=never kill  0=normal  1000=always kill)"
+        _pretty_ftr
+      }
+
+      ## @description Pretty-print earlyoom systemd journal.
+      journal-earlyoom-pretty() {
+        _pretty_hdr "earlyoom Journal — systemd"
+        sudo journalctl -u earlyoom 2>/dev/null | _pretty_nl
+        _pretty_ftr
+      }
+
+      ## @description Pretty-print systemd-oomd journal.
+      journal-sysoomd-pretty() {
+        _pretty_hdr "systemd-oomd Journal"
+        sudo journalctl -u systemd-oomd 2>/dev/null | _pretty_nl
         _pretty_ftr
       }
     #endregion Pretty_VM_Memory
@@ -1391,6 +1824,175 @@ print('✅ GPU disabled in argv.json')
         _pretty_ftr
       }
     #endregion Pretty_Desktop_Environment
+
+    #region Pretty_System_Setup
+      show-all-env-vars-pretty() {
+        _pretty_hdr "All Environment Variables (env)"
+        env | grep -v '^$' | sort | _pretty_nl
+        _pretty_ftr
+      }
+
+      show-all-printenv-vars-pretty() {
+        _pretty_hdr "All Exported Variables (printenv)"
+        printenv | grep -v '^$' | sort | _pretty_nl
+        _pretty_ftr
+      }
+
+      show-all-sh-vars-pretty() {
+        _pretty_hdr "All Shell Variables (set)"
+        ( set -o posix; set ) | grep -v '^$' | sort | _pretty_nl
+        _pretty_ftr
+      }
+    #endregion Pretty_System_Setup
+
+    #region Pretty_System_Config
+      cat-ssh-service-pretty() {
+        _pretty_hdr "SSH Service Unit — /lib/systemd/system/ssh.service"
+        sudo cat /lib/systemd/system/ssh.service 2>/dev/null | _pretty_nl \
+          || echo -e "  \033[2;37m(SSH service file not found)\033[0m"
+        _pretty_ftr
+      }
+    #endregion Pretty_System_Config
+
+    #region Pretty_Basic_Commands
+      gted-pretty() {
+        _pretty_hdr "GNOME Text Editor"
+        echo -e "  \033[1;32m►\033[0m Opening gnome-text-editor${1:+ for \033[1m$1\033[0m}…"
+        gnome-text-editor "$@" &
+        _pretty_ftr
+      }
+
+      uri-decode-pretty() {
+        _pretty_hdr "URI Decode"
+        local result
+        result=$(printf '%b' "${1//%/\\x}")
+        echo -e "  \033[1;34mInput:\033[0m  $1"
+        echo -e "  \033[1;32mOutput:\033[0m $result"
+        _pretty_ftr
+      }
+
+      printf-tr-pretty() {
+        _pretty_hdr "Printf with TR Substitution"
+        local result
+        result=$(printftr "$@" 2>&1)
+        local rc=$?
+        if [[ $rc -eq 0 ]]; then
+          echo -e "  \033[1;32mResult:\033[0m $result"
+        else
+          echo -e "  \033[1;31m✗ Error:\033[0m $result"
+        fi
+        _pretty_ftr
+      }
+
+      cat-indexed-pretty() {
+        _pretty_hdr "Indexed File Listing"
+        ls | nl -ba -w3 -s ' │ ' | sed \
+          -e "s/^\( *[0-9]*\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/"
+        if [[ -n "${1:-}" ]]; then
+          local file
+          file=$(ls | sed -n "${1}p")
+          if [[ -n "$file" ]]; then
+            echo ""
+            echo -e "  \033[1;36m► Contents of [$1] $file:\033[0m"
+            strings "$file" 2>/dev/null | _pretty_nl
+          fi
+        fi
+        _pretty_ftr
+      }
+
+      run-cmds-pretty() {
+        _pretty_hdr "Run Multiple Commands"
+        [ -z "$1" ] && { echo -e "  \033[1;31m✗ Error: target required\033[0m"; _pretty_ftr; return 1; }
+        local target="$1"
+        shift
+        echo -e "  \033[1;34mTarget:\033[0m $target"
+        echo ""
+        for cmd in "$@"; do
+          echo -e "  \033[1;33m► $cmd\033[0m"
+          eval "$cmd \"$target\"" 2>/dev/null | _pretty_nl
+          echo ""
+        done
+        _pretty_ftr
+      }
+    #endregion Pretty_Basic_Commands
+
+    #region Pretty_HTML_CSS_Tools
+      strip-html-comments-pretty() {
+        _pretty_hdr "Strip HTML Comments & Prettier Format"
+        local path="${1:?Usage: strip-html-comments-pretty <html_file>}"
+        [[ -f "$path" ]] || { echo -e "  \033[1;31m✗ File not found:\033[0m $path"; _pretty_ftr; return 1; }
+        local before after
+        before=$(grep -c '<!--' "$path")
+        strip_html_comments_format "$path"
+        after=$(grep -c '<!--' "$path" 2>/dev/null || echo 0)
+        echo ""
+        echo -e "  \033[1;34mFile:\033[0m     $path"
+        echo -e "  \033[1;33mBefore:\033[0m   $before comments"
+        echo -e "  \033[1;32mAfter:\033[0m    $after comments"
+        _pretty_ftr
+      }
+
+      extract-min-css-pretty() {
+        _pretty_hdr "Extract & Minify CSS from HTML"
+        local src="${1:?Usage: extract-min-css-pretty <html> <out.css> <out.min.css>}"
+        local extract_src="${2:?}"
+        local extract_min="${3:?}"
+        extract_minify_css "$src" "$extract_src" "$extract_min"
+        echo ""
+        echo -e "  \033[1;34mSource:\033[0m    $src"
+        echo -e "  \033[1;33mExtracted:\033[0m $extract_src ($(wc -c < "$extract_src" 2>/dev/null) bytes)"
+        echo -e "  \033[1;32mMinified:\033[0m  $extract_min ($(wc -c < "$extract_min" 2>/dev/null) bytes)"
+        _pretty_ftr
+      }
+
+      count-html-comments-pretty() {
+        _pretty_hdr "HTML Comment & Line Count"
+        local path="${1:?Usage: count-html-comments-pretty <html_file>}"
+        [[ -f "$path" ]] || { echo -e "  \033[1;31m✗ File not found:\033[0m $path"; _pretty_ftr; return 1; }
+        local comments lines
+        comments=$(grep -c '<!--' "$path")
+        lines=$(wc -l < "$path")
+        echo -e "  \033[1;34mFile:\033[0m     $path"
+        echo -e "  \033[1;33mComments:\033[0m $comments"
+        echo -e "  \033[1;32mLines:\033[0m    $lines"
+        _pretty_ftr
+      }
+
+      check-css-minifier-pretty() {
+        _pretty_hdr "CSS Minifier Availability"
+        local ver
+        ver=$(npx csso --version 2>/dev/null)
+        if [[ -n "$ver" ]]; then
+          echo -e "  \033[1;32m✓\033[0m csso: $ver"
+        else
+          echo -e "  \033[1;31m✗\033[0m csso: not found"
+        fi
+        ver=$(npx clean-css-cli --version 2>/dev/null)
+        if [[ -n "$ver" ]]; then
+          echo -e "  \033[1;32m✓\033[0m clean-css-cli: $ver"
+        else
+          echo -e "  \033[1;31m✗\033[0m clean-css-cli: not found"
+        fi
+        _pretty_ftr
+      }
+
+      inject-min-css-pretty() {
+        _pretty_hdr "Inject Minified CSS into HTML"
+        local src="${1:?Usage: inject-min-css-pretty <html_file> <minified_css>}"
+        local min_css="${2:?}"
+        [[ -f "$src" ]] || { echo -e "  \033[1;31m✗ Source not found:\033[0m $src"; _pretty_ftr; return 1; }
+        [[ -f "$min_css" ]] || { echo -e "  \033[1;31m✗ CSS not found:\033[0m $min_css"; _pretty_ftr; return 1; }
+        local lines_before
+        lines_before=$(wc -l < "$src")
+        inject_minified_css "$src" "$min_css"
+        local lines_after
+        lines_after=$(wc -l < "$src")
+        echo -e "  \033[1;34mHTML:\033[0m        $src"
+        echo -e "  \033[1;33mCSS source:\033[0m  $min_css"
+        echo -e "  \033[1;32mLines:\033[0m       $lines_before → $lines_after"
+        _pretty_ftr
+      }
+    #endregion Pretty_HTML_CSS_Tools
   #endregion Pretty_Aliases
 
   #region Utilities
@@ -1524,9 +2126,76 @@ print('✅ GPU disabled in argv.json')
     #endregion Hardware_Shortcuts
 
     #region Basic_Commands
+      ## @description Open GNOME Text Editor.
+      alias gted='gnome-text-editor'
       alias mkd='mkdir'
       alias grep='grep --color=auto'
       alias wget-ubuntu-iso='wget https://releases.ubuntu.com/24.04.3/ubuntu-24.04.3-desktop-amd64.iso'
+
+      ## @description Decode a percent-encoded URI string (e.g. %20 -> space).
+      ## @param $1 {string} uri - Percent-encoded string to decode (required)
+      uri_decode() {
+          printf '%b' "${1//%/\\x}"
+      }
+      alias uri-decode='uri_decode'
+
+      ## @description Printf with field-width, delimiter, and tr-based substitution.
+      ## @param $1 {string} delimiter - Fill character flag (-, 0, +, or empty)
+      ## @param $2 {number} width     - Field width
+      ## @param $3 {string} type      - Format type (%b or %s, default: %b)
+      ## @param $4 {string} target    - String to format (required)
+      ## @param $5 {string} pattern   - Pattern to replace in target (required)
+      ## @param $6 {string} substitute - Replacement string (required)
+      ## @param $7 {string} tr_from   - tr source character (optional)
+      ## @param $8 {string} tr_to     - tr destination character (optional, default: space)
+      printftr() {
+        local delimiter="${1:-}"
+        local width="${2:-}"
+        local type="${3:-%b}"
+        local target="${4:?No argument for capturing provided}"
+        local pattern="${5:?No pattern to replace provided. Failed.}"
+        local substitute="${6:?No replacer given. Failed.}"
+        local tr_from="${7:-}"
+        local tr_to="${8:- }"
+        if [[ -n "$delimiter" && "$delimiter" != '-' && "$delimiter" != '0' && "$delimiter" != '+' ]]; then
+          echo "Invalid delimiter! Acceptable values are -, 0, + or empty" >&2
+          return 1
+        fi
+        if [[ "$type" != '%b' && "$type" != '%s' ]]; then
+          echo "Invalid type for printf. Acceptable values: %b or %s" >&2
+          return 1
+        fi
+        local fill_char
+        case "$delimiter" in
+          '0') fill_char='0' ;;
+          '+') fill_char='+' ;;
+          *)   fill_char=' ' ;;
+        esac
+        tr_from="${tr_from:-$fill_char}"
+        printf "%${delimiter}${width}${type#%}" "${target//${pattern}/${substitute}}" | tr "$tr_from" "$tr_to"
+      }
+      alias printf-tr='printftr'
+
+      ## @description List files with index numbers and display the contents of a file by index.
+      ## @param $1 {number} index - 1-based index of the file to display (default: 1)
+      cat_indexed() {
+        local index="${1:-1}"
+        (ls | nl) && file=$(ls | sed -n "${index}p") && output=$(strings "$file") && echo "${output:-"INDEXED HAS NO CONTENT"} 2>/dev/null" || echo "No file found at index $index"
+      }
+      alias cat-indexed='cat_indexed'
+
+      ## @description Run multiple commands against a single target argument.
+      ## @param $1 {string} target - The target argument for all commands (required)
+      ## @param $@ {string} cmds   - Commands to run against the target
+      run_cmds() {
+        [ -z "$1" ] && { echo "Error: target required" >&2; return 1; }
+        local target="$1"
+        shift
+        for cmd in "$@"; do 
+            eval "$cmd \"$target\"" 2>/dev/null
+        done
+      }
+      alias run-cmds='run_cmds'
 
       ## @description Custom ls output: time, size, name.
       ls_lah_859() {
@@ -2544,6 +3213,76 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
     }
     alias rmchrome-fetch='clear_chrome_fetch'
   #endregion Browser_Dev
+
+  #region HTML_CSS_Tools
+    ## @description Strip all HTML comments from a file and reformat with Prettier.
+    ## @param $1 {string} path - Path to the HTML file (required)
+    strip_html_comments_format() {
+      local path="${1:?Usage: strip-html-comments <html_file>}"
+      [[ -f "$path" ]] || { echo -e "❌ \033[1;31mFile not found:\033[0m $path"; return 1; }
+      perl -0777 -i -pe 's/<!--(?!.*?--\s*>.*?<!--).*?-->//gs' "$path" \
+        && npx prettier --parser html --print-width 120 --tab-width 2 \
+             --no-semi --single-attribute-per-line \
+             --html-whitespace-sensitivity ignore --write "$path"
+    }
+    alias strip-html-comments='strip_html_comments_format'
+
+    ## @description Extract <style> content from an HTML file, minify with clean-css-cli,
+    ##              and display original vs minified byte sizes.
+    ## @param $1 {string} src          - Source HTML file (required)
+    ## @param $2 {string} extract_src  - Destination for extracted CSS (required)
+    ## @param $3 {string} extract_min  - Destination for minified CSS (required)
+    extract_minify_css() {
+      local src="${1:?Usage: extract-min-css <html_file> <extracted.css> <minified.css>}"
+      local extract_src="${2:?Usage: extract-min-css <html_file> <extracted.css> <minified.css>}"
+      local extract_min="${3:?Usage: extract-min-css <html_file> <extracted.css> <minified.css>}"
+      [[ -f "$src" ]] || { echo -e "❌ \033[1;31mSource not found:\033[0m $src"; return 1; }
+      perl -0777 -ne '/<style[^>]*>(.*?)<\/style>/s && print $1' "$src" > "$extract_src" \
+        && npx clean-css-cli -o "$extract_min" "$extract_src" \
+        && wc -c "$extract_src" "$extract_min"
+    }
+    alias extract-min-css='extract_minify_css'
+
+    ## @description Count HTML comments and total lines in a file.
+    ## @param $1 {string} path - Path to the HTML file (required)
+    count_html_comments() {
+      local path="${1:?Usage: count-html-comments <html_file>}"
+      [[ -f "$path" ]] || { echo -e "❌ \033[1;31mFile not found:\033[0m $path"; return 1; }
+      echo "Comments: $(grep -c '<!--' "$path")"
+      echo "Lines:    $(wc -l < "$path")"
+    }
+    alias count-html-comments='count_html_comments'
+
+    ## @description Check which CSS minifier CLI is available (csso or clean-css-cli).
+    check_css_minifier() {
+      npx csso --version 2>/dev/null \
+        || npx clean-css-cli --version 2>/dev/null \
+        || echo "NONE"
+    }
+    alias check-css-minifier='check_css_minifier'
+
+    ## @description Inject a minified CSS file into the <style> block of an HTML file,
+    ##              then restore @media and @container at-rules collapsed by minification.
+    ## @param $1 {string} src     - HTML file to inject into (required)
+    ## @param $2 {string} min_css - Minified CSS file to inject (required)
+    inject_minified_css() {
+      local src="${1:?Usage: inject-min-css <html_file> <minified_css_file>}"
+      local min_css="${2:?Usage: inject-min-css <html_file> <minified_css_file>}"
+      [[ -f "$src" ]] || { echo -e "❌ \033[1;31mSource not found:\033[0m $src"; return 1; }
+      [[ -f "$min_css" ]] || { echo -e "❌ \033[1;31mCSS not found:\033[0m $min_css"; return 1; }
+      local css
+      css=$(<"$min_css")
+      perl -0777 -i -pe \
+        "s{(<style[^>]*>).*?(</style>)}{\$1${css}\$2}s" "$src"
+      perl -0777 -i -pe '
+        s/\}\s*(print|screen|all|speech)\s*\{/}\@media $1\{/g;
+        s/(container-type:\s*[a-z-]+\s*\})\s*(\([^)]+\)\s*\{)/$1\@container $2/g;
+        s/\}\s+(\([^)]+\)\s*\{)/}\@media $1/g;
+      ' "$src"
+      echo -e "✅ Injected into \033[1m$src\033[0m ($(wc -l < "$src") lines)"
+    }
+    alias inject-min-css='inject_minified_css'
+  #endregion HTML_CSS_Tools
 
   #region Android_ADB
     list_heaviest_android_files() {

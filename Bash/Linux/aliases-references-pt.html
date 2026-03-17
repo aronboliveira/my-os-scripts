@@ -411,6 +411,11 @@
                 <span>Utilitários</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#htmlCssTools">
+                <span>HTML/CSS</span>
+              </a>
+            </li>
           </ul>
           <div class="d-flex align-items-center gap-3">
             <div
@@ -487,6 +492,10 @@
             <a class="nav-link" href="#laravelPhp">
               <i aria-hidden="true" class="bi bi-filetype-php me-2"></i>
               <span>Laravel/PHP</span>
+            </a>
+            <a class="nav-link" href="#htmlCssTools">
+              <i aria-hidden="true" class="bi bi-filetype-css me-2"></i>
+              <span>Ferramentas HTML/CSS</span>
             </a>
             <a class="nav-link" href="#powershellEquivalents">
               <i aria-hidden="true" class="bi bi-terminal me-2"></i>
@@ -636,6 +645,144 @@ export MESA_GL_VERSION_OVERRIDE=3.3'</span>
   <span class="bash-builtin">export</span> <span class="bash-variable">MESA_GL_VERSION_OVERRIDE</span>=3.3
 }
 <span class="bash-builtin">alias</span> setup-software-gl=<span class="bash-string">'setup_software_gl'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-all-env-vars"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-env-vars</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Lista todas as variáveis de ambiente
+                              (<code>env</code>), ordenadas
+                              alfabeticamente.</span
+                            >
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span>simple alias</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for show-all-env-vars"
+                            ><code><span class="bash-builtin">alias</span> show-all-env-vars=<span class="bash-string">'env | grep -v "^$" | sort'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-all-printenv-vars"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-printenv-vars</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Lista todas as variáveis exportadas
+                              (<code>printenv</code>), ordenadas
+                              alfabeticamente.</span
+                            >
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span>simple alias</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for show-all-printenv-vars"
+                            ><code><span class="bash-builtin">alias</span> show-all-printenv-vars=<span class="bash-string">'printenv | grep -v "^$" | sort'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-all-sh-vars"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-sh-vars</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Lista todas as variáveis do shell (<code
+                                >set -o posix; set</code
+                              >), ordenadas alfabeticamente.</span
+                            >
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span>simple alias</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for show-all-sh-vars"
+                            ><code><span class="bash-builtin">alias</span> show-all-sh-vars=<span class="bash-string">'( set -o posix; set ) | grep -v "^$" | sort'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-ssh-service"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>cat-ssh-service</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Exibe o arquivo de unidade do serviço SSH do
+                              <b>systemd</b> em
+                              <code>/lib/systemd/system/ssh.service</code
+                              >.</span
+                            >
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span>simple alias</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for cat-ssh-service"
+                            ><code><span class="bash-builtin">alias</span> cat-ssh-service=<span class="bash-string">'sudo cat /lib/systemd/system/ssh.service 2>/dev/null || echo "SSH service file not found"'</span></code></pre>
                           </details>
                         </div>
                       </div>
@@ -879,6 +1026,466 @@ export MESA_GL_VERSION_OVERRIDE=3.3'</span>
                 >
               </p>
               <div class="alias-container">
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="install-plasma-backends"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>install-plasma-backends</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Instala backends Flatpak e Snap do
+                        plasma-discover</span
+                      >
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para install-plasma-backends"
+                      ><code><span class="bash-builtin">alias </span>install-plasma-backends=<span class="bash-string">'sudo apt install -y plasma-discover-backend-flatpak plasma-discover-backend-snap'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-datadirs-session"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-datadirs-session</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra a lista de caminhos de diretórios de dados do
+                        XDG ($XDG_DATA_DIRS)</span
+                      >
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-datadirs-session"
+                      ><code><span class="bash-builtin">alias </span>show-datadirs-session=<span class="bash-string">"echo \<span class="bash-variable">$XDG_DATA_DIRS</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-hostype"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-hostype</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>Mostra o tipo de máquina host (ex: x86_64)</span>
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-hostype"
+                      ><code><span class="bash-builtin">alias </span>show-hostype=<span class="bash-string">"echo \<span class="bash-variable">$HOSTTYPE</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div class="card alias-card shadow-sm" data-alias="show-home">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-home</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra o caminho do diretório home do usuário
+                        atual</span
+                      >
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-home"
+                      ><code><span class="bash-builtin">alias </span>show-home=<span class="bash-string">"echo \<span class="bash-variable">$HOME</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div class="card alias-card shadow-sm" data-alias="show-user">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-user</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>Mostra o nome de usuário atual</span>
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-user"
+                      ><code><span class="bash-builtin">alias </span>show-user=<span class="bash-string">"echo \<span class="bash-variable">$USER</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div class="card alias-card shadow-sm" data-alias="show-shell">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-shell</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>Mostra o caminho do binário do shell atual</span>
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-shell"
+                      ><code><span class="bash-builtin">alias </span>show-shell=<span class="bash-string">"echo \<span class="bash-variable">$SHELL</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div class="card alias-card shadow-sm" data-alias="show-wrkdir">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-wrkdir</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra o diretório de trabalho atual (alias para
+                        pwd)</span
+                      >
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-wrkdir"
+                      ><code><span class="bash-builtin">alias </span>show-wrkdir=<span class="bash-string">"echo \<span class="bash-variable">$PWD</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-display-server-code"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-display-server-code</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra o código do tipo de servidor de display (x11 ou
+                        wayland)</span
+                      >
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-display-server-code"
+                      ><code><span class="bash-builtin">alias </span>show-display-server-code=<span class="bash-string">"echo \<span class="bash-variable">$XDG_SESSION_TYPE</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-display-server"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-display-server</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra informações legíveis sobre o servidor de
+                        display</span
+                      >
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 mb-2">
+                      <span class="badge bg-secondary badge-alias">
+                        <span>função</span>
+                      </span>
+                    </div>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-display-server"
+                      ><code>show_display_server() {
+  <span class="bash-keyword">local</span> display=<span class="bash-string">"<span class="bash-variable">${DISPLAY:-unset}</span>"</span>
+  
+  <span class="bash-keyword">case</span> <span class="bash-string">"<span class="bash-variable">$display</span>"</span> <span class="bash-keyword">in</span>
+    unset)
+      echo <span class="bash-string">"No display server - headless environment or TTY"</span>
+      ;;
+    :0)
+      echo <span class="bash-string">"X11 server on <span class="bash-keyword">local</span> machine (primary display)"</span>
+      ;;
+    :0.0)
+      echo <span class="bash-string">"X11 server on <span class="bash-keyword">local</span> machine, screen 0"</span>
+      ;;
+    :1)
+      echo <span class="bash-string">"Second X11 server"</span>
+      ;;
+    :1.0)
+      echo <span class="bash-string">"Second X11 server, screen 0"</span>
+      ;;
+    :2)
+      echo <span class="bash-string">"Third X11 server"</span>
+      ;;
+    :10|:11|:20|:30|:99)
+      echo <span class="bash-string">"Nested X server or virtual display"</span>
+      ;;
+    *)
+      echo <span class="bash-string">"Display: <span class="bash-variable">$display</span> (custom or remote X server)"</span>
+      ;;
+  <span class="bash-keyword">esac</span>
+}
+<span class="bash-builtin">alias </span>show-display-server=<span class="bash-string">'show_display_server'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-dbus-addr"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-dbus-addr</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra o endereço do barramento de sessão do
+                        D-Bus</span
+                      >
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-dbus-addr"
+                      ><code><span class="bash-builtin">alias </span>show-dbus-addr=<span class="bash-string">"echo \<span class="bash-variable">$DBUS_SESSION_BUS_ADDRESS</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-desktop-env"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-desktop-env</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra o identificador do ambiente desktop atual (alias
+                        para show-current-de)</span
+                      >
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-desktop-env"
+                      ><code><span class="bash-builtin">alias </span>show-desktop-env=<span class="bash-string">"echo \<span class="bash-variable">$XDG_CURRENT_DESKTOP</span>"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-greeter-verbose"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-greeter-verbose</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra a configuração detalhada do greeter/gerenciador
+                        de display</span
+                      >
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 mb-2">
+                      <span class="badge bg-secondary badge-alias">
+                        <span>função</span>
+                      </span>
+                    </div>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-greeter-verbose"
+                      ><code>show_greeter_verbose() {
+  <span class="bash-keyword">local</span> dm
+  dm=$(cat /etc/X11/default-display-manager 2&gt;/dev/null | xargs basename)
+
+  <span class="bash-keyword">if</span> [[ -z <span class="bash-string">"<span class="bash-variable">$dm</span>"</span> ]]; <span class="bash-keyword">then</span>
+    dm=$(systemctl status display-manager 2&gt;/dev/null | grep -oP <span class="bash-string">'(?&lt;=Loaded: loaded \().*?(?=;)'</span> | xargs basename)
+  <span class="bash-keyword">fi</span>
+
+  <span class="bash-keyword">case</span> <span class="bash-string">"<span class="bash-variable">$dm</span>"</span> <span class="bash-keyword">in</span>
+    lightdm)
+      grep -r <span class="bash-string">"greeter-session"</span> /etc/lightdm/ 2&gt;/dev/null | grep -v <span class="bash-string">"^#"</span>
+      ;;
+    gdm3|gdm)
+      echo <span class="bash-string">"=== GDM3 Display Manager ==="</span>
+      echo <span class="bash-string">"Greeter: GNOME Shell (built-<span class="bash-keyword">in</span>, no separate process)"</span>
+      echo <span class="bash-string">""</span>
+      echo <span class="bash-string">"=== GDM Daemon Config ==="</span>
+      cat /etc/gdm3/daemon.conf 2&gt;/dev/null
+      echo <span class="bash-string">""</span>
+      echo <span class="bash-string">"=== GDM Custom Config ==="</span>
+      cat /etc/gdm3/custom.conf 2&gt;/dev/null
+      ;;
+    sddm)
+      grep -i <span class="bash-string">"theme\|greeter"</span> /etc/sddm.conf /etc/sddm.conf.d/*.conf 2&gt;/dev/null | grep -v <span class="bash-string">"^#"</span>
+      ;;
+    lxdm)
+      grep -i <span class="bash-string">"theme\|greeter"</span> /etc/lxdm/lxdm.conf 2&gt;/dev/null | grep -v <span class="bash-string">"^#"</span>
+      ;;
+    xdm)
+      echo <span class="bash-string">"XDM: built-<span class="bash-keyword">in</span> greeter, config at /etc/X11/xdm/"</span>
+      ls /etc/X11/xdm/ 2&gt;/dev/null
+      ;;
+    slim)
+      grep -i <span class="bash-string">"theme\|greeter"</span> /etc/slim.conf 2&gt;/dev/null | grep -v <span class="bash-string">"^#"</span>
+      ;;
+    *)
+      echo <span class="bash-string">"Unknown or undetected display manager: <span class="bash-string">'<span class="bash-variable">$dm</span>'</span>"</span>
+      echo <span class="bash-string">"Hint: try <span class="bash-string">'systemctl status display-manager'</span>"</span>
+      ;;
+  <span class="bash-keyword">esac</span>
+}
+<span class="bash-builtin">alias </span>show-greeter-verbose=<span class="bash-string">'show_greeter_verbose'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-full-display-info"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-full-display-info</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span
+                        >Mostra informações abrangentes do ambiente de display
+                        (sessão, DM, greeter, compositor, WM)</span
+                      >
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-full-display-info"
+                      ><code><span class="bash-builtin">alias </span>show-full-display-info=<span class="bash-string">'show-desktop &amp;&amp; show-display-session &amp;&amp; show-display-manager &amp;&amp; show-greeter &amp;&amp; show-screen-compositor &amp;&amp; show-win-mng'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-desktop"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>show-desktop</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>Mostra um resumo compacto do ambiente desktop</span>
+                    </p>
+
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para show-desktop"
+                      ><code><span class="bash-builtin">alias </span>show-desktop=<span class="bash-string">"show-display-session; show-display-server; show-desktop-session; show-desktop-env; show-display-manager; show-win-mng"</span></code></pre>
+                    </details>
+                  </div>
+                </div>
                 <div class="card alias-card shadow-sm" data-alias="net-probe">
                   <div class="card-body">
                     <h4 class="alias-name mb-2">
@@ -1727,6 +2334,658 @@ export MESA_GL_VERSION_OVERRIDE=3.3'</span>
                     </div>
                   </div>
                 </div>
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapseBasicCommands"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapseBasicCommands"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-terminal me-2"></i>
+                      <span>Comandos Básicos</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapseBasicCommands"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="card alias-card shadow-sm" data-alias="gted">
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>gted</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Abre o
+                              <b>Editor de Texto GNOME</b>
+                              (<code>gnome-text-editor</code>).</span
+                            >
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span>simple alias</span>
+                          </span>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for gted"
+                            ><code><span class="bash-builtin">alias</span> gted=<span class="bash-string">'gnome-text-editor'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="uri-decode"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>uri-decode</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Decodifica uma string URI codificada por
+                              porcentagem (ex. <code>%20</code> → espaço).</span
+                            >
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>function</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$1: uri</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for uri-decode"
+                            ><code><span class="bash-keyword">uri_decode</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">'%b'</span> <span class="bash-string">"${1//%/\\x}"</span>
+}
+<span class="bash-builtin">alias</span> uri-decode=<span class="bash-string">'uri_decode'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="printf-tr"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>printf-tr</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Printf com largura de campo, delimitador e
+                              substituição de caracteres via
+                              <code>tr</code>.</span
+                            >
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>function</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$1: delimitador</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$2: largura</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$3: tipo</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$4: alvo</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$5: padrão</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$6: substituto</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$7: tr_de</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$8: tr_para</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for printf-tr"
+                            ><code><span class="bash-keyword">printftr</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">delimiter</span>=<span class="bash-string">"${1:-}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">width</span>=<span class="bash-string">"${2:-}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">type</span>=<span class="bash-string">"${3:-%b}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">target</span>=<span class="bash-string">"${4:?No argument for capturing provided}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">pattern</span>=<span class="bash-string">"${5:?No pattern to replace provided. Failed.}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">substitute</span>=<span class="bash-string">"${6:?No replacer given. Failed.}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">tr_from</span>=<span class="bash-string">"${7:-}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">tr_to</span>=<span class="bash-string">"${8:- }"</span>
+  <span class="bash-builtin">printf</span> <span class="bash-string">"%${delimiter}${width}${type#%}"</span> <span class="bash-string">"${target//${pattern}/${substitute}}"</span> | <span class="bash-builtin">tr</span> <span class="bash-string">"$tr_from"</span> <span class="bash-string">"$tr_to"</span>
+}
+<span class="bash-builtin">alias</span> printf-tr=<span class="bash-string">'printftr'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-indexed"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>cat-indexed</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Lista arquivos com números de índice e exibe o
+                              conteúdo de um arquivo pelo índice 1-based.</span
+                            >
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>function</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$1: índice</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for cat-indexed"
+                            ><code><span class="bash-keyword">cat_indexed</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">index</span>=<span class="bash-string">"${1:-1}"</span>
+  (<span class="bash-builtin">ls</span> | <span class="bash-builtin">nl</span>) &amp;&amp; <span class="bash-variable">file</span>=$(<span class="bash-builtin">ls</span> | <span class="bash-builtin">sed</span> <span class="bash-flag">-n</span> <span class="bash-string">"${index}p"</span>) &amp;&amp; <span class="bash-variable">output</span>=$(<span class="bash-builtin">strings</span> <span class="bash-string">"$file"</span>) &amp;&amp; <span class="bash-builtin">echo</span> <span class="bash-string">"${output:-"INDEXED HAS NO CONTENT"} 2>/dev/null"</span> || <span class="bash-builtin">echo</span> <span class="bash-string">"No file found at index $index"</span>
+}
+<span class="bash-builtin">alias</span> cat-indexed=<span class="bash-string">'cat_indexed'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="run-cmds"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>run-cmds</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Executa múltiplos comandos contra um único
+                              argumento alvo sequencialmente.</span
+                            >
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>function</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$1: alvo</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$@: comandos</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Bash code for run-cmds"
+                            ><code><span class="bash-keyword">run_cmds</span>() {
+  [ <span class="bash-flag">-z</span> <span class="bash-string">"$1"</span> ] &amp;&amp; { <span class="bash-builtin">echo</span> <span class="bash-string">"Error: target required"</span> &gt;&amp;2; <span class="bash-builtin">return</span> 1; }
+  <span class="bash-keyword">local</span> <span class="bash-variable">target</span>=<span class="bash-string">"$1"</span>
+  <span class="bash-builtin">shift</span>
+  <span class="bash-keyword">for</span> cmd <span class="bash-keyword">in</span> <span class="bash-string">"$@"</span>; <span class="bash-keyword">do</span>
+    <span class="bash-builtin">eval</span> <span class="bash-string">"$cmd \"$target\""</span> 2&gt;/dev/null
+  <span class="bash-keyword">done</span>
+}
+<span class="bash-builtin">alias</span> run-cmds=<span class="bash-string">'run_cmds'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="systemInfoAliasesHeading"
+              class="mb-5"
+              id="systemInfoAliases"
+            >
+              <h2 class="h3 mb-4" id="systemInfoAliasesHeading">
+                <i
+                  aria-hidden="true"
+                  class="bi bi-memory text-primary me-2"
+                ></i>
+                <span>Aliases de Info do Sistema</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span>
+                  Utilitários de gerenciamento de memória OOM, monitoramento
+                  earlyoom e systemd-oomd para diagnosticar eventos OOM no
+                  Linux.
+                </span>
+              </p>
+              <div class="accordion" id="systemInfoAccordion">
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapseVmOomAliases"
+                      aria-expanded="true"
+                      class="accordion-button"
+                      data-bs-target="#collapseVmOomAliases"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-cpu-fill me-2"></i>
+                      <span>VM &amp; Memória OOM</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse show"
+                    id="collapseVmOomAliases"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-oom-conf"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>cat-oom-conf</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Exibe a configuração do daemon OOM do systemd em
+                            </span>
+                            <code>/etc/systemd/oomd.conf</code>
+                            <span
+                              >, ou uma mensagem caso o arquivo não
+                              exista.</span
+                            >
+                          </p>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para cat-oom-conf"
+                            ><code><span class="bash-builtin">alias</span> cat-oom-conf=<span class="bash-string">'sudo cat /etc/systemd/oomd.conf 2&gt;/dev/null || echo "No OOM config file found"'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-oom-kill-alloc"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>show-oom-kill-alloc</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Exibe o valor sysctl </span>
+                            <code>vm.oom_kill_allocating_task</code>
+                            <span>
+                              (0&nbsp;=&nbsp;mata processo aleatório,
+                              1&nbsp;=&nbsp;mata a tarefa alocadora).
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para show-oom-kill-alloc"
+                            ><code><span class="bash-builtin">alias</span> show-oom-kill-alloc=<span class="bash-string">'sudo sysctl vm.oom_kill_allocating_task'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="follow-early-oom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>follow-early-oom</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Acompanha a saída do daemon earlyoom com relatório
+                              detalhado em intervalo configurável.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>função</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$1: intervalo (padrão: 2)</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para follow-early-oom"
+                            ><code><span class="bash-keyword">follow_early_oom_rec</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">interval</span>=<span class="bash-string">"${1:-2}"</span>
+  <span class="bash-builtin">earlyoom</span> <span class="bash-flag">-vr</span> <span class="bash-string">"$interval"</span>
+}
+<span class="bash-builtin">alias</span> follow-early-oom=<span class="bash-string">'follow_early_oom_rec'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="watch-mem-hogs"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>watch-mem-hogs</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Monitora processos que consomem mais
+                              <b>RSS</b>
+                              em tempo real usando
+                              <code>watch</code>
+                              e
+                              <code>ps aux</code>.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>função</span></span
+                            >
+                            <span class="badge bg-primary badge-alias"
+                              ><span>$1: intervalo (padrão: 0,25)</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para watch-mem-hogs"
+                            ><code><span class="bash-keyword">watch_mem_hogs</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">interval</span>=<span class="bash-string">"${1:-0.25}"</span>
+  <span class="bash-builtin">watch</span> <span class="bash-flag">-n</span> <span class="bash-string">"$interval"</span> <span class="bash-string">'ps aux --sort=-%mem | awk "{print \$1,\$2,\$4,\$5,\$6,\$11}"'</span>
+}
+<span class="bash-builtin">alias</span> watch-mem-hogs=<span class="bash-string">'watch_mem_hogs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-pid-oom-kill-score"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>cat-pid-oom-kill-score</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Exibe a pontuação OOM de morte de um processo via
+                            </span>
+                            <code>/proc/&lt;pid&gt;/oom_score</code>
+                            <span
+                              >. Maiores pontuações são mortas primeiro.</span
+                            >
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>função</span></span
+                            >
+                            <span class="badge bg-danger badge-alias"
+                              ><span>$1: pid (obrigatório)</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para cat-pid-oom-kill-score"
+                            ><code><span class="bash-keyword">cat_pid_oom_kill_score</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">pid</span>=<span class="bash-string">"${1?"Usage: cat-pid-oom-kill-score &lt;pid&gt;"}"</span>
+  <span class="bash-builtin">echo</span> ==== <span class="bash-string">"OOM SCORE (TO BE KILLED)"</span> ====
+  <span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score 2&gt;/dev/null || <span class="bash-builtin">echo</span> <span class="bash-string">"No OOM score info available"</span>
+}
+<span class="bash-builtin">alias</span> cat-pid-oom-kill-score=<span class="bash-string">'cat_pid_oom_kill_score'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-pid-oom-adj-score"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>cat-pid-oom-adj-score</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Exibe a pontuação de ajuste OOM de um processo via
+                            </span>
+                            <code>/proc/&lt;pid&gt;/oom_score_adj</code>
+                            <span>
+                              (intervalo&nbsp;&minus;1000 a 1000; menor = menos
+                              provável de ser morto).
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>função</span></span
+                            >
+                            <span class="badge bg-danger badge-alias"
+                              ><span>$1: pid (obrigatório)</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para cat-pid-oom-adj-score"
+                            ><code><span class="bash-keyword">cat_pid_oom_adj_score</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">pid</span>=<span class="bash-string">"${1?"Usage: cat-pid-oom-adj-score &lt;pid&gt;"}"</span>
+  <span class="bash-builtin">echo</span> ==== <span class="bash-string">"OOM SCORE (TO BE ADJUSTED)"</span> ====
+  <span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score_adj 2&gt;/dev/null || <span class="bash-builtin">echo</span> <span class="bash-string">"No OOM adj info available"</span>
+}
+<span class="bash-builtin">alias</span> cat-pid-oom-adj-score=<span class="bash-string">'cat_pid_oom_adj_score'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-pid-oom-scores"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>cat-pid-oom-scores</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Exibe a pontuação OOM de morte e de ajuste de um
+                              processo em uma única chamada.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias"
+                              ><span>função</span></span
+                            >
+                            <span class="badge bg-danger badge-alias"
+                              ><span>$1: pid (obrigatório)</span></span
+                            >
+                          </div>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para cat-pid-oom-scores"
+                            ><code><span class="bash-keyword">cat_pid_oom_scores</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">pid</span>=<span class="bash-string">"${1?"Usage: cat-pid-oom-scores &lt;pid&gt;"}"</span>
+  <span class="bash-builtin">echo</span> ==== <span class="bash-string">"OOM SCORE (TO BE KILLED)"</span> ====
+  <span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score 2&gt;/dev/null || <span class="bash-builtin">echo</span> <span class="bash-string">"No OOM score info available"</span>
+  <span class="bash-builtin">echo</span> ==== <span class="bash-string">"OOM SCORE (TO BE ADJUSTED)"</span> ====
+  <span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score_adj 2&gt;/dev/null || <span class="bash-builtin">echo</span> <span class="bash-string">"No OOM adj info available"</span>
+}
+<span class="bash-builtin">alias</span> cat-pid-oom-scores=<span class="bash-string">'cat_pid_oom_scores'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="journal-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>journal-earlyoom</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Acompanha o journal systemd do earlyoom via
+                            </span>
+                            <code>sudo journalctl -u earlyoom</code>.
+                          </p>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para journal-earlyoom"
+                            ><code><span class="bash-builtin">alias</span> journal-earlyoom=<span class="bash-string">'sudo journalctl -u earlyoom'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="journal-sysoomd"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>journal-sysoomd</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Acompanha o journal do systemd-oomd via
+                            </span>
+                            <code>sudo journalctl -u systemd-oomd</code>.
+                          </p>
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>Ver Código</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="Código Bash para journal-sysoomd"
+                            ><code><span class="bash-builtin">alias</span> journal-sysoomd=<span class="bash-string">'sudo journalctl -u systemd-oomd'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </article>
             <article
@@ -1833,6 +3092,992 @@ export MESA_GL_VERSION_OVERRIDE=3.3'</span>
   <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"OS Release Info — /etc/os-release"</span>
   <span class="bash-builtin">sudo</span> cat /etc/os-release 2>/dev/null | <span class="bash-builtin">sed</span> \
     <span class="bash-flag">-e</span> <span class="bash-string">"s/^\([A-Z_]*\)=/\033[1;34m\1\033[0m=/"</span> | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapsePrettySystemSetup"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapsePrettySystemSetup"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-gear me-2"></i>
+                      <span>Configuração do Sistema</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapsePrettySystemSetup"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="show-all-env-vars-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>show-all-env-vars-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Imprime todas as variáveis de ambiente
+                                  formatadas com cabeçalho e linhas
+                                  numeradas.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">show-all-env-vars-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"All Environment Variables (env)"</span>
+  <span class="bash-builtin">env</span> | <span class="bash-builtin">grep</span> <span class="bash-flag">-v</span> <span class="bash-string">'^$'</span> | <span class="bash-builtin">sort</span> | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="show-all-printenv-vars-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>show-all-printenv-vars-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Imprime todas as variáveis exportadas
+                                  formatadas com cabeçalho e linhas
+                                  numeradas.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">show-all-printenv-vars-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"All Exported Variables (printenv)"</span>
+  <span class="bash-builtin">printenv</span> | <span class="bash-builtin">grep</span> <span class="bash-flag">-v</span> <span class="bash-string">'^$'</span> | <span class="bash-builtin">sort</span> | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="show-all-sh-vars-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>show-all-sh-vars-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Imprime todas as variáveis do shell
+                                  formatadas com cabeçalho e linhas
+                                  numeradas.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">show-all-sh-vars-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"All Shell Variables (set)"</span>
+  ( <span class="bash-builtin">set</span> <span class="bash-flag">-o</span> posix; <span class="bash-builtin">set</span> ) | <span class="bash-builtin">grep</span> <span class="bash-flag">-v</span> <span class="bash-string">'^$'</span> | <span class="bash-builtin">sort</span> | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapsePrettySystemConfig"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapsePrettySystemConfig"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-file-earmark-text me-2"
+                      ></i>
+                      <span>Configuração de Sistema</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapsePrettySystemConfig"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="cat-ssh-service-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>cat-ssh-service-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Imprime o arquivo de unidade do serviço SSH
+                                  do systemd formatado.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">cat-ssh-service-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"SSH Service Unit — /lib/systemd/system/ssh.service"</span>
+  <span class="bash-builtin">sudo</span> cat /lib/systemd/system/ssh.service 2>/dev/null | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapsePrettyBasicCommands"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapsePrettyBasicCommands"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-terminal me-2"></i>
+                      <span>Comandos Básicos</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapsePrettyBasicCommands"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="gted-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>gted-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Abre o Editor de Texto GNOME com mensagem de
+                                  cabeçalho formatada.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">gted-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"GNOME Text Editor"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  ► Abrindo gnome-text-editor…"</span>
+  gnome-text-editor <span class="bash-string">"$@"</span> &amp;
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="uri-decode-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>uri-decode-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Decodifica URI formatado mostrando entrada e
+                                  saída decodificada.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">uri-decode-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"URI Decode"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">result</span>
+  <span class="bash-variable">result</span>=$(<span class="bash-builtin">printf</span> <span class="bash-string">'%b'</span> <span class="bash-string">"${1//%/\\x}"</span>)
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  Input:  $1"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  Output: $result"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="printf-tr-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>printf-tr-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Imprime resultado printf-tr com cabeçalho
+                                  formatado.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">printf-tr-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Printf with TR Substitution"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">result</span>
+  <span class="bash-variable">result</span>=$(<span class="bash-builtin">printftr</span> <span class="bash-string">"$@"</span> 2&gt;&amp;1)
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  Result: $result"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="cat-indexed-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>cat-indexed-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Lista arquivos por índice formatada com
+                                  exibição opcional de conteúdo.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">cat-indexed-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Indexed File Listing"</span>
+  <span class="bash-builtin">ls</span> | <span class="bash-builtin">nl</span> <span class="bash-flag">-ba -w3 -s</span> <span class="bash-string">' │ '</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="run-cmds-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>run-cmds-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Executa múltiplos comandos formatados contra
+                                  um alvo com saída por comando.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">run-cmds-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Run Multiple Commands"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">target</span>=<span class="bash-string">"$1"</span>; <span class="bash-builtin">shift</span>
+  <span class="bash-keyword">for</span> cmd <span class="bash-keyword">in</span> <span class="bash-string">"$@"</span>; <span class="bash-keyword">do</span>
+    <span class="bash-builtin">eval</span> <span class="bash-string">"$cmd \"$target\""</span> 2&gt;/dev/null | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-keyword">done</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapsePrettyHtmlCss"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapsePrettyHtmlCss"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="bi bi-filetype-html me-2"
+                      ></i>
+                      <span>Ferramentas HTML &amp; CSS</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapsePrettyHtmlCss"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="strip-html-comments-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>strip-html-comments-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Remove comentários HTML formatado mostrando
+                                  contagem antes/depois.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">strip-html-comments-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Strip HTML Comments &amp; Prettier Format"</span>
+  <span class="bash-builtin">strip_html_comments_format</span> <span class="bash-string">"$1"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-string">"  Stripped comments from $1"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="extract-min-css-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>extract-min-css-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Extrai e minifica CSS formatado com
+                                  comparação de tamanho em bytes.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">extract-min-css-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Extract &amp; Minify CSS from HTML"</span>
+  <span class="bash-builtin">extract_minify_css</span> <span class="bash-string">"$1"</span> <span class="bash-string">"$2"</span> <span class="bash-string">"$3"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-string">"  Extracted: $2 → Minified: $3"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="count-html-comments-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>count-html-comments-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Conta comentários HTML e linhas em um arquivo
+                                  com saída formatada.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">count-html-comments-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"HTML Comment &amp; Line Count"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-string">"  Comments: $(grep -c '&lt;!--' "$1")"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-string">"  Lines:    $(wc -l &lt; "$1")"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="check-css-minifier-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>check-css-minifier-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Verifica disponibilidade de minificador CSS
+                                  com status de check/cross.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">check-css-minifier-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"CSS Minifier Availability"</span>
+  <span class="bash-builtin">npx</span> csso <span class="bash-flag">--version</span> 2&gt;/dev/null &amp;&amp; <span class="bash-builtin">echo</span> <span class="bash-string">"  ✓ csso"</span>
+  <span class="bash-builtin">npx</span> clean-css-cli <span class="bash-flag">--version</span> 2&gt;/dev/null &amp;&amp; <span class="bash-builtin">echo</span> <span class="bash-string">"  ✓ clean-css-cli"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="inject-min-css-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>inject-min-css-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span
+                                  >Injeta CSS minificado em HTML formatado com
+                                  comparação de contagem de linhas.</span
+                                >
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>View Code</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">inject-min-css-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Inject Minified CSS into HTML"</span>
+  <span class="bash-builtin">inject_minified_css</span> <span class="bash-string">"$1"</span> <span class="bash-string">"$2"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h3 class="accordion-header">
+                    <button
+                      aria-controls="collapsePrettyVmOom"
+                      aria-expanded="false"
+                      class="accordion-button collapsed"
+                      data-bs-target="#collapsePrettyVmOom"
+                      data-bs-toggle="collapse"
+                      type="button"
+                    >
+                      <i aria-hidden="true" class="bi bi-cpu-fill me-2"></i>
+                      <span>VM &amp; Memória OOM</span>
+                    </button>
+                  </h3>
+                  <div
+                    class="accordion-collapse collapse"
+                    id="collapsePrettyVmOom"
+                  >
+                    <div class="accordion-body alias-container">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="cat-oom-conf-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>cat-oom-conf-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Imprime a configuração do daemon OOM do
+                                  systemd formatada com cabeçalho/rodapé.
+                                </span>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">cat-oom-conf-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"OOM Daemon Config — /etc/systemd/oomd.conf"</span>
+  <span class="bash-builtin">sudo</span> cat /etc/systemd/oomd.conf 2&gt;/dev/null | <span class="bash-builtin">_pretty_nl</span> || <span class="bash-builtin">echo</span> <span class="bash-string">"No OOM config file found"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="show-oom-kill-alloc-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>show-oom-kill-alloc-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Imprime o valor sysctl
+                                  <code>vm.oom_kill_allocating_task</code>
+                                  formatado com rótulo e explicação.
+                                </span>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">show-oom-kill-alloc-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"OOM Kill Allocating Task"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">val</span>
+  <span class="bash-variable">val</span>=$(<span class="bash-builtin">sudo</span> sysctl vm.oom_kill_allocating_task 2&gt;/dev/null)
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  [1;33m${val}[0m  (0=kill random process 1=kill allocating task)"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="follow-early-oom-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>follow-early-oom-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Acompanha a saída do earlyoom com cabeçalho
+                                  formatado mostrando o intervalo.
+                                </span>
+                              </p>
+                              <div class="d-flex flex-wrap gap-1 mb-2">
+                                <span class="badge bg-secondary badge-alias"
+                                  ><span>função</span></span
+                                >
+                                <span class="badge bg-primary badge-alias"
+                                  ><span>$1: intervalo (padrão: 2)</span></span
+                                >
+                              </div>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">follow-early-oom-pretty</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">interval</span>=<span class="bash-string">"${1:-2}"</span>
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"earlyoom — verbose reporting (interval: ${interval}s)"</span>
+  <span class="bash-builtin">follow_early_oom_rec</span> <span class="bash-string">"$interval"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="watch-mem-hogs-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>watch-mem-hogs-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Monitora os processos que mais consomem RSS
+                                  com cabeçalho formatado.
+                                </span>
+                              </p>
+                              <div class="d-flex flex-wrap gap-1 mb-2">
+                                <span class="badge bg-secondary badge-alias"
+                                  ><span>função</span></span
+                                >
+                                <span class="badge bg-primary badge-alias"
+                                  ><span
+                                    >$1: intervalo (padrão: 0,25)</span
+                                  ></span
+                                >
+                              </div>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">watch-mem-hogs-pretty</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">interval</span>=<span class="bash-string">"${1:-0.25}"</span>
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Memory Hogs — top RSS consumers (interval: ${interval}s)"</span>
+  <span class="bash-builtin">watch_mem_hogs</span> <span class="bash-string">"$interval"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="cat-pid-oom-kill-score-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>cat-pid-oom-kill-score-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Imprime a pontuação OOM de morte de um
+                                  processo formatada com rótulo e explicação.
+                                </span>
+                              </p>
+                              <div class="d-flex flex-wrap gap-1 mb-2">
+                                <span class="badge bg-secondary badge-alias"
+                                  ><span>função</span></span
+                                >
+                                <span class="badge bg-danger badge-alias"
+                                  ><span>$1: pid (obrigatório)</span></span
+                                >
+                              </div>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">cat-pid-oom-kill-score-pretty</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">pid</span>=<span class="bash-string">"${1?"Usage: cat-pid-oom-kill-score-pretty &lt;pid&gt;"}"</span>
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"OOM Kill Score — PID ${pid}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">val</span>
+  <span class="bash-variable">val</span>=$(<span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score 2&gt;/dev/null)
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  [1;33mOOM Score:[0m ${val:-N/A}  (higher = more likely to be killed)"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="cat-pid-oom-adj-score-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>cat-pid-oom-adj-score-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Imprime a pontuação de ajuste OOM de um
+                                  processo formatada com explicação do
+                                  intervalo.
+                                </span>
+                              </p>
+                              <div class="d-flex flex-wrap gap-1 mb-2">
+                                <span class="badge bg-secondary badge-alias"
+                                  ><span>função</span></span
+                                >
+                                <span class="badge bg-danger badge-alias"
+                                  ><span>$1: pid (obrigatório)</span></span
+                                >
+                              </div>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">cat-pid-oom-adj-score-pretty</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">pid</span>=<span class="bash-string">"${1?"Usage: cat-pid-oom-adj-score-pretty &lt;pid&gt;"}"</span>
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"OOM Adjustment Score — PID ${pid}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">val</span>
+  <span class="bash-variable">val</span>=$(<span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score_adj 2&gt;/dev/null)
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  [1;33mOOM Score Adj:[0m ${val:-N/A}  (-1000=never kill  0=normal  1000=always kill)"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="cat-pid-oom-scores-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>cat-pid-oom-scores-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Imprime ambas as pontuações OOM de um processo
+                                  formatadas em uma única visualização.
+                                </span>
+                              </p>
+                              <div class="d-flex flex-wrap gap-1 mb-2">
+                                <span class="badge bg-secondary badge-alias"
+                                  ><span>função</span></span
+                                >
+                                <span class="badge bg-danger badge-alias"
+                                  ><span>$1: pid (obrigatório)</span></span
+                                >
+                              </div>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">cat-pid-oom-scores-pretty</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">pid</span>=<span class="bash-string">"${1?"Usage: cat-pid-oom-scores-pretty &lt;pid&gt;"}"</span>
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"OOM Scores — PID ${pid}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">kill_score</span> <span class="bash-variable">adj_score</span>
+  <span class="bash-variable">kill_score</span>=$(<span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score 2&gt;/dev/null)
+  <span class="bash-variable">adj_score</span>=$(<span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score_adj 2&gt;/dev/null)
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  [1;33mOOM Score:[0m     ${kill_score:-N/A}  (higher = more likely to be killed)"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"  [1;33mOOM Score Adj:[0m ${adj_score:-N/A}  (-1000=never kill  0=normal  1000=always kill)"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="journal-earlyoom-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>journal-earlyoom-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Imprime o journal do earlyoom formatado com
+                                  numeração de linhas e cabeçalho/rodapé.
+                                </span>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">journal-earlyoom-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"earlyoom Journal — systemd"</span>
+  <span class="bash-builtin">sudo</span> journalctl <span class="bash-flag">-u</span> earlyoom 2&gt;/dev/null | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="journal-sysoomd-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code>journal-sysoomd-pretty</code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Imprime o journal do systemd-oomd formatado
+                                  com numeração de linhas e cabeçalho/rodapé.
+                                </span>
+                              </p>
+                              <details class="code-details">
+                                <summary role="button" aria-expanded="false">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  ></i>
+                                  <span>Ver Código</span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">journal-sysoomd-pretty</span>() {
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"systemd-oomd Journal"</span>
+  <span class="bash-builtin">sudo</span> journalctl <span class="bash-flag">-u</span> systemd-oomd 2&gt;/dev/null | <span class="bash-builtin">_pretty_nl</span>
   <span class="bash-builtin">_pretty_ftr</span>
 }</code></pre>
                               </details>
@@ -1995,6 +4240,263 @@ php artisan migrate:fresh --seed; \
 php artisan route:list --sort=uri; \
 php artisan serve
 '</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article
+              aria-labelledby="htmlCssToolsHeading"
+              class="mb-5"
+              id="htmlCssTools"
+            >
+              <h2 class="h3 mb-4" id="htmlCssToolsHeading">
+                <i
+                  aria-hidden="true"
+                  class="bi bi-filetype-css text-primary me-2"
+                ></i>
+                <span>Ferramentas HTML &amp; CSS</span>
+              </h2>
+              <p class="text-muted mb-4">
+                <span
+                  >Utilitários de fluxo de trabalho para remover comentários
+                  HTML, extrair e minificar CSS, e injetar folhas de estilo
+                  otimizadas.</span
+                >
+              </p>
+              <div class="alias-container">
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="strip-html-comments"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>strip-html-comments</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Remove todos os
+                        <b>comentários HTML</b>
+                        de um arquivo usando regex Perl não-guloso, e reformata
+                        com
+                        <b>Prettier</b>
+                        (parser HTML, 120 de largura,
+                        single-attribute-per-line).
+                      </span>
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 mb-2">
+                      <span class="badge bg-secondary badge-alias">
+                        <span>função</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$1: path</span>
+                      </span>
+                    </div>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para strip-html-comments"
+                      ><code><span class="bash-keyword">strip_html_comments_format</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">path</span>=<span class="bash-string">"${1:?Usage: strip-html-comments &lt;html_file&gt;}"</span>
+  [[ <span class="bash-flag">-f</span> <span class="bash-string">"$path"</span> ]] || { <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"❌ \033[1;31mFile not found:\033[0m $path"</span>; <span class="bash-keyword">return</span> 1; }
+  <span class="bash-builtin">perl</span> <span class="bash-flag">-0777 -i -pe</span> <span class="bash-string">'s/&lt;!--(?!.*?--\s*&gt;.*?&lt;!--).*?--&gt;//gs'</span> <span class="bash-string">"$path"</span> \
+    &amp;&amp; <span class="bash-builtin">npx</span> prettier <span class="bash-flag">--parser</span> html <span class="bash-flag">--print-width</span> 120 <span class="bash-flag">--tab-width</span> 2 \
+         <span class="bash-flag">--no-semi --single-attribute-per-line</span> \
+         <span class="bash-flag">--html-whitespace-sensitivity</span> ignore <span class="bash-flag">--write</span> <span class="bash-string">"$path"</span>
+}
+<span class="bash-builtin">alias</span> strip-html-comments=<span class="bash-string">'strip_html_comments_format'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="extract-min-css"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>extract-min-css</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Extrai o bloco
+                        <code>&lt;style&gt;</code>
+                        de um arquivo HTML, minifica com
+                        <b>clean-css-cli</b>
+                        e exibe tamanhos original vs minificado em bytes.
+                      </span>
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 mb-2">
+                      <span class="badge bg-secondary badge-alias">
+                        <span>função</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$1: src</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$2: extracted.css</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$3: minified.css</span>
+                      </span>
+                    </div>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para extract-min-css"
+                      ><code><span class="bash-keyword">extract_minify_css</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">src</span>=<span class="bash-string">"${1:?Usage: extract-min-css &lt;html&gt; &lt;extracted.css&gt; &lt;minified.css&gt;}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">extract_src</span>=<span class="bash-string">"${2:?}"</span> <span class="bash-variable">extract_min</span>=<span class="bash-string">"${3:?}"</span>
+  [[ <span class="bash-flag">-f</span> <span class="bash-string">"$src"</span> ]] || { <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"❌ \033[1;31mSource not found:\033[0m $src"</span>; <span class="bash-keyword">return</span> 1; }
+  <span class="bash-builtin">perl</span> <span class="bash-flag">-0777 -ne</span> <span class="bash-string">'/<span class="bash-variable">&lt;style[^&gt;]*&gt;</span>(.*?)&lt;\/style&gt;/s &amp;&amp; print $1'</span> <span class="bash-string">"$src"</span> &gt; <span class="bash-string">"$extract_src"</span> \
+    &amp;&amp; <span class="bash-builtin">npx</span> clean-css-cli <span class="bash-flag">-o</span> <span class="bash-string">"$extract_min"</span> <span class="bash-string">"$extract_src"</span> \
+    &amp;&amp; <span class="bash-builtin">wc</span> <span class="bash-flag">-c</span> <span class="bash-string">"$extract_src"</span> <span class="bash-string">"$extract_min"</span>
+}
+<span class="bash-builtin">alias</span> extract-min-css=<span class="bash-string">'extract_minify_css'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="count-html-comments"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>count-html-comments</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Conta
+                        <b>comentários HTML</b>
+                        e total de linhas em um arquivo.
+                      </span>
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 mb-2">
+                      <span class="badge bg-secondary badge-alias">
+                        <span>função</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$1: path</span>
+                      </span>
+                    </div>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para count-html-comments"
+                      ><code><span class="bash-keyword">count_html_comments</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">path</span>=<span class="bash-string">"${1:?Usage: count-html-comments &lt;html_file&gt;}"</span>
+  [[ <span class="bash-flag">-f</span> <span class="bash-string">"$path"</span> ]] || { <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"❌ \033[1;31mFile not found:\033[0m $path"</span>; <span class="bash-keyword">return</span> 1; }
+  <span class="bash-builtin">echo</span> <span class="bash-string">"Comments: $(grep -c '&lt;!--' "$path")"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-string">"Lines:    $(wc -l &lt; "$path")"</span>
+}
+<span class="bash-builtin">alias</span> count-html-comments=<span class="bash-string">'count_html_comments'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="check-css-minifier"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>check-css-minifier</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Verifica qual CLI de minificação CSS está disponível:
+                        <b>csso</b>
+                        ou
+                        <b>clean-css-cli</b>
+                        . Exibe a versão ou "NONE".
+                      </span>
+                    </p>
+                    <span class="badge bg-secondary badge-alias">
+                      <span>função</span>
+                    </span>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para check-css-minifier"
+                      ><code><span class="bash-keyword">check_css_minifier</span>() {
+  <span class="bash-builtin">npx</span> csso <span class="bash-flag">--version</span> 2&gt;/dev/null \
+    || <span class="bash-builtin">npx</span> clean-css-cli <span class="bash-flag">--version</span> 2&gt;/dev/null \
+    || <span class="bash-builtin">echo</span> <span class="bash-string">"NONE"</span>
+}
+<span class="bash-builtin">alias</span> check-css-minifier=<span class="bash-string">'check_css_minifier'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="inject-min-css"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code>inject-min-css</code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Injeta um arquivo CSS minificado no bloco
+                        <code>&lt;style&gt;</code>
+                        de um arquivo HTML, restaurando as at-rules
+                        <code>@media</code>
+                        e
+                        <code>@container</code>
+                        colapsadas durante a minificação.
+                      </span>
+                    </p>
+                    <div class="d-flex flex-wrap gap-1 mb-2">
+                      <span class="badge bg-secondary badge-alias">
+                        <span>função</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$1: html_file</span>
+                      </span>
+                      <span class="badge bg-primary badge-alias">
+                        <span>$2: minified.css</span>
+                      </span>
+                    </div>
+                    <details class="code-details">
+                      <summary role="button" aria-expanded="false">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2"></i>
+                        <span>Ver Código</span>
+                      </summary>
+                      <pre
+                        class="code-block"
+                        role="region"
+                        aria-label="Código Bash para inject-min-css"
+                      ><code><span class="bash-keyword">inject_minified_css</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">src</span>=<span class="bash-string">"${1:?Usage: inject-min-css &lt;html_file&gt; &lt;minified_css_file&gt;}"</span>
+  <span class="bash-keyword">local</span> <span class="bash-variable">min_css</span>=<span class="bash-string">"${2:?}"</span>
+  [[ <span class="bash-flag">-f</span> <span class="bash-string">"$src"</span> ]] || { <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"❌ \033[1;31mSource not found:\033[0m $src"</span>; <span class="bash-keyword">return</span> 1; }
+  [[ <span class="bash-flag">-f</span> <span class="bash-string">"$min_css"</span> ]] || { <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"❌ \033[1;31mCSS not found:\033[0m $min_css"</span>; <span class="bash-keyword">return</span> 1; }
+  <span class="bash-keyword">local</span> <span class="bash-variable">css</span>
+  <span class="bash-variable">css</span>=$(&lt;<span class="bash-string">"$min_css"</span>)
+  <span class="bash-builtin">perl</span> <span class="bash-flag">-0777 -i -pe</span> \
+    <span class="bash-string">"s{(&lt;style[^&gt;]*&gt;).*?(&lt;/style&gt;)}{\$1${css}\$2}s"</span> <span class="bash-string">"$src"</span>
+  <span class="bash-builtin">perl</span> <span class="bash-flag">-0777 -i -pe</span> <span class="bash-string">'\n    s/\}\s*(print|screen|all|speech)\s*\{/}\@media $1\{/g;\n    s/(container-type:\s*[a-z-]+\s*\})\s*(\([^)]+\)\s*\{)/$1\@container $2/g;\n    s/\}\s+(\([^)]+\)\s*\{)/}\@media $1/g;\n  '</span> <span class="bash-string">"$src"</span>
+  <span class="bash-builtin">echo</span> <span class="bash-flag">-e</span> <span class="bash-string">"✅ Injected into \033[1m$src\033[0m ($(wc -l &lt; "$src") lines)"</span>
+}
+<span class="bash-builtin">alias</span> inject-min-css=<span class="bash-string">'inject_minified_css'</span></code></pre>
                     </details>
                   </div>
                 </div>
@@ -2315,7 +4817,7 @@ php artisan serve
 
         /**
          * Binds dark/light theme switching to the theme button.
-         * Toggles `data-bs-theme` on `<html>` and swaps the button icon class.
+         * Toggles `data-bs-theme` on `&lt;html&gt;` and swaps the button icon class.
          * Guarded by `data-bound-theme` on the button element.
          * @returns {void}
          */

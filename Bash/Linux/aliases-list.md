@@ -2,8 +2,6 @@
 
 This is meant to be a file to facilitate understanding the purpose of each alias in the local .bashrc:
 
-------
-
 # Bash Aliases — Publicable
 
 All publicable aliases from `~/.bashrc`, grouped by region.
@@ -17,6 +15,18 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing — flags: --no-persist, --no-composite]
 
 - setup-software-gl
+
+[List all environment variables (env), sorted alphabetically]
+
+- show-all-env-vars
+
+[List all exported variables (printenv), sorted alphabetically]
+
+- show-all-printenv-vars
+
+[List all shell variables (set -o posix; set), sorted alphabetically]
+
+- show-all-sh-vars
 
 [Show current display session type (x11 or wayland)]
 
@@ -82,6 +92,58 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - install-plasma-backends
 
+[Show XDG data directories path list ($XDG_DATA_DIRS)]
+
+- show-datadirs-session
+
+[Show host machine type (e.g., x86_64)]
+
+- show-hostype
+
+[Show current user's home directory path]
+
+- show-home
+
+[Show current username]
+
+- show-user
+
+[Show current shell binary path]
+
+- show-shell
+
+[Show current working directory (alias for pwd)]
+
+- show-wrkdir
+
+[Show display server type code (x11 or wayland)]
+
+- show-display-server-code
+
+[Show human-readable display server info]
+
+- show-display-server
+
+[Show D-Bus session bus address]
+
+- show-dbus-addr
+
+[Show current desktop environment identifier (alias for show-current-de)]
+
+- show-desktop-env
+
+[Show verbose greeter/display-manager configuration]
+
+- show-greeter-verbose
+
+[Show comprehensive display environment info (session, DM, greeter, compositor, WM)]
+
+- show-full-display-info
+
+[Show compact desktop environment summary]
+
+- show-desktop
+
 ### Network_Procedures
 
 [Probe a network host with ARP, ping, netcat, and route lookup — $1: target IP (required), $2: target port (optional) — flags: --gateway, --local]
@@ -97,6 +159,14 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Create a new user and add them to the sudo group — $1: username (required)]
 
 - add-sudo-user
+
+[Display sudoers file content (requires permissions)]
+
+- cat-sudoers
+
+[Show sudoers timestamp_timeout setting]
+
+- cat-sudoers-timestamp
 
 ### Desktop_Environment
 
@@ -136,6 +206,26 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - check-de-programs
 
+[Mark a .desktop file as trusted for GNOME/DING — $1: filename or path]
+
+- trust-desktop
+
+[Install essential KDE packages for GTK integration and productivity (configs, Discover backends, KDE Connect, Dolphin plugins, Okular)]
+
+- install-kde-pkgs
+
+[Ensure ~/Templates directory and "Empty File" template exist]
+
+- ensure-templates
+
+[Install Nautilus extensions (nautilus-admin, gnome-terminal, image-converter) and ensure Templates directory]
+
+- install-nautilus-ext
+
+[Create a Nautilus script for creating new files via Zenity dialog]
+
+- create-nautilus-newfile
+
 ### System_Info_Aliases
 
 #### Kernel_and_OS
@@ -163,6 +253,18 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Show Linux version from /proc/version]
 
 - cat-linux-v
+
+[Show distro ID (debian, ubuntu, fedora, etc.)]
+
+- cat-distro-n
+
+[Show distro version number]
+
+- cat-distro-v
+
+[Show full distro name with version]
+
+- cat-distro
 
 [Show kernel hostname from /proc/sys/kernel/hostname]
 
@@ -193,6 +295,42 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Show memory information from /proc/meminfo]
 
 - cat-mem-inf
+
+[Show systemd OOM daemon configuration from /etc/systemd/oomd.conf]
+
+- cat-oom-conf
+
+[Show the vm.oom_kill_allocating_task sysctl value (0=kill random, 1=kill allocating task)]
+
+- show-oom-kill-alloc
+
+[Follow earlyoom daemon output with verbose reporting at a set interval — $1: interval in seconds (default: 2)]
+
+- follow-early-oom
+
+[Watch memory-hungry processes sorted by RSS in real time — $1: refresh interval in seconds (default: 0.25)]
+
+- watch-mem-hogs
+
+[Show the OOM kill score for a process — $1: pid (required)]
+
+- cat-pid-oom-kill-score
+
+[Show the OOM adjustment score for a process (-1000 to 1000) — $1: pid (required)]
+
+- cat-pid-oom-adj-score
+
+[Show both OOM kill score and adjustment score for a process — $1: pid (required)]
+
+- cat-pid-oom-scores
+
+[Follow the earlyoom systemd journal]
+
+- journal-earlyoom
+
+[Follow the systemd-oomd journal]
+
+- journal-sysoomd
 
 #### Storage_and_Partitions
 
@@ -243,6 +381,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Show SSH server configuration from /etc/ssh/sshd_config]
 
 - cat-ssh-cfg
+
+[Show the SSH systemd service unit file]
+
+- cat-ssh-service
 
 [Show sudoers file from /etc/sudoers]
 
@@ -463,6 +605,42 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Pretty-print memory information with highlighted field names]
 
 - cat-mem-inf-pretty
+
+[Pretty-print systemd OOM daemon configuration]
+
+- cat-oom-conf-pretty
+
+[Pretty-print vm.oom_kill_allocating_task sysctl value with explanation]
+
+- show-oom-kill-alloc-pretty
+
+[Follow earlyoom daemon output with pretty header — $1: interval in seconds (default: 2)]
+
+- follow-early-oom-pretty
+
+[Watch memory-hungry processes sorted by RSS with pretty header — $1: refresh interval in seconds (default: 0.25)]
+
+- watch-mem-hogs-pretty
+
+[Pretty-print OOM kill score for a process — $1: pid (required)]
+
+- cat-pid-oom-kill-score-pretty
+
+[Pretty-print OOM adjustment score for a process — $1: pid (required)]
+
+- cat-pid-oom-adj-score-pretty
+
+[Pretty-print both OOM scores for a process — $1: pid (required)]
+
+- cat-pid-oom-scores-pretty
+
+[Pretty-print earlyoom systemd journal]
+
+- journal-earlyoom-pretty
+
+[Pretty-print systemd-oomd journal]
+
+- journal-sysoomd-pretty
 
 #### Pretty_Storage
 
@@ -750,6 +928,70 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - show-installed-tks-pretty
 
+#### Pretty_System_Setup
+
+[Pretty-print all environment variables with header and numbered lines]
+
+- show-all-env-vars-pretty
+
+[Pretty-print all exported variables with header and numbered lines]
+
+- show-all-printenv-vars-pretty
+
+[Pretty-print all shell variables with header and numbered lines]
+
+- show-all-sh-vars-pretty
+
+#### Pretty_System_Config
+
+[Pretty-print SSH systemd service unit file with header and numbered lines]
+
+- cat-ssh-service-pretty
+
+#### Pretty_Basic_Commands
+
+[Pretty-open GNOME Text Editor with header message]
+
+- gted-pretty
+
+[Pretty-decode a URI string showing input and decoded output]
+
+- uri-decode-pretty
+
+[Pretty-print printf-tr result with formatted header]
+
+- printf-tr-pretty
+
+[Pretty-list files by index with optional file content display]
+
+- cat-indexed-pretty
+
+[Pretty-run multiple commands against a target with formatted output per command]
+
+- run-cmds-pretty
+
+#### Pretty_HTML_CSS_Tools
+
+[Pretty-strip HTML comments showing before/after count]
+
+- strip-html-comments-pretty
+
+[Pretty-extract and minify CSS with byte-size comparison]
+
+- extract-min-css-pretty
+
+[Pretty-count HTML comments and lines in a file]
+
+- count-html-comments-pretty
+
+[Pretty-check CSS minifier availability with checkmark/cross status]
+
+- check-css-minifier-pretty
+
+[Pretty-inject minified CSS into HTML with line count comparison]
+
+- inject-min-css-pretty
+
 ### Utilities
 
 #### Package_Management
@@ -835,6 +1077,26 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Grep with automatic color output]
 
 - grep
+
+[Open GNOME Text Editor]
+
+- gted
+
+[Decode a percent-encoded URI string (e.g. %20 → space) — $1: uri (required)]
+
+- uri-decode
+
+[Printf with field-width, delimiter, and tr-based substitution — $1: delimiter, $2: width, $3: type, $4: target (required), $5: pattern (required), $6: substitute (required), $7: tr_from, $8: tr_to]
+
+- printf-tr
+
+[List files with index numbers and display file contents by index — $1: index (default: 1)]
+
+- cat-indexed
+
+[Run multiple commands against a single target argument — $1: target (required), $@: commands]
+
+- run-cmds
 
 [Download Ubuntu 24.04.3 Desktop amd64 ISO]
 
@@ -1519,6 +1781,28 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Clear Chrome/Chromium fetch cache (duplicate variant)]
 
 - rmchrome-fetch
+
+### HTML_CSS_Tools
+
+[Strip all HTML comments from a file and reformat with Prettier]
+
+- strip-html-comments
+
+[Extract &lt;style&gt; content from an HTML file, minify with clean-css-cli, and display original vs minified byte sizes]
+
+- extract-min-css
+
+[Count HTML comments and total lines in a file]
+
+- count-html-comments
+
+[Check which CSS minifier CLI is available (csso or clean-css-cli)]
+
+- check-css-minifier
+
+[Inject a minified CSS file into the &lt;style&gt; block of an HTML file, then restore @media and @container at-rules collapsed by minification]
+
+- inject-min-css
 
 ### Android_ADB
 
