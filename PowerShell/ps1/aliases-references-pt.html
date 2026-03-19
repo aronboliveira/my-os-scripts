@@ -1,26 +1,14 @@
 <!doctype html>
-<html
-  lang="pt-BR"
-  data-bs-theme="light"
->
+<html lang="pt-BR" data-bs-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Documentação de referência de funções e aliases do perfil PowerShell com exemplos de código com syntax highlighting."
     />
-    <meta
-      name="author"
-      content="Aron Boliveira"
-    />
-    <meta
-      name="color-scheme"
-      content="light dark"
-    />
+    <meta name="author" content="Aron Boliveira" />
+    <meta name="color-scheme" content="light dark" />
     <title>Referência do Perfil PowerShell</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -184,7 +172,8 @@
       }
       .alias-name {
         color: var(--accent-primary);
-        font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        font-family:
+          SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
         font-size: 1.1rem;
         font-weight: 700;
       }
@@ -222,7 +211,8 @@
         background: var(--bg-code);
         border-radius: 0 0 0.5rem 0.5rem;
         color: #cdd6f4;
-        font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        font-family:
+          SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
         font-size: 0.8rem;
         line-height: 1.5;
         margin: 0;
@@ -371,10 +361,7 @@
     </style>
   </head>
   <body>
-    <a
-      class="visually-hidden-focusable"
-      href="#mainContent"
-    >
+    <a class="visually-hidden-focusable" href="#mainContent">
       <span>Pular para o conteúdo principal</span>
     </a>
     <nav
@@ -389,10 +376,7 @@
           href="#"
           aria-label="Referência do Perfil PowerShell home"
         >
-          <i
-            aria-hidden="true"
-            class="bi bi-terminal-fill me-2"
-          ></i>
+          <i aria-hidden="true" class="bi bi-terminal-fill me-2"></i>
           <span>PS Profile</span>
         </a>
         <button
@@ -406,48 +390,30 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div
-          class="collapse navbar-collapse"
-          id="navbarContent"
-        >
+        <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#systemSetup"
-              >
+              <a class="nav-link" href="#systemSetup">
                 <span>System</span>
               </a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#gitAliases"
-              >
+              <a class="nav-link" href="#gitAliases">
                 <span>Git</span>
               </a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#prettyAliases"
-              >
+              <a class="nav-link" href="#prettyAliases">
                 <span>Pretty</span>
               </a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#basicCommands"
-              >
+              <a class="nav-link" href="#basicCommands">
                 <span>Utilitários</span>
               </a>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#htmlCssTools"
-              >
+              <a class="nav-link" href="#htmlCssTools">
                 <span>HTML/CSS</span>
               </a>
             </li>
@@ -457,14 +423,8 @@
               class="input-group input-group-sm no-print"
               style="max-width: 250px"
             >
-              <span
-                class="input-group-text"
-                id="searchIcon"
-              >
-                <i
-                  aria-hidden="true"
-                  class="bi bi-search"
-                ></i>
+              <span class="input-group-text" id="searchIcon">
+                <i aria-hidden="true" class="bi bi-search"></i>
               </span>
               <input
                 aria-describedby="searchIcon"
@@ -481,20 +441,13 @@
               id="themeBtn"
               type="button"
             >
-              <i
-                aria-hidden="true"
-                class="bi bi-moon-stars-fill"
-              ></i>
+              <i aria-hidden="true" class="bi bi-moon-stars-fill"></i>
             </button>
           </div>
         </div>
       </div>
     </nav>
-    <main
-      class="container-fluid"
-      id="mainContent"
-      role="main"
-    >
+    <main class="container-fluid" id="mainContent" role="main">
       <div class="row">
         <aside
           aria-label="Índice"
@@ -502,85 +455,42 @@
           id="tocSidebar"
         >
           <nav class="nav flex-column py-3">
-            <span class="text-muted small fw-bold px-3 mb-2"><span>SEÇÕES</span></span>
-            <a
-              class="nav-link"
-              href="#systemSetup"
+            <span class="text-muted small fw-bold px-3 mb-2"
+              ><span>SEÇÕES</span></span
             >
-              <i
-                aria-hidden="true"
-                class="bi bi-gear-fill me-2"
-              ></i>
+            <a class="nav-link" href="#systemSetup">
+              <i aria-hidden="true" class="bi bi-gear-fill me-2"></i>
               <span>Configuração do Sistema</span>
             </a>
-            <a
-              class="nav-link"
-              href="#basicCommands"
-            >
-              <i
-                aria-hidden="true"
-                class="bi bi-terminal-fill me-2"
-              ></i>
+            <a class="nav-link" href="#basicCommands">
+              <i aria-hidden="true" class="bi bi-terminal-fill me-2"></i>
               <span>Comandos Básicos</span>
             </a>
-            <a
-              class="nav-link"
-              href="#fileAnalysis"
-            >
+            <a class="nav-link" href="#fileAnalysis">
               <i
                 aria-hidden="true"
                 class="bi bi-file-earmark-text-fill me-2"
               ></i>
               <span>Análise de Arquivos</span>
             </a>
-            <a
-              class="nav-link"
-              href="#gitAliases"
-            >
-              <i
-                aria-hidden="true"
-                class="bi bi-git me-2"
-              ></i>
+            <a class="nav-link" href="#gitAliases">
+              <i aria-hidden="true" class="bi bi-git me-2"></i>
               <span>Aliases Git</span>
             </a>
-            <a
-              class="nav-link"
-              href="#prettyAliases"
-            >
-              <i
-                aria-hidden="true"
-                class="bi bi-palette-fill me-2"
-              ></i>
+            <a class="nav-link" href="#prettyAliases">
+              <i aria-hidden="true" class="bi bi-palette-fill me-2"></i>
               <span>Saída Formatada</span>
             </a>
-            <a
-              class="nav-link"
-              href="#navigationAliases"
-            >
-              <i
-                aria-hidden="true"
-                class="bi bi-folder-fill me-2"
-              ></i>
+            <a class="nav-link" href="#navigationAliases">
+              <i aria-hidden="true" class="bi bi-folder-fill me-2"></i>
               <span>Aliases de Navegação</span>
             </a>
-            <a
-              class="nav-link"
-              href="#laravelPhp"
-            >
-              <i
-                aria-hidden="true"
-                class="bi bi-filetype-php me-2"
-              ></i>
+            <a class="nav-link" href="#laravelPhp">
+              <i aria-hidden="true" class="bi bi-filetype-php me-2"></i>
               <span>Aliases Laravel/PHP</span>
             </a>
-            <a
-              class="nav-link"
-              href="#htmlCssTools"
-            >
-              <i
-                aria-hidden="true"
-                class="bi bi-filetype-css me-2"
-              ></i>
+            <a class="nav-link" href="#htmlCssTools">
+              <i aria-hidden="true" class="bi bi-filetype-css me-2"></i>
               <span>Ferramentas HTML/CSS</span>
             </a>
           </nav>
@@ -596,27 +506,18 @@
             </h1>
             <p class="lead text-muted">
               <span>
-                Documentação abrangente de funções e aliases PowerShell transpilados do Bash para fluxos de trabalho
-                multiplataforma.
+                Documentação abrangente de funções e aliases PowerShell
+                transpilados do Bash para fluxos de trabalho multiplataforma.
               </span>
             </p>
             <div class="d-flex flex-wrap gap-2 mt-3">
-              <span
-                class="badge bg-primary badge-alias"
-                role="status"
-              >
+              <span class="badge bg-primary badge-alias" role="status">
                 <span>102+ Aliases</span>
               </span>
-              <span
-                class="badge bg-success badge-alias"
-                role="status"
-              >
+              <span class="badge bg-success badge-alias" role="status">
                 <span>Syntax Highlighted</span>
               </span>
-              <span
-                class="badge bg-info badge-alias"
-                role="status"
-              >
+              <span class="badge bg-info badge-alias" role="status">
                 <span>Código Recolhível</span>
               </span>
             </div>
@@ -627,10 +528,7 @@
               class="mb-5"
               id="systemSetup"
             >
-              <h2
-                class="h3 mb-4"
-                id="systemSetupHeading"
-              >
+              <h2 class="h3 mb-4" id="systemSetupHeading">
                 <i
                   aria-hidden="true"
                   class="bi bi-gear-fill text-primary me-2"
@@ -638,12 +536,12 @@
                 <span>Configuração do Sistema</span>
               </h2>
               <p class="text-muted mb-4">
-                <span>Funções para consultar variáveis de ambiente, info do usuário e metadados do shell.</span>
+                <span
+                  >Funções para consultar variáveis de ambiente, info do usuário
+                  e metadados do shell.</span
+                >
               </p>
-              <div
-                class="accordion"
-                id="systemSetupAccordion"
-              >
+              <div class="accordion" id="systemSetupAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
                     <button
@@ -667,16 +565,20 @@
                         data-alias="show-all-env-vars"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-all-env-vars</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-env-vars</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Lista todas as variáveis de ambiente ordenadas alfabeticamente.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Lista todas as variáveis de ambiente ordenadas
+                              alfabeticamente.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -699,16 +601,20 @@
                         data-alias="show-all-printenv-vars"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-all-printenv-vars</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-printenv-vars</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Lista todas as variáveis exportadas ordenadas alfabeticamente.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Lista todas as variáveis exportadas ordenadas
+                              alfabeticamente.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -733,16 +639,20 @@
                         data-alias="show-all-sh-vars"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-all-sh-vars</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-sh-vars</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Lista todas as variáveis do PowerShell ordenadas alfabeticamente.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Lista todas as variáveis do PowerShell ordenadas
+                              alfabeticamente.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -785,14 +695,17 @@
                         data-alias="show-hostype"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-hostype</code></h4>
-                          <p class="mb-2"><span>Mostra a arquitetura da máquina host.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
+                          <h4 class="alias-name mb-2">
+                            <code>show-hostype</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>Mostra a arquitetura da máquina host.</span>
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -815,14 +728,20 @@
                         data-alias="show-home"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-home</code></h4>
-                          <p class="mb-2"><span>Mostra o caminho do diretório home do usuário atual.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>show-home</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Mostra o caminho do diretório home do usuário
+                              atual.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -843,14 +762,17 @@
                         data-alias="show-user"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-user</code></h4>
-                          <p class="mb-2"><span>Mostra o nome do usuário atual.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
+                          <h4 class="alias-name mb-2">
+                            <code>show-user</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>Mostra o nome do usuário atual.</span>
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -871,14 +793,20 @@
                         data-alias="show-shell"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-shell</code></h4>
-                          <p class="mb-2"><span>Mostra a versão e edição do PowerShell atual.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>show-shell</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Mostra a versão e edição do PowerShell
+                              atual.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -901,14 +829,17 @@
                         data-alias="show-wrkdir"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-wrkdir</code></h4>
-                          <p class="mb-2"><span>Mostra o diretório de trabalho atual.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
+                          <h4 class="alias-name mb-2">
+                            <code>show-wrkdir</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>Mostra o diretório de trabalho atual.</span>
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -933,10 +864,7 @@
               class="mb-5"
               id="basicCommands"
             >
-              <h2
-                class="h3 mb-4"
-                id="basicCommandsHeading"
-              >
+              <h2 class="h3 mb-4" id="basicCommandsHeading">
                 <i
                   aria-hidden="true"
                   class="bi bi-terminal-fill text-primary me-2"
@@ -945,13 +873,11 @@
               </h2>
               <p class="text-muted mb-4">
                 <span>
-                  Funções utilitárias para listagem de arquivos, decodificação URI, formatação de strings e mais.
+                  Funções utilitárias para listagem de arquivos, decodificação
+                  URI, formatação de strings e mais.
                 </span>
               </p>
-              <div
-                class="accordion"
-                id="basicCommandsAccordion"
-              >
+              <div class="accordion" id="basicCommandsAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
                     <button
@@ -976,13 +902,17 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>mkdir-p</code></h4>
-                          <p class="mb-2"><span>Atalho para mkdir (New-Item -ItemType Directory).</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <p class="mb-2">
+                            <span
+                              >Atalho para mkdir (New-Item -ItemType
+                              Directory).</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1006,14 +936,20 @@
                         data-alias="uri-decode"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>uri-decode</code></h4>
-                          <p class="mb-2"><span>Decodifica uma string URI codificada em porcentagem.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>uri-decode</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Decodifica uma string URI codificada em
+                              porcentagem.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1037,16 +973,20 @@
                         data-alias="printf-tr"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>printf-tr</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>printf-tr</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Printf com largura de campo, delimitador e substituição via regex.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Printf com largura de campo, delimitador e
+                              substituição via regex.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1078,16 +1018,20 @@
                         data-alias="cat-indexed"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>cat-indexed</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>cat-indexed</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Lista arquivos com números de índice e exibe conteúdo por índice.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Lista arquivos com números de índice e exibe
+                              conteúdo por índice.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1116,14 +1060,16 @@
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>run-cmds</code></h4>
                           <p class="mb-2">
-                            <span>Executa múltiplos blocos de script contra um único argumento alvo.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Executa múltiplos blocos de script contra um
+                              único argumento alvo.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1150,16 +1096,20 @@
                         data-alias="ls-lah-859"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>ls-lah-859</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>ls-lah-859</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Saída personalizada de ls mostrando colunas de hora, tamanho e nome.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Saída personalizada de ls mostrando colunas de
+                              hora, tamanho e nome.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1184,14 +1134,20 @@
                         data-alias="wc-l-novendors"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>wc-l-novendors</code></h4>
-                          <p class="mb-2"><span>Conta total de linhas no diretório excluindo pastas vendor.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>wc-l-novendors</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Conta total de linhas no diretório excluindo
+                              pastas vendor.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1221,10 +1177,7 @@
               class="mb-5"
               id="fileAnalysis"
             >
-              <h2
-                class="h3 mb-4"
-                id="fileAnalysisHeading"
-              >
+              <h2 class="h3 mb-4" id="fileAnalysisHeading">
                 <i
                   aria-hidden="true"
                   class="bi bi-file-earmark-text-fill text-primary me-2"
@@ -1232,12 +1185,12 @@
                 <span>Análise de Arquivos</span>
               </h2>
               <p class="text-muted mb-4">
-                <span>Funções para análise de conteúdo de arquivos e estrutura de diretórios.</span>
+                <span
+                  >Funções para análise de conteúdo de arquivos e estrutura de
+                  diretórios.</span
+                >
               </p>
-              <div
-                class="accordion"
-                id="fileAnalysisAccordion"
-              >
+              <div class="accordion" id="fileAnalysisAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
                     <button
@@ -1261,16 +1214,20 @@
                         data-alias="is-mblank"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>is-mblank</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>is-mblank</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Verifica se um arquivo tem múltiplas linhas em branco consecutivas.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Verifica se um arquivo tem múltiplas linhas em
+                              branco consecutivas.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1297,14 +1254,20 @@
                         data-alias="ls-mblank"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>ls-mblank</code></h4>
-                          <p class="mb-2"><span>Lista arquivos com múltiplas linhas em branco consecutivas.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>ls-mblank</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Lista arquivos com múltiplas linhas em branco
+                              consecutivas.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1329,14 +1292,19 @@
                         data-alias="list-files"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>list-files</code></h4>
-                          <p class="mb-2"><span>Lista arquivos com nome, caminho e tamanho.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>list-files</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Lista arquivos com nome, caminho e tamanho.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1361,14 +1329,19 @@
                         data-alias="contains-files"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>contains-files</code></h4>
-                          <p class="mb-2"><span>Verifica quais diretórios contêm arquivos.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>contains-files</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Verifica quais diretórios contêm arquivos.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1389,21 +1362,20 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="packf"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="packf">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>packf</code></h4>
                           <p class="mb-2">
-                            <span>Empacota todos os arquivos em subdiretórios de 100 arquivos cada.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Empacota todos os arquivos em subdiretórios de
+                              100 arquivos cada.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1433,23 +1405,17 @@
               class="mb-5"
               id="gitAliases"
             >
-              <h2
-                class="h3 mb-4"
-                id="gitAliasesHeading"
-              >
-                <i
-                  aria-hidden="true"
-                  class="bi bi-git text-primary me-2"
-                ></i>
+              <h2 class="h3 mb-4" id="gitAliasesHeading">
+                <i aria-hidden="true" class="bi bi-git text-primary me-2"></i>
                 <span>Aliases Git</span>
               </h2>
               <p class="text-muted mb-4">
-                <span>Atalhos de comandos git para fluxos de controle de versão do dia a dia.</span>
+                <span
+                  >Atalhos de comandos git para fluxos de controle de versão do
+                  dia a dia.</span
+                >
               </p>
-              <div
-                class="accordion"
-                id="gitAliasesAccordion"
-              >
+              <div class="accordion" id="gitAliasesAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
                     <button
@@ -1468,19 +1434,15 @@
                     id="collapse_gitBasic"
                   >
                     <div class="accordion-body alias-container">
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gra"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gra">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gra</code></h4>
                           <p class="mb-2"><span>git remote add</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1496,19 +1458,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gra-o"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gra-o">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gra-o</code></h4>
                           <p class="mb-2"><span>git remote add origin</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1524,19 +1482,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="ga"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="ga">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>ga</code></h4>
                           <p class="mb-2"><span>git add</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1552,19 +1506,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gal"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gal">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gal</code></h4>
                           <p class="mb-2"><span>git add .</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1580,19 +1530,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gc"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gc">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gc</code></h4>
                           <p class="mb-2"><span>git commit</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1608,19 +1554,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gca"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gca">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gca</code></h4>
                           <p class="mb-2"><span>git commit -a -m</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1636,19 +1578,20 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="galps"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="galps">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>galps</code></h4>
-                          <p class="mb-2"><span>cd para raiz do repo, git add . && git commit -am</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <p class="mb-2">
+                            <span
+                              >cd para raiz do repo, git add . && git commit
+                              -am</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1690,19 +1633,15 @@
                     id="collapse_gitLogStatus"
                   >
                     <div class="accordion-body alias-container">
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gl"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gl">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gl</code></h4>
                           <p class="mb-2"><span>git log</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1718,19 +1657,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gl-o"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gl-o">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gl-o</code></h4>
                           <p class="mb-2"><span>git log --oneline</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1746,19 +1681,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gs"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gs">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gs</code></h4>
                           <p class="mb-2"><span>git status</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1774,19 +1705,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gsw"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gsw">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gsw</code></h4>
                           <p class="mb-2"><span>git show</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1802,19 +1729,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="grl"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="grl">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grl</code></h4>
                           <p class="mb-2"><span>git reflog</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1830,19 +1753,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gsl"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gsl">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gsl</code></h4>
                           <p class="mb-2"><span>git shortlog</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1858,19 +1777,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gci"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gci">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gci</code></h4>
                           <p class="mb-2"><span>git check-ignore -v</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1886,19 +1801,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="glr"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="glr">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>glr</code></h4>
                           <p class="mb-2"><span>git ls-remote</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1914,19 +1825,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="glt"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="glt">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>glt</code></h4>
                           <p class="mb-2"><span>git ls-tree</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1942,19 +1849,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="glost"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="glost">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>glost</code></h4>
                           <p class="mb-2"><span>git fsck --lost-found</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -1977,12 +1880,11 @@
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gfsckf</code></h4>
                           <p class="mb-2"><span>git fsck --full</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2003,14 +1905,17 @@
                         data-alias="gitgcagro"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>gitgcagro</code></h4>
-                          <p class="mb-2"><span>git gc --aggressive --prune=now</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <h4 class="alias-name mb-2">
+                            <code>gitgcagro</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>git gc --aggressive --prune=now</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2046,19 +1951,15 @@
                     id="collapse_gitRemote"
                   >
                     <div class="accordion-body alias-container">
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gps"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gps">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gps</code></h4>
                           <p class="mb-2"><span>git push</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2081,12 +1982,11 @@
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gps-oh</code></h4>
                           <p class="mb-2"><span>git push origin HEAD</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2108,13 +2008,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gps-ohm</code></h4>
-                          <p class="mb-2"><span>git push origin HEAD:main</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>git push origin HEAD:main</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2130,19 +2031,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gpl"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gpl">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gpl</code></h4>
                           <p class="mb-2"><span>git pull</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2158,19 +2055,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gf"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gf">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gf</code></h4>
                           <p class="mb-2"><span>git fetch</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2206,19 +2099,15 @@
                     id="collapse_gitBranchDiff"
                   >
                     <div class="accordion-body alias-container">
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gd"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gd">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gd</code></h4>
                           <p class="mb-2"><span>git diff</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2234,19 +2123,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gb"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gb">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gb</code></h4>
                           <p class="mb-2"><span>git branch</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2262,19 +2147,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gbv"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gbv">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gbv</code></h4>
                           <p class="mb-2"><span>git branch -v</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2290,19 +2171,17 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gsc"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gsc">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gsc</code></h4>
-                          <p class="mb-2"><span>git switch -c (criar nova branch)</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>git switch -c (criar nova branch)</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2318,19 +2197,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gco"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gco">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gco</code></h4>
                           <p class="mb-2"><span>git checkout</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2346,19 +2221,20 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gtop"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gtop">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gtop</code></h4>
-                          <p class="mb-2"><span>git rev-parse --show-toplevel (mostrar raiz do repo)</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <p class="mb-2">
+                            <span
+                              >git rev-parse --show-toplevel (mostrar raiz do
+                              repo)</span
                             >
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2374,19 +2250,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gm"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gm">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gm</code></h4>
                           <p class="mb-2"><span>git merge</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2402,19 +2274,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="grb"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="grb">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grb</code></h4>
                           <p class="mb-2"><span>git rebase</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2450,19 +2318,15 @@
                     id="collapse_gitResetRevert"
                   >
                     <div class="accordion-body alias-container">
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="grs"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="grs">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grs</code></h4>
                           <p class="mb-2"><span>git reset</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2478,19 +2342,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="grs-h"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="grs-h">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grs-h</code></h4>
                           <p class="mb-2"><span>git reset --hard</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2506,19 +2366,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="grs-s"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="grs-s">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grs-s</code></h4>
                           <p class="mb-2"><span>git reset --soft</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2540,13 +2396,16 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grs--1</code></h4>
-                          <p class="mb-2"><span>git reset HEAD~1 (desfazer último commit)</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <p class="mb-2">
+                            <span
+                              >git reset HEAD~1 (desfazer último commit)</span
                             >
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2568,13 +2427,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grs-h--1</code></h4>
-                          <p class="mb-2"><span>git reset --hard HEAD~1</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>git reset --hard HEAD~1</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2596,13 +2456,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grs-s--1</code></h4>
-                          <p class="mb-2"><span>git reset --soft HEAD~1</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>git reset --soft HEAD~1</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2618,19 +2479,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="grv"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="grv">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grv</code></h4>
                           <p class="mb-2"><span>git revert</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2652,13 +2509,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grv-nc</code></h4>
-                          <p class="mb-2"><span>git revert --no-commit</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>git revert --no-commit</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2681,12 +2539,11 @@
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>grv--h</code></h4>
                           <p class="mb-2"><span>git revert HEAD</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2722,19 +2579,15 @@
                     id="collapse_gitStash"
                   >
                     <div class="accordion-body alias-container">
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gst"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gst">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst</code></h4>
                           <p class="mb-2"><span>git stash</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2757,12 +2610,11 @@
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst-ps</code></h4>
                           <p class="mb-2"><span>git stash push</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2784,13 +2636,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst-pp-u</code></h4>
-                          <p class="mb-2"><span>git stash push --include-untracked</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>git stash push --include-untracked</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2813,12 +2666,11 @@
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst-pp</code></h4>
                           <p class="mb-2"><span>git stash pop</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2834,19 +2686,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gst-a"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gst-a">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst-a</code></h4>
                           <p class="mb-2"><span>git stash apply</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2862,19 +2710,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gst-d"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gst-d">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst-d</code></h4>
                           <p class="mb-2"><span>git stash drop</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2890,19 +2734,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gst-l"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gst-l">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst-l</code></h4>
                           <p class="mb-2"><span>git stash list</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2918,19 +2758,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gst-s"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gst-s">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst-s</code></h4>
                           <p class="mb-2"><span>git stash show</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2946,19 +2782,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="gst-c"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="gst-c">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>gst-c</code></h4>
                           <p class="mb-2"><span>git stash clear</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -2983,10 +2815,7 @@
               class="mb-5"
               id="prettyAliases"
             >
-              <h2
-                class="h3 mb-4"
-                id="prettyAliasesHeading"
-              >
+              <h2 class="h3 mb-4" id="prettyAliasesHeading">
                 <i
                   aria-hidden="true"
                   class="bi bi-palette-fill text-primary me-2"
@@ -2994,12 +2823,12 @@
                 <span>Saída Formatada</span>
               </h2>
               <p class="text-muted mb-4">
-                <span>Versões formatadas das funções com cabeçalhos, rodapés e saída colorida.</span>
+                <span
+                  >Versões formatadas das funções com cabeçalhos, rodapés e
+                  saída colorida.</span
+                >
               </p>
-              <div
-                class="accordion"
-                id="prettyAliasesAccordion"
-              >
+              <div class="accordion" id="prettyAliasesAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
                     <button
@@ -3023,16 +2852,20 @@
                         data-alias="show-all-env-vars-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-all-env-vars-pretty</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-env-vars-pretty</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Exibe todas as variáveis de ambiente formatadas com cabeçalho.</span>
-                          </p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Exibe todas as variáveis de ambiente formatadas
+                              com cabeçalho.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3058,14 +2891,20 @@
                         data-alias="show-all-printenv-vars-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-all-printenv-vars-pretty</code></h4>
-                          <p class="mb-2"><span>Exibe todas as variáveis exportadas formatadas.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-printenv-vars-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Exibe todas as variáveis exportadas
+                              formatadas.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3092,14 +2931,20 @@
                         data-alias="show-all-sh-vars-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>show-all-sh-vars-pretty</code></h4>
-                          <p class="mb-2"><span>Exibe todas as variáveis do PowerShell formatadas.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>show-all-sh-vars-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Exibe todas as variáveis do PowerShell
+                              formatadas.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3145,14 +2990,20 @@
                         data-alias="uri-decode-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>uri-decode-pretty</code></h4>
-                          <p class="mb-2"><span>Decodificação formatada de URI mostrando entrada e saída.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>uri-decode-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Decodificação formatada de URI mostrando entrada
+                              e saída.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3179,16 +3030,20 @@
                         data-alias="cat-indexed-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>cat-indexed-pretty</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>cat-indexed-pretty</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Lista formatada de arquivos por índice com exibição de conteúdo.</span>
-                          </p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Lista formatada de arquivos por índice com
+                              exibição de conteúdo.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3214,14 +3069,19 @@
                         data-alias="run-cmds-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>run-cmds-pretty</code></h4>
-                          <p class="mb-2"><span>Execução formatada de múltiplos comandos.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>run-cmds-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Execução formatada de múltiplos comandos.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3247,14 +3107,20 @@
                         data-alias="printf-tr-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>printf-tr-pretty</code></h4>
-                          <p class="mb-2"><span>Resultado formatado de printf-tr com cabeçalho.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>printf-tr-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Resultado formatado de printf-tr com
+                              cabeçalho.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3300,16 +3166,20 @@
                         data-alias="strip-html-comments-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>strip-html-comments-pretty</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>strip-html-comments-pretty</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Remove comentários HTML formatado mostrando contagem antes/depois.</span>
-                          </p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Remove comentários HTML formatado mostrando
+                              contagem antes/depois.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3334,14 +3204,20 @@
                         data-alias="extract-min-css-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>extract-min-css-pretty</code></h4>
-                          <p class="mb-2"><span>Extração formatada de CSS com comparação de tamanho.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>extract-min-css-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Extração formatada de CSS com comparação de
+                              tamanho.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3366,14 +3242,20 @@
                         data-alias="count-html-comments-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>count-html-comments-pretty</code></h4>
-                          <p class="mb-2"><span>Contagem formatada de comentários HTML e linhas.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>count-html-comments-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Contagem formatada de comentários HTML e
+                              linhas.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3399,14 +3281,20 @@
                         data-alias="check-css-minifier-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>check-css-minifier-pretty</code></h4>
-                          <p class="mb-2"><span>Verificação formatada de disponibilidade de minificador CSS.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>check-css-minifier-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Verificação formatada de disponibilidade de
+                              minificador CSS.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3431,14 +3319,20 @@
                         data-alias="inject-min-css-pretty"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>inject-min-css-pretty</code></h4>
-                          <p class="mb-2"><span>Injeção formatada de CSS minificado em HTML.</span></p>
-                          <span class="badge bg-warning text-dark badge-alias"><span>pretty</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>inject-min-css-pretty</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Injeção formatada de CSS minificado em
+                              HTML.</span
                             >
+                          </p>
+                          <span class="badge bg-warning text-dark badge-alias"
+                            ><span>pretty</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3467,21 +3361,17 @@
               class="mb-5"
               id="navigationAliases"
             >
-              <h2
-                class="h3 mb-4"
-                id="navigationAliasesHeading"
-              >
+              <h2 class="h3 mb-4" id="navigationAliasesHeading">
                 <i
                   aria-hidden="true"
                   class="bi bi-folder-fill text-primary me-2"
                 ></i>
                 <span>Aliases de Navegação</span>
               </h2>
-              <p class="text-muted mb-4"><span>Atalhos rápidos de navegação de diretórios.</span></p>
-              <div
-                class="accordion"
-                id="navigationAliasesAccordion"
-              >
+              <p class="text-muted mb-4">
+                <span>Atalhos rápidos de navegação de diretórios.</span>
+              </p>
+              <div class="accordion" id="navigationAliasesAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
                     <button
@@ -3500,19 +3390,15 @@
                     id="collapse_navDirs"
                   >
                     <div class="accordion-body alias-container">
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="desk"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="desk">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>desk</code></h4>
                           <p class="mb-2"><span>cd para ~/Desktop</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3528,19 +3414,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="docs"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="docs">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>docs</code></h4>
                           <p class="mb-2"><span>cd para ~/Documents</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3556,19 +3438,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="dl"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="dl">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>dl</code></h4>
                           <p class="mb-2"><span>cd para ~/Downloads</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3584,19 +3462,17 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias=".."
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="..">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>..</code></h4>
-                          <p class="mb-2"><span>cd um nível de diretório acima</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>cd um nível de diretório acima</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3612,19 +3488,17 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="..."
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="...">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>...</code></h4>
-                          <p class="mb-2"><span>cd dois níveis de diretório acima</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>cd dois níveis de diretório acima</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3640,19 +3514,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias=".ilv"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias=".ilv">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>.ilv</code></h4>
                           <p class="mb-2"><span>cd para _inc/laravel</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3677,21 +3547,20 @@
               class="mb-5"
               id="laravelPhp"
             >
-              <h2
-                class="h3 mb-4"
-                id="laravelPhpHeading"
-              >
+              <h2 class="h3 mb-4" id="laravelPhpHeading">
                 <i
                   aria-hidden="true"
                   class="bi bi-filetype-php text-primary me-2"
                 ></i>
                 <span>Aliases Laravel/PHP</span>
               </h2>
-              <p class="text-muted mb-4"><span>Atalhos para comandos Laravel Artisan, Composer e MySQL.</span></p>
-              <div
-                class="accordion"
-                id="laravelPhpAccordion"
-              >
+              <p class="text-muted mb-4">
+                <span
+                  >Atalhos para comandos Laravel Artisan, Composer e
+                  MySQL.</span
+                >
+              </p>
+              <div class="accordion" id="laravelPhpAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
                     <button
@@ -3716,13 +3585,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>artmrs</code></h4>
-                          <p class="mb-2"><span>php artisan migrate:reset</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>php artisan migrate:reset</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3744,13 +3614,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>artmsd</code></h4>
-                          <p class="mb-2"><span>php artisan migrate:fresh --seed</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>php artisan migrate:fresh --seed</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3772,13 +3643,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>artmst</code></h4>
-                          <p class="mb-2"><span>php artisan migrate:status</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>php artisan migrate:status</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3794,19 +3666,17 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="artcl"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="artcl">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>artcl</code></h4>
-                          <p class="mb-2"><span>Limpa todos os caches do Laravel.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
+                          <p class="mb-2">
+                            <span>Limpa todos os caches do Laravel.</span>
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3830,19 +3700,15 @@
                         </div>
                       </div>
 
-                      <div
-                        class="card alias-card shadow-sm"
-                        data-alias="artsv"
-                      >
+                      <div class="card alias-card shadow-sm" data-alias="artsv">
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>artsv</code></h4>
                           <p class="mb-2"><span>php artisan serve</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3864,13 +3730,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>artrtl</code></h4>
-                          <p class="mb-2"><span>php artisan route:list --sort=uri</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>php artisan route:list --sort=uri</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3891,14 +3758,20 @@
                         data-alias="laravel-rm-cache"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>laravel-rm-cache</code></h4>
-                          <p class="mb-2"><span>Remove arquivos de cache bootstrap do Laravel.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>laravel-rm-cache</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Remove arquivos de cache bootstrap do
+                              Laravel.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3923,13 +3796,14 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>compdp</code></h4>
-                          <p class="mb-2"><span>composer dump-autoload -o</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
+                          <p class="mb-2">
+                            <span>composer dump-autoload -o</span>
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
                           <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
-                            >
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3951,13 +3825,16 @@
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2"><code>mysqlr</code></h4>
-                          <p class="mb-2"><span>Login MySQL como root com prompt de senha.</span></p>
-                          <span class="badge bg-info badge-alias"><span>alias</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <p class="mb-2">
+                            <span
+                              >Login MySQL como root com prompt de senha.</span
                             >
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -3982,10 +3859,7 @@
               class="mb-5"
               id="htmlCssTools"
             >
-              <h2
-                class="h3 mb-4"
-                id="htmlCssToolsHeading"
-              >
+              <h2 class="h3 mb-4" id="htmlCssToolsHeading">
                 <i
                   aria-hidden="true"
                   class="bi bi-filetype-css text-primary me-2"
@@ -3993,12 +3867,12 @@
                 <span>Ferramentas HTML/CSS</span>
               </h2>
               <p class="text-muted mb-4">
-                <span>Funções para remoção de comentários HTML, extração de CSS, minificação e injeção.</span>
+                <span
+                  >Funções para remoção de comentários HTML, extração de CSS,
+                  minificação e injeção.</span
+                >
               </p>
-              <div
-                class="accordion"
-                id="htmlCssToolsAccordion"
-              >
+              <div class="accordion" id="htmlCssToolsAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
                     <button
@@ -4022,16 +3896,20 @@
                         data-alias="strip-html-comments"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>strip-html-comments</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>strip-html-comments</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Remove todos os comentários HTML de um arquivo e reformata com Prettier.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Remove todos os comentários HTML de um arquivo e
+                              reformata com Prettier.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -4058,14 +3936,20 @@
                         data-alias="extract-min-css"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>extract-min-css</code></h4>
-                          <p class="mb-2"><span>Extrai conteúdo style do HTML, minifica com clean-css-cli.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>extract-min-css</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Extrai conteúdo style do HTML, minifica com
+                              clean-css-cli.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -4093,14 +3977,20 @@
                         data-alias="count-html-comments"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>count-html-comments</code></h4>
-                          <p class="mb-2"><span>Conta comentários HTML e total de linhas em um arquivo.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>count-html-comments</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Conta comentários HTML e total de linhas em um
+                              arquivo.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -4125,14 +4015,20 @@
                         data-alias="check-css-minifier"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>check-css-minifier</code></h4>
-                          <p class="mb-2"><span>Verifica qual CLI de minificação CSS está disponível.</span></p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                          <h4 class="alias-name mb-2">
+                            <code>check-css-minifier</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Verifica qual CLI de minificação CSS está
+                              disponível.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -4156,16 +4052,20 @@
                         data-alias="inject-min-css"
                       >
                         <div class="card-body">
-                          <h4 class="alias-name mb-2"><code>inject-min-css</code></h4>
+                          <h4 class="alias-name mb-2">
+                            <code>inject-min-css</code>
+                          </h4>
                           <p class="mb-2">
-                            <span>Injeta um arquivo CSS minificado no bloco style de um arquivo HTML.</span>
-                          </p>
-                          <span class="badge bg-primary badge-alias"><span>function</span></span>
-                          <details class="code-details">
-                            <summary
-                              role="button"
-                              aria-expanded="false"
+                            <span
+                              >Injeta um arquivo CSS minificado no bloco style
+                              de um arquivo HTML.</span
                             >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
                               <i
                                 aria-hidden="true"
                                 class="bi bi-code-slash me-2"
@@ -4194,10 +4094,7 @@
                 </div>
               </div>
             </article>
-            <article
-              class="mb-5"
-              id="moreInfo"
-            >
+            <article class="mb-5" id="moreInfo">
               <div class="card border-0 bg-body-tertiary">
                 <div class="card-body text-center py-5">
                   <i
@@ -4207,8 +4104,10 @@
                   <h2 class="h4 mb-3"><span>Sobre Esta Referência</span></h2>
                   <p class="text-muted mb-0">
                     <span>
-                      Esta página documenta todas as funções e aliases publicáveis do perfil PowerShell, transpilados da
-                      seção publicável do Bash. Comandos exclusivos do Linux foram excluídos.
+                      Esta página documenta todas as funções e aliases
+                      publicáveis do perfil PowerShell, transpilados da seção
+                      publicável do Bash. Comandos exclusivos do Linux foram
+                      excluídos.
                     </span>
                   </p>
                 </div>
@@ -4224,85 +4123,90 @@
       id="backToTop"
       type="button"
     >
-      <i
-        aria-hidden="true"
-        class="bi bi-arrow-up"
-      ></i>
+      <i aria-hidden="true" class="bi bi-arrow-up"></i>
     </button>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"
     ></script>
     <script>
-      "use strict"
-      ;(() => {
-        const SCROLL_THRESHOLD = 100
-        const PASSIVE = { passive: true }
-        const qs = (s) => document.querySelector(s)
+      "use strict";
+      (() => {
+        const SCROLL_THRESHOLD = 100;
+        const PASSIVE = { passive: true };
+        const qs = (s) => document.querySelector(s);
 
         // Theme toggle
-        const themeBtn = qs("#themeBtn")
+        const themeBtn = qs("#themeBtn");
         if (themeBtn) {
-          const stored = localStorage.getItem("ps-ref-theme")
-          if (stored) document.documentElement.setAttribute("data-bs-theme", stored)
+          const stored = localStorage.getItem("ps-ref-theme");
+          if (stored)
+            document.documentElement.setAttribute("data-bs-theme", stored);
           themeBtn.addEventListener("click", () => {
-            const current = document.documentElement.getAttribute("data-bs-theme")
-            const next = current === "dark" ? "light" : "dark"
-            document.documentElement.setAttribute("data-bs-theme", next)
-            localStorage.setItem("ps-ref-theme", next)
-          })
+            const current =
+              document.documentElement.getAttribute("data-bs-theme");
+            const next = current === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-bs-theme", next);
+            localStorage.setItem("ps-ref-theme", next);
+          });
         }
 
         // Search
-        const input = qs("#aliasSearch")
+        const input = qs("#aliasSearch");
         if (input) {
           input.addEventListener("input", (ev) => {
-            const query = ev.target.value.toLowerCase().trim()
+            const query = ev.target.value.toLowerCase().trim();
             for (const card of document.querySelectorAll(".alias-card"))
               card.style.display =
-                !query || (card.dataset.alias || "").includes(query) || card.textContent.toLowerCase().includes(query)
+                !query ||
+                (card.dataset.alias || "").includes(query) ||
+                card.textContent.toLowerCase().includes(query)
                   ? ""
-                  : "none"
-          })
+                  : "none";
+          });
         }
 
         // Scroll
         const nav = qs("#mainNav"),
-          backToTop = qs("#backToTop")
-        if (backToTop) backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }))
+          backToTop = qs("#backToTop");
+        if (backToTop)
+          backToTop.addEventListener("click", () =>
+            window.scrollTo({ top: 0, behavior: "smooth" }),
+          );
         window.addEventListener(
           "scroll",
           () => {
-            const scrolled = window.scrollY > SCROLL_THRESHOLD
-            nav?.classList.toggle("scrolled", scrolled)
-            backToTop?.classList.toggle("visible", scrolled)
+            const scrolled = window.scrollY > SCROLL_THRESHOLD;
+            nav?.classList.toggle("scrolled", scrolled);
+            backToTop?.classList.toggle("visible", scrolled);
           },
           PASSIVE,
-        )
+        );
 
         // TOC tracking
-        const tocSections = []
+        const tocSections = [];
         for (const link of document.querySelectorAll("#tocSidebar .nav-link")) {
-          const href = link.getAttribute("href")
-          if (!href?.startsWith("#")) continue
-          const section = qs(href)
-          if (section) tocSections.push({ link, section })
+          const href = link.getAttribute("href");
+          if (!href?.startsWith("#")) continue;
+          const section = qs(href);
+          if (section) tocSections.push({ link, section });
         }
         if (tocSections.length) {
           window.addEventListener(
             "scroll",
             () => {
-              const scrollPos = window.scrollY + 150
+              const scrollPos = window.scrollY + 150;
               for (const { link, section } of tocSections)
                 link.classList.toggle(
                   "active",
-                  scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight,
-                )
+                  scrollPos >= section.offsetTop &&
+                    scrollPos < section.offsetTop + section.offsetHeight,
+                );
             },
             PASSIVE,
-          )
+          );
         }
-      })()
+      })();
     </script>
   </body>
 </html>

@@ -40,39 +40,60 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
 
     ## @description List all environment variables (env), sorted alphabetically.
     alias show-all-env-vars='env | grep -v "^$" | sort'
+    alias ls-all-env-vars='show-all-env-vars'
 
     ## @description List all exported variables (printenv), sorted alphabetically.
     alias show-all-printenv-vars='printenv | grep -v "^$" | sort'
+    alias ls-all-printenv-vars='show-all-printenv-vars'
 
     ## @description List all shell variables (set -o posix; set), sorted alphabetically.
     alias show-all-sh-vars='( set -o posix; set ) | grep -v "^$" | sort'
+    alias ls-all-sh-vars='show-all-sh-vars'
 
     ## @description Show current display session type (x11 or wayland).
     alias show-display-session="echo \$XDG_SESSION_TYPE"
+    alias ls-display-session='show-display-session'
+    alias echo-display-session='show-display-session'
 
     ## @description Show current desktop session name (e.g., gnome, plasma).
     alias show-desktop-session="echo \$XDG_SESSION_DESKTOP"
+    alias ls-desktop-session='show-desktop-session'
+    alias echo-desktop-session='show-desktop-session'
 
     ## @description Show XDG data directories path list.
     alias show-datadirs-session="echo \$XDG_DATA_DIRS"
+    alias ls-datadirs-session='show-datadirs-session'
+    alias echo-datadirs-session='show-datadirs-session'
 
     ## @description Show host machine type (e.g., x86_64).
     alias show-hostype="echo \$HOSTTYPE"
+    alias ls-hostype='show-hostype'
+    alias echo-hostype='show-hostype'
 
     ## @description Show current user's home directory path.
     alias show-home="echo \$HOME"
+    alias ls-home='show-home'
+    alias echo-home='show-home'
 
     ## @description Show current username.
     alias show-user="echo \$USER"
+    alias ls-user='show-user'
+    alias echo-user='show-user'
 
     ## @description Show current shell binary path.
     alias show-shell="echo \$SHELL"
+    alias ls-shell='show-shell'
+    alias echo-shell='show-shell'
 
     ## @description Show current working directory (alias for pwd).
     alias show-wrkdir="echo \$PWD"
+    alias ls-wrkdir='show-wrkdir'
+    alias echo-wrkdir='show-wrkdir'
 
     ## @description Show display server type code (x11 or wayland).
     alias show-display-server-code="echo \$XDG_SESSION_TYPE"
+    alias ls-display-server-code='show-display-server-code'
+    alias echo-display-server-code='show-display-server-code'
 
     ## @description Show human-readable description of the current display server.
     show_display_server() {
@@ -108,21 +129,31 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
 
     ## @description Show human-readable display server info.
     alias show-display-server='show_display_server'
+    alias ls-display-server='show-display-server'
+    alias echo-display-server='show-display-server'
 
     ## @description Show D-Bus session bus address.
     alias show-dbus-addr="echo \$DBUS_SESSION_BUS_ADDRESS"
+    alias ls-dbus-addr='show-dbus-addr'
+    alias echo-dbus-addr='show-dbus-addr'
 
     ## @description Show the active display manager service unit name.
     alias show-display-manager='systemctl show -p Id display-manager.service'
+    alias ls-display-manager='show-display-manager'
 
     ## @description Show the default display manager binary from X11 config.
     alias show-display-manager-x11='sudo cat /etc/X11/default-display-manager'
+    alias ls-display-manager-x11='show-display-manager-x11'
 
     ## @description Show the current desktop environment identifier.
     alias show-current-de="echo \$XDG_CURRENT_DESKTOP"
+    alias ls-current-de='show-current-de'
+    alias echo-current-de='show-current-de'
 
     ## @description Show current desktop environment identifier (alias for show-current-de).
     alias show-desktop-env="echo \$XDG_CURRENT_DESKTOP"
+    alias ls-desktop-env='show-desktop-env'
+    alias echo-desktop-env='show-desktop-env'
 
     ## @description Detect the active display manager and show its greeter
     ##   configuration. Supports LightDM, GDM3, SDDM, LXDM, XDM, and SLiM.
@@ -169,8 +200,12 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     }
     ## @description Show verbose greeter/display-manager configuration.
     alias show-greeter-verbose='show_greeter_verbose'
+    alias ls-greeter-verbose='show-greeter-verbose'
+    alias echo-greeter-verbose='show-greeter-verbose'
     ## @description Show only the greeter line from display-manager config.
     alias show-greeter='show-greeter-verbose | grep "Greeter:"'
+    alias ls-greeter='show-greeter'
+    alias echo-greeter='show-greeter'
 
     ## @description Show SDDM KDE settings from /etc/sddm.conf.d/kde_settings.conf.
     alias cat-kde-settings='sudo cat /etc/sddm.conf.d/kde_settings.conf 2>/dev/null || echo "No KDE settings found"'
@@ -183,6 +218,8 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
 
     ## @description Install wmctrl and show window manager info via wmctrl -m.
     alias show-win-mng-m='sudo apt install -y wmctrl 2>/dev/null && wmctrl -m || echo "wmctrl not available"'
+    alias ls-win-mng-m='show-win-mng-m'
+    alias echo-win-mng-m='show-win-mng-m'
 
     ## @description Detect which window manager is running by scanning process
     ##   list against a comprehensive list of known X11/Wayland WMs.
@@ -191,21 +228,29 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       ps aux | grep -E "$WM_PATTERN" | grep -v grep | awk '{print $11}' | xargs -I{} basename {}
     }
     alias show-win-mng='show_win_mng'
+    alias ls-win-mng='show-win-mng'
 
     ## @description Show running screen compositor processes (picom, compton, kwin, etc.).
     alias show-screen-compositor='ps aux | grep -E "picom|compton|kwin|mutter|xfwm|wayfire" | grep -v grep'
+    alias ls-screen-compositor='show-screen-compositor'
 
     ## @description Show running screen locker processes (xscreensaver, swaylock, i3lock, etc.).
     alias show-screen-locker='ps aux | grep -E "xscreensaver|light-locker|swaylock|i3lock|gnome-screensaver" | grep -v grep'
+    alias ls-screen-locker='show-screen-locker'
 
     ## @description Show comprehensive display environment info (session, DM, greeter, compositor, WM).
     alias show-full-display-info='show-desktop && show-display-session && show-display-manager && show-greeter && show-screen-compositor && show-win-mng'
+    alias ls-full-display-info='show-full-display-info'
+    alias echo-full-display-info='show-full-display-info'
 
     ## @description Show compact desktop environment summary.
     alias show-desktop="show-display-session; show-display-server; show-desktop-session; show-desktop-env; show-display-manager; show-win-mng"
+    alias ls-desktop='show-desktop'
+    alias echo-desktop='show-desktop'
 
     ## @description List installed GUI toolkit runtime libraries (GTK and Qt).
     alias show-installed-tks='dpkg -l | grep -E "libgtk|libqt" | grep -v dev'
+    alias ls-installed-tks='show-installed-tks'
 
     alias install-plasma-backends='sudo apt install -y plasma-discover-backend-flatpak plasma-discover-backend-snap'
   #endregion System_Setup
@@ -260,8 +305,8 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
         echo -e "❌ \033[1;31mpowerstat not found.\033[0m Install with: sudo apt install powerstat"
         return 1
       fi
-      mkdir -p "$HOME/.logs"
-      local log="$HOME/.logs/powerstat-$(date +%Y-%m-%d_%H-%M-%S).log"
+      mkdir -p "$HOME/.logs/powerstat"
+      local log="$HOME/.logs/powerstat/powerstat-$(date +%Y-%m-%d_%H-%M-%S).log"
       echo -e "⚡ \033[1;36mRecording power stats for ${duration}s (tick: ${tick}s) → $log\033[0m"
       sudo stdbuf -oL powerstat -R "$tick" "$duration" | tee "$log"
     }
@@ -682,6 +727,151 @@ EOF
     }
     alias install-trixie-devtools='install_debian_trixie_devtools'
 
+    ## @description Show recent journal entries related to screen recording, PipeWire, and desktop portals.
+    ## @param $1 {int} tail_lines - Number of tail lines to show per section (default: 50)
+    show_journal_screens() {
+      local tail_lines="${1:-50}"
+      echo -e "📰 \033[1;36mShowing recent journal entries related to screen recording and desktop portals...\033[0m"
+      journalctl --user -b | grep -iE 'pipewire|screencast|gnome-shell.*screencast|desktop-portal|mutter' | tail -n "$tail_lines"
+      sleep 2
+      echo -e "\n🔍 \033[1;36mFiltering for screencast-related entries...\033[0m"
+      sleep 2
+      journalctl --user -b -u gnome-shell | grep -i screencast | tail -n "$tail_lines"
+      sleep 2
+      echo -e "\n⚠️  \033[1;36mChecking for errors/warnings in gnome-shell logs...\033[0m"
+      journalctl --user -u gnome-shell -n 100 --no-pager | grep -i -E "(screencast|error|warning|fail|crash)" | tail -n "$tail_lines"
+      sleep 2
+      echo -e "\n👀 \033[1;36mListing relevant active processes...\033[0m"
+      sleep 5
+      ps aux | grep -iE 'pipewire|wireplumber|screencast|desktop-portal' | grep -v grep
+    }
+    alias show-journal-screens='show_journal_screens'
+    alias ls-journal-screens='show-journal-screens'
+    alias echo-journal-screens='show-journal-screens'
+
+    _require_gnome_desktop() {
+      if [[ ! "${XDG_CURRENT_DESKTOP,,}" =~ gnome ]]; then
+        printf "Error: Desktop environment is not GNOME (current: %s).\n" "${XDG_CURRENT_DESKTOP:-unset}" >&2
+        return 1
+      fi
+    }
+
+    ## @description Set the default GNOME application for a MIME type via xdg-mime default.
+    ## @param $1 {string} app - GNOME application name (e.g., Nautilus, TextEditor). Must exist as org.gnome.<app>.desktop
+    ## @param $2 {string} mimetype - MIME type to associate (e.g., inode/directory, text/plain)
+    def_gnome_xmime() {
+      _require_gnome_desktop || return 1
+      local app="${1:?Usage: def-org-gnome-xmime <app> <mimetype>}"
+      local mimetype="${2:?Usage: def-org-gnome-xmime <app> <mimetype>}"
+      local desktop_file="org.gnome.${app}.desktop"
+      if [[ ! -f "/usr/share/applications/${desktop_file}" && ! -f "${HOME}/.local/share/applications/${desktop_file}" ]]; then
+        printf "Error: Desktop file '%s' not found in /usr/share/applications/ or ~/.local/share/applications/.\n" "$desktop_file" >&2
+        printf "Available org.gnome .desktop files:\n" >&2
+        ls /usr/share/applications/org.gnome.*.desktop ~/.local/share/applications/org.gnome.*.desktop 2>/dev/null | sed 's|.*/||' >&2
+        return 1
+      fi
+      xdg-mime default "$desktop_file" "$mimetype" && update-desktop-database ~/.local/share/applications/ 2>/dev/null
+    }
+    alias def-org-gnome-xmime='def_gnome_xmime'
+
+    ## @description Query the default application for a MIME type via xdg-mime query default.
+    ## @param $1 {string} mimetype - MIME type to query (e.g., inode/directory, text/plain, application/pdf)
+    get_gnome_xmime() {
+      _require_gnome_desktop || return 1
+      local mimetype="${1:?Usage: get-org-gnome-xmime <mimetype>}"
+      xdg-mime query default "$mimetype"
+    }
+    alias get-org-gnome-xmime='get_gnome_xmime'
+
+    ## @description Set the default GNOME application for a MIME type (alias for def-org-gnome-xmime).
+    ## @param $1 {string} app - GNOME application name (e.g., Nautilus, TextEditor)
+    ## @param $2 {string} mimetype - MIME type to associate (e.g., inode/directory, text/plain)
+    set_gnome_xmime() {
+      def_gnome_xmime "$@"
+    }
+    alias set-org-gnome-xmime='set_gnome_xmime'
+
+    ## @description Reset a GNOME gsettings key to its default value via gsettings reset.
+    ## @param $1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)
+    ## @param $2 {string} key - Key name to reset (e.g., gtk-theme, color-scheme)
+    def_gnome_gset() {
+      _require_gnome_desktop || return 1
+      local schema_suffix="${1:?Usage: def-org-gnome-gset <schema_suffix> <key>}"
+      local key="${2:?Usage: def-org-gnome-gset <schema_suffix> <key>}"
+      local schema="org.gnome.${schema_suffix}"
+      if ! gsettings list-keys "$schema" &>/dev/null; then
+        printf "Error: Schema '%s' not found.\nAvailable org.gnome schemas:\n" "$schema" >&2
+        gsettings list-schemas 2>/dev/null | grep '^org\.gnome\.' | sort >&2
+        return 1
+      fi
+      if ! gsettings list-keys "$schema" 2>/dev/null | grep -qx "$key"; then
+        printf "Error: Key '%s' not found in schema '%s'.\nAvailable keys:\n" "$key" "$schema" >&2
+        gsettings list-keys "$schema" 2>/dev/null >&2
+        return 1
+      fi
+      gsettings reset "$schema" "$key"
+    }
+    alias def-org-gnome-gset='def_gnome_gset'
+
+    ## @description Get a GNOME gsettings value via gsettings get.
+    ## @param $1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)
+    ## @param $2 {string} key - Key name to get (e.g., gtk-theme, color-scheme)
+    get_gnome_gset() {
+      _require_gnome_desktop || return 1
+      local schema_suffix="${1:?Usage: get-org-gnome-gset <schema_suffix> <key>}"
+      local key="${2:?Usage: get-org-gnome-gset <schema_suffix> <key>}"
+      local schema="org.gnome.${schema_suffix}"
+      if ! gsettings list-keys "$schema" &>/dev/null; then
+        printf "Error: Schema '%s' not found.\nAvailable org.gnome schemas:\n" "$schema" >&2
+        gsettings list-schemas 2>/dev/null | grep '^org\.gnome\.' | sort >&2
+        return 1
+      fi
+      if ! gsettings list-keys "$schema" 2>/dev/null | grep -qx "$key"; then
+        printf "Error: Key '%s' not found in schema '%s'.\nAvailable keys:\n" "$key" "$schema" >&2
+        gsettings list-keys "$schema" 2>/dev/null >&2
+        return 1
+      fi
+      gsettings get "$schema" "$key"
+    }
+    alias get-org-gnome-gset='get_gnome_gset'
+
+    ## @description Set a GNOME gsettings value via gsettings set, with schema/key/value validation.
+    ## @param $1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)
+    ## @param $2 {string} key - Key name to set (e.g., gtk-theme, color-scheme)
+    ## @param $3 {string} value - Value to set (must match the key's type/range)
+    set_gnome_gset() {
+      _require_gnome_desktop || return 1
+      local schema_suffix="${1:?Usage: set-org-gnome-gset <schema_suffix> <key> <value>}"
+      local key="${2:?Usage: set-org-gnome-gset <schema_suffix> <key> <value>}"
+      local value="${3:?Usage: set-org-gnome-gset <schema_suffix> <key> <value>}"
+      local schema="org.gnome.${schema_suffix}"
+      if ! gsettings list-keys "$schema" &>/dev/null; then
+        printf "Error: Schema '%s' not found.\nAvailable org.gnome schemas:\n" "$schema" >&2
+        gsettings list-schemas 2>/dev/null | grep '^org\.gnome\.' | sort >&2
+        return 1
+      fi
+      if ! gsettings list-keys "$schema" 2>/dev/null | grep -qx "$key"; then
+        printf "Error: Key '%s' not found in schema '%s'.\nAvailable keys:\n" "$key" "$schema" >&2
+        gsettings list-keys "$schema" 2>/dev/null >&2
+        return 1
+      fi
+      if ! gsettings writable "$schema" "$key" 2>/dev/null | grep -q true; then
+        printf "Error: Key '%s' in schema '%s' is not writable.\n" "$key" "$schema" >&2
+        return 1
+      fi
+      local range_info
+      range_info=$(gsettings range "$schema" "$key" 2>/dev/null)
+      if [[ "$range_info" == enum* ]]; then
+        local allowed
+        allowed=$(echo "$range_info" | tail -n +2 | tr -d "'")
+        if ! echo "$allowed" | grep -qx "$value"; then
+          printf "Error: Value '%s' is not valid for key '%s'.\nAllowed values:\n%s\n" "$value" "$key" "$allowed" >&2
+          return 1
+        fi
+      fi
+      gsettings set "$schema" "$key" "$value"
+    }
+    alias set-org-gnome-gset='set_gnome_gset'
   #endregion Desktop_Environment
 
   #region System_Info_Aliases
@@ -712,13 +902,14 @@ EOF
       alias cat-oom-conf='sudo cat /etc/systemd/oomd.conf 2>/dev/null || echo "No OOM config file found"'
       ## @description Show the vm.oom_kill_allocating_task sysctl value (0=kill random, 1=kill allocating task).
       alias show-oom-kill-alloc='sudo sysctl vm.oom_kill_allocating_task'
+      alias ls-oom-kill-alloc='show-oom-kill-alloc'
       ## @description Follow earlyoom daemon output with verbose reporting at a set interval.
       ## @param $1 {int} interval - Reporting interval in seconds (default: 2)
       follow_early_oom_rec() {
         local interval="${1:-2}"
-        earlyoom -vr "$interval"
+        earlyoom -r "$interval"
       }
-      alias follow-early-oom='follow_early_oom_rec'
+      alias follow-early-oom-rec='follow_early_oom_rec'
       ## @description Watch memory-hungry processes sorted by RSS in real time.
       ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
       watch_mem_hogs() {
@@ -871,6 +1062,62 @@ EOF
           -iregex '.*(system|kde|plasma).*' -print 2>/dev/null | sort
       }
       alias find-system-kde-bins='find_system_kde_bins'
+      ## @description Search for a specific flag or option in a command's man page.
+      ## @param $1 {string} cmd - Command name or "cmd subcmd" (default: ls)
+      ## @param $2 {int} is_flag_or_option - 0 for flag (-), 1 for option (--) (default: 0)
+      ## @param $3 {string} flag_or_option - Flag/option name to search for (default: l)
+      man_fopt() {
+          local cmd="${1:-ls}"
+          local is_flag_or_option="${2:-0}"
+          local flag_or_option="${3:-l}"
+          if [[ "$is_flag_or_option" != "0" && "$is_flag_or_option" != "1" ]]; then
+              echo "Error: Flag option must be 0 (flags, -) or 1 (options, --). Default is 0. Aborted." >&2
+              return 1
+          fi
+          if [[ -z "$flag_or_option" ]]; then
+              echo "Error: Flag/option name cannot be empty." >&2
+              return 1
+          fi
+          if [[ -z "$cmd" ]]; then
+              echo "Error: Command cannot be empty or not found." >&2
+              return 1
+          fi
+          local man_page_found=false
+          local man_target="$cmd"
+          if [[ "$cmd" =~ [[:space:]] ]]; then
+              local cmd_lead="${cmd%% *}"
+              local cmd_trail="${cmd##* }"
+              if man "$cmd_lead" "$cmd_trail" >/dev/null 2>&1; then
+                  man_target="$cmd_lead $cmd_trail"
+                  man_page_found=true
+              elif man "${cmd// /-}" >/dev/null 2>&1; then
+                  man_target="${cmd// /-}"
+                  man_page_found=true
+              elif man "$cmd_lead" >/dev/null 2>&1; then
+                  echo "Warning: Subcommand man page not found, showing base command '$cmd_lead'" >&2
+                  man_target="$cmd_lead"
+                  man_page_found=true
+              fi
+          elif man "$cmd" >/dev/null 2>&1; then
+              man_target="$cmd"
+              man_page_found=true
+          fi
+          if [[ "$man_page_found" == false ]]; then
+              echo "Error: No man page found for '$cmd'" >&2
+              return 1
+          fi
+          local hyphens
+          case "$is_flag_or_option" in
+              0) hyphens='\-' ;;
+              1) hyphens='\-\-' ;;
+          esac
+          man $man_target 2>/dev/null | grep -E "${hyphens}${flag_or_option}" || echo "No such flag or option found"
+      }
+      alias man-fopt='man_fopt'
+      ## @description Extract printable strings from the current shell's own executable (/proc/self/exe).
+      alias stringify-self='sudo strings /proc/self/exe 2>/dev/null || echo "No strings available for self"'
+      ## @description List details of the current shell's executable symlink (/proc/self/exe).
+      alias ls-self='sudo ls -lh /proc/self/exe 2>/dev/null || echo "No self executable info available"'
     #endregion Applications_and_Icons
 
     #region VSCode_and_GTK
@@ -1461,6 +1708,30 @@ print('✅ GPU disabled in argv.json')
           _pretty_nl
         _pretty_ftr
       }
+
+      man-fopt-pretty() {
+        local cmd="${1:-ls}"
+        local is_flag_or_option="${2:-0}"
+        local flag_or_option="${3:-l}"
+        _pretty_hdr "Man Page Flag/Option Search — $cmd ${is_flag_or_option:+$([ "$is_flag_or_option" = 1 ] && echo "--" || echo "-")}${flag_or_option}"
+        man_fopt "$cmd" "$is_flag_or_option" "$flag_or_option" 2>&1 | _pretty_nl
+        _pretty_ftr
+      }
+
+      stringify-self-pretty() {
+        _pretty_hdr "Strings from /proc/self/exe"
+        sudo strings /proc/self/exe 2>/dev/null | head -80 | _pretty_nl
+        echo -e "  \033[2;37m(showing first 80 lines)\033[0m"
+        _pretty_ftr
+      }
+
+      ls-self-pretty() {
+        _pretty_hdr "Current Shell Executable — /proc/self/exe"
+        sudo ls -lh /proc/self/exe 2>/dev/null | \
+          sed "s/^\(.*\)/  \033[1;34m►\033[0m \1/" || \
+          echo -e "  \033[1;31m✗\033[0m No self executable info available"
+        _pretty_ftr
+      }
     #endregion Pretty_Apps_Icons
 
     #region Pretty_VSCode_GTK
@@ -1823,6 +2094,27 @@ print('✅ GPU disabled in argv.json')
           awk '{printf "  \033[1;34m%-40s\033[0m \033[0;32m%s\033[0m\n", $2, $3}'
         _pretty_ftr
       }
+
+      show-journal-screens-pretty() {
+        _pretty_hdr "Journal Entries — Screen Recording & Desktop Portals"
+        local tail_lines="${1:-50}"
+        echo -e "  \033[1;36m📰 Desktop portals and PipeWire entries:\033[0m"
+        journalctl --user -b 2>/dev/null | grep -iE 'pipewire|screencast|gnome-shell.*screencast|desktop-portal|mutter' | tail -n "$tail_lines" | _pretty_nl
+        echo ""
+        echo -e "  \033[1;36m🔍 Screencast-related entries:\033[0m"
+        journalctl --user -b -u gnome-shell 2>/dev/null | grep -i screencast | tail -n "$tail_lines" | _pretty_nl
+        echo ""
+        echo -e "  \033[1;36m⚠️  Errors/warnings in gnome-shell:\033[0m"
+        journalctl --user -u gnome-shell -n 100 --no-pager 2>/dev/null | grep -i -E "(screencast|error|warning|fail|crash)" | tail -n "$tail_lines" | \
+          sed \
+            -e "s/\(error\|fail\|crash\)/$(printf '\033[1;31m')\1$(printf '\033[0m')/gi" \
+            -e "s/\(warning\)/$(printf '\033[1;33m')\1$(printf '\033[0m')/gi" | _pretty_nl
+        echo ""
+        echo -e "  \033[1;36m👀 Active processes:\033[0m"
+        ps aux | grep -iE 'pipewire|wireplumber|screencast|desktop-portal' | grep -v grep | \
+          awk '{printf "  \033[1;32m►\033[0m PID=\033[1;33m%-6s\033[0m %s\n", $2, $11}'
+        _pretty_ftr
+      }
     #endregion Pretty_Desktop_Environment
 
     #region Pretty_System_Setup
@@ -1993,6 +2285,22 @@ print('✅ GPU disabled in argv.json')
         _pretty_ftr
       }
     #endregion Pretty_HTML_CSS_Tools
+
+    #region Pretty_Git
+      git-tree-info-pretty() {
+        _pretty_hdr "Git Work Tree Info"
+        if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+          echo -e "  \033[1;32m✓\033[0m Inside work tree"
+          printf "  \033[1;34mGit dir:\033[0m          %s\n" "$(git rev-parse --git-dir)"
+          printf "  \033[1;34mCommon dir:\033[0m       %s\n" "$(git rev-parse --git-common-dir)"
+          printf "  \033[1;34mTop level:\033[0m        %s\n" "$(git rev-parse --show-toplevel)"
+          printf "  \033[1;34mSuperproject:\033[0m     %s\n" "$(git rev-parse --show-superproject-working-tree 2>/dev/null | grep . || echo 'NOT A SUBMODULE')"
+        else
+          echo -e "  \033[1;31m✗\033[0m No work tree present for a repo"
+        fi
+        _pretty_ftr
+      }
+    #endregion Pretty_Git
   #endregion Pretty_Aliases
 
   #region Utilities
@@ -2302,7 +2610,10 @@ print('✅ GPU disabled in argv.json')
         git rev-list --count --all 2>/dev/null || echo "No remote repository"; \
         echo "Total number of commits registered for the branch:"; \
         git rev-list --count HEAD 2>/dev/null;'
-
+      ## @description Show Git work tree info: repo dir, common dir, top level, and superproject status.
+      git_tree_info() { if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then printf "\n[Inside work tree]\n\nGit repo directory:\n%s\nGit repo common directory:\n%s\nPath to top level repo:\n%s\nSuperproject working tree:\n%s\n" "$(git rev-parse --git-dir)" "$(git rev-parse --git-common-dir)" "$(git rev-parse --show-toplevel)" "$(git rev-parse --show-superproject-working-tree 2>/dev/null | grep . || echo 'NOT A SUBMODULE')"; else printf "NO WORK TREE PRESENT FOR A REPO\n"; fi; }
+      alias git-tree-info='git_tree_info'
+      
     #region Git_Basic
       alias gra='git remote add'
       alias gra-o='git remote add origin'

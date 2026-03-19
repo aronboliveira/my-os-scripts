@@ -1,7 +1,3 @@
-# WHAT IS THAT?
-
-This is meant to be a file to facilitate understanding the purpose of each alias in the local .bashrc:
-
 # Bash Aliases — Publicable
 
 All publicable aliases from `~/.bashrc`, grouped by region.
@@ -144,6 +140,186 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - show-desktop
 
+[ls- alias variant for show-all-env-vars]
+
+- ls-all-env-vars
+
+[ls- alias variant for show-all-printenv-vars]
+
+- ls-all-printenv-vars
+
+[ls- alias variant for show-all-sh-vars]
+
+- ls-all-sh-vars
+
+[ls- alias variant for show-display-session]
+
+- ls-display-session
+
+[echo- alias variant for show-display-session]
+
+- echo-display-session
+
+[ls- alias variant for show-desktop-session]
+
+- ls-desktop-session
+
+[echo- alias variant for show-desktop-session]
+
+- echo-desktop-session
+
+[ls- alias variant for show-display-manager]
+
+- ls-display-manager
+
+[ls- alias variant for show-display-manager-x11]
+
+- ls-display-manager-x11
+
+[ls- alias variant for show-current-de]
+
+- ls-current-de
+
+[echo- alias variant for show-current-de]
+
+- echo-current-de
+
+[ls- alias variant for show-greeter]
+
+- ls-greeter
+
+[echo- alias variant for show-greeter]
+
+- echo-greeter
+
+[ls- alias variant for show-win-mng-m]
+
+- ls-win-mng-m
+
+[echo- alias variant for show-win-mng-m]
+
+- echo-win-mng-m
+
+[ls- alias variant for show-win-mng]
+
+- ls-win-mng
+
+[ls- alias variant for show-screen-compositor]
+
+- ls-screen-compositor
+
+[ls- alias variant for show-screen-locker]
+
+- ls-screen-locker
+
+[ls- alias variant for show-installed-tks]
+
+- ls-installed-tks
+
+[ls- alias variant for show-datadirs-session]
+
+- ls-datadirs-session
+
+[echo- alias variant for show-datadirs-session]
+
+- echo-datadirs-session
+
+[ls- alias variant for show-hostype]
+
+- ls-hostype
+
+[echo- alias variant for show-hostype]
+
+- echo-hostype
+
+[ls- alias variant for show-home]
+
+- ls-home
+
+[echo- alias variant for show-home]
+
+- echo-home
+
+[ls- alias variant for show-user]
+
+- ls-user
+
+[echo- alias variant for show-user]
+
+- echo-user
+
+[ls- alias variant for show-shell]
+
+- ls-shell
+
+[echo- alias variant for show-shell]
+
+- echo-shell
+
+[ls- alias variant for show-wrkdir]
+
+- ls-wrkdir
+
+[echo- alias variant for show-wrkdir]
+
+- echo-wrkdir
+
+[ls- alias variant for show-display-server-code]
+
+- ls-display-server-code
+
+[echo- alias variant for show-display-server-code]
+
+- echo-display-server-code
+
+[ls- alias variant for show-display-server]
+
+- ls-display-server
+
+[echo- alias variant for show-display-server]
+
+- echo-display-server
+
+[ls- alias variant for show-dbus-addr]
+
+- ls-dbus-addr
+
+[echo- alias variant for show-dbus-addr]
+
+- echo-dbus-addr
+
+[ls- alias variant for show-desktop-env]
+
+- ls-desktop-env
+
+[echo- alias variant for show-desktop-env]
+
+- echo-desktop-env
+
+[ls- alias variant for show-greeter-verbose]
+
+- ls-greeter-verbose
+
+[echo- alias variant for show-greeter-verbose]
+
+- echo-greeter-verbose
+
+[ls- alias variant for show-full-display-info]
+
+- ls-full-display-info
+
+[echo- alias variant for show-full-display-info]
+
+- echo-full-display-info
+
+[ls- alias variant for show-desktop]
+
+- ls-desktop
+
+[echo- alias variant for show-desktop]
+
+- echo-desktop
+
 ### Network_Procedures
 
 [Probe a network host with ARP, ping, netcat, and route lookup — $1: target IP (required), $2: target port (optional) — flags: --gateway, --local]
@@ -226,6 +402,42 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - create-nautilus-newfile
 
+[Show recent journal entries related to screen recording, PipeWire, and desktop portals — $1: tail lines (default: 50)]
+
+- show-journal-screens
+
+[ls- alias variant for show-journal-screens]
+
+- ls-journal-screens
+
+[echo- alias variant for show-journal-screens]
+
+- echo-journal-screens
+
+[Set the default GNOME application for a MIME type via xdg-mime default — $1: app name (e.g., Nautilus), $2: MIME type (e.g., inode/directory)]
+
+- def-org-gnome-xmime
+
+[Query the default application for a MIME type via xdg-mime query default — $1: MIME type]
+
+- get-org-gnome-xmime
+
+[Set the default GNOME application for a MIME type (alias for def-org-gnome-xmime) — $1: app name, $2: MIME type]
+
+- set-org-gnome-xmime
+
+[Reset a GNOME gsettings key to its default value via gsettings reset — $1: schema suffix (e.g., desktop.interface), $2: key name]
+
+- def-org-gnome-gset
+
+[Get a GNOME gsettings value via gsettings get — $1: schema suffix (e.g., desktop.interface), $2: key name]
+
+- get-org-gnome-gset
+
+[Set a GNOME gsettings value with schema/key/value validation — $1: schema suffix, $2: key name, $3: value]
+
+- set-org-gnome-gset
+
 ### System_Info_Aliases
 
 #### Kernel_and_OS
@@ -303,6 +515,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Show the vm.oom_kill_allocating_task sysctl value (0=kill random, 1=kill allocating task)]
 
 - show-oom-kill-alloc
+
+[ls- alias variant for show-oom-kill-alloc]
+
+- ls-oom-kill-alloc
 
 [Follow earlyoom daemon output with verbose reporting at a set interval — $1: interval in seconds (default: 2)]
 
@@ -489,6 +705,18 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Find system/KDE/Plasma binaries in /usr/bin]
 
 - find-system-kde-bins
+
+[Search for a specific flag or option in a command's man page — $1: command (default: ls), $2: 0=flag 1=option (default: 0), $3: flag/option name (default: l)]
+
+- man-fopt
+
+[Extract printable strings from the current shell's own executable (/proc/self/exe)]
+
+- stringify-self
+
+[List details of the current shell's executable symlink (/proc/self/exe)]
+
+- ls-self
 
 #### VSCode_and_GTK
 
@@ -796,6 +1024,18 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - find-system-kde-bins-pretty
 
+[Pretty-print man page flag/option search results with banner]
+
+- man-fopt-pretty
+
+[Pretty-print strings from /proc/self/exe (first 80 lines)]
+
+- stringify-self-pretty
+
+[Pretty-print shell executable details with colored output]
+
+- ls-self-pretty
+
 #### Pretty_VSCode_GTK
 
 [Pretty-print GTK4 settings with line numbers]
@@ -928,6 +1168,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - show-installed-tks-pretty
 
+[Pretty-print journal entries related to screen recording and desktop portals with color-coded errors/warnings]
+
+- show-journal-screens-pretty
+
 #### Pretty_System_Setup
 
 [Pretty-print all environment variables with header and numbered lines]
@@ -991,6 +1235,12 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Pretty-inject minified CSS into HTML with line count comparison]
 
 - inject-min-css-pretty
+
+#### Pretty_Git
+
+[Pretty-print Git work tree info with colored fields]
+
+- git-tree-info-pretty
 
 ### Utilities
 
@@ -1371,6 +1621,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [git filter-branch to forcefully remove README.md from entire history]
 
 - gst-filter-rdm
+
+[Show Git work tree info: repo dir, common dir, top level, and superproject status]
+
+- git-tree-info
 
 ### Navigation_Aliases
 
