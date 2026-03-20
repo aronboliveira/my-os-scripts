@@ -8,6 +8,8 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 ### System_Setup
 
+- **`install_stremio_gnome`**: Downloads and installs Flathub repo (if missing) and then installs Stremio launching it in background mode, ensuring compatibility for both Wayland and X11 sessions.
+
 [Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing — flags: --no-persist, --no-composite]
 
 - setup-software-gl
@@ -442,6 +444,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 #### Kernel_and_OS
 
+- **`cat-mimeapps`**: Displays the user's default applications list and MIME configurations (`~/.config/mimeapps.list`).
+- **`cat-share-mimeapps`**: Displays system-wide MIME configurations list installed under user or system applications (`~/.local/share/applications/mimeapps.list`).
+- **`cat-all-mimeapps`**: Tries reading all major known locations for MIME config.
+- **`cat-share-mimecache`**: Reads the compiled MIME cache to understand database mapping.
+
 [Show GRUB boot configuration from /boot/grub/grub.cfg]
 
 - cat-grub-boot
@@ -780,6 +787,8 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 #### Pretty_Kernel_OS
 
+- **`cat-mimeapps-pretty`**: Formatted output.
+
 [Pretty-print GRUB boot config with line numbers and syntax coloring]
 
 - cat-grub-boot-pretty
@@ -907,6 +916,8 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - glx-info-pretty
 
 #### Pretty_System_Config
+
+- **`cat-compose-chars-pretty`**: Formatted output.
 
 [Pretty-print GDM3 configuration with line numbers]
 
@@ -1699,6 +1710,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - mysqlr
 
 ### Filesystem_Utilities
+
+- **`cat-compose-chars`**: Displays the correct native sequence of Compose keys available under `en_US.UTF-8/Compose`.
+- **`ls-compose-chars`**: Lists Compose map details in standard `ls -ld` format.
+- **`less-compose-chars`**: Views the long Compose character mapping scheme with `less` pagination.
+- **`edit-compose-chars`**: Opens original Compose database dictionary for possible modification resolutions.
 
 [List files with name, path, and size (inline alias version)]
 

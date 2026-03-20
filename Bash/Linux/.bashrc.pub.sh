@@ -66,9 +66,9 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias echo-datadirs-session='show-datadirs-session'
 
     ## @description Show host machine type (e.g., x86_64).
-    alias show-hostype="echo \$HOSTTYPE"
-    alias ls-hostype='show-hostype'
-    alias echo-hostype='show-hostype'
+    alias show-hosttype="echo \$HOSTTYPE"
+    alias ls-hosttype='show-hosttype'
+    alias echo-hosttype='show-hosttype'
 
     ## @description Show current user's home directory path.
     alias show-home="echo \$HOME"
@@ -253,6 +253,44 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias ls-installed-tks='show-installed-tks'
 
     alias install-plasma-backends='sudo apt install -y plasma-discover-backend-flatpak plasma-discover-backend-snap'
+    
+    ## @description Install Stremio (optimized for GNOME/X11), handling Flatpak dependencies.
+    install_stremio_gnome() {
+      if [[ ! "${XDG_CURRENT_DESKTOP,,}" =~ gnome ]]; then
+        echo -e "⚠️  \033[1;33mWarning: This installer is tailored for GNOME. Current DE: ${XDG_CURRENT_DESKTOP:-Unknown}\033[0m"
+        echo -e "It may not work properly on other environments."
+      fi
+
+      if ! command -v flatpak &>/dev/null; then
+        echo -e "❌ \033[1;31mFlatpak not found.\033[0m Install with: sudo apt install flatpak"
+        return 1
+      fi
+
+      echo -e "📦 \033[1;36mInstalling Stremio via Flatpak...\033[0m"
+      sudo apt install gnome-software-plugin-flatpak -y
+
+      local display_server_code="${DISPLAY:-:0}"
+      if [[ "${XDG_SESSION_TYPE,,}" == "wayland" || "$display_server_code" != ":0" ]]; then
+        echo -e "⚠️  \033[1;33mDisplay server that is not purely local X11 detected.\033[0m"
+        echo -e "Stremio may have issues with screen sharing and hardware acceleration under these."
+        echo -e "Consider switching to an X11 session (Display Server Code :0) for better compatibility."
+        read -r -p "Do you want to proceed with the installation still? [y/N]: " ans
+        [[ "$ans" =~ ^[Yy] ]] || { echo "Aborted."; return 0; }
+      else
+        echo -e "✅ \033[1;32mLocal X11 display detected. Stremio should work properly.\033[0m"
+        xhost +SI:localuser:root 2>/dev/null || true
+      fi
+
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      flatpak install flathub com.stremio.Stremio -y
+
+      read -r -p "Do you want to run Stremio now? [Y/N]: " ans
+      [[ "$ans" =~ ^[Yy] ]] || { echo "Installation complete."; return 0; }
+      
+      echo -e "🚀 \033[1;32mStarting Stremio...\033[0m"
+      flatpak run com.stremio.Stremio &
+    }
+    alias install-stremio-gnome='install_stremio_gnome'
   #endregion System_Setup
 
   #region Network_Procedures
@@ -670,6 +708,7 @@ EOF
     }
     alias create-nautilus-newfile='create_nautilus_newfile_script'
 
+
     ## @description Install Docker and comprehensive dev tools on Debian 13 Trixie only.
     ## @note Uses bookworm Docker repo; installs NVM, Node 24, PHP 8.4, Brave, and many CLI tools.
     install_debian_trixie_devtools() {
@@ -890,6 +929,14 @@ EOF
       alias cat-distro='(. /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-unknown}")'
       alias cat-k-host='sudo cat /proc/sys/kernel/hostname'
       alias cat-cmdline='sudo cat /proc/cmdline'
+      ## @description Show mimeapps list in ~/.config
+      alias cat-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="'
+      ## @description Show mimeapps list in ~/.local/share/applications
+      alias cat-share-mimeapps='cat ~/.local/share/applications/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME FOR APPS ==="'
+      ## @description Show both mimeapps lists (config and local share)
+      alias cat-all-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="; cat ~/.local/share/applications/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME FOR APPS ==="'
+      ## @description Show mimeinfo.cache
+      alias cat-share-mimecache='sudo cat /usr/share/applications/mimeinfo.cache 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME INFO ==="'
     #endregion Kernel_and_OS
 
     #region VM_and_Memory
@@ -1267,6 +1314,30 @@ print('✅ GPU disabled in argv.json')
         sudo cat /proc/cmdline 2>/dev/null | tr ' ' '\n' | _pretty_nl
         _pretty_ftr
       }
+
+    cat-mimeapps-pretty() {
+      _pretty_hdr "Mimeapps Config List"
+      cat-mimeapps | _pretty_nl
+      _pretty_ftr
+    }
+
+    cat-share-mimeapps-pretty() {
+      _pretty_hdr "Mimeapps Shared List"
+      cat-share-mimeapps | _pretty_nl
+      _pretty_ftr
+    }
+
+    cat-all-mimeapps-pretty() {
+      _pretty_hdr "All Mimeapps Lists"
+      cat-all-mimeapps | _pretty_nl
+      _pretty_ftr
+    }
+
+    cat-share-mimecache-pretty() {
+      _pretty_hdr "Mimeinfo Cache"
+      cat-share-mimecache | _pretty_nl
+      _pretty_ftr
+    }
     #endregion Pretty_Kernel_OS
 
     #region Pretty_VM_Memory
@@ -1534,6 +1605,12 @@ print('✅ GPU disabled in argv.json')
         ' _ {} \;
         _pretty_ftr
       }
+
+    cat-compose-chars-pretty() {
+      _pretty_hdr "X11 Compose Characters"
+      cat-compose-chars | _pretty_nl
+      _pretty_ftr
+    }
     #endregion Pretty_System_Config
 
     #region Pretty_Logs
@@ -2144,6 +2221,12 @@ print('✅ GPU disabled in argv.json')
           || echo -e "  \033[2;37m(SSH service file not found)\033[0m"
         _pretty_ftr
       }
+
+    cat-compose-chars-pretty() {
+      _pretty_hdr "X11 Compose Characters"
+      cat-compose-chars | _pretty_nl
+      _pretty_ftr
+    }
     #endregion Pretty_System_Config
 
     #region Pretty_Basic_Commands
@@ -2772,6 +2855,13 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
       echo "Packed ${#files[@]} files into $((pack_count - 1)) directories"
     }
     alias packf=pack_files
+
+    ## @description View or edit the X11 Compose key character definitions.
+    alias cat-compose-chars='sudo cat /usr/share/X11/locale/en_US.UTF-8/Compose'
+    alias ls-compose-chars='cat-compose-chars'
+    alias less-compose-chars='sudo less /usr/share/X11/locale/en_US.UTF-8/Compose'
+    alias edit-compose-chars='sudo nano /usr/share/X11/locale/en_US.UTF-8/Compose'
+
   #endregion Filesystem_Utilities
 
 #endregion PUBLICABLE_CODE
@@ -3075,6 +3165,9 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
   #endregion Services_Network
 
   #region File_Utilities
+    alias get-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="'
+    alias get-compose-chars='sudo cat /usr/share/X11/locale/en_US.UTF-8/Compose'
+
     calc_storage() {
       local target_input="${1:-c:}"
       local drive_letter="${target_input:0:1}"

@@ -426,6 +426,32 @@ Set-Alias -Name contains-files -Value Show-ContainsFiles
 
 # ═══════════════════════════════════════════════════════════════════════════
 #region Filesystem_Utilities
+
+# --- NEW EQUIVALENTS ---
+function get-mimeapps {
+  <#
+  .SYNOPSIS
+  Displays the user's default applications list and MIME configurations.
+  #>
+  Get-Content ~/.config/mimeapps.list -ErrorAction SilentlyContinue | Write-Output
+}
+Set-Alias cat-mimeapps get-mimeapps
+
+function get-share-mimeapps {
+  Get-Content ~/.local/share/applications/mimeapps.list -ErrorAction SilentlyContinue | Write-Output
+}
+Set-Alias cat-share-mimeapps get-share-mimeapps
+
+function get-compose-chars {
+  <#
+  .SYNOPSIS
+  Displays the correct native sequence of Compose keys.
+  #>
+  Get-Content /usr/share/X11/locale/en_US.UTF-8/Compose -ErrorAction SilentlyContinue | Write-Output
+}
+Set-Alias cat-compose-chars get-compose-chars
+# -----------------------
+
 # ═══════════════════════════════════════════════════════════════════════════
 
 <#

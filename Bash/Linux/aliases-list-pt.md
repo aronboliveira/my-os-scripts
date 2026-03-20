@@ -8,6 +8,8 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 ### System_Setup
 
+- **`install_stremio_gnome`**: Baixa e instala o repositório Flathub (se ausente) e, em seguida, instala o Stremio executando-o em modo de segundo plano, garantindo compatibilidade com sessões Wayland e X11.
+
 [Ativa renderização GL de software (Mesa llvmpipe), persiste no bashrc, opcionalmente desativa composição X11 — flags: --no-persist, --no-composite]
 
 - setup-software-gl
@@ -446,6 +448,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 #### Kernel_and_OS
 
+- **`cat-mimeapps`**: Exibe a lista de aplicativos padrão e configurações MIME do usuário (`~/.config/mimeapps.list`).
+- **`cat-share-mimeapps`**: Exibe a lista de configurações MIME de todo o sistema instaladas em aplicativos (`~/.local/share/applications/mimeapps.list`).
+- **`cat-all-mimeapps`**: Tenta ler todas as principais config localizações MIME conhecidas.
+- **`cat-share-mimecache`**: Lê o cache MIME compilado para entender como o banco de dados MIME funciona.
+
 [Mostra configuração de boot do GRUB de /boot/grub/grub.cfg]
 
 - cat-grub-boot
@@ -784,6 +791,8 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 #### Pretty_Kernel_OS
 
+- **`cat-mimeapps-pretty`**: Saída formatada.
+
 [Imprime configuração de boot do GRUB formatada com números de linha e colorização de sintaxe]
 
 - cat-grub-boot-pretty
@@ -911,6 +920,8 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - glx-info-pretty
 
 #### Pretty_System_Config
+
+- **`cat-compose-chars-pretty`**: Saída formatada.
 
 [Imprime configuração do GDM3 formatada com números de linha]
 
@@ -1703,6 +1714,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - mysqlr
 
 ### Filesystem_Utilities
+
+- **`cat-compose-chars`**: Exibe a sequência nativa correta de teclas Compose disponíveis em `en_US.UTF-8/Compose`.
+- **`ls-compose-chars`**: Lista detalhes do mapa Compose em um formato padrão `ls -ld`.
+- **`less-compose-chars`**: Visualiza o longo esquema de mapeamento de caracteres Compose com paginação `less`.
+- **`edit-compose-chars`**: Abre o dicionário do banco de dados Compose original para possíveis resoluções de modificação.
 
 [Lista arquivos com nome, caminho e tamanho (versão alias inline)]
 
