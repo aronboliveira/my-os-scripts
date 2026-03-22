@@ -8,6 +8,17 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 ### System_Setup
 
+- **`install_protonvpn_deb_13`**: Installs ProtonVPN on Debian 13 systems.
+- **`schedule-kill-sequence`**: Schedules a process kill at a specific time.
+- **`set-ps-critical`**: Sets OOM score adjustment for a process to critical (-1000).
+- **`set-ps-very-important`**: Sets OOM score adjustment to very important (-800).
+- **`set-ps-important`**: Sets OOM score adjustment to important (-500).
+- **`set-ps-normal`**: Sets OOM score adjustment to normal (0).
+- **`set-ps-low`**: Sets OOM score adjustment to low (300).
+- **`set-ps-very-low`**: Sets OOM score adjustment to very low (600).
+- **`set-ps-irrelevant`**: Sets OOM score adjustment to irrelevant (1000).
+
+
 - **`install_stremio_gnome`**: Downloads and installs Flathub repo (if missing) and then installs Stremio launching it in background mode, ensuring compatibility for both Wayland and X11 sessions.
 
 [Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing — flags: --no-persist, --no-composite]
@@ -334,6 +345,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 ### User_Management
 
+- **`ls-sudoers`**: Alias for cat-sudoers.
+- **`show-sudoers`**: Alias for cat-sudoers.
+- **`ls-sudoers-timestamp`**: Alias for cat-sudoers-timestamp.
+- **`show-sudoers-timestamp`**: Alias for cat-sudoers-timestamp.
+
 [Create a new user and add them to the sudo group — $1: username (required)]
 
 - add-sudo-user
@@ -347,6 +363,22 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - cat-sudoers-timestamp
 
 ### Desktop_Environment
+
+- **`ls-kde-settings`**: Alias for cat-kde-settings.
+- **`show-kde-settings`**: Alias for cat-kde-settings.
+- **`ls-gdm3-conf`**: Alias for cat-gdm3-conf.
+- **`show-gdm3-conf`**: Alias for cat-gdm3-conf.
+- **`ls-gdm3-daemon`**: Alias for cat-gdm3-daemon.
+- **`show-gdm3-daemon`**: Alias for cat-gdm3-daemon.
+- **`ls-gdm3-custom`**: Alias for cat-gdm3-custom.
+- **`show-gdm3-custom`**: Alias for cat-gdm3-custom.
+- **`show-window-manager`**: Shows current window manager.
+- **`ls-window-manager`**: Shows current window manager.
+- **`apply-gtk-dark`**: Applies dark theme for GTK4/GTK3.
+- **`fix-gtk-dark`**: Alias for apply-gtk-dark.
+- **`check-gtk-dark`**: Checks current GTK dark theme status.
+- **`dbus-asses-desktop-portal`**: Introspects the D-Bus Desktop Portal.
+- **`dbus-asses-xdg-desktop-portal`**: Reads XDG Desktop Portal color scheme setting.
 
 [Purge Cinnamon DE and its config files, reconfigure GDM3 — flags: --keep-config]
 
@@ -444,6 +476,38 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 #### Kernel_and_OS
 
+- **`ls-grub-boot`**: Alias for cat-grub-boot.
+- **`show-grub-boot`**: Alias for cat-grub-boot.
+- **`ls-grub-etc`**: Alias for cat-grub-etc.
+- **`show-grub-etc`**: Alias for cat-grub-etc.
+- **`ls-k-os`**: Alias for cat-k-os.
+- **`show-k-os`**: Alias for cat-k-os.
+- **`ls-etc-os`**: Alias for cat-etc-os.
+- **`show-etc-os`**: Alias for cat-etc-os.
+- **`ls-os-v`**: Alias for cat-os-v.
+- **`show-os-v`**: Alias for cat-os-v.
+- **`ls-linux-v`**: Alias for cat-linux-v.
+- **`show-linux-v`**: Alias for cat-linux-v.
+- **`ls-distro-n`**: Alias for cat-distro-n.
+- **`show-distro-n`**: Alias for cat-distro-n.
+- **`ls-distro-v`**: Alias for cat-distro-v.
+- **`show-distro-v`**: Alias for cat-distro-v.
+- **`ls-distro`**: Alias for cat-distro.
+- **`show-distro`**: Alias for cat-distro.
+- **`ls-k-host`**: Alias for cat-k-host.
+- **`show-k-host`**: Alias for cat-k-host.
+- **`ls-cmdline`**: Alias for cat-cmdline.
+- **`show-cmdline`**: Alias for cat-cmdline.
+- **`ls-mimeapps`**: Alias for cat-mimeapps.
+- **`show-mimeapps`**: Alias for cat-mimeapps.
+- **`ls-share-mimeapps`**: Alias for cat-share-mimeapps.
+- **`show-share-mimeapps`**: Alias for cat-share-mimeapps.
+- **`ls-all-mimeapps`**: Alias for cat-all-mimeapps.
+- **`show-all-mimeapps`**: Alias for cat-all-mimeapps.
+- **`ls-share-mimecache`**: Alias for cat-share-mimecache.
+- **`show-share-mimecache`**: Alias for cat-share-mimecache.
+
+
 - **`cat-mimeapps`**: Displays the user's default applications list and MIME configurations (`~/.config/mimeapps.list`).
 - **`cat-share-mimeapps`**: Displays system-wide MIME configurations list installed under user or system applications (`~/.local/share/applications/mimeapps.list`).
 - **`cat-all-mimeapps`**: Tries reading all major known locations for MIME config.
@@ -494,6 +558,19 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - cat-cmdline
 
 #### VM_and_Memory
+
+- **`ls-vm-swap`**: Alias for cat-vm-swap.
+- **`show-vm-swap`**: Alias for cat-vm-swap.
+- **`ls-vm-over-mem`**: Alias for cat-vm-over-mem.
+- **`show-vm-over-mem`**: Alias for cat-vm-over-mem.
+- **`ls-vm-over-ratio`**: Alias for cat-vm-over-ratio.
+- **`show-vm-over-ratio`**: Alias for cat-vm-over-ratio.
+- **`ls-cpu-inf`**: Alias for cat-cpu-inf.
+- **`show-cpu-inf`**: Alias for cat-cpu-inf.
+- **`ls-mem-inf`**: Alias for cat-mem-inf.
+- **`show-mem-inf`**: Alias for cat-mem-inf.
+- **`ls-oom-conf`**: Alias for cat-oom-conf.
+- **`show-oom-conf`**: Alias for cat-oom-conf.
 
 [Show VM swappiness value from /proc/sys/vm/swappiness]
 
@@ -557,6 +634,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 #### Storage_and_Partitions
 
+- **`ls-partitions`**: Alias for cat-partitions.
+- **`show-partitions`**: Alias for cat-partitions.
+- **`ls-fstab`**: Alias for cat-fstab.
+- **`show-fstab`**: Alias for cat-fstab.
+
 [Show partition table from /proc/partitions]
 
 - cat-partitions
@@ -566,6 +648,9 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - cat-fstab
 
 #### Drivers_and_Modules
+
+- **`ls-nvidia-v`**: Alias for cat-nvidia-v.
+- **`show-nvidia-v`**: Alias for cat-nvidia-v.
 
 [Show NVIDIA driver version from /proc/driver/nvidia/version]
 
@@ -588,6 +673,13 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - glx-info
 
 #### System_Config_Files
+
+- **`ls-hosts`**: Alias for cat-hosts.
+- **`show-hosts`**: Alias for cat-hosts.
+- **`ls-ssh-cfg`**: Alias for cat-ssh-cfg.
+- **`show-ssh-cfg`**: Alias for cat-ssh-cfg.
+- **`ls-ssh-service`**: Alias for cat-ssh-service.
+- **`show-ssh-service`**: Alias for cat-ssh-service.
 
 [Show GDM3 configuration from /etc/gdm3/custom.conf]
 
@@ -634,6 +726,17 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - cat-modeprobe-confs
 
 #### Logs_and_Crashes
+
+- **`ls-var-locks`**: Alias for cat-var-locks.
+- **`show-var-locks`**: Alias for cat-var-locks.
+- **`ls-dpkg-log`**: Alias for cat-dpkg-log.
+- **`show-dpkg-log`**: Alias for cat-dpkg-log.
+- **`ls-sys-log`**: Alias for cat-sys-log.
+- **`show-sys-log`**: Alias for cat-sys-log.
+- **`ls-history-log`**: Alias for cat-history-log.
+- **`show-history-log`**: Alias for cat-history-log.
+- **`ls-term-log`**: Alias for cat-term-log.
+- **`show-term-log`**: Alias for cat-term-log.
 
 [Extract strings from crash files in /var/crash/ (excluding opt and most usr_bin crashes)]
 
@@ -727,6 +830,23 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 #### VSCode_and_GTK
 
+- **`ls-gtk4-settings`**: Alias for cat-gtk4-settings.
+- **`show-gtk4-settings`**: Alias for cat-gtk4-settings.
+- **`ls-vscode-settings`**: Alias for cat-vscode-settings.
+- **`show-vscode-settings`**: Alias for cat-vscode-settings.
+- **`ls-vscode-keybindings`**: Alias for cat-vscode-keybindings.
+- **`show-vscode-keybindings`**: Alias for cat-vscode-keybindings.
+- **`ls-vscode-extensions`**: Alias for cat-vscode-extensions.
+- **`show-vscode-extensions`**: Alias for cat-vscode-extensions.
+- **`ls-vscode-snippets`**: Alias for cat-vscode-snippets.
+- **`show-vscode-snippets`**: Alias for cat-vscode-snippets.
+- **`ls-vscode-sqlite-state`**: Alias for cat-vscode-sqlite-state.
+- **`show-vscode-sqlite-state`**: Alias for cat-vscode-sqlite-state.
+- **`ls-vscode-sharedprocess-gpu`**: Alias for cat-vscode-sharedprocess-gpu.
+- **`show-vscode-sharedprocess-gpu`**: Alias for cat-vscode-sharedprocess-gpu.
+- **`ls-vscode-argv`**: Alias for cat-vscode-argv.
+- **`show-vscode-argv`**: Alias for cat-vscode-argv.
+
 [Show GTK4 settings from ~/.config/gtk-4.0/settings.ini]
 
 - cat-gtk4-settings
@@ -786,6 +906,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 ### Pretty_Aliases
 
 #### Pretty_Kernel_OS
+
 
 - **`cat-mimeapps-pretty`**: Formatted output.
 
@@ -916,6 +1037,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - glx-info-pretty
 
 #### Pretty_System_Config
+
 
 - **`cat-compose-chars-pretty`**: Formatted output.
 
@@ -1710,6 +1832,9 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - mysqlr
 
 ### Filesystem_Utilities
+
+- **`show-compose-chars`**: Alias for cat-compose-chars.
+
 
 - **`cat-compose-chars`**: Displays the correct native sequence of Compose keys available under `en_US.UTF-8/Compose`.
 - **`ls-compose-chars`**: Lists Compose map details in standard `ls -ld` format.

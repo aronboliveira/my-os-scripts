@@ -7,6 +7,14 @@ Transpilados da seção publicável do Bash para equivalentes em PowerShell (ape
 
 ## System_Setup
 
+[Agenda a finalização de um processo em um horário específico]
+
+- schedule-kill-sequence
+
+[Define ajuste OOM de um processo como crítico (-1000)]
+
+- set-ps-critical
+
 [Lista todas as variáveis de ambiente (Get-ChildItem Env:), ordenadas alfabeticamente]
 
 - show-all-env-vars
@@ -120,6 +128,27 @@ Transpilados da seção publicável do Bash para equivalentes em PowerShell (ape
 - contains-files
 
 ## Filesystem_Utilities
+
+[Exibe a lista de mimeapps do usuário]
+
+- get-mimeapps
+- cat-mimeapps
+
+[Exibe a lista de mimeapps compartilhada]
+
+- get-share-mimeapps
+- cat-share-mimeapps
+
+[Exibe todas as listas de mimeapps]
+
+- get-all-mimeapps
+- cat-all-mimeapps
+
+[Exibe teclas Compose do X11]
+
+- get-compose-chars
+- cat-compose-chars
+- show-compose-chars
 
 [Empacota todos os arquivos no diretório atual em subdiretórios de 100 arquivos cada]
 

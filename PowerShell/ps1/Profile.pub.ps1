@@ -108,6 +108,33 @@ Set-Alias -Name show-shell -Value Show-Shell
 function Show-Wrkdir { $PWD.Path }
 Set-Alias -Name show-wrkdir -Value Show-Wrkdir
 
+<#
+.SYNOPSIS Schedule a process kill at a specified time.
+#>
+function Invoke-ScheduleKillSequence {
+  param(
+    [Parameter(Mandatory)][string]$ProcessName,
+    [Parameter(Mandatory)][string]$Time
+  )
+  $delay = ([datetime]$Time - (Get-Date)).TotalSeconds
+  if ($delay -le 0) { Write-Error "Time must be in the future."; return }
+  Start-Job -ScriptBlock {
+    Start-Sleep -Seconds $using:delay
+    Stop-Process -Name $using:ProcessName -Force -ErrorAction SilentlyContinue
+  } | Out-Null
+  Write-Host "Scheduled kill for '$ProcessName' at $Time"
+}
+Set-Alias -Name schedule-kill-sequence -Value Invoke-ScheduleKillSequence
+
+<#
+.SYNOPSIS Set OOM priority for a process (Linux-only concept, stub for PS).
+#>
+function Set-PsCritical {
+  param([Parameter(Mandatory)][int]$Pid)
+  Write-Warning "OOM score adjustment is a Linux-specific concept. PID: $Pid score: -1000"
+}
+Set-Alias -Name set-ps-critical -Value Set-PsCritical
+
 #endregion System_Setup
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -450,6 +477,13 @@ function get-compose-chars {
   Get-Content /usr/share/X11/locale/en_US.UTF-8/Compose -ErrorAction SilentlyContinue | Write-Output
 }
 Set-Alias cat-compose-chars get-compose-chars
+Set-Alias show-compose-chars get-compose-chars
+
+function get-all-mimeapps {
+  Get-Content ~/.config/mimeapps.list -ErrorAction SilentlyContinue | Write-Output
+  Get-Content ~/.local/share/applications/mimeapps.list -ErrorAction SilentlyContinue | Write-Output
+}
+Set-Alias cat-all-mimeapps get-all-mimeapps
 # -----------------------
 
 # ═══════════════════════════════════════════════════════════════════════════

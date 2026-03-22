@@ -7,6 +7,14 @@ Transpiled from the Bash publicable section to PowerShell equivalents (cross-pla
 
 ## System_Setup
 
+[Schedule a process kill at a specified time]
+
+- schedule-kill-sequence
+
+[Set OOM score adjustment for a process to critical (-1000)]
+
+- set-ps-critical
+
 [List all environment variables (Get-ChildItem Env:), sorted alphabetically]
 
 - show-all-env-vars
@@ -120,6 +128,27 @@ Transpiled from the Bash publicable section to PowerShell equivalents (cross-pla
 - contains-files
 
 ## Filesystem_Utilities
+
+[Displays the user mimeapps list]
+
+- get-mimeapps
+- cat-mimeapps
+
+[Displays shared mimeapps list]
+
+- get-share-mimeapps
+- cat-share-mimeapps
+
+[Displays all mimeapps lists]
+
+- get-all-mimeapps
+- cat-all-mimeapps
+
+[Displays X11 Compose keys]
+
+- get-compose-chars
+- cat-compose-chars
+- show-compose-chars
 
 [Pack all files in current directory into subdirectories of 100 files each]
 
