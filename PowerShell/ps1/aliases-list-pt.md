@@ -29,7 +29,7 @@ Transpilados da seção publicável do Bash para equivalentes em PowerShell (ape
 
 [Mostra a arquitetura da máquina host (RuntimeInformation)]
 
-- show-hostype
+- show-hosttype
 
 [Mostra o caminho do diretório home do usuário atual]
 

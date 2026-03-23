@@ -1419,9 +1419,24 @@ KILL_SCRIPT_EOF
       ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
       watch_mem_hogs() {
         local interval="${1:-0.25}"
-        watch -n "$interval" 'ps aux --sort=-%mem | awk "{print \$1,\$2,\$4,\$5,\$6,\$11}"'
+        watch -n "$interval" 'ps aux --sort=-%mem | awk "{print \$1,\$2,\$4,\$5,\$6,\$8,\$11}"'
       }
       alias watch-mem-hogs='watch_mem_hogs'
+      ## @description Watch CPU-hungry processes sorted by CPU usage in real time.
+      ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
+      watch_cpu_hogs() {
+        local interval="${1:-0.25}"
+        watch -n "$interval" 'ps aux --sort=-%cpu | awk "{print \$1,\$2,\$3,\$8,\$11}"'
+      }
+      alias watch-cpu-hogs='watch_cpu_hogs'
+
+      ## @description List zombie processes (state Z) from ps aux output.
+      ## @param $1 {int} head - Max number of results to display (default: 20)
+      find_zombies() {
+        local head="${1:-20}"
+        ps aux | awk '$8 ~ /Z/ {print}' | head -n "$head"
+      }
+      alias find-zombies='find_zombies'
 ## @description Show the OOM kill score for a process (higher = more likely to be killed).
       ## @param $1 {int} pid - Process ID (required)
       cat_pid_oom_kill_score() {
@@ -1947,6 +1962,24 @@ print('✅ GPU disabled in argv.json')
         local interval="${1:-0.25}"
         _pretty_hdr "Memory Hogs — top RSS consumers (interval: ${interval}s)"
         watch_mem_hogs "$interval"
+        _pretty_ftr
+      }
+
+      ## @description Watch CPU-hungry processes sorted by CPU usage with pretty header.
+      ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
+      watch-cpu-hogs-pretty() {
+        local interval="${1:-0.25}"
+        _pretty_hdr "CPU Hogs — top CPU consumers (interval: ${interval}s)"
+        watch_cpu_hogs "$interval"
+        _pretty_ftr
+      }
+
+      ## @description List zombie processes with pretty header.
+      ## @param $1 {int} head - Max number of results to display (default: 20)
+      find-zombies-pretty() {
+        local head="${1:-20}"
+        _pretty_hdr "Zombie Processes (state Z)"
+        find_zombies "$head" | _pretty_nl
         _pretty_ftr
       }
 
@@ -3509,6 +3542,25 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
     alias ls-compose-chars='cat-compose-chars'
     alias less-compose-chars='sudo less /usr/share/X11/locale/en_US.UTF-8/Compose'
     alias edit-compose-chars='sudo nano /usr/share/X11/locale/en_US.UTF-8/Compose'
+
+    ## @description Find and sort files by path length, excluding vendor/node_modules/backup directories.
+    ## @param $1 {string} extension - File extension pattern to match (required)
+    ## @param $2 {string} src - Root search directory (default: .)
+    ## @param $3 {int} max_depth - Max directory depth (default: 15)
+    ## @param $4 {int} cut_indexes - If non-zero, strip path-length prefix from output (default: 0)
+    function list_paths_no_vendors() {
+      local extension=${1?Usage: find-sorted-paths-no-vendors <extension> ?<src=.> ?<max_depth=15> ?<cut_indexes=0>}
+      local src=${2:-.}
+      local max_depth=${3:-15}
+      local cut_indexes=${4:-0}
+      local sorted_res=$(find "$src" -maxdepth "$max_depth" -type f \( -not -path "*node_modules*" -not -path "*/vendor/*" -not -path "*backup/*" -not -path "*.venv/" -path "*${extension}" \) | awk '{print length,$0}' | sort -n -k1,1 -k2)
+      if (( ! cut_indexes == 0 )); then
+        sorted_res=$(echo "$sorted_res" | cut -d' ' -f2-)
+      fi
+      echo "$sorted_res"
+    }
+    alias list-paths-no-vendors='list_paths_no_vendors'
+
 #endregion Filesystem_Utilities
 
 #endregion PUBLICABLE_CODE
@@ -4649,3 +4701,175 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
 
 #endregion POWERSHELL_PROFILE_EQUIVALENTS
 ### * END OF POWERSHELL PROFILE EQUIVALENTS * ###
+
+### * START OF PRIVATE CODE * ###
+#region
+alias mount-sda2='sudo mount /dev/sda2 /mnt/sda2 && echo "MOUNTED SDA2" || "FAILED TO MOUNT SDA2"'
+alias artisan='php artisan'
+alias brave='brave-browser'
+alias brave-tor='brave-browser --incognito --tor'
+alias execute-switcheroo='sudo env PATH="$PATH" switcheroo execute "/media/aronboliveira/Seagate Expansion Drive1/_not-very-important/jogos/sd_root/bootloader/payloads/hekate_ctcaer_6.2.2.bin"'
+alias backup-dash-py='backup_projects /home/aronboliveira/Desktop/programming/Prestech/vm-dashboard-python/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/vm-dashboard-python/"'
+alias backup-portfolio-web='backup_projects /home/aronboliveira/Desktop/programming/_portfolio/web/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/portfolio-projects/web/"'
+alias backup-whaticket='backup_projects /home/aronboliveira/Desktop/programming/Prestech/whaticket_deobfuscated/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/whaticket-fork/" && backup_projects /home/aronboliveira/Desktop/programming/Prestech/whaticket-vm/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/whaticket-vm/"'
+alias backup-lpp='backup_projects /mnt/sda2/home/aronboliveira/Desktop/programming/LLMPromptPurify/llm-prompt-purify/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/llm-prompt-purifier/"'
+alias backup-erp='backup_projects /home/aronboliveira/Desktop/programming/Prestech/erp/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/erpgo-fork/"'
+alias backup-cache='backup_projects /home/aronboliveira/.cache/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/.cache/"'
+alias backup-config='backup_projects /home/aronboliveira/.config/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/.config/"'
+alias backup-local='backup_projects /home/aronboliveira/.local/share/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/.local/share/"'
+## @description Alias for cat-sda2.
+alias ls-sda2='ls /mnt/sda2'
+alias cd-sda2='cd /mnt/sda2'
+alias rand-bg='~/.config/adapt-boot.sh'
+alias npm-i='npm install --no-fund'
+alias connect-jblgo='bluetoothctl connect 2C:FD:B4:63:5E:23'
+alias connect-jbltune='bluetoothctl connect F8:AB:E5:74:E6:01'
+alias connect-h510='bluetoothctl connect 00:76:24:32:0E:42'
+alias connect-waaw210='bluetoothctl connect 70:7F:25:AB:2D:B9'
+alias pair-jblgo='bluetoothctl pair 2C:FD:B4:63:5E:23'
+alias pair-jbltune='bluetoothctl pair F8:AB:E5:74:E6:01'
+alias pair-h510='bluetoothctl pair 00:76:24:32:0E:42'
+alias pair-waaw210='bluetoothctl pair 70:7F:25:AB:2D:B9'
+alias trust-jblgo='bluetoothctl trust 2C:FD:B4:63:5E:23'
+alias trust-jbltune='bluetoothctl trust F8:AB:E5:74:E6:01'
+alias trust-h510='bluetoothctl trust 00:76:24:32:0E:42'
+alias trust-waaw210='bluetoothctl trust 70:7F:25:AB:2D:B9'
+alias disconnect-jblgo='bluetoothctl disconnect 2C:FD:B4:63:5E:23'
+alias disconnect-jbltune='bluetoothctl disconnect F8:AB:E5:74:E6:01'
+alias disconnect-h510='bluetoothctl disconnect 00:76:24:32:0E:42'
+alias disconnect-waaw210='bluetoothctl disconnect 70:7F:25:AB:2D:B9'
+alias remove-jblgo='bluetoothctl remove 2C:FD:B4:63:5E:23'
+alias remove-jbltune='bluetoothctl remove F8:AB:E5:74:E6:01'
+alias remove-h510='bluetoothctl remove 00:76:24:32:0E:42'
+alias remove-waaw210='bluetoothctl remove 70:7F:25:AB:2D:B9'
+alias bt-on='bluetoothctl power on'
+alias bt-off='bluetoothctl power off'
+alias bt-scan='bluetoothctl scan on'
+alias bt-devices='bluetoothctl devices'
+alias setup-jblgo='pair-jblgo && trust-jblgo && connect-jblgo'
+alias setup-jbltune='pair-jbltune && trust-jbltune && connect-jbltune'
+alias setup-h510='pair-h510 && trust-h510 && connect-h510'
+alias setup-waaw210='pair-waaw210 && trust-waaw210 && connect-waaw210'
+alias ms-bashrc='code /media/aronboliveira/PrimarySSD/Users/Aron/Desktop/programming/OS/Bash/Linux/.bashrc'
+alias ms-docs='xdg-open /media/aronboliveira/PrimarySSD/Users/Aron/Documents'
+alias ms-desk='xdg-open /media/aronboliveira/PrimarySSD/Users/Aron/Desktop'
+alias ms-dl='xdg-open /media/aronboliveira/PrimarySSD/Users/Aron/Downloads'
+alias ms-pics='xdg-open /media/aronboliveira/PrimarySSD/Users/Aron/Pictures'
+alias psprofile='code /media/aronboliveira/PrimarySSD/Users/Aron/Documents/WindowsPowerShell/Microsoft.Powershell_profile.ps1'
+alias brave-passwords='brave-browser --incognito --new-window --disable-extensions --disable-sync --disable-background-networking --no-pings --disable-breakpad ~/Desktop/.recover/750.html'
+alias edit-passwords='code ~/Desktop/.recover/750.html || echo "Failed to open passwords file"'
+alias dktp-sw="~/.config/adapt-boot.sh"
+## @description Mount an NTFS partition read-write via ntfs-3g.
+## @param $1 {string} device     - Block device path (required), e.g. /dev/sdc1
+## @param $2 {string} mountpoint - Mount destination (required)
+## @flag --seagate  Mount /dev/sdc1 → /media/$USER/Seagate Expansion Drive1
+mount_ntfs_rw() {
+  local src="" dst=""
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --seagate)
+        src="/dev/sdc1"; dst="/media/$USER/Seagate Expansion Drive1"; shift ;;
+      --help|-h) echo -e "📖 \033[1mmount-ntfs-rw\033[0m <device> <mountpoint> | --seagate"; return 0 ;;
+      -*) echo -e "❌ Unknown flag: $1"; return 1 ;;
+      *)
+        if [ -z "$src" ]; then src="$1"; elif [ -z "$dst" ]; then dst="$1"; fi; shift ;;
+    esac
+  done
+  if [ -z "$src" ] || [ -z "$dst" ]; then
+    echo -e "❌ Usage: mount-ntfs-rw <device> <mountpoint> | --seagate"; return 1
+  fi
+  sudo mkdir -p "$dst"
+  echo -e "💾 \033[1;36mMounting NTFS $src → $dst ...\033[0m"
+  sudo mount -t ntfs-3g -o rw,uid=1000,gid=1000,dmask=022,fmask=133 "$src" "$dst"
+  echo -e "✅ \033[1;32mMounted $src → $dst (NTFS r/w)\033[0m"
+}
+alias mount-ntfs-rw='mount_ntfs_rw'
+## @description Create a partition table on a device. DESTRUCTIVE.
+## @param $1 {string} device - Block device path (required), e.g. /dev/sda
+## @param $2 {string} label  - Partition table type: "gpt" (default) or "mbr"
+## @flag --gpt   Use GPT label (default)
+## @flag --mbr   Use MBR/msdos label
+partition_label() {
+  local device="" label="gpt"
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --gpt) label="gpt"; shift ;;
+      --mbr) label="msdos"; shift ;;
+      --help|-h) echo -e "📖 \033[1mpartition-label\033[0m <device> [gpt|mbr] | --gpt | --mbr"; return 0 ;;
+      -*) echo -e "❌ Unknown flag: $1"; return 1 ;;
+      *)
+        if [ -z "$device" ]; then device="$1"; else label="$1"; fi; shift ;;
+    esac
+  done
+  [ -z "$device" ] && { echo -e "❌ Usage: partition-label <device> [gpt|mbr]"; return 1; }
+  echo ""
+  echo -e "🔴 \033[1;31m╔══════════════════════════════════════════════════╗\033[0m"
+  echo -e "🔴 \033[1;31m║  WARNING: ALL data on $device will be ERASED!   ║\033[0m"
+  echo -e "🔴 \033[1;31m╚══════════════════════════════════════════════════╝\033[0m"
+  echo ""
+  read -rp "$(echo -e '\033[1;33m⚠️  Type YES to confirm: \033[0m')" ans
+  [ "$ans" = "YES" ] || { echo "Aborted."; return 1; }
+  sudo parted "$device" mklabel "$label"
+  sudo parted "$device" mkpart primary 0% 100%
+  echo -e "✅ \033[1;32mPartition table ($label) created on $device.\033[0m"
+}
+alias partition-label='partition_label'
+## @description Install HydraPaper (dual-monitor wallpaper tool) via Flatpak.
+## @param $1 {string} wallpaper1 - Path to first wallpaper (optional)
+## @param $2 {string} wallpaper2 - Path to second wallpaper (optional)
+install_hydrapaper() {
+  if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+    echo -e "📖 \033[1minstall-hydrapaper\033[0m [wallpaper_left] [wallpaper_right]"
+    return 0
+  fi
+  echo -e "🖼️  \033[1;36mInstalling HydraPaper...\033[0m"
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak install -y flathub org.gabmus.hydrapaper
+  if [ -n "${1:-}" ] && [ -n "${2:-}" ]; then
+    echo -e "🖥️  Applying wallpapers..."
+    flatpak run org.gabmus.hydrapaper -c "$1" "$2"
+  else
+    echo -e "ℹ️  Installed. Run: flatpak run org.gabmus.hydrapaper -c '<path1>' '<path2>'"
+  fi
+  echo -e "✅ \033[1;32mHydraPaper ready.\033[0m"
+}
+alias install-hydrapaper='install_hydrapaper'
+# ── Script-backed procedure aliases ───────────────────────────
+alias install-protonvpn='bash ~/.config/scripts/profile/install-protonvpn.sh'
+alias remove-protonvpn='bash ~/.config/scripts/profile/remove-protonvpn.sh'
+alias remove-anydesk='bash ~/.config/scripts/profile/remove-anydesk.sh'
+alias fix-grub='bash ~/.config/scripts/profile/fix-grub.sh'
+alias luks-manage='bash ~/.config/scripts/profile/luks-manage.sh'
+alias luks-mount='bash ~/.config/scripts/profile/luks-mount.sh'
+alias install-mysql='bash ~/.config/scripts/profile/install-mysql.sh'
+alias install-nvm='bash ~/.config/scripts/profile/install-nvm.sh'
+alias install-sdkman='bash ~/.config/scripts/profile/install-sdkman.sh'
+alias setup-ssh='bash ~/.config/scripts/profile/setup-ssh.sh'
+alias backup-system='bash ~/.config/scripts/profile/backup-system.sh'
+alias clone-disk='bash ~/.config/scripts/profile/clone-disk.sh'
+alias install-langpack-es='bash ~/.config/scripts/profile/install-langpack-es.sh'
+alias install-wine='bash ~/.config/scripts/profile/install-wine.sh'
+alias diag-user-service='bash ~/.config/scripts/profile/diag-user-service.sh'
+alias fix-permissions='bash ~/.config/scripts/profile/fix-permissions.sh'
+alias install-xfce='bash ~/.config/scripts/profile/install-xfce.sh'
+alias fix-bluetooth='bash ~/.config/scripts/profile/fix-bluetooth.sh'
+alias diag-nvidia='bash ~/.config/scripts/profile/diag-nvidia.sh'
+alias setup-ntfs-automount='bash ~/.config/scripts/profile/setup-ntfs-automount.sh'
+alias setup-ssh-firewall='bash ~/.config/scripts/profile/setup-ssh-firewall.sh'
+alias diag-apache='bash ~/.config/scripts/profile/diag-apache.sh'
+alias diag-usb='bash ~/.config/scripts/profile/diag-usb.sh'
+alias diag-disk='bash ~/.config/scripts/profile/diag-disk.sh'
+alias fix-virtualbox='bash ~/.config/scripts/profile/fix-virtualbox.sh'
+alias install-xfce-winxp='bash ~/.config/scripts/profile/install-xfce-winxp.sh'
+# ── WiFi (Broadcom) scripts ───────────────────────────────────
+alias wifi-diag='bash ~/.config/scripts/profile/wifi-diag.sh'
+alias wifi-fix-rfkill='bash ~/.config/scripts/profile/wifi-fix-rfkill.sh'
+alias wifi-fix-broadcom-wl='bash ~/.config/scripts/profile/wifi-fix-broadcom-wl.sh'
+alias wifi-fix-broadcom-b43='bash ~/.config/scripts/profile/wifi-fix-broadcom-b43.sh'
+alias wifi-fix-nm='bash ~/.config/scripts/profile/wifi-fix-nm.sh'
+alias wifi-purge='bash ~/.config/scripts/profile/wifi-purge.sh'
+alias wifi-fix-udev='bash ~/.config/scripts/profile/wifi-fix-udev.sh'
+# ── NVIDIA fix script ─────────────────────────────────────────
+alias fix-nvidia='bash ~/.config/scripts/profile/fix-nvidia.sh'
+#endregion
+### * END OF PRIVATE CODE * ###

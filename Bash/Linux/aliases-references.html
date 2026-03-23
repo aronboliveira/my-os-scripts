@@ -3335,11 +3335,11 @@ GTK_THEME env: Adwaita:dark
                 </div>
                 <div
                   class="card alias-card shadow-sm"
-                  data-alias="show-hostype"
+                  data-alias="show-hosttype"
                 >
                   <div class="card-body">
                     <h4 class="alias-name mb-2">
-                      <code> show-hostype </code>
+                      <code> show-hosttype </code>
                     </h4>
                     <p class="mb-2">
                       <span> Show host machine type (e.g., x86_64) </span>
@@ -3351,14 +3351,14 @@ GTK_THEME env: Adwaita:dark
                         <span> View Code </span>
                       </summary>
                       <pre
-                        aria-label="Bash code for show-hostype"
+                        aria-label="Bash code for show-hosttype"
                         class="code-block"
                         role="region"
-                      ><code><span class="bash-builtin">alias </span>show-hostype=<span class="bash-string">"echo \<span class="bash-variable">$HOSTTYPE</span>"</span></code></pre>
+                      ><code><span class="bash-builtin">alias </span>show-hosttype=<span class="bash-string">"echo \<span class="bash-variable">$HOSTTYPE</span>"</span></code></pre>
                     </details>
                     <details
                       class="example-details"
-                      data-examples-for="show-hostype"
+                      data-examples-for="show-hosttype"
                     >
                       <summary>
                         <span>Usage Examples</span>
@@ -3366,13 +3366,13 @@ GTK_THEME env: Adwaita:dark
                       <div class="examples-container">
                         <div
                           class="example-block"
-                          data-example-id="ex_show_hostype_0"
-                          data-cmd="show-hostype"
+                          data-example-id="ex_show_hosttype_0"
+                          data-cmd="show-hosttype"
                           data-output="x86_64"
                         >
                           <button
                             class="demo-btn"
-                            data-demo-target="ex_show_hostype_0"
+                            data-demo-target="ex_show_hosttype_0"
                             type="button"
                             aria-label="Start demo"
                           >
@@ -3383,17 +3383,17 @@ GTK_THEME env: Adwaita:dark
                             <span class="prompt">$ </span
                             ><span
                               class="typed-cmd"
-                              id="typed_ex_show_hostype_0"
+                              id="typed_ex_show_hosttype_0"
                             ></span
                             ><span
                               class="typing-cursor"
-                              id="cursor_ex_show_hostype_0"
+                              id="cursor_ex_show_hosttype_0"
                               style="display: none"
                             ></span>
                           </div>
                           <div
                             class="mock-output"
-                            id="output_ex_show_hostype_0"
+                            id="output_ex_show_hosttype_0"
                           ></div>
                         </div>
                       </div>
@@ -7685,11 +7685,11 @@ overcommit_ratio = 50"
                       </div>
                       <div
                         class="card alias-card shadow-sm"
-                        data-alias="follow-early-oom"
+                        data-alias="follow-early-oom-rec"
                       >
                         <div class="card-body">
                           <h4 class="alias-name mb-2">
-                            <code> follow-early-oom </code>
+                            <code> follow-early-oom-rec </code>
                           </h4>
                           <p class="mb-2">
                             <span>
@@ -7715,18 +7715,18 @@ overcommit_ratio = 50"
                               <span> View Code </span>
                             </summary>
                             <pre
-                              aria-label="Bash code for follow-early-oom"
+                              aria-label="Bash code for follow-early-oom-rec"
                               class="code-block"
                               role="region"
                             ><code><span class="bash-keyword">follow_early_oom_rec</span>() {
   <span class="bash-keyword">local</span> <span class="bash-variable">interval</span>=<span class="bash-string">"${1:-2}"</span>
   <span class="bash-builtin">earlyoom</span> <span class="bash-flag">-vr</span> <span class="bash-string">"$interval"</span>
 }
-<span class="bash-builtin">alias</span> follow-early-oom=<span class="bash-string">'follow_early_oom_rec'</span></code></pre>
+<span class="bash-builtin">alias</span> follow-early-oom-rec=<span class="bash-string">'follow_early_oom_rec'</span></code></pre>
                           </details>
                           <details
                             class="example-details"
-                            data-examples-for="follow-early-oom"
+                            data-examples-for="follow-early-oom-rec"
                           >
                             <summary>
                               <span>Usage Examples</span>
@@ -7734,8 +7734,8 @@ overcommit_ratio = 50"
                             <div class="examples-container">
                               <div
                                 class="example-block"
-                                data-example-id="ex_follow_early_oom_0"
-                                data-cmd="follow-early-oom"
+                                data-example-id="ex_follow_early_oom_rec_0"
+                                data-cmd="follow-early-oom-rec"
                                 data-output="earlyoom 1.8
 mem total: 32076 MiB, swap total: 8192 MiB
 sending SIGTERM when mem ≤ 10% and swap ≤ 10%
@@ -7743,7 +7743,7 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                               >
                                 <button
                                   class="demo-btn"
-                                  data-demo-target="ex_follow_early_oom_0"
+                                  data-demo-target="ex_follow_early_oom_rec_0"
                                   type="button"
                                   aria-label="Start demo"
                                 >
@@ -7754,17 +7754,17 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                                   <span class="prompt">$ </span
                                   ><span
                                     class="typed-cmd"
-                                    id="typed_ex_follow_early_oom_0"
+                                    id="typed_ex_follow_early_oom_rec_0"
                                   ></span
                                   ><span
                                     class="typing-cursor"
-                                    id="cursor_ex_follow_early_oom_0"
+                                    id="cursor_ex_follow_early_oom_rec_0"
                                     style="display: none"
                                   ></span>
                                 </div>
                                 <div
                                   class="mock-output"
-                                  id="output_ex_follow_early_oom_0"
+                                  id="output_ex_follow_early_oom_rec_0"
                                 ></div>
                               </div>
                             </div>
@@ -7859,6 +7859,184 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                                 <div
                                   class="mock-output"
                                   id="output_ex_watch_mem_hogs_0"
+                                ></div>
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="watch-cpu-hogs"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> watch-cpu-hogs </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Watches CPU-hungry processes sorted by
+                              <b> CPU usage </b>
+                              in real time using
+                              <code> watch </code>
+                              and
+                              <code> ps aux </code>
+                              .
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> function </span>
+                            </span>
+                            <span class="badge bg-primary badge-alias">
+                              <span> $1: interval (default: 0.25) </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for watch-cpu-hogs"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">watch_cpu_hogs</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">interval</span>=<span class="bash-string">"${1:-0.25}"</span>
+  <span class="bash-builtin">watch</span> <span class="bash-flag">-n</span> <span class="bash-string">"$interval"</span> <span class="bash-string">'ps aux --sort=-%cpu | awk "{print \$1,\$2,\$3,\$8,\$11}"'</span>
+}
+<span class="bash-builtin">alias</span> watch-cpu-hogs=<span class="bash-string">'watch_cpu_hogs'</span></code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="watch-cpu-hogs"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_watch_cpu_hogs_0"
+                                data-cmd="watch-cpu-hogs"
+                                data-output="  PID   %CPU  COMMAND\n 1234   98.5  firefox\n 5678   45.2  code\n 9012    2.1  gnome-shell\n ..."
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_watch_cpu_hogs_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_watch_cpu_hogs_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_watch_cpu_hogs_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_watch_cpu_hogs_0"
+                                ></div>
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="find-zombies"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> find-zombies </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Lists zombie processes (state
+                              <b> Z </b>
+                              ) from
+                              <code> ps aux </code>
+                              output.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> function </span>
+                            </span>
+                            <span class="badge bg-primary badge-alias">
+                              <span> $1: head (default: 20) </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for find-zombies"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">find_zombies</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">head</span>=<span class="bash-string">"${1:-20}"</span>
+  <span class="bash-builtin">ps</span> aux | <span class="bash-builtin">awk</span> <span class="bash-string">'$8 ~ /Z/ {print}'</span> | <span class="bash-builtin">head</span> <span class="bash-flag">-n</span> <span class="bash-string">"$head"</span>
+}
+<span class="bash-builtin">alias</span> find-zombies=<span class="bash-string">'find_zombies'</span></code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="find-zombies"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_find_zombies_0"
+                                data-cmd="find-zombies"
+                                data-output="root      1234  0.0  0.0   0  0 ?  Z  10:23  0:00 [defunct]\nuser      5678  0.0  0.0   0  0 ?  Z  11:42  0:00 [worker] &lt;defunct&gt;"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_find_zombies_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_find_zombies_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_find_zombies_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_find_zombies_0"
                                 ></div>
                               </div>
                             </div>
@@ -9333,6 +9511,94 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                         <div class="col-md-6">
                           <div
                             class="card alias-card shadow-sm"
+                            data-alias="watch-cpu-hogs-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code> watch-cpu-hogs-pretty </code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Watches top CPU consumers with a formatted
+                                  header.
+                                </span>
+                              </p>
+                              <div class="d-flex flex-wrap gap-1 mb-2">
+                                <span class="badge bg-secondary badge-alias">
+                                  <span> function </span>
+                                </span>
+                                <span class="badge bg-primary badge-alias">
+                                  <span> $1: interval (default: 0.25) </span>
+                                </span>
+                              </div>
+                              <details class="code-details">
+                                <summary aria-expanded="false" role="button">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  >
+                                  </i>
+                                  <span> View Code </span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">watch-cpu-hogs-pretty</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">interval</span>=<span class="bash-string">"${1:-0.25}"</span>
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"CPU Hogs &mdash; top CPU consumers (interval: ${interval}s)"</span>
+  <span class="bash-builtin">watch_cpu_hogs</span> <span class="bash-string">"$interval"</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="find-zombies-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code> find-zombies-pretty </code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Lists zombie processes with a formatted
+                                  header.
+                                </span>
+                              </p>
+                              <div class="d-flex flex-wrap gap-1 mb-2">
+                                <span class="badge bg-secondary badge-alias">
+                                  <span> function </span>
+                                </span>
+                                <span class="badge bg-primary badge-alias">
+                                  <span> $1: head (default: 20) </span>
+                                </span>
+                              </div>
+                              <details class="code-details">
+                                <summary aria-expanded="false" role="button">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  >
+                                  </i>
+                                  <span> View Code </span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-keyword">find-zombies-pretty</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">head</span>=<span class="bash-string">"${1:-20}"</span>
+  <span class="bash-builtin">_pretty_hdr</span> <span class="bash-string">"Zombie Processes (state Z)"</span>
+  <span class="bash-builtin">find_zombies</span> <span class="bash-string">"$head"</span> | <span class="bash-builtin">_pretty_nl</span>
+  <span class="bash-builtin">_pretty_ftr</span>
+}</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
                             data-alias="cat-pid-oom-kill-score-pretty"
                           >
                             <div class="card-body">
@@ -9829,150 +10095,6 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                         class="code-block"
                         role="region"
                       ><code>alias show-linux-v-pretty='cat-linux-v-pretty'</code></pre>
-                    </details>
-                  </div>
-                </div>
-                <div
-                  class="card alias-card shadow-sm"
-                  data-alias="ls-distro-n-pretty"
-                >
-                  <div class="card-body">
-                    <h4 class="alias-name mb-2">
-                      <code> ls-distro-n-pretty </code>
-                      <span class="badge text-bg-secondary ms-2"> alias </span>
-                    </h4>
-                    <p class="mb-2">
-                      <span> Pretty alias for cat-distro-n-pretty. </span>
-                    </p>
-                    <details>
-                      <summary class="text-primary fw-medium mb-2">
-                        View Code
-                      </summary>
-                      <pre
-                        aria-label="Bash code for ls-distro-n-pretty"
-                        class="code-block"
-                        role="region"
-                      ><code>alias ls-distro-n-pretty='cat-distro-n-pretty'</code></pre>
-                    </details>
-                  </div>
-                </div>
-                <div
-                  class="card alias-card shadow-sm"
-                  data-alias="show-distro-n-pretty"
-                >
-                  <div class="card-body">
-                    <h4 class="alias-name mb-2">
-                      <code> show-distro-n-pretty </code>
-                      <span class="badge text-bg-secondary ms-2"> alias </span>
-                    </h4>
-                    <p class="mb-2">
-                      <span> Pretty alias for cat-distro-n-pretty. </span>
-                    </p>
-                    <details>
-                      <summary class="text-primary fw-medium mb-2">
-                        View Code
-                      </summary>
-                      <pre
-                        aria-label="Bash code for show-distro-n-pretty"
-                        class="code-block"
-                        role="region"
-                      ><code>alias show-distro-n-pretty='cat-distro-n-pretty'</code></pre>
-                    </details>
-                  </div>
-                </div>
-                <div
-                  class="card alias-card shadow-sm"
-                  data-alias="ls-distro-v-pretty"
-                >
-                  <div class="card-body">
-                    <h4 class="alias-name mb-2">
-                      <code> ls-distro-v-pretty </code>
-                      <span class="badge text-bg-secondary ms-2"> alias </span>
-                    </h4>
-                    <p class="mb-2">
-                      <span> Pretty alias for cat-distro-v-pretty. </span>
-                    </p>
-                    <details>
-                      <summary class="text-primary fw-medium mb-2">
-                        View Code
-                      </summary>
-                      <pre
-                        aria-label="Bash code for ls-distro-v-pretty"
-                        class="code-block"
-                        role="region"
-                      ><code>alias ls-distro-v-pretty='cat-distro-v-pretty'</code></pre>
-                    </details>
-                  </div>
-                </div>
-                <div
-                  class="card alias-card shadow-sm"
-                  data-alias="show-distro-v-pretty"
-                >
-                  <div class="card-body">
-                    <h4 class="alias-name mb-2">
-                      <code> show-distro-v-pretty </code>
-                      <span class="badge text-bg-secondary ms-2"> alias </span>
-                    </h4>
-                    <p class="mb-2">
-                      <span> Pretty alias for cat-distro-v-pretty. </span>
-                    </p>
-                    <details>
-                      <summary class="text-primary fw-medium mb-2">
-                        View Code
-                      </summary>
-                      <pre
-                        aria-label="Bash code for show-distro-v-pretty"
-                        class="code-block"
-                        role="region"
-                      ><code>alias show-distro-v-pretty='cat-distro-v-pretty'</code></pre>
-                    </details>
-                  </div>
-                </div>
-                <div
-                  class="card alias-card shadow-sm"
-                  data-alias="ls-distro-pretty"
-                >
-                  <div class="card-body">
-                    <h4 class="alias-name mb-2">
-                      <code> ls-distro-pretty </code>
-                      <span class="badge text-bg-secondary ms-2"> alias </span>
-                    </h4>
-                    <p class="mb-2">
-                      <span> Pretty alias for cat-distro-pretty. </span>
-                    </p>
-                    <details>
-                      <summary class="text-primary fw-medium mb-2">
-                        View Code
-                      </summary>
-                      <pre
-                        aria-label="Bash code for ls-distro-pretty"
-                        class="code-block"
-                        role="region"
-                      ><code>alias ls-distro-pretty='cat-distro-pretty'</code></pre>
-                    </details>
-                  </div>
-                </div>
-                <div
-                  class="card alias-card shadow-sm"
-                  data-alias="show-distro-pretty"
-                >
-                  <div class="card-body">
-                    <h4 class="alias-name mb-2">
-                      <code> show-distro-pretty </code>
-                      <span class="badge text-bg-secondary ms-2"> alias </span>
-                    </h4>
-                    <p class="mb-2">
-                      <span> Pretty alias for cat-distro-pretty. </span>
-                    </p>
-                    <details>
-                      <summary class="text-primary fw-medium mb-2">
-                        View Code
-                      </summary>
-                      <pre
-                        aria-label="Bash code for show-distro-pretty"
-                        class="code-block"
-                        role="region"
-                      ><code>alias show-distro-pretty='cat-distro-pretty'</code></pre>
                     </details>
                   </div>
                 </div>
@@ -13209,6 +13331,110 @@ image/png=org.gnome.eog.desktop
                               class="code-block"
                               role="region"
                             ><code>alias show-vscode-argv='cat-vscode-argv'</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="list-paths-no-vendors"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> list-paths-no-vendors </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Finds and sorts files by path length, excluding
+                              <code>node_modules</code>, <code>vendor</code>,
+                              and
+                              <code>backup</code>
+                              directories.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> function </span>
+                            </span>
+                            <span class="badge bg-danger badge-alias">
+                              <span> $1: extension (required) </span>
+                            </span>
+                            <span class="badge bg-primary badge-alias">
+                              <span> $2: src (default: .) </span>
+                            </span>
+                            <span class="badge bg-primary badge-alias">
+                              <span> $3: max_depth (default: 15) </span>
+                            </span>
+                            <span class="badge bg-primary badge-alias">
+                              <span> $4: cut_indexes (default: 0) </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for list-paths-no-vendors"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">list_paths_no_vendors</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">extension</span>=${1?Usage: list-paths-no-vendors &lt;extension&gt; ?&lt;src=.&gt; ?&lt;max_depth=15&gt; ?&lt;cut_indexes=0&gt;}
+  <span class="bash-keyword">local</span> <span class="bash-variable">src</span>=${2:-.}
+  <span class="bash-keyword">local</span> <span class="bash-variable">max_depth</span>=${3:-15}
+  <span class="bash-keyword">local</span> <span class="bash-variable">cut_indexes</span>=${4:-0}
+  <span class="bash-keyword">local</span> <span class="bash-variable">sorted_res</span>=$(<span class="bash-builtin">find</span> <span class="bash-string">"$src"</span> -maxdepth <span class="bash-string">"$max_depth"</span> -type f \( -not -path <span class="bash-string">"*node_modules*"</span> -not -path <span class="bash-string">"*/vendor/*"</span> -not -path <span class="bash-string">"*backup/*"</span> -not -path <span class="bash-string">"*.venv/"</span> -path <span class="bash-string">"*${extension}"</span> \) | <span class="bash-builtin">awk</span> <span class="bash-string">'{print length,$0}'</span> | <span class="bash-builtin">sort</span> -n -k1,1 -k2)
+  <span class="bash-keyword">if</span> (( ! cut_indexes == 0 )); <span class="bash-keyword">then</span>
+    <span class="bash-variable">sorted_res</span>=$(<span class="bash-builtin">echo</span> <span class="bash-string">"$sorted_res"</span> | <span class="bash-builtin">cut</span> -d<span class="bash-string">' '</span> -f2-)
+  <span class="bash-keyword">fi</span>
+  <span class="bash-builtin">echo</span> <span class="bash-string">"$sorted_res"</span>
+}
+<span class="bash-builtin">alias</span> list-paths-no-vendors=<span class="bash-string">'list_paths_no_vendors'</span></code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="list-paths-no-vendors"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_list_paths_no_vendors_0"
+                                data-cmd="list-paths-no-vendors .ts src 10"
+                                data-output="22 src/index.ts\n28 src/utils/helpers.ts\n32 src/components/Button.tsx\n41 src/services/UserService.ts"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_list_paths_no_vendors_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_list_paths_no_vendors_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_list_paths_no_vendors_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_list_paths_no_vendors_0"
+                                ></div>
+                              </div>
+                            </div>
                           </details>
                         </div>
                       </div>

@@ -77,10 +77,10 @@ Set-Alias -Name show-all-sh-vars -Value Show-AllShVars
 <#
 .SYNOPSIS Show host machine architecture.
 #>
-function Show-Hostype {
+function Show-Hosttype {
   [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture
 }
-Set-Alias -Name show-hostype -Value Show-Hostype
+Set-Alias -Name show-hosttype -Value Show-Hosttype
 
 <#
 .SYNOPSIS Show current user's home directory path.

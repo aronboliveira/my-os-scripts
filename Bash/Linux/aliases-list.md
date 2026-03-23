@@ -18,7 +18,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - **`set-ps-very-low`**: Sets OOM score adjustment to very low (600).
 - **`set-ps-irrelevant`**: Sets OOM score adjustment to irrelevant (1000).
 
-
 - **`install_stremio_gnome`**: Downloads and installs Flathub repo (if missing) and then installs Stremio launching it in background mode, ensuring compatibility for both Wayland and X11 sessions.
 
 [Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing — flags: --no-persist, --no-composite]
@@ -107,7 +106,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 [Show host machine type (e.g., x86_64)]
 
-- show-hostype
+- show-hosttype
 
 [Show current user's home directory path]
 
@@ -237,13 +236,13 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - echo-datadirs-session
 
-[ls- alias variant for show-hostype]
+[ls- alias variant for show-hosttype]
 
-- ls-hostype
+- ls-hosttype
 
-[echo- alias variant for show-hostype]
+[echo- alias variant for show-hosttype]
 
-- echo-hostype
+- echo-hosttype
 
 [ls- alias variant for show-home]
 
@@ -507,7 +506,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - **`ls-share-mimecache`**: Alias for cat-share-mimecache.
 - **`show-share-mimecache`**: Alias for cat-share-mimecache.
 
-
 - **`cat-mimeapps`**: Displays the user's default applications list and MIME configurations (`~/.config/mimeapps.list`).
 - **`cat-share-mimeapps`**: Displays system-wide MIME configurations list installed under user or system applications (`~/.local/share/applications/mimeapps.list`).
 - **`cat-all-mimeapps`**: Tries reading all major known locations for MIME config.
@@ -606,11 +604,19 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 [Follow earlyoom daemon output with verbose reporting at a set interval — $1: interval in seconds (default: 2)]
 
-- follow-early-oom
+- follow-early-oom-rec
 
 [Watch memory-hungry processes sorted by RSS in real time — $1: refresh interval in seconds (default: 0.25)]
 
 - watch-mem-hogs
+
+[Watch CPU-hungry processes sorted by CPU usage in real time — $1: refresh interval in seconds (default: 0.25)]
+
+- watch-cpu-hogs
+
+[List zombie processes (state Z) from ps aux output — $1: max number of results (default: 20)]
+
+- find-zombies
 
 [Show the OOM kill score for a process — $1: pid (required)]
 
@@ -907,7 +913,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 #### Pretty_Kernel_OS
 
-
 - **`cat-mimeapps-pretty`**: Formatted output.
 
 [Pretty-print GRUB boot config with line numbers and syntax coloring]
@@ -980,6 +985,14 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - watch-mem-hogs-pretty
 
+[Watch CPU-hungry processes sorted by CPU usage with pretty header — $1: refresh interval in seconds (default: 0.25)]
+
+- watch-cpu-hogs-pretty
+
+[List zombie processes with pretty header — $1: max number of results (default: 20)]
+
+- find-zombies-pretty
+
 [Pretty-print OOM kill score for a process — $1: pid (required)]
 
 - cat-pid-oom-kill-score-pretty
@@ -1037,7 +1050,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - glx-info-pretty
 
 #### Pretty_System_Config
-
 
 - **`cat-compose-chars-pretty`**: Formatted output.
 
@@ -1835,7 +1847,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - **`show-compose-chars`**: Alias for cat-compose-chars.
 
-
 - **`cat-compose-chars`**: Displays the correct native sequence of Compose keys available under `en_US.UTF-8/Compose`.
 - **`ls-compose-chars`**: Lists Compose map details in standard `ls -ld` format.
 - **`less-compose-chars`**: Views the long Compose character mapping scheme with `less` pagination.
@@ -1864,6 +1875,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Pack all files in current directory into subdirectories of 100 files each]
 
 - packf
+
+[Find and sort files by path length, excluding vendor/node_modules/backup directories — $1: extension (required) $2: src (default: .) $3: max_depth (default: 15) $4: cut_indexes (default: 0)]
+
+- list-paths-no-vendors
 
 ---
 

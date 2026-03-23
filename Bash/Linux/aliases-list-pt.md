@@ -106,7 +106,7 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 [Mostra o tipo de máquina host (ex: x86_64)]
 
-- show-hostype
+- show-hosttype
 
 [Mostra o caminho do diretório home do usuário atual]
 
@@ -236,13 +236,13 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - echo-datadirs-session
 
-[Variante alias ls- para show-hostype]
+[Variante alias ls- para show-hosttype]
 
-- ls-hostype
+- ls-hosttype
 
-[Variante alias echo- para show-hostype]
+[Variante alias echo- para show-hosttype]
 
-- echo-hostype
+- echo-hosttype
 
 [Variante alias ls- para show-home]
 
@@ -608,11 +608,19 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 [Acompanha saída do daemon earlyoom com relatório detalhado em intervalo definido — $1: intervalo em segundos (padrão: 2)]
 
-- follow-early-oom
+- follow-early-oom-rec
 
 [Monitora processos que consomem mais memória ordenados por RSS em tempo real — $1: intervalo de atualização em segundos (padrão: 0,25)]
 
 - watch-mem-hogs
+
+[Monitora processos que consomem mais CPU em tempo real — $1: intervalo de atualização em segundos (padrão: 0,25)]
+
+- watch-cpu-hogs
+
+[Lista processos zumbis (estado Z) a partir do ps aux — $1: número máximo de resultados (padrão: 20)]
+
+- find-zombies
 
 [Exibe pontuação OOM de morte para um processo — $1: pid (obrigatório)]
 
@@ -980,6 +988,14 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Monitora processos que consomem mais memória com cabeçalho formatado — $1: intervalo em segundos (padrão: 0,25)]
 
 - watch-mem-hogs-pretty
+
+[Monitora processos que consomem mais CPU com cabeçalho formatado — $1: intervalo de atualização em segundos (padrão: 0,25)]
+
+- watch-cpu-hogs-pretty
+
+[Lista processos zumbis com cabeçalho formatado — $1: número máximo de resultados (padrão: 20)]
+
+- find-zombies-pretty
 
 [Imprime pontuação OOM de morte para um processo formatada — $1: pid (obrigatório)]
 
@@ -1863,6 +1879,10 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Empacota todos os arquivos no diretório atual em subdiretórios de 100 arquivos cada]
 
 - packf
+
+[Encontra e ordena arquivos por comprimento de caminho, excluindo diretórios vendor/node_modules/backup — $1: extensão (obrigatório) $2: src (padrão: .) $3: max_depth (padrão: 15) $4: cut_indexes (padrão: 0)]
+
+- list-paths-no-vendors
 
 ---
 

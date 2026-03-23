@@ -29,7 +29,7 @@ Transpiled from the Bash publicable section to PowerShell equivalents (cross-pla
 
 [Show host machine architecture (RuntimeInformation)]
 
-- show-hostype
+- show-hosttype
 
 [Show current user's home directory path]
 
