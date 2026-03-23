@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bash Aliases Reference — Test</title>
+    <link
+      rel="preconnect"
+      href="https://cdn.jsdelivr.net"
+      crossorigin="anonymous"
+    />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin="anonymous" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link
+      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typing.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
+    <link rel="stylesheet" href="css/header.css" />
+  </head>
+  <body>
+    <!-- Nav hover zone -->
+    <div class="nav-hover-zone" id="navHoverZone"></div>
+
+    <!-- Sidebar toggle -->
+    <button
+      class="sidebar-toggle-btn"
+      id="sidebarToggleBtn"
+      title="Show sidebar"
+      type="button"
+      style="display: none"
+      aria-label="Toggle sidebar"
+    >
+      <i class="bi bi-layout-sidebar"></i>
+      <span>Menu</span>
+    </button>
+
+    <!-- Top Navigation -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top"
+      id="mainNav"
+      aria-label="Main navigation"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Bash Aliases</a>
+        <div class="d-flex align-items-center gap-2">
+          <input
+            class="form-control form-control-sm"
+            id="aliasSearch"
+            type="search"
+            placeholder="Search aliases..."
+            aria-label="Search"
+            required
+          />
+          <button
+            class="btn btn-outline-secondary btn-sm"
+            id="themeBtn"
+            type="button"
+            aria-label="Toggle theme"
+          >
+            <i class="bi bi-sun-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <!-- Sidebar -->
+        <aside class="col-lg-3 col-xl-2 d-none d-lg-block" id="tocSidebar">
+          <button
+            class="sidebar-close-btn"
+            id="sidebarCloseBtn"
+            title="Hide sidebar"
+            type="button"
+            aria-label="Close sidebar"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+          <nav class="nav flex-column nav-pills">
+            <a class="nav-link" href="#systemSetup">System Setup</a>
+            <a class="nav-link" href="#networkProcedures"
+              >Network Procedures</a
+            >
+            <a class="nav-link" href="#gitAliases">Git Aliases</a>
+            <a class="nav-link" href="#utilities">Utilities</a>
+          </nav>
+        </aside>
+
+        <!-- Main content -->
+        <section class="col-lg-9 col-xl-10" id="aliasApp">
+          <!-- System Setup -->
+          <article id="systemSetup">
+            <h2 class="mb-3 pb-2 border-bottom">System Setup</h2>
+            <div class="accordion" id="systemSetupAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseDisplayAliases"
+                    aria-expanded="true"
+                    aria-controls="collapseDisplayAliases"
+                  >
+                    Display & Session
+                  </button>
+                </h2>
+                <div
+                  id="collapseDisplayAliases"
+                  class="accordion-collapse collapse show"
+                >
+                  <div class="accordion-body">
+                    <!-- Card: setup-software-gl -->
+                    <div
+                      class="card alias-card"
+                      data-alias="setup-software-gl"
+                    >
+                      <div class="card-body">
+                        <h5 class="alias-name">setup-software-gl</h5>
+                        <p>Export LIBGL_ALWAYS_SOFTWARE=1 for mesa software rendering.</p>
+                        <details class="code-details">
+                          <summary>View source</summary>
+                          <pre class="code-block"><span class="bash-keyword">alias</span> <span class="bash-string">setup-software-gl</span>=<span class="bash-string">'export LIBGL_ALWAYS_SOFTWARE=1'</span></pre>
+                        </details>
+                        <details
+                          class="example-details"
+                          data-examples-for="setup-software-gl"
+                        >
+                          <summary><span>Usage Examples</span></summary>
+                          <div class="examples-container">
+                            <div
+                              class="example-block"
+                              data-example-id="ex_setup_software_gl_0"
+                              data-cmd="setup-software-gl"
+                              data-output="&#10003; LIBGL_ALWAYS_SOFTWARE=1 exported successfully"
+                            >
+                              <button
+                                class="demo-btn"
+                                data-demo-target="ex_setup_software_gl_0"
+                                type="button"
+                                aria-label="Start demo"
+                              >
+                                <i class="bi bi-play-fill"></i>
+                                <span>Start demo</span>
+                              </button>
+                              <div>
+                                <span class="prompt">$ </span>
+                                <span
+                                  class="typed-cmd"
+                                  id="typed_ex_setup_software_gl_0"
+                                ></span>
+                                <span
+                                  class="typing-cursor"
+                                  id="cursor_ex_setup_software_gl_0"
+                                  style="display: none"
+                                ></span>
+                              </div>
+                              <div
+                                class="mock-output"
+                                id="output_ex_setup_software_gl_0"
+                              ></div>
+                            </div>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
+
+                    <!-- Card: watch-mem-hogs -->
+                    <div class="card alias-card" data-alias="watch-mem-hogs">
+                      <div class="card-body">
+                        <h5 class="alias-name">watch-mem-hogs</h5>
+                        <p>Watch top memory-consuming processes at a configurable interval.</p>
+                        <details class="code-details">
+                          <summary>View source</summary>
+                          <pre class="code-block"><span class="bash-keyword">alias</span> <span class="bash-string">watch-mem-hogs</span>=<span class="bash-string">'watch_mem_hogs'</span></pre>
+                        </details>
+                        <details
+                          class="example-details"
+                          data-examples-for="watch-mem-hogs"
+                        >
+                          <summary><span>Usage Examples</span></summary>
+                          <div class="examples-container">
+                            <div
+                              class="example-block"
+                              data-example-id="ex_watch_mem_hogs_0"
+                              data-cmd="watch-mem-hogs"
+                              data-output="PID   %MEM  COMMAND&#10;1234  12.3  chromium&#10;5678   8.1  firefox"
+                            >
+                              <button
+                                class="demo-btn"
+                                data-demo-target="ex_watch_mem_hogs_0"
+                                type="button"
+                                aria-label="Start demo"
+                              >
+                                <i class="bi bi-play-fill"></i>
+                                <span>Start demo</span>
+                              </button>
+                              <div>
+                                <span class="prompt">$ </span>
+                                <span
+                                  class="typed-cmd"
+                                  id="typed_ex_watch_mem_hogs_0"
+                                ></span>
+                                <span
+                                  class="typing-cursor"
+                                  id="cursor_ex_watch_mem_hogs_0"
+                                  style="display: none"
+                                ></span>
+                              </div>
+                              <div
+                                class="mock-output"
+                                id="output_ex_watch_mem_hogs_0"
+                              ></div>
+                            </div>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
+
+                    <!-- Card: install-stremio-gnome (last in accordion) -->
+                    <div
+                      class="card alias-card"
+                      data-alias="install-stremio-gnome"
+                    >
+                      <div class="card-body">
+                        <h5 class="alias-name">install-stremio-gnome</h5>
+                        <p>Install Stremio for GNOME desktop.</p>
+                        <details class="code-details">
+                          <summary>View source</summary>
+                          <pre class="code-block"><span class="bash-keyword">function</span> install_stremio_gnome() { <span class="bash-comment"># Stremio installer</span> }</pre>
+                        </details>
+                      </div>
+                    </div>
+
+                    <!-- Card: install-plasma-backends -->
+                    <div
+                      class="card alias-card"
+                      data-alias="install-plasma-backends"
+                    >
+                      <div class="card-body">
+                        <h5 class="alias-name">install-plasma-backends</h5>
+                        <p>Install Plasma Flatpak and Snap discover backends.</p>
+                        <details class="code-details">
+                          <summary>View source</summary>
+                          <pre class="code-block"><span class="bash-keyword">alias</span> install-plasma-backends=<span class="bash-string">'sudo apt install -y plasma-discover-backend-flatpak plasma-discover-backend-snap'</span></pre>
+                        </details>
+                      </div>
+                    </div>
+
+                    <!-- Card: schedule-kill -->
+                    <div
+                      class="card alias-card"
+                      data-alias="schedule-kill-sequence"
+                    >
+                      <div class="card-body">
+                        <h5 class="alias-name">schedule-kill-sequence</h5>
+                        <p>Schedule a process kill sequence after a delay.</p>
+                        <details class="code-details">
+                          <summary>View source</summary>
+                          <pre class="code-block"><span class="bash-keyword">function</span> schedule_kill_sequence() { <span class="bash-comment"># Kill sequence</span> }</pre>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.accordion-body -->
+                </div>
+                <!-- /.accordion-collapse -->
+              </div>
+              <!-- /.accordion-item -->
+            </div>
+            <!-- /.accordion -->
+          </article>
+
+          <!-- Network Procedures -->
+          <article id="networkProcedures">
+            <h2 class="mb-3 pb-2 border-bottom">Network Procedures</h2>
+            <div
+              class="card alias-card"
+              data-alias="net-probe"
+            >
+              <div class="card-body">
+                <h5 class="alias-name">net-probe</h5>
+                <p>Probe a host IP/port or show gateway/local address.</p>
+                <details class="code-details">
+                  <summary>View source</summary>
+                  <pre class="code-block"><span class="bash-keyword">alias</span> net-probe=<span class="bash-string">'net_probe'</span></pre>
+                </details>
+                <details
+                  class="example-details"
+                  data-examples-for="net-probe"
+                >
+                  <summary><span>Usage Examples</span></summary>
+                  <div class="examples-container">
+                    <div
+                      class="example-block"
+                      data-example-id="ex_net_probe_0"
+                      data-cmd="net-probe"
+                      data-output="Probing 8.8.8.8:80... open"
+                    >
+                      <button
+                        class="demo-btn"
+                        data-demo-target="ex_net_probe_0"
+                        type="button"
+                        aria-label="Start demo"
+                      >
+                        <i class="bi bi-play-fill"></i>
+                        <span>Start demo</span>
+                      </button>
+                      <div>
+                        <span class="prompt">$ </span>
+                        <span
+                          class="typed-cmd"
+                          id="typed_ex_net_probe_0"
+                        ></span>
+                        <span
+                          class="typing-cursor"
+                          id="cursor_ex_net_probe_0"
+                          style="display: none"
+                        ></span>
+                      </div>
+                      <div
+                        class="mock-output"
+                        id="output_ex_net_probe_0"
+                      ></div>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+
+          <!-- Git Aliases -->
+          <article id="gitAliases">
+            <h2 class="mb-3 pb-2 border-bottom">Git Aliases</h2>
+            <div class="card alias-card" data-alias="gs">
+              <div class="card-body">
+                <h5 class="alias-name">gs</h5>
+                <p>Short for <code>git status</code>.</p>
+                <details class="code-details">
+                  <summary>View source</summary>
+                  <pre class="code-block"><span class="bash-keyword">alias</span> gs=<span class="bash-string">'git status'</span></pre>
+                </details>
+                <details
+                  class="example-details"
+                  data-examples-for="gs"
+                >
+                  <summary><span>Usage Examples</span></summary>
+                  <div class="examples-container">
+                    <div
+                      class="example-block"
+                      data-example-id="ex_gs_0"
+                      data-cmd="gs"
+                      data-output="On branch main&#10;nothing to commit, working tree clean"
+                    >
+                      <button
+                        class="demo-btn"
+                        data-demo-target="ex_gs_0"
+                        type="button"
+                        aria-label="Start demo"
+                      >
+                        <i class="bi bi-play-fill"></i>
+                        <span>Start demo</span>
+                      </button>
+                      <div>
+                        <span class="prompt">$ </span>
+                        <span class="typed-cmd" id="typed_ex_gs_0"></span>
+                        <span
+                          class="typing-cursor"
+                          id="cursor_ex_gs_0"
+                          style="display: none"
+                        ></span>
+                      </div>
+                      <div class="mock-output" id="output_ex_gs_0"></div>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+
+          <!-- Utilities -->
+          <article id="utilities">
+            <h2 class="mb-3 pb-2 border-bottom">Utilities</h2>
+            <div class="card alias-card" data-alias="cat-distro">
+              <div class="card-body">
+                <h5 class="alias-name">cat-distro</h5>
+                <p>Show the current Linux distribution pretty name.</p>
+                <details class="code-details">
+                  <summary>View source</summary>
+                  <pre class="code-block"><span class="bash-keyword">alias</span> cat-distro=<span class="bash-string">'(. /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-unknown}")'</span></pre>
+                </details>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <button
+      class="btn btn-primary rounded-circle shadow"
+      id="backToTop"
+      type="button"
+      aria-label="Back to top"
+    >
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script
+      crossorigin="anonymous"
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

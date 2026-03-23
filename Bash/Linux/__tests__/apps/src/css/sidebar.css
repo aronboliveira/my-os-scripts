@@ -1,0 +1,55 @@
+/* ═══ Sidebar Toggle ═══ */
+
+.sidebar-toggle-btn {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1040;
+  background: var(--accent-primary, #0d6efd);
+  color: #fff;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  padding: 0.6rem 0.35rem;
+  cursor: pointer;
+  writing-mode: vertical-lr;
+  font-size: 0.75rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.25s ease, left 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.sidebar-toggle-btn:hover {
+  opacity: 0.9;
+}
+.sidebar-toggle-btn i {
+  writing-mode: horizontal-tb;
+}
+
+#tocSidebar {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+#tocSidebar.sidebar-hidden {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.sidebar-close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--accent-secondary, #6c757d);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  z-index: 5;
+}
+.sidebar-close-btn:hover {
+  color: var(--accent-primary, #0d6efd);
+}

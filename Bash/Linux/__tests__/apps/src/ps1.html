@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PowerShell Aliases Reference — Test</title>
+    <link
+      rel="preconnect"
+      href="https://cdn.jsdelivr.net"
+      crossorigin="anonymous"
+    />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin="anonymous" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link
+      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typing.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
+    <link rel="stylesheet" href="css/header.css" />
+  </head>
+  <body>
+    <!-- Nav hover zone -->
+    <div class="nav-hover-zone" id="navHoverZone"></div>
+
+    <!-- Sidebar toggle -->
+    <button
+      class="sidebar-toggle-btn"
+      id="sidebarToggleBtn"
+      title="Show sidebar"
+      type="button"
+      style="display: none"
+      aria-label="Toggle sidebar"
+    >
+      <i class="bi bi-layout-sidebar"></i>
+      <span>Menu</span>
+    </button>
+
+    <!-- Top Navigation -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top"
+      id="mainNav"
+      aria-label="Main navigation"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">PS Aliases</a>
+        <div class="d-flex align-items-center gap-2">
+          <input
+            class="form-control form-control-sm"
+            id="aliasSearch"
+            type="search"
+            placeholder="Search aliases..."
+            aria-label="Search"
+            required
+          />
+          <button
+            class="btn btn-outline-secondary btn-sm"
+            id="themeBtn"
+            type="button"
+            aria-label="Toggle theme"
+          >
+            <i class="bi bi-sun-fill"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <!-- Sidebar -->
+        <aside class="col-lg-3 col-xl-2 d-none d-lg-block" id="tocSidebar">
+          <button
+            class="sidebar-close-btn"
+            id="sidebarCloseBtn"
+            title="Hide sidebar"
+            type="button"
+            aria-label="Close sidebar"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+          <nav class="nav flex-column nav-pills">
+            <a class="nav-link" href="#systemSetup">System Setup</a>
+            <a class="nav-link" href="#gitAliases">Git Aliases</a>
+            <a class="nav-link" href="#utilities">Utilities</a>
+          </nav>
+        </aside>
+
+        <!-- Main content -->
+        <section class="col-lg-9 col-xl-10" id="aliasApp">
+          <!-- System Setup -->
+          <article id="systemSetup">
+            <h2 class="mb-3 pb-2 border-bottom">System Setup</h2>
+            <div class="card alias-card" data-alias="show-hosttype">
+              <div class="card-body">
+                <h5 class="alias-name">show-hosttype</h5>
+                <p>Print the current host type / architecture.</p>
+                <details class="code-details">
+                  <summary>View source</summary>
+                  <pre class="code-block"><span class="ps-keyword">function</span> <span class="ps-cmdlet">Show-Hosttype</span> { [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture }
+<span class="ps-keyword">Set-Alias</span> <span class="ps-parameter">-Name</span> show-hosttype <span class="ps-parameter">-Value</span> Show-Hosttype</pre>
+                </details>
+                <details
+                  class="example-details"
+                  data-examples-for="show-hosttype"
+                >
+                  <summary><span>Usage Examples</span></summary>
+                  <div class="examples-container">
+                    <div
+                      class="example-block"
+                      data-example-id="ex_ps_show_hosttype_0"
+                      data-cmd="show-hosttype"
+                      data-output="X64"
+                    >
+                      <button
+                        class="demo-btn"
+                        data-demo-target="ex_ps_show_hosttype_0"
+                        type="button"
+                        aria-label="Start demo"
+                      >
+                        <i class="bi bi-play-fill"></i>
+                        <span>Start demo</span>
+                      </button>
+                      <div>
+                        <span class="prompt">PS&gt; </span>
+                        <span
+                          class="typed-cmd"
+                          id="typed_ex_ps_show_hosttype_0"
+                        ></span>
+                        <span
+                          class="typing-cursor"
+                          id="cursor_ex_ps_show_hosttype_0"
+                          style="display: none"
+                        ></span>
+                      </div>
+                      <div
+                        class="mock-output"
+                        id="output_ex_ps_show_hosttype_0"
+                      ></div>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+
+          <!-- Git Aliases -->
+          <article id="gitAliases">
+            <h2 class="mb-3 pb-2 border-bottom">Git Aliases</h2>
+            <div class="card alias-card" data-alias="gs">
+              <div class="card-body">
+                <h5 class="alias-name">gs</h5>
+                <p>Short for <code>git status</code>.</p>
+                <details class="code-details">
+                  <summary>View source</summary>
+                  <pre class="code-block"><span class="ps-keyword">Set-Alias</span> <span class="ps-parameter">-Name</span> gs <span class="ps-parameter">-Value</span> <span class="ps-string">'git status'</span></pre>
+                </details>
+                <details
+                  class="example-details"
+                  data-examples-for="gs"
+                >
+                  <summary><span>Usage Examples</span></summary>
+                  <div class="examples-container">
+                    <div
+                      class="example-block"
+                      data-example-id="ex_ps_gs_0"
+                      data-cmd="gs"
+                      data-output="On branch main&#10;nothing to commit, working tree clean"
+                    >
+                      <button
+                        class="demo-btn"
+                        data-demo-target="ex_ps_gs_0"
+                        type="button"
+                        aria-label="Start demo"
+                      >
+                        <i class="bi bi-play-fill"></i>
+                        <span>Start demo</span>
+                      </button>
+                      <div>
+                        <span class="prompt">PS&gt; </span>
+                        <span class="typed-cmd" id="typed_ex_ps_gs_0"></span>
+                        <span
+                          class="typing-cursor"
+                          id="cursor_ex_ps_gs_0"
+                          style="display: none"
+                        ></span>
+                      </div>
+                      <div class="mock-output" id="output_ex_ps_gs_0"></div>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+
+          <!-- Utilities -->
+          <article id="utilities">
+            <h2 class="mb-3 pb-2 border-bottom">Utilities</h2>
+            <div class="card alias-card" data-alias="show-home">
+              <div class="card-body">
+                <h5 class="alias-name">show-home</h5>
+                <p>Print the current user home directory path.</p>
+                <details class="code-details">
+                  <summary>View source</summary>
+                  <pre class="code-block"><span class="ps-keyword">function</span> <span class="ps-cmdlet">Show-Home</span> { $HOME }
+<span class="ps-keyword">Set-Alias</span> <span class="ps-parameter">-Name</span> show-home <span class="ps-parameter">-Value</span> Show-Home</pre>
+                </details>
+                <details
+                  class="example-details"
+                  data-examples-for="show-home"
+                >
+                  <summary><span>Usage Examples</span></summary>
+                  <div class="examples-container">
+                    <div
+                      class="example-block"
+                      data-example-id="ex_ps_show_home_0"
+                      data-cmd="show-home"
+                      data-output="C:\Users\MyUser"
+                    >
+                      <button
+                        class="demo-btn"
+                        data-demo-target="ex_ps_show_home_0"
+                        type="button"
+                        aria-label="Start demo"
+                      >
+                        <i class="bi bi-play-fill"></i>
+                        <span>Start demo</span>
+                      </button>
+                      <div>
+                        <span class="prompt">PS&gt; </span>
+                        <span class="typed-cmd" id="typed_ex_ps_show_home_0"></span>
+                        <span
+                          class="typing-cursor"
+                          id="cursor_ex_ps_show_home_0"
+                          style="display: none"
+                        ></span>
+                      </div>
+                      <div class="mock-output" id="output_ex_ps_show_home_0"></div>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <button
+      class="btn btn-primary rounded-circle shadow"
+      id="backToTop"
+      type="button"
+      aria-label="Back to top"
+    >
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script
+      crossorigin="anonymous"
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

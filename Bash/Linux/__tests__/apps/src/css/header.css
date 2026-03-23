@@ -1,0 +1,23 @@
+/* ═══ Header Auto-Hide ═══ */
+
+#mainNav {
+  transition: transform 0.35s ease, box-shadow 0.15s ease;
+}
+#mainNav.nav-hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+#mainNav.nav-peek {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav-hover-zone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  z-index: 1029;
+  pointer-events: auto;
+}

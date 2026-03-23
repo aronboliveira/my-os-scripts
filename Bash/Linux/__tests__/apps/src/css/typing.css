@@ -1,0 +1,111 @@
+/* ═══ Typing Animation ═══ */
+
+@keyframes cursor-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: var(--color-bash-string, #a6e3a1);
+  animation: cursor-blink 0.8s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 1px;
+}
+
+.example-details {
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(108, 117, 125, 0.2);
+  padding-top: 0.5rem;
+}
+.example-details > summary {
+  cursor: pointer;
+  color: var(--accent-primary);
+  font-weight: 500;
+  list-style: none;
+}
+.example-details > summary::-webkit-details-marker {
+  display: none;
+}
+.example-details > summary::before {
+  content: "\25B6";
+  display: inline-block;
+  margin-right: 0.4rem;
+  font-size: 0.7em;
+  transition: transform 0.2s ease;
+}
+.example-details[open] > summary::before {
+  transform: rotate(90deg);
+}
+.example-details > summary:hover {
+  text-decoration: underline;
+}
+
+.example-block {
+  background: var(--bg-code, #1e1e2e);
+  border-radius: 6px;
+  padding: 0.75rem 0.75rem 0.6rem;
+  margin: 0.5rem 0;
+  font-family: "Fira Code", "JetBrains Mono", "Cascadia Code", monospace;
+  font-size: 0.85rem;
+  position: relative;
+  overflow-x: auto;
+}
+
+.example-block .prompt {
+  color: var(--color-bash-string, #a6e3a1);
+  user-select: none;
+}
+
+.example-block .typed-cmd {
+  color: #cdd6f4;
+  white-space: pre;
+}
+
+.example-block .mock-output {
+  color: #bac2de;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px dashed rgba(108, 117, 125, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.example-block .mock-output.visible {
+  opacity: 1;
+}
+
+.demo-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: rgba(13, 110, 253, 0.15);
+  border: 1px solid rgba(13, 110, 253, 0.3);
+  color: var(--accent-primary, #0d6efd);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+.demo-btn:hover {
+  background: rgba(13, 110, 253, 0.25);
+}
+.demo-btn.playing {
+  background: rgba(220, 53, 69, 0.15);
+  border-color: rgba(220, 53, 69, 0.3);
+  color: #dc3545;
+}
