@@ -132,6 +132,16 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias show-current-de="echo \$XDG_CURRENT_DESKTOP"
     alias ls-current-de='show-current-de'
     alias echo-current-de='show-current-de'
+## @description Show available version of Desktop Environment based on XFCE to be used in session load
+    alias show-av-xde='cat ~/.xsession'
+    alias ls-av-xde='show-av-xde'
+    alias echo-av-xde='show-av-xde'
+    alias show-available-xde='show-av-xde'
+    alias ls-available-xde='show-av-xde'
+    alias echo-available-xde='show-av-xde'
+    alias show-available-xdesktop='show-av-xde'
+    alias ls-available-xdesktop='show-av-xde'
+    alias echo-available-xdesktop='show-av-xde'
 ## @description Show current desktop environment identifier (alias for show-current-de).
     alias show-desktop-env="echo \$XDG_CURRENT_DESKTOP"
     alias ls-desktop-env='show-desktop-env'
@@ -1064,8 +1074,11 @@ EOF
           mkdir -p "$(dirname "$portal_conf")"
           printf "[preferred]\ndefault=gnome;gtk;\n" > "$portal_conf"
           printf "    \033[1;32m→ Created\033[0m %s\n" "$portal_conf"
-          systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk 2>/dev/null || true
-          printf "    \033[1;32m→ Restarted\033[0m xdg-desktop-portal services to apply D-Bus settings\n"
+          local _portal_backends="xdg-desktop-portal"
+          [[ "${XDG_CURRENT_DESKTOP,,}" == *gnome* ]] && _portal_backends="$_portal_backends xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+          # shellcheck disable=SC2086
+          systemctl --user restart $_portal_backends 2>/dev/null || true
+          printf "    \033[1;32m→ Restarted\033[0m %s\n" "$_portal_backends"
         fi
       else
         printf "  \033[1;32m✓\033[0m  xdg-desktop-portal GNOME config present\n"
@@ -1089,6 +1102,160 @@ EOF
     alias apply-gtk-dark='apply_gtk_dark_theme'
     alias fix-gtk-dark='apply_gtk_dark_theme'
     alias check-gtk-dark='apply_gtk_dark_theme --check'
+
+    ## @description Installs (or force-overwrites) the GNOME autostart entry that
+    ##   restarts xdg-desktop-portal-gnome and xdg-desktop-portal-gtk 6 seconds
+    ##   after login, fixing the libadwaita / Nautilus light-mode race condition.
+    ## @flag --check   Print the current file content (if any) without writing
+    ## @flag --remove  Delete the autostart entry
+    ## @flag --help    Show usage
+    install_portal_dark_autostart() {
+      local dest="$HOME/.config/autostart/restart-xdg-portals.desktop"
+      local mode="apply"
+
+      while [[ "${1:-}" == --* ]]; do
+        case "$1" in
+          --check)  mode="check";  shift ;;
+          --remove) mode="remove"; shift ;;
+          --help|-h)
+            printf "📖 \033[1minstall-portal-dark-autostart\033[0m [--check | --remove]\n"
+            printf "   Writes a GNOME autostart .desktop entry that restarts\n"
+            printf "   xdg-desktop-portal* ~6 s after login so libadwaita apps\n"
+            printf "   (Nautilus, GNOME Text Editor) honour the dark-mode setting.\n"
+            printf "\n"
+            printf "   Target: %s\n" "$dest"
+            printf "   --check   Show current file content without modifying it.\n"
+            printf "   --remove  Delete the autostart entry.\n"
+            return 0 ;;
+          *)
+            printf "❌ Unknown flag: %s\n" "$1" >&2
+            return 1 ;;
+        esac
+      done
+
+      case "$mode" in
+        check)
+          if [[ -f "$dest" ]]; then
+            printf "\033[1;36m── %s ──\033[0m\n" "$dest"
+            cat "$dest"
+          else
+            printf "ℹ️  Autostart entry not found: %s\n" "$dest"
+          fi
+          return 0 ;;
+        remove)
+          if [[ -f "$dest" ]]; then
+            rm -f "$dest" && printf "🗑️  Removed: %s\n" "$dest" || {
+              printf "❌ Failed to remove: %s\n" "$dest" >&2; return 1
+            }
+          else
+            printf "ℹ️  Nothing to remove — file not found: %s\n" "$dest"
+          fi
+          return 0 ;;
+      esac
+
+      # ── apply / overwrite ──────────────────────────────────────────────
+      if ! mkdir -p "$(dirname "$dest")" 2>/dev/null; then
+        printf "❌ Cannot create directory: %s\n" "$(dirname "$dest")" >&2
+        return 1
+      fi
+
+      cat > "$dest" << 'DESKTOP_ENTRY'
+[Desktop Entry]
+Type=Application
+Name=Restart XDG Desktop Portals
+Comment=Fixes libadwaita dark mode timing issue on GNOME startup
+Exec=bash -c 'sleep 6 && BACKENDS="xdg-desktop-portal"; case "${XDG_CURRENT_DESKTOP,,}" in *gnome*) BACKENDS="$BACKENDS xdg-desktop-portal-gnome xdg-desktop-portal-gtk" ;; esac; systemctl --user restart $BACKENDS'
+X-GNOME-Autostart-enabled=true
+Hidden=false
+NoDisplay=false
+DESKTOP_ENTRY
+
+      if [[ $? -ne 0 ]]; then
+        printf "❌ Failed to write: %s\n" "$dest" >&2
+        return 1
+      fi
+
+      chmod +x "$dest"
+      printf "\033[1;32m✅ Autostart entry written:\033[0m %s\n" "$dest"
+      printf "   It will run automatically at the next GNOME login.\n"
+      printf "   To apply this session without rebooting, run: \033[1mapply-gtk-dark\033[0m\n"
+    }
+    alias install-portal-dark-autostart='install_portal_dark_autostart'
+    alias check-portal-dark-autostart='install_portal_dark_autostart --check'
+    alias remove-portal-dark-autostart='install_portal_dark_autostart --remove'
+    # TODO MIGHT NEED REVIEWING...
+    shutdown_now() {
+        local kill_procs=(
+            code code-insiders codium cursor
+            sublime_text sublime-text subl
+            atom brackets
+            eclipse idea pycharm webstorm phpstorm
+            clion goland rider rubymine datagrip
+            android-studio studio netbeans
+            geany kdevelop gnome-builder
+            monodevelop qtcreator
+            zed lapce lite-xl
+            bluefish bluej
+            gedit kate kwrite mousepad
+            pluma xed xedit
+            featherpad leafpad notepadqq
+            gvim emacs emacs-gtk emacs-nox
+            l3afpad tea focuswriter
+            ghostwriter manuskript
+            gnome-text-editor
+            anydesk teamviewer remmina
+            vinagre xfreerdp wlfreerdp
+            rustdesk nxplayer nxclient
+            parsec x2goclient krdc
+            tigervnc vncviewer
+            xrdp xrdp-sesman
+            gnome-remote-desktop
+            nautilus thunar dolphin
+            pcmanfm pcmanfm-qt
+            nemo caja spacefm
+            krusader konqueror
+            doublecmd ranger mc
+            sunflower polo-file-manager
+            brave brave-browser firefox chromium
+            gnome-software update-notifier
+            gnome-calendar gnome-shell-calendar
+            evolution evolution-calendar-factory
+            evolution-source-registry evolution-alarm-notify
+            evolution-addressbook-factory
+            alarm-clock-applet
+            totem rhythmbox eog gimp gimp-3.0
+            gnome-control-center gnome-characters
+            blueman-applet blueman-tray
+            gsd-media-keys gsd-power
+        )
+        for prog in "${kill_procs[@]}"; do
+            if ! command -v "$prog" &>/dev/null; then
+                continue
+            fi
+            if ! pgrep -x "$prog" &>/dev/null; then
+                continue
+            fi
+            killall "$prog" 2>/dev/null || true
+            pkill -x "$prog" 2>/dev/null || true
+            pgrep -x "$prog" 2>/dev/null | xargs -r kill -9 2>/dev/null || true
+        done
+        if command -v gnome-session-quit &>/dev/null; then
+            gnome-session-quit --no-prompt --power-off 2>/dev/null &
+        fi
+        sleep 2
+        for job_id in $(atq 2>/dev/null | awk '{print $1}'); do
+            atrm "$job_id" 2>/dev/null || true
+        done
+        shutdown -c 2>/dev/null || true
+        shutdown -h now 2>/dev/null || true
+        sleep 5
+        systemctl poweroff --ignore-inhibitors 2>/dev/null || true
+        sleep 5
+        systemctl poweroff --force 2>/dev/null || true
+    }
+    alias shutdown-now='shutdown_now'
+    alias shutdown_now='shutdown_now'
+    # TODO MIGHT NEED REVIEWING...
     schedule_kill_sequence() {
         local start_time="${1?Usage: schedule_kill_sequence HH:MM}"
         if [[ -z "$start_time" ]]; then
@@ -1117,11 +1284,15 @@ EOF
 #!/usr/bin/env bash
 uptime_seconds=$(awk '{print int($1)}' /proc/uptime)
 if (( uptime_seconds < 900 )); then
+    for job_id in $(atq 2>/dev/null | awk '{print $1}'); do
+        atrm "$job_id" 2>/dev/null || true
+    done
+    shutdown -c 2>/dev/null || true
     rm -f "$0"
     exit 0
 fi
 ignore_inhibitors=false
-ide_programs=(
+kill_procs=(
     code code-insiders codium cursor
     sublime_text sublime-text subl
     atom brackets
@@ -1132,48 +1303,43 @@ ide_programs=(
     monodevelop qtcreator
     zed lapce lite-xl
     bluefish bluej
-)
-editor_programs=(
     gedit kate kwrite mousepad
     pluma xed xedit
     featherpad leafpad notepadqq
     gvim emacs emacs-gtk emacs-nox
     l3afpad tea focuswriter
     ghostwriter manuskript
-)
-rdp_programs=(
+    gnome-text-editor
     anydesk teamviewer remmina
     vinagre xfreerdp wlfreerdp
     rustdesk nxplayer nxclient
     parsec x2goclient krdc
     tigervnc vncviewer
     xrdp xrdp-sesman
-)
-filemanager_programs=(
+    gnome-remote-desktop
     nautilus thunar dolphin
     pcmanfm pcmanfm-qt
     nemo caja spacefm
     krusader konqueror
     doublecmd ranger mc
-    sunflower gentoo polo-file-manager
+    sunflower polo-file-manager
+    brave brave-browser firefox chromium
+    gnome-software update-notifier
+    gnome-calendar gnome-shell-calendar
+    evolution evolution-calendar-factory
+    evolution-source-registry evolution-alarm-notify
+    evolution-addressbook-factory
+    alarm-clock-applet
+    totem rhythmbox eog gimp gimp-3.0
+    gnome-control-center gnome-characters
+    blueman-applet blueman-tray
+    gsd-media-keys gsd-power
 )
-all_programs=(
-    "${ide_programs[@]}"
-    "${editor_programs[@]}"
-    "${rdp_programs[@]}"
-    "${filemanager_programs[@]}"
-)
-for prog in "${all_programs[@]}"; do
+for prog in "${kill_procs[@]}"; do
     if ! which "$prog" &>/dev/null && ! type -P "$prog" &>/dev/null; then
         continue
     fi
-    has_procs=false
-    if pgrep -x "$prog" &>/dev/null; then
-        has_procs=true
-    elif ps -C "$prog" --no-headers 2>/dev/null | grep -q .; then
-        has_procs=true
-    fi
-    if [[ "$has_procs" != true ]]; then
+    if ! pgrep -x "$prog" &>/dev/null && ! ps -C "$prog" --no-headers 2>/dev/null | grep -q .; then
         continue
     fi
     killall "$prog" 2>/dev/null || true
@@ -1192,6 +1358,10 @@ for prog in "${all_programs[@]}"; do
         ignore_inhibitors=true
     fi
 done
+for job_id in $(atq 2>/dev/null | awk '{print $1}'); do
+    atrm "$job_id" 2>/dev/null || true
+done
+shutdown -c 2>/dev/null || true
 shutdown -h now 2>/dev/null || true
 sleep 120
 if [[ "$ignore_inhibitors" == true ]]; then
@@ -1200,11 +1370,7 @@ else
     systemctl poweroff 2>/dev/null || true
 fi
 sleep 120
-if [[ "$ignore_inhibitors" == true ]]; then
-    echo "systemctl poweroff --ignore-inhibitors" | at now + 2 minutes 2>/dev/null || true
-else
-    echo "systemctl poweroff" | at now + 2 minutes 2>/dev/null || true
-fi
+systemctl poweroff --force 2>/dev/null || true
 rm -f "$0"
 KILL_SCRIPT_EOF
         echo "Scheduling kill sequence at $start_time"
@@ -1217,6 +1383,58 @@ KILL_SCRIPT_EOF
         echo "Kill sequence scheduled successfully at $start_time"
     }
     alias schedule-kill-sequence='schedule_kill_sequence'
+    # ? NEW
+    # @description Waits for any running rsync or find processes to complete, then terminates a list of common applications and finally powers off the system after a delay.
+    wait_sync_and_terminate() {
+        printf "\033[1;33mWaiting for rsync and find processes to complete...\033[0m\n"
+        
+        while true; do
+            local has_rsync=false has_find=false
+            pgrep -x "rsync" > /dev/null 2>&1 && has_rsync=true
+            pgrep -x "find" > /dev/null 2>&1 && has_find=true
+            
+            if [[ "$has_rsync" == true ]] || [[ "$has_find" == true ]]; then
+                local status="$([[ "$has_rsync" == true ]] && echo "rsync ")$([[ "$has_find" == true ]] && echo "find")"
+                printf "  \033[1;36m%s\033[0m still running. Waiting...\n" "${status% }"
+                sleep 20
+            else
+                break
+            fi
+        done
+        
+        echo "rsync and find processes completed. Terminating applications in 120 seconds..."
+        sleep 120
+        
+        local apps=(
+            "code" "vscodium" "cursor" "pycharm" "webstorm" "intellij" "goland" "clion" "phpstorm" "rubymine" "sublime_text" "atom" "zed"
+            "vim" "nvim" "emacs" "gedit" "kate" "leafpad" "mousepad" "pluma" "gnome-text-editor" "nano"
+            "nautilus" "nemo" "thunar" "dolphin" "pcmanfm" "caja" "konqueror" "ranger"
+            "gnome-terminal" "konsole" "alacritty" "kitty" "wezterm" "xterm" "urxvt" "tilix" "terminator" "xfce4-terminal" "guake" "tilda"
+            "firefox" "chrome" "google-chrome" "chromium" "brave" "opera" "vivaldi" "mamba" "epiphany" "falkon" "midori" "tor-browser"
+            "remmina" "anydesk" "teamviewer" "freerdp" "wlfreerdp" "xfreerdp" "rdpclient"
+        )
+        
+        for app in "${apps[@]}"; do
+            if pgrep -x "$app" > /dev/null 2>&1; then
+                echo "Terminating $app (SIGTERM)..."
+                pkill -x "$app" 2>/dev/null || true
+                sleep 2
+                
+                if pgrep -x "$app" > /dev/null 2>&1; then
+                    echo "  → Force killing $app (SIGKILL)..."
+                    pkill -9 -x "$app" 2>/dev/null || true
+                fi
+            fi
+        done
+        
+        printf "\033[1;31mAll specified applications terminated.\033[0m\n"
+        echo "System will power off in 120 seconds. Save any remaining work."
+        sleep 120
+        
+        printf "\033[1;31mPowering off now...\033[0m\n"
+        systemctl poweroff --force 2>/dev/null || sudo systemctl poweroff --force || shutdown -h now
+    }
+    alias wait-sync-and-terminate='wait_sync_and_terminate'
     function _check_ps_exists() {
         local pid="${1?Usage: _check_ps_exists <pid>}"
         if [[ -z $(ps -aux | awk '{print $2}' | grep -w "$pid") ]]; then
@@ -1371,6 +1589,19 @@ KILL_SCRIPT_EOF
       alias ls-share-mimecache='sudo cat /usr/share/applications/mimeinfo.cache 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME INFO ==="'
       ## @description Alias for cat-share-mimecache.
       alias show-share-mimecache='sudo cat /usr/share/applications/mimeinfo.cache 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME INFO ==="'
+      # ? NEW
+      alias show-gnome-global-shortcuts='gsettings list-recursively org.gnome.desktop.wm.keybindings'
+      # ? NEW
+      alias list-gnome-global-shortcuts='gsettings list-recursively org.gnome.desktop.wm.keybindings'
+      # ? NEW
+      alias show-kde-global-shortcuts='cat ~/.config/kglobalshortcutsrc 2>/dev/null || echo "=== NO KDE GLOBAL SHORTCUTS CONFIG FOUND ==="'
+      # ? NEW
+      alias list-kde-global-shortcuts='cat ~/.config/kglobalshortcutsrc 2>/dev/null || echo "=== NO KDE GLOBAL SHORTCUTS CONFIG FOUND ==="'
+      # ? NEW
+      alias show-global-shortcuts='show-gnome-global-shortcuts; show-kde-global-shortcuts'
+      # ? NEW
+      alias list-global-shortcuts='list-gnome-global-shortcuts; list-kde-global-shortcuts'
+
 #endregion Kernel_and_OS
 
     #region VM_and_Memory
@@ -1415,6 +1646,9 @@ KILL_SCRIPT_EOF
         earlyoom -r "$interval"
       }
       alias follow-early-oom-rec='follow_early_oom_rec'
+      alias watch-early-oom-rec='follow_early_oom_rec'
+      alias follow-early-oom='follow_early_oom_rec'
+      alias watch-early-oom='follow_early_oom_rec'
 ## @description Watch memory-hungry processes sorted by RSS in real time.
       ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
       watch_mem_hogs() {
@@ -1445,6 +1679,12 @@ KILL_SCRIPT_EOF
         sudo cat /proc/"$pid"/oom_score 2>/dev/null || echo "No OOM score info available"
       }
       alias cat-pid-oom-kill-score='cat_pid_oom_kill_score'
+      follow_pid_oom_kill_score() {
+        local pid="${1?"Usage: follow-pid-oom-kill-score <pid>"}"
+        watch -n 1 "echo ==== \"OOM SCORE (TO BE KILLED)\" ==== && sudo cat /proc/$pid/oom_score 2>/dev/null || echo 'No OOM score info available'"
+      }
+      alias follow-pid-oom-kill-score='follow_pid_oom_kill_score'
+      alias watch-pid-oom-kill-score='follow_pid_oom_kill_score'
 ## @description Show the OOM adjustment score for a process (-1000 to 1000; lower = less likely to be killed).
       ## @param $1 {int} pid - Process ID (required)
       cat_pid_oom_adj_score() {
@@ -1949,13 +2189,14 @@ print('✅ GPU disabled in argv.json')
 
       ## @description Follow earlyoom daemon output with pretty header and a set interval.
       ## @param $1 {int} interval - Reporting interval in seconds (default: 2)
-      follow-early-oom-pretty() {
+      follow_early_oom_pretty() {
         local interval="${1:-2}"
         _pretty_hdr "earlyoom — verbose reporting (interval: ${interval}s)"
         follow_early_oom_rec "$interval"
         _pretty_ftr
       }
-
+      alias follow-early-oom-pretty='follow_early_oom_pretty'
+      alias watch-early-oom-pretty='follow_early_oom_pretty'
       ## @description Watch memory-hungry processes sorted by RSS with pretty header.
       ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
       watch-mem-hogs-pretty() {
@@ -4701,175 +4942,3 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
 
 #endregion POWERSHELL_PROFILE_EQUIVALENTS
 ### * END OF POWERSHELL PROFILE EQUIVALENTS * ###
-
-### * START OF PRIVATE CODE * ###
-#region
-alias mount-sda2='sudo mount /dev/sda2 /mnt/sda2 && echo "MOUNTED SDA2" || "FAILED TO MOUNT SDA2"'
-alias artisan='php artisan'
-alias brave='brave-browser'
-alias brave-tor='brave-browser --incognito --tor'
-alias execute-switcheroo='sudo env PATH="$PATH" switcheroo execute "/media/aronboliveira/Seagate Expansion Drive1/_not-very-important/jogos/sd_root/bootloader/payloads/hekate_ctcaer_6.2.2.bin"'
-alias backup-dash-py='backup_projects /home/aronboliveira/Desktop/programming/Prestech/vm-dashboard-python/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/vm-dashboard-python/"'
-alias backup-portfolio-web='backup_projects /home/aronboliveira/Desktop/programming/_portfolio/web/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/portfolio-projects/web/"'
-alias backup-whaticket='backup_projects /home/aronboliveira/Desktop/programming/Prestech/whaticket_deobfuscated/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/whaticket-fork/" && backup_projects /home/aronboliveira/Desktop/programming/Prestech/whaticket-vm/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/whaticket-vm/"'
-alias backup-lpp='backup_projects /mnt/sda2/home/aronboliveira/Desktop/programming/LLMPromptPurify/llm-prompt-purify/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/llm-prompt-purifier/"'
-alias backup-erp='backup_projects /home/aronboliveira/Desktop/programming/Prestech/erp/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/erpgo-fork/"'
-alias backup-cache='backup_projects /home/aronboliveira/.cache/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/.cache/"'
-alias backup-config='backup_projects /home/aronboliveira/.config/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/.config/"'
-alias backup-local='backup_projects /home/aronboliveira/.local/share/ "/media/aronboliveira/Seagate Expansion Drive1/backup-daily/.local/share/"'
-## @description Alias for cat-sda2.
-alias ls-sda2='ls /mnt/sda2'
-alias cd-sda2='cd /mnt/sda2'
-alias rand-bg='~/.config/adapt-boot.sh'
-alias npm-i='npm install --no-fund'
-alias connect-jblgo='bluetoothctl connect 2C:FD:B4:63:5E:23'
-alias connect-jbltune='bluetoothctl connect F8:AB:E5:74:E6:01'
-alias connect-h510='bluetoothctl connect 00:76:24:32:0E:42'
-alias connect-waaw210='bluetoothctl connect 70:7F:25:AB:2D:B9'
-alias pair-jblgo='bluetoothctl pair 2C:FD:B4:63:5E:23'
-alias pair-jbltune='bluetoothctl pair F8:AB:E5:74:E6:01'
-alias pair-h510='bluetoothctl pair 00:76:24:32:0E:42'
-alias pair-waaw210='bluetoothctl pair 70:7F:25:AB:2D:B9'
-alias trust-jblgo='bluetoothctl trust 2C:FD:B4:63:5E:23'
-alias trust-jbltune='bluetoothctl trust F8:AB:E5:74:E6:01'
-alias trust-h510='bluetoothctl trust 00:76:24:32:0E:42'
-alias trust-waaw210='bluetoothctl trust 70:7F:25:AB:2D:B9'
-alias disconnect-jblgo='bluetoothctl disconnect 2C:FD:B4:63:5E:23'
-alias disconnect-jbltune='bluetoothctl disconnect F8:AB:E5:74:E6:01'
-alias disconnect-h510='bluetoothctl disconnect 00:76:24:32:0E:42'
-alias disconnect-waaw210='bluetoothctl disconnect 70:7F:25:AB:2D:B9'
-alias remove-jblgo='bluetoothctl remove 2C:FD:B4:63:5E:23'
-alias remove-jbltune='bluetoothctl remove F8:AB:E5:74:E6:01'
-alias remove-h510='bluetoothctl remove 00:76:24:32:0E:42'
-alias remove-waaw210='bluetoothctl remove 70:7F:25:AB:2D:B9'
-alias bt-on='bluetoothctl power on'
-alias bt-off='bluetoothctl power off'
-alias bt-scan='bluetoothctl scan on'
-alias bt-devices='bluetoothctl devices'
-alias setup-jblgo='pair-jblgo && trust-jblgo && connect-jblgo'
-alias setup-jbltune='pair-jbltune && trust-jbltune && connect-jbltune'
-alias setup-h510='pair-h510 && trust-h510 && connect-h510'
-alias setup-waaw210='pair-waaw210 && trust-waaw210 && connect-waaw210'
-alias ms-bashrc='code /media/aronboliveira/PrimarySSD/Users/Aron/Desktop/programming/OS/Bash/Linux/.bashrc'
-alias ms-docs='xdg-open /media/aronboliveira/PrimarySSD/Users/Aron/Documents'
-alias ms-desk='xdg-open /media/aronboliveira/PrimarySSD/Users/Aron/Desktop'
-alias ms-dl='xdg-open /media/aronboliveira/PrimarySSD/Users/Aron/Downloads'
-alias ms-pics='xdg-open /media/aronboliveira/PrimarySSD/Users/Aron/Pictures'
-alias psprofile='code /media/aronboliveira/PrimarySSD/Users/Aron/Documents/WindowsPowerShell/Microsoft.Powershell_profile.ps1'
-alias brave-passwords='brave-browser --incognito --new-window --disable-extensions --disable-sync --disable-background-networking --no-pings --disable-breakpad ~/Desktop/.recover/750.html'
-alias edit-passwords='code ~/Desktop/.recover/750.html || echo "Failed to open passwords file"'
-alias dktp-sw="~/.config/adapt-boot.sh"
-## @description Mount an NTFS partition read-write via ntfs-3g.
-## @param $1 {string} device     - Block device path (required), e.g. /dev/sdc1
-## @param $2 {string} mountpoint - Mount destination (required)
-## @flag --seagate  Mount /dev/sdc1 → /media/$USER/Seagate Expansion Drive1
-mount_ntfs_rw() {
-  local src="" dst=""
-  while [[ $# -gt 0 ]]; do
-    case "$1" in
-      --seagate)
-        src="/dev/sdc1"; dst="/media/$USER/Seagate Expansion Drive1"; shift ;;
-      --help|-h) echo -e "📖 \033[1mmount-ntfs-rw\033[0m <device> <mountpoint> | --seagate"; return 0 ;;
-      -*) echo -e "❌ Unknown flag: $1"; return 1 ;;
-      *)
-        if [ -z "$src" ]; then src="$1"; elif [ -z "$dst" ]; then dst="$1"; fi; shift ;;
-    esac
-  done
-  if [ -z "$src" ] || [ -z "$dst" ]; then
-    echo -e "❌ Usage: mount-ntfs-rw <device> <mountpoint> | --seagate"; return 1
-  fi
-  sudo mkdir -p "$dst"
-  echo -e "💾 \033[1;36mMounting NTFS $src → $dst ...\033[0m"
-  sudo mount -t ntfs-3g -o rw,uid=1000,gid=1000,dmask=022,fmask=133 "$src" "$dst"
-  echo -e "✅ \033[1;32mMounted $src → $dst (NTFS r/w)\033[0m"
-}
-alias mount-ntfs-rw='mount_ntfs_rw'
-## @description Create a partition table on a device. DESTRUCTIVE.
-## @param $1 {string} device - Block device path (required), e.g. /dev/sda
-## @param $2 {string} label  - Partition table type: "gpt" (default) or "mbr"
-## @flag --gpt   Use GPT label (default)
-## @flag --mbr   Use MBR/msdos label
-partition_label() {
-  local device="" label="gpt"
-  while [[ $# -gt 0 ]]; do
-    case "$1" in
-      --gpt) label="gpt"; shift ;;
-      --mbr) label="msdos"; shift ;;
-      --help|-h) echo -e "📖 \033[1mpartition-label\033[0m <device> [gpt|mbr] | --gpt | --mbr"; return 0 ;;
-      -*) echo -e "❌ Unknown flag: $1"; return 1 ;;
-      *)
-        if [ -z "$device" ]; then device="$1"; else label="$1"; fi; shift ;;
-    esac
-  done
-  [ -z "$device" ] && { echo -e "❌ Usage: partition-label <device> [gpt|mbr]"; return 1; }
-  echo ""
-  echo -e "🔴 \033[1;31m╔══════════════════════════════════════════════════╗\033[0m"
-  echo -e "🔴 \033[1;31m║  WARNING: ALL data on $device will be ERASED!   ║\033[0m"
-  echo -e "🔴 \033[1;31m╚══════════════════════════════════════════════════╝\033[0m"
-  echo ""
-  read -rp "$(echo -e '\033[1;33m⚠️  Type YES to confirm: \033[0m')" ans
-  [ "$ans" = "YES" ] || { echo "Aborted."; return 1; }
-  sudo parted "$device" mklabel "$label"
-  sudo parted "$device" mkpart primary 0% 100%
-  echo -e "✅ \033[1;32mPartition table ($label) created on $device.\033[0m"
-}
-alias partition-label='partition_label'
-## @description Install HydraPaper (dual-monitor wallpaper tool) via Flatpak.
-## @param $1 {string} wallpaper1 - Path to first wallpaper (optional)
-## @param $2 {string} wallpaper2 - Path to second wallpaper (optional)
-install_hydrapaper() {
-  if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
-    echo -e "📖 \033[1minstall-hydrapaper\033[0m [wallpaper_left] [wallpaper_right]"
-    return 0
-  fi
-  echo -e "🖼️  \033[1;36mInstalling HydraPaper...\033[0m"
-  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-  flatpak install -y flathub org.gabmus.hydrapaper
-  if [ -n "${1:-}" ] && [ -n "${2:-}" ]; then
-    echo -e "🖥️  Applying wallpapers..."
-    flatpak run org.gabmus.hydrapaper -c "$1" "$2"
-  else
-    echo -e "ℹ️  Installed. Run: flatpak run org.gabmus.hydrapaper -c '<path1>' '<path2>'"
-  fi
-  echo -e "✅ \033[1;32mHydraPaper ready.\033[0m"
-}
-alias install-hydrapaper='install_hydrapaper'
-# ── Script-backed procedure aliases ───────────────────────────
-alias install-protonvpn='bash ~/.config/scripts/profile/install-protonvpn.sh'
-alias remove-protonvpn='bash ~/.config/scripts/profile/remove-protonvpn.sh'
-alias remove-anydesk='bash ~/.config/scripts/profile/remove-anydesk.sh'
-alias fix-grub='bash ~/.config/scripts/profile/fix-grub.sh'
-alias luks-manage='bash ~/.config/scripts/profile/luks-manage.sh'
-alias luks-mount='bash ~/.config/scripts/profile/luks-mount.sh'
-alias install-mysql='bash ~/.config/scripts/profile/install-mysql.sh'
-alias install-nvm='bash ~/.config/scripts/profile/install-nvm.sh'
-alias install-sdkman='bash ~/.config/scripts/profile/install-sdkman.sh'
-alias setup-ssh='bash ~/.config/scripts/profile/setup-ssh.sh'
-alias backup-system='bash ~/.config/scripts/profile/backup-system.sh'
-alias clone-disk='bash ~/.config/scripts/profile/clone-disk.sh'
-alias install-langpack-es='bash ~/.config/scripts/profile/install-langpack-es.sh'
-alias install-wine='bash ~/.config/scripts/profile/install-wine.sh'
-alias diag-user-service='bash ~/.config/scripts/profile/diag-user-service.sh'
-alias fix-permissions='bash ~/.config/scripts/profile/fix-permissions.sh'
-alias install-xfce='bash ~/.config/scripts/profile/install-xfce.sh'
-alias fix-bluetooth='bash ~/.config/scripts/profile/fix-bluetooth.sh'
-alias diag-nvidia='bash ~/.config/scripts/profile/diag-nvidia.sh'
-alias setup-ntfs-automount='bash ~/.config/scripts/profile/setup-ntfs-automount.sh'
-alias setup-ssh-firewall='bash ~/.config/scripts/profile/setup-ssh-firewall.sh'
-alias diag-apache='bash ~/.config/scripts/profile/diag-apache.sh'
-alias diag-usb='bash ~/.config/scripts/profile/diag-usb.sh'
-alias diag-disk='bash ~/.config/scripts/profile/diag-disk.sh'
-alias fix-virtualbox='bash ~/.config/scripts/profile/fix-virtualbox.sh'
-alias install-xfce-winxp='bash ~/.config/scripts/profile/install-xfce-winxp.sh'
-# ── WiFi (Broadcom) scripts ───────────────────────────────────
-alias wifi-diag='bash ~/.config/scripts/profile/wifi-diag.sh'
-alias wifi-fix-rfkill='bash ~/.config/scripts/profile/wifi-fix-rfkill.sh'
-alias wifi-fix-broadcom-wl='bash ~/.config/scripts/profile/wifi-fix-broadcom-wl.sh'
-alias wifi-fix-broadcom-b43='bash ~/.config/scripts/profile/wifi-fix-broadcom-b43.sh'
-alias wifi-fix-nm='bash ~/.config/scripts/profile/wifi-fix-nm.sh'
-alias wifi-purge='bash ~/.config/scripts/profile/wifi-purge.sh'
-alias wifi-fix-udev='bash ~/.config/scripts/profile/wifi-fix-udev.sh'
-# ── NVIDIA fix script ─────────────────────────────────────────
-alias fix-nvidia='bash ~/.config/scripts/profile/fix-nvidia.sh'
-#endregion
-### * END OF PRIVATE CODE * ###

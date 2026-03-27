@@ -9,7 +9,10 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 ### System_Setup
 
 - **`install_protonvpn_deb_13`**: Instala ProtonVPN em sistemas Debian 13.
+- **`shutdown-now`**: Encerra todos os apps comuns e desliga imediatamente.
+- **`shutdown_now`**: Variante alias para shutdown-now.
 - **`schedule-kill-sequence`**: Agenda a finalização de um processo em um horário específico.
+- **`wait-sync-and-terminate`**: Monitora processos rsync/find; ao concluir, mata apps e desliga.
 - **`set-ps-critical`**: Define ajuste OOM de um processo como crítico (-1000).
 - **`set-ps-very-important`**: Define ajuste OOM como muito importante (-800).
 - **`set-ps-important`**: Define ajuste OOM como importante (-500).
@@ -376,6 +379,9 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - **`apply-gtk-dark`**: Aplica tema escuro para GTK4/GTK3.
 - **`fix-gtk-dark`**: Alias para apply-gtk-dark.
 - **`check-gtk-dark`**: Verifica o status do tema escuro GTK.
+- **`install-portal-dark-autostart`**: Instala entrada de autostart GNOME para reiniciar xdg-desktop-portals para modo escuro.
+- **`check-portal-dark-autostart`**: Exibe a entrada de autostart do portal sem modificar.
+- **`remove-portal-dark-autostart`**: Remove a entrada de autostart do portal.
 - **`dbus-asses-desktop-portal`**: Introspecta o Portal de Desktop D-Bus.
 - **`dbus-asses-xdg-desktop-portal`**: Lê a configuração de esquema de cores do Portal XDG.
 
@@ -609,6 +615,9 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Acompanha saída do daemon earlyoom com relatório detalhado em intervalo definido — $1: intervalo em segundos (padrão: 2)]
 
 - follow-early-oom-rec
+- watch-early-oom-rec
+- follow-early-oom
+- watch-early-oom
 
 [Monitora processos que consomem mais memória ordenados por RSS em tempo real — $1: intervalo de atualização em segundos (padrão: 0,25)]
 
@@ -625,6 +634,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Exibe pontuação OOM de morte para um processo — $1: pid (obrigatório)]
 
 - cat-pid-oom-kill-score
+
+[Acompanha (watch) a pontuação OOM de morte para um processo em tempo real — $1: pid (obrigatório)]
+
+- follow-pid-oom-kill-score
+- watch-pid-oom-kill-score
 
 [Exibe pontuação de ajuste OOM para um processo (-1000 a 1000) — $1: pid (obrigatório)]
 
@@ -1000,6 +1014,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Imprime pontuação OOM de morte para um processo formatada — $1: pid (obrigatório)]
 
 - cat-pid-oom-kill-score-pretty
+
+[Imprime saída do earlyoom com cabeçalho formatado — $1: intervalo em segundos (padrão: 2)]
+
+- follow-early-oom-pretty
+- watch-early-oom-pretty
 
 [Imprime pontuação de ajuste OOM para um processo formatada — $1: pid (obrigatório)]
 

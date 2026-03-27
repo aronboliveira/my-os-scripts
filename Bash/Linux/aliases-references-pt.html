@@ -2519,6 +2519,90 @@ Mar 22 08:00:01 host gnome-shell[1234]: Screen updated
                       </div>
                       <div
                         class="card alias-card shadow-sm"
+                        data-alias="shutdown-now"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> shutdown-now </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Encerra processos comuns de produtividade e
+                              desliga imediatamente.
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para shutdown-now"
+                              class="code-block"
+                              role="region"
+                            ><code>alias shutdown-now='shutdown_now'</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="shutdown_now"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> shutdown_now </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Variante alias para shutdown-now. </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para shutdown_now"
+                              class="code-block"
+                              role="region"
+                            ><code>alias shutdown_now='shutdown_now'</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="wait-sync-and-terminate"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> wait-sync-and-terminate </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Aguarda rsync/find finalizar, depois encerra apps
+                              e desliga.
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para wait-sync-and-terminate"
+                              class="code-block"
+                              role="region"
+                            ><code>alias wait-sync-and-terminate='wait_sync_and_terminate'</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
                         data-alias="apply-gtk-dark"
                       >
                         <div class="card-body">
@@ -2681,6 +2765,92 @@ GTK_THEME env: Adwaita:dark
                                 ></div>
                               </div>
                             </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="install-portal-dark-autostart"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> install-portal-dark-autostart </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Instala entrada de autostart GNOME para reiniciar
+                              xdg-desktop-portals e estabilizar o modo escuro.
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para install-portal-dark-autostart"
+                              class="code-block"
+                              role="region"
+                            ><code>alias install-portal-dark-autostart='install_portal_dark_autostart'</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="check-portal-dark-autostart"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> check-portal-dark-autostart </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Exibe o conte&uacute;do atual da entrada de
+                              autostart sem modificar arquivos.
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para check-portal-dark-autostart"
+                              class="code-block"
+                              role="region"
+                            ><code>alias check-portal-dark-autostart='install_portal_dark_autostart --check'</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="remove-portal-dark-autostart"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> remove-portal-dark-autostart </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Remove a entrada de autostart do portal escuro.
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para remove-portal-dark-autostart"
+                              class="code-block"
+                              role="region"
+                            ><code>alias remove-portal-dark-autostart='install_portal_dark_autostart --remove'</code></pre>
                           </details>
                         </div>
                       </div>
@@ -7817,6 +7987,96 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                       </div>
                       <div
                         class="card alias-card shadow-sm"
+                        data-alias="watch-early-oom-rec"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> watch-early-oom-rec </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Variante alias para follow-early-oom-rec.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver C&oacute;digo </span>
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para watch-early-oom-rec"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> watch-early-oom-rec=<span class="bash-string">'follow_early_oom_rec'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="follow-early-oom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> follow-early-oom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Variante alias para follow-early-oom-rec.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver C&oacute;digo </span>
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para follow-early-oom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> follow-early-oom=<span class="bash-string">'follow_early_oom_rec'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="watch-early-oom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> watch-early-oom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Variante alias para follow-early-oom-rec.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver C&oacute;digo </span>
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para watch-early-oom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> watch-early-oom=<span class="bash-string">'follow_early_oom_rec'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
                         data-alias="watch-mem-hogs"
                       >
                         <div class="card-body">
@@ -8133,6 +8393,80 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
   <span class="bash-builtin">sudo</span> cat /proc/<span class="bash-string">"$pid"</span>/oom_score 2&gt;/dev/null || <span class="bash-builtin">echo</span> <span class="bash-string">"No OOM score info available"</span>
 }
 <span class="bash-builtin">alias</span> cat-pid-oom-kill-score=<span class="bash-string">'cat_pid_oom_kill_score'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="follow-pid-oom-kill-score"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> follow-pid-oom-kill-score </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Monitora em tempo real as altera&ccedil;&otilde;es
+                              da pontua&ccedil;&atilde;o OOM de morte de um
+                              processo.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> fun&ccedil;&atilde;o </span>
+                            </span>
+                            <span class="badge bg-danger badge-alias">
+                              <span> $1: pid (obrigat&oacute;rio) </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver C&oacute;digo </span>
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para follow-pid-oom-kill-score"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">follow_pid_oom_kill_score</span>() {
+  <span class="bash-keyword">local</span> <span class="bash-variable">pid</span>=<span class="bash-string">"${1?\"Usage: follow-pid-oom-kill-score &lt;pid&gt;\"}"</span>
+  <span class="bash-builtin">watch</span> <span class="bash-flag">-n</span> <span class="bash-string">1</span> <span class="bash-string">"echo ==== \"OOM SCORE (TO BE KILLED)\" ==== &amp;&amp; sudo cat /proc/$pid/oom_score 2&gt;/dev/null || echo 'No OOM score info available'"</span>
+}
+<span class="bash-builtin">alias</span> follow-pid-oom-kill-score=<span class="bash-string">'follow_pid_oom_kill_score'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="watch-pid-oom-kill-score"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> watch-pid-oom-kill-score </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Variante alias para follow-pid-oom-kill-score.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver C&oacute;digo </span>
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para watch-pid-oom-kill-score"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> watch-pid-oom-kill-score=<span class="bash-string">'follow_pid_oom_kill_score'</span></code></pre>
                           </details>
                         </div>
                       </div>
@@ -9522,6 +9856,36 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
   <span class="bash-builtin">follow_early_oom_rec</span> <span class="bash-string">"$interval"</span>
   <span class="bash-builtin">_pretty_ftr</span>
 }</code></pre>
+                              </details>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card alias-card shadow-sm"
+                            data-alias="watch-early-oom-pretty"
+                          >
+                            <div class="card-body">
+                              <h4 class="alias-name mb-2">
+                                <code> watch-early-oom-pretty </code>
+                              </h4>
+                              <p class="mb-2">
+                                <span>
+                                  Variante alias para follow-early-oom-pretty.
+                                </span>
+                              </p>
+                              <details class="code-details">
+                                <summary aria-expanded="false" role="button">
+                                  <i
+                                    aria-hidden="true"
+                                    class="bi bi-code-slash me-2"
+                                  >
+                                  </i>
+                                  <span> Ver C&oacute;digo </span>
+                                </summary>
+                                <pre
+                                  class="code-block"
+                                ><code><span class="bash-builtin">alias</span> watch-early-oom-pretty=<span class="bash-string">'follow_early_oom_pretty'</span></code></pre>
                               </details>
                             </div>
                           </div>
