@@ -352,6 +352,10 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - **`ls-sudoers-timestamp`**: Alias para cat-sudoers-timestamp.
 - **`show-sudoers-timestamp`**: Alias para cat-sudoers-timestamp.
 
+[Escaneia saúde do sudo: valida timestamp, mostra TTY, sessões sudo, variáveis de ambiente e conteúdo do sudoers]
+
+- scan-sudo-health
+
 [Cria um novo usuário e o adiciona ao grupo sudo — $1: nome de usuário (obrigatório)]
 
 - add-sudo-user
@@ -516,7 +520,24 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - **`ls-share-mimecache`**: Alias para cat-share-mimecache.
 - **`show-share-mimecache`**: Alias para cat-share-mimecache.
 
-- **`cat-mimeapps`**: Exibe a lista de aplicativos padrão e configurações MIME do usuário (`~/.config/mimeapps.list`).
+- **`list-gnome-global-shortcuts`**: Alias para show-gnome-global-shortcuts.
+- **`ls-gnome-global-shortcuts`**: Alias para show-gnome-global-shortcuts.
+- **`list-kde-global-shortcuts`**: Alias para show-kde-global-shortcuts.
+- **`ls-kde-global-shortcuts`**: Alias para show-kde-global-shortcuts.
+- **`list-global-shortcuts`**: Alias para show-global-shortcuts.
+- **`ls-global-shortcuts`**: Alias para show-global-shortcuts.
+
+[Mostra atalhos globais de teclado do GNOME (keybindings)]
+
+- show-gnome-global-shortcuts
+
+[Mostra atalhos globais de teclado do KDE de kglobalshortcutsrc]
+
+- show-kde-global-shortcuts
+
+[Mostra todos os atalhos globais de teclado (GNOME + KDE)]
+
+- show-global-shortcuts: Exibe a lista de aplicativos padrão e configurações MIME do usuário (`~/.config/mimeapps.list`).
 - **`cat-share-mimeapps`**: Exibe a lista de configurações MIME de todo o sistema instaladas em aplicativos (`~/.local/share/applications/mimeapps.list`).
 - **`cat-all-mimeapps`**: Tenta ler todas as principais config localizações MIME conhecidas.
 - **`cat-share-mimecache`**: Lê o cache MIME compilado para entender como o banco de dados MIME funciona.
@@ -700,6 +721,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - **`ls-hosts`**: Alias para cat-hosts.
 - **`show-hosts`**: Alias para cat-hosts.
+- **`ls-libvirt-conf`**: Alias para show-libvirt-conf.
+- **`cat-libvirt-conf`**: Alias para show-libvirt-conf.
+- **`show-libv-conf`**: Alias para show-libvirt-conf (forma curta).
+- **`ls-libv-conf`**: Alias para show-libvirt-conf (forma curta).
+- **`cat-libv-conf`**: Alias para show-libvirt-conf (forma curta).
 - **`ls-ssh-cfg`**: Alias para cat-ssh-cfg.
 - **`show-ssh-cfg`**: Alias para cat-ssh-cfg.
 - **`ls-ssh-service`**: Alias para cat-ssh-service.
@@ -708,6 +734,10 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Mostra configuração do GDM3 de /etc/gdm3/custom.conf]
 
 - cat-gdm3-conf
+
+[Mostra configuração do daemon libvirt de /etc/libvirt/libvirtd.conf]
+
+- show-libvirt-conf
 
 [Mostra arquivo hosts de /etc/hosts]
 
@@ -1539,6 +1569,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Monta /dev/sda2 em /mnt/sda2 (ext4 simples)]
 
 - mount-sda2
+
+[Calcula dígitos verificadores Módulo N para string numérica (ex. CPF mod-11, CNPJ) — $1: string de dígitos, $2: base do módulo]
+
+- calculate-check-sum
+- **`calc-checksum`**: Alias para calculate-check-sum.
 
 ### Git_Aliases
 
@@ -2434,6 +2469,16 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Alias para get_group_user (getent group)]
 
 - getgu
+
+[Lista usuários pertencentes a um grupo específico — $1: group_name (obrigatório)]
+
+- get-group-users
+- **`ls-group-users`**: Alias para get-group-users.
+
+[Exporta banco de dados de configurações dconf do usuário como strings legíveis]
+
+- stringify-user-settings
+- **`str-user-stg`**: Alias para stringify-user-settings.
 
 [Alias para get_ntlog_event (journalctl)]
 

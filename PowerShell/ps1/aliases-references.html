@@ -2289,6 +2289,106 @@ Description
                           </details>
                         </div>
                       </div>
+
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="calculate-check-sum"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>calculate-check-sum</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Calculate Modulus N check digits for a numeric
+                              string (e.g. CPF mod-11, CNPJ).</span
+                            >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="PowerShell code for calculate-check-sum"
+                            ><code><span class="ps-keyword">function</span> Get-CheckSum {
+  [CmdletBinding()]
+  <span class="ps-keyword">param</span>(
+    [Parameter(Mandatory)][<span class="ps-keyword">string</span>]<span class="ps-variable">$State</span>,
+    [Parameter(Mandatory)][<span class="ps-keyword">int</span>]<span class="ps-variable">$Total</span>
+  )
+  <span class="ps-keyword">if</span> (<span class="ps-variable">$State</span> <span class="ps-flag">-notmatch</span> <span class="ps-string">'^\d+$'</span>) { <span class="ps-cmdlet">Write-Error</span> <span class="ps-string">"State must be a numeric string."</span>; <span class="ps-keyword">return</span> }
+  <span class="ps-keyword">if</span> (<span class="ps-variable">$Total</span> <span class="ps-flag">-lt</span> 2) { <span class="ps-cmdlet">Write-Error</span> <span class="ps-string">"Total must be an integer >= 2."</span>; <span class="ps-keyword">return</span> }
+  <span class="ps-variable">$stateLen</span> = <span class="ps-variable">$State</span>.Length
+  <span class="ps-variable">$diff</span> = <span class="ps-variable">$Total</span> - <span class="ps-variable">$stateLen</span>
+  <span class="ps-keyword">if</span> (<span class="ps-variable">$diff</span> <span class="ps-flag">-lt</span> 1) { <span class="ps-cmdlet">Write-Error</span> <span class="ps-string">"Total must be greater than the length of State."</span>; <span class="ps-keyword">return</span> }
+  <span class="ps-keyword">for</span> (<span class="ps-variable">$pos</span> = 1; <span class="ps-variable">$pos</span> <span class="ps-flag">-le</span> <span class="ps-variable">$diff</span>; <span class="ps-variable">$pos</span>++) {
+    <span class="ps-variable">$curLen</span> = <span class="ps-variable">$stateLen</span> + <span class="ps-variable">$pos</span> - 1
+    <span class="ps-variable">$sr</span> = 0
+    <span class="ps-keyword">for</span> (<span class="ps-variable">$i</span> = 0; <span class="ps-variable">$i</span> <span class="ps-flag">-lt</span> <span class="ps-variable">$curLen</span>; <span class="ps-variable">$i</span>++) {
+      <span class="ps-variable">$digit</span> = [<span class="ps-keyword">int</span>]::<span class="ps-cmdlet">Parse</span>(<span class="ps-variable">$State</span>[<span class="ps-variable">$i</span>].ToString())
+      <span class="ps-variable">$weight</span> = <span class="ps-variable">$stateLen</span> + <span class="ps-variable">$pos</span> - <span class="ps-variable">$i</span>
+      <span class="ps-variable">$sr</span> += <span class="ps-variable">$digit</span> * <span class="ps-variable">$weight</span>
+    }
+    <span class="ps-variable">$rest</span> = <span class="ps-variable">$sr</span> % <span class="ps-variable">$Total</span>
+    <span class="ps-variable">$checkDigit</span> = <span class="ps-keyword">if</span> (<span class="ps-variable">$rest</span> <span class="ps-flag">-lt</span> 2) { 0 } <span class="ps-keyword">else</span> { <span class="ps-variable">$Total</span> - <span class="ps-variable">$rest</span> }
+    <span class="ps-variable">$State</span> += <span class="ps-variable">$checkDigit</span>.ToString()
+  }
+  <span class="ps-variable">$State</span>
+}</code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="calculate-check-sum"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_calculate_check_sum_0"
+                                data-cmd='calculate-check-sum -State "123456789" -Total 11'
+                                data-output="12345678909"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_calculate_check_sum_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">PS&gt; </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_calculate_check_sum_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_calculate_check_sum_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_calculate_check_sum_0"
+                                ></div>
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

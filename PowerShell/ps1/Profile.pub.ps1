@@ -306,6 +306,49 @@ function Measure-LinesNoVendors {
 }
 Set-Alias -Name wc-l-novendors -Value Measure-LinesNoVendors
 
+<#
+.SYNOPSIS Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ).
+.PARAMETER State
+  Digit string (e.g. "123456789").
+.PARAMETER Total
+  Modulus base (e.g. 11).
+.EXAMPLE
+  Get-CheckSum -State "123456789" -Total 11
+#>
+function Get-CheckSum {
+  [CmdletBinding()]
+  param(
+    [Parameter(Mandatory)][string]$State,
+    [Parameter(Mandatory)][int]$Total
+  )
+  if ($State -notmatch '^\d+$') {
+    Write-Error "State must be a numeric string."; return
+  }
+  if ($Total -lt 2) {
+    Write-Error "Total must be an integer >= 2."; return
+  }
+  $stateLen = $State.Length
+  $diff = $Total - $stateLen
+  if ($diff -lt 1) {
+    Write-Error "Total must be greater than the length of State."; return
+  }
+  for ($pos = 1; $pos -le $diff; $pos++) {
+    $curLen = $stateLen + $pos - 1
+    $sr = 0
+    for ($i = 0; $i -lt $curLen; $i++) {
+      $digit = [int]::Parse($State[$i].ToString())
+      $weight = $stateLen + $pos - $i
+      $sr += $digit * $weight
+    }
+    $rest = $sr % $Total
+    $checkDigit = if ($rest -lt 2) { 0 } else { $Total - $rest }
+    $State += $checkDigit.ToString()
+  }
+  $State
+}
+Set-Alias -Name calculate-check-sum -Value Get-CheckSum
+Set-Alias -Name calc-checksum -Value Get-CheckSum
+
 #endregion Basic_Commands
 
 # ═══════════════════════════════════════════════════════════════════════════

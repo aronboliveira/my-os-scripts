@@ -7440,6 +7440,34 @@ uri-decode
                 </div>
                 <div
                   class="card alias-card shadow-sm"
+                  data-alias="scan-sudo-health"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> scan-sudo-health </code>
+                      <span class="badge text-bg-secondary ms-2"> alias </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Escaneia sa&uacute;de do sudo: valida timestamp, mostra
+                        TTY, sess&otilde;es sudo, vari&aacute;veis de ambiente e
+                        conte&uacute;do do sudoers.
+                      </span>
+                    </p>
+                    <details>
+                      <summary class="text-primary fw-medium mb-2">
+                        Ver C&oacute;digo
+                      </summary>
+                      <pre
+                        aria-label="C&oacute;digo Bash para scan-sudo-health"
+                        class="code-block"
+                        role="region"
+                      ><code>alias scan-sudo-health=&#x27;sudo -v 2&gt;&amp;1; echo &quot;Timestamp: ...&quot;; tty; ...; sudo cat /etc/sudoers 2&gt;/dev/null || echo &quot;Cannot read sudoers file&quot;&#x27;</code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
                   data-alias="ls-var-locks"
                 >
                   <div class="card-body">
@@ -7666,6 +7694,173 @@ uri-decode
                         class="code-block"
                         role="region"
                       ><code>alias show-term-log='cat-term-log'</code></pre>
+                    </details>
+                  </div>
+                </div>
+
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="calculate-check-sum"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> calculate-check-sum </code>
+                      <span class="badge text-bg-info ms-2"> function </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Calcula d&iacute;gitos verificadores M&oacute;dulo N
+                        para string num&eacute;rica (ex. CPF mod-11, CNPJ).
+                      </span>
+                    </p>
+                    <details>
+                      <summary class="text-primary fw-medium mb-2">
+                        Ver C&oacute;digo
+                      </summary>
+                      <pre
+                        aria-label="C&oacute;digo Bash para calculate-check-sum"
+                        class="code-block"
+                        role="region"
+                      ><code>calculate_check_sum() {
+  local state=&quot;${1:?Usage: calculate_check_sum &lt;digits&gt; &lt;modulus&gt;}&quot;
+  local total=&quot;${2:?Usage: calculate_check_sum &lt;digits&gt; &lt;modulus&gt;}&quot;
+  # ... validates inputs, iterates positions, computes weighted sum mod total ...
+  echo &quot;$state&quot;
+}</code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="calc-checksum"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> calc-checksum </code>
+                      <span class="badge text-bg-secondary ms-2"> alias </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para calculate-check-sum. </span>
+                    </p>
+                    <details>
+                      <summary class="text-primary fw-medium mb-2">
+                        Ver C&oacute;digo
+                      </summary>
+                      <pre
+                        aria-label="C&oacute;digo Bash para calc-checksum"
+                        class="code-block"
+                        role="region"
+                      ><code>alias calc-checksum=&#x27;calculate_check_sum&#x27;</code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="get-group-users"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> get-group-users </code>
+                      <span class="badge text-bg-info ms-2"> function </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Lista usu&aacute;rios pertencentes a um grupo
+                        espec&iacute;fico.
+                      </span>
+                    </p>
+                    <details>
+                      <summary class="text-primary fw-medium mb-2">
+                        Ver C&oacute;digo
+                      </summary>
+                      <pre
+                        aria-label="C&oacute;digo Bash para get-group-users"
+                        class="code-block"
+                        role="region"
+                      ><code>get_group_users() {
+  local group_name=&quot;${1:?Usage: get_group_users &lt;group_name&gt;}&quot;
+  local groups=($(cut -d: -f1 /etc/group))
+  if [[ ! &quot; ${groups[*]} &quot; =~ &quot; ${group_name} &quot; ]]; then
+    echo &quot;Group &#x27;$group_name&#x27; does not exist in the system. Aborting.&quot;
+    return 1
+  fi
+  grep &quot;^${group_name}:&quot; /etc/group | cut -d: -f4 | tr &#x27;,&#x27; &#x27;\n&#x27; | sort -u
+}</code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-group-users"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-group-users </code>
+                      <span class="badge text-bg-secondary ms-2"> alias </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para get-group-users. </span>
+                    </p>
+                    <details>
+                      <summary class="text-primary fw-medium mb-2">
+                        Ver C&oacute;digo
+                      </summary>
+                      <pre
+                        aria-label="C&oacute;digo Bash para ls-group-users"
+                        class="code-block"
+                        role="region"
+                      ><code>alias ls-group-users=&#x27;get_group_users&#x27;</code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="stringify-user-settings"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> stringify-user-settings </code>
+                      <span class="badge text-bg-secondary ms-2"> alias </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exporta banco de dados dconf do usu&aacute;rio como
+                        strings leg&iacute;veis.
+                      </span>
+                    </p>
+                    <details>
+                      <summary class="text-primary fw-medium mb-2">
+                        Ver C&oacute;digo
+                      </summary>
+                      <pre
+                        aria-label="C&oacute;digo Bash para stringify-user-settings"
+                        class="code-block"
+                        role="region"
+                      ><code>alias stringify-user-settings=&#x27;sudo strings ~/.config/dconf/user&#x27;</code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="str-user-stg"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> str-user-stg </code>
+                      <span class="badge text-bg-secondary ms-2"> alias </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para stringify-user-settings. </span>
+                    </p>
+                    <details>
+                      <summary class="text-primary fw-medium mb-2">
+                        Ver C&oacute;digo
+                      </summary>
+                      <pre
+                        aria-label="C&oacute;digo Bash para str-user-stg"
+                        class="code-block"
+                        role="region"
+                      ><code>alias str-user-stg=&#x27;stringify-user-settings&#x27;</code></pre>
                     </details>
                   </div>
                 </div>
@@ -13246,6 +13441,254 @@ image/png=org.gnome.eog.desktop
                           </details>
                         </div>
                       </div>
+
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-gnome-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> show-gnome-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra atalhos globais de teclado do GNOME
+                              (keybindings).
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para show-gnome-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias show-gnome-global-shortcuts=&#x27;gsettings list-recursively org.gnome.desktop.wm.keybindings&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="list-gnome-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> list-gnome-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Alias para show-gnome-global-shortcuts.
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para list-gnome-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias list-gnome-global-shortcuts=&#x27;gsettings list-recursively org.gnome.desktop.wm.keybindings&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-gnome-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-gnome-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Alias para show-gnome-global-shortcuts.
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para ls-gnome-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias ls-gnome-global-shortcuts=&#x27;gsettings list-recursively org.gnome.desktop.wm.keybindings&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-kde-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> show-kde-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra atalhos globais de teclado do KDE de
+                              kglobalshortcutsrc.
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para show-kde-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias show-kde-global-shortcuts=&#x27;cat ~/.config/kglobalshortcutsrc 2&gt;/dev/null || echo &quot;=== NO KDE GLOBAL SHORTCUTS CONFIG FOUND ===&quot;&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="list-kde-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> list-kde-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para show-kde-global-shortcuts. </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para list-kde-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias list-kde-global-shortcuts=&#x27;cat ~/.config/kglobalshortcutsrc 2&gt;/dev/null || echo &quot;=== NO KDE GLOBAL SHORTCUTS CONFIG FOUND ===&quot;&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-kde-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-kde-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para show-kde-global-shortcuts. </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para ls-kde-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias ls-kde-global-shortcuts=&#x27;cat ~/.config/kglobalshortcutsrc 2&gt;/dev/null || echo &quot;=== NO KDE GLOBAL SHORTCUTS CONFIG FOUND ===&quot;&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> show-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra todos os atalhos globais de teclado (GNOME
+                              + KDE).
+                            </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para show-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias show-global-shortcuts=&#x27;show-gnome-global-shortcuts; show-kde-global-shortcuts&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="list-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> list-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para show-global-shortcuts. </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para list-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias list-global-shortcuts=&#x27;list-gnome-global-shortcuts; list-kde-global-shortcuts&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-global-shortcuts"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-global-shortcuts </code>
+                            <span class="badge text-bg-secondary ms-2">
+                              alias
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para show-global-shortcuts. </span>
+                          </p>
+                          <details>
+                            <summary class="text-primary fw-medium mb-2">
+                              Ver C&oacute;digo
+                            </summary>
+                            <pre
+                              aria-label="C&oacute;digo Bash para ls-global-shortcuts"
+                              class="code-block"
+                              role="region"
+                            ><code>alias ls-global-shortcuts=&#x27;show-gnome-global-shortcuts; show-kde-global-shortcuts&#x27;</code></pre>
+                          </details>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -13943,6 +14386,148 @@ image/png=org.gnome.eog.desktop
                   <code>cat-gdm3-conf</code> lêem configurações específicas de
                   cada ambiente.</span
                 >
+              </div>
+
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="show-libvirt-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> show-libvirt-conf </code>
+                    <span class="badge text-bg-secondary ms-2"> alias </span>
+                  </h4>
+                  <p class="mb-2">
+                    <span>
+                      Mostra configura&ccedil;&atilde;o do daemon libvirt de
+                      /etc/libvirt/libvirtd.conf.
+                    </span>
+                  </p>
+                  <details>
+                    <summary class="text-primary fw-medium mb-2">
+                      Ver C&oacute;digo
+                    </summary>
+                    <pre
+                      aria-label="C&oacute;digo Bash para show-libvirt-conf"
+                      class="code-block"
+                      role="region"
+                    ><code>alias show-libvirt-conf=&#x27;sudo cat /etc/libvirt/libvirtd.conf&#x27;</code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="ls-libvirt-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-libvirt-conf </code>
+                    <span class="badge text-bg-secondary ms-2"> alias </span>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para show-libvirt-conf. </span>
+                  </p>
+                  <details>
+                    <summary class="text-primary fw-medium mb-2">
+                      Ver C&oacute;digo
+                    </summary>
+                    <pre
+                      aria-label="C&oacute;digo Bash para ls-libvirt-conf"
+                      class="code-block"
+                      role="region"
+                    ><code>alias ls-libvirt-conf=&#x27;sudo cat /etc/libvirt/libvirtd.conf&#x27;</code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="cat-libvirt-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> cat-libvirt-conf </code>
+                    <span class="badge text-bg-secondary ms-2"> alias </span>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para show-libvirt-conf. </span>
+                  </p>
+                  <details>
+                    <summary class="text-primary fw-medium mb-2">
+                      Ver C&oacute;digo
+                    </summary>
+                    <pre
+                      aria-label="C&oacute;digo Bash para cat-libvirt-conf"
+                      class="code-block"
+                      role="region"
+                    ><code>alias cat-libvirt-conf=&#x27;sudo cat /etc/libvirt/libvirtd.conf&#x27;</code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="show-libv-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> show-libv-conf </code>
+                    <span class="badge text-bg-secondary ms-2"> alias </span>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para show-libvirt-conf (forma curta). </span>
+                  </p>
+                  <details>
+                    <summary class="text-primary fw-medium mb-2">
+                      Ver C&oacute;digo
+                    </summary>
+                    <pre
+                      aria-label="C&oacute;digo Bash para show-libv-conf"
+                      class="code-block"
+                      role="region"
+                    ><code>alias show-libv-conf=&#x27;sudo cat /etc/libvirt/libvirtd.conf&#x27;</code></pre>
+                  </details>
+                </div>
+              </div>
+              <div class="card alias-card shadow-sm" data-alias="ls-libv-conf">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-libv-conf </code>
+                    <span class="badge text-bg-secondary ms-2"> alias </span>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para show-libvirt-conf (forma curta). </span>
+                  </p>
+                  <details>
+                    <summary class="text-primary fw-medium mb-2">
+                      Ver C&oacute;digo
+                    </summary>
+                    <pre
+                      aria-label="C&oacute;digo Bash para ls-libv-conf"
+                      class="code-block"
+                      role="region"
+                    ><code>alias ls-libv-conf=&#x27;sudo cat /etc/libvirt/libvirtd.conf&#x27;</code></pre>
+                  </details>
+                </div>
+              </div>
+              <div class="card alias-card shadow-sm" data-alias="cat-libv-conf">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> cat-libv-conf </code>
+                    <span class="badge text-bg-secondary ms-2"> alias </span>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para show-libvirt-conf (forma curta). </span>
+                  </p>
+                  <details>
+                    <summary class="text-primary fw-medium mb-2">
+                      Ver C&oacute;digo
+                    </summary>
+                    <pre
+                      aria-label="C&oacute;digo Bash para cat-libv-conf"
+                      class="code-block"
+                      role="region"
+                    ><code>alias cat-libv-conf=&#x27;sudo cat /etc/libvirt/libvirtd.conf&#x27;</code></pre>
+                  </details>
+                </div>
               </div>
             </article>
           </div>

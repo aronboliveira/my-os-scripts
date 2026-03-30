@@ -21,6 +21,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - **`set-ps-very-low`**: Sets OOM score adjustment to very low (600).
 - **`set-ps-irrelevant`**: Sets OOM score adjustment to irrelevant (1000).
 
+
 - **`install_stremio_gnome`**: Downloads and installs Flathub repo (if missing) and then installs Stremio launching it in background mode, ensuring compatibility for both Wayland and X11 sessions.
 
 [Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing — flags: --no-persist, --no-composite]
@@ -352,6 +353,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - **`ls-sudoers-timestamp`**: Alias for cat-sudoers-timestamp.
 - **`show-sudoers-timestamp`**: Alias for cat-sudoers-timestamp.
 
+[Scan sudo health: validates timestamp, shows TTY, sudo sessions, environment vars, and sudoers content]
+
+- scan-sudo-health
+
 [Create a new user and add them to the sudo group — $1: username (required)]
 
 - add-sudo-user
@@ -512,7 +517,24 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - **`ls-share-mimecache`**: Alias for cat-share-mimecache.
 - **`show-share-mimecache`**: Alias for cat-share-mimecache.
 
-- **`cat-mimeapps`**: Displays the user's default applications list and MIME configurations (`~/.config/mimeapps.list`).
+- **`list-gnome-global-shortcuts`**: Alias for show-gnome-global-shortcuts.
+- **`ls-gnome-global-shortcuts`**: Alias for show-gnome-global-shortcuts.
+- **`list-kde-global-shortcuts`**: Alias for show-kde-global-shortcuts.
+- **`ls-kde-global-shortcuts`**: Alias for show-kde-global-shortcuts.
+- **`list-global-shortcuts`**: Alias for show-global-shortcuts.
+- **`ls-global-shortcuts`**: Alias for show-global-shortcuts.
+
+[Show GNOME global keyboard shortcuts (keybindings)]
+
+- show-gnome-global-shortcuts
+
+[Show KDE global keyboard shortcuts from kglobalshortcutsrc]
+
+- show-kde-global-shortcuts
+
+[Show all global keyboard shortcuts (GNOME + KDE)]
+
+- show-global-shortcuts: Displays the user's default applications list and MIME configurations (`~/.config/mimeapps.list`).
 - **`cat-share-mimeapps`**: Displays system-wide MIME configurations list installed under user or system applications (`~/.local/share/applications/mimeapps.list`).
 - **`cat-all-mimeapps`**: Tries reading all major known locations for MIME config.
 - **`cat-share-mimecache`**: Reads the compiled MIME cache to understand database mapping.
@@ -696,6 +718,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - **`ls-hosts`**: Alias for cat-hosts.
 - **`show-hosts`**: Alias for cat-hosts.
+- **`ls-libvirt-conf`**: Alias for show-libvirt-conf.
+- **`cat-libvirt-conf`**: Alias for show-libvirt-conf.
+- **`show-libv-conf`**: Alias for show-libvirt-conf (short form).
+- **`ls-libv-conf`**: Alias for show-libvirt-conf (short form).
+- **`cat-libv-conf`**: Alias for show-libvirt-conf (short form).
 - **`ls-ssh-cfg`**: Alias for cat-ssh-cfg.
 - **`show-ssh-cfg`**: Alias for cat-ssh-cfg.
 - **`ls-ssh-service`**: Alias for cat-ssh-service.
@@ -704,6 +731,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Show GDM3 configuration from /etc/gdm3/custom.conf]
 
 - cat-gdm3-conf
+
+[Show libvirt daemon configuration from /etc/libvirt/libvirtd.conf]
+
+- show-libvirt-conf
 
 [Show hosts file from /etc/hosts]
 
@@ -927,6 +958,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 #### Pretty_Kernel_OS
 
+
 - **`cat-mimeapps-pretty`**: Formatted output.
 
 [Pretty-print GRUB boot config with line numbers and syntax coloring]
@@ -1069,6 +1101,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - glx-info-pretty
 
 #### Pretty_System_Config
+
 
 - **`cat-compose-chars-pretty`**: Formatted output.
 
@@ -1536,6 +1569,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - mount-sda2
 
+[Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ) — $1: digit string, $2: modulus base]
+
+- calculate-check-sum
+- **`calc-checksum`**: Alias for calculate-check-sum.
+
 ### Git_Aliases
 
 [Pretty git log showing author email, date, and subject for all branches]
@@ -1865,6 +1903,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 ### Filesystem_Utilities
 
 - **`show-compose-chars`**: Alias for cat-compose-chars.
+
 
 - **`cat-compose-chars`**: Displays the correct native sequence of Compose keys available under `en_US.UTF-8/Compose`.
 - **`ls-compose-chars`**: Lists Compose map details in standard `ls -ld` format.
@@ -2430,6 +2469,16 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Alias for get_group_user (getent group)]
 
 - getgu
+
+[List users belonging to a specific group — $1: group_name (required)]
+
+- get-group-users
+- **`ls-group-users`**: Alias for get-group-users.
+
+[Dump dconf user settings database as readable strings]
+
+- stringify-user-settings
+- **`str-user-stg`**: Alias for stringify-user-settings.
 
 [Alias for get_ntlog_event (journalctl)]
 

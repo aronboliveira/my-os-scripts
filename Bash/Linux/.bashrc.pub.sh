@@ -427,6 +427,8 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias ls-sudoers='cat /etc/sudoers 2>/dev/null || echo "Cannot read sudoers file"'
     ## @description Alias for cat-sudoers.
     alias show-sudoers='cat /etc/sudoers 2>/dev/null || echo "Cannot read sudoers file"'
+    ## @description Scan sudo health: validates timestamp, shows TTY, sudo sessions, environment vars, and sudoers content.
+    alias scan-sudo-health='sudo -v 2>&1; echo "Timestamp: $(sudo -v 2>&1 && echo valid || echo expired)"; echo "---TTY---"; tty; echo "---SUDO SESSION---"; sudo ls /run/sudo/ts/ 2>/dev/null && sudo ls -la /run/sudo/ts/ 2>/dev/null; echo "---ENV---"; echo "TERM=$TERM USER=$USER PWD=$PWD HOSTTYPE=$HOSTTYPE HOME=$HOME SHELL=$SHELL"; echo "---SUDOERS---"; sudo cat /etc/sudoers 2>/dev/null || echo "Cannot read sudoers file"'
 ## @description Show sudoers timestamp_timeout setting.
     alias cat-sudoers-timestamp='sudo cat /etc/sudoers | grep timestamp_timeout 2>/dev/null || echo "No timestamp_timeout setting found in sudoers"'
     ## @description Alias for cat-sudoers-timestamp.
@@ -1183,7 +1185,7 @@ DESKTOP_ENTRY
     alias install-portal-dark-autostart='install_portal_dark_autostart'
     alias check-portal-dark-autostart='install_portal_dark_autostart --check'
     alias remove-portal-dark-autostart='install_portal_dark_autostart --remove'
-    # TODO MIGHT NEED REVIEWING...
+    ## @description Kill a list of common desktop applications and power off immediately.
     shutdown_now() {
         local kill_procs=(
             code code-insiders codium cursor
@@ -1229,9 +1231,6 @@ DESKTOP_ENTRY
             gsd-media-keys gsd-power
         )
         for prog in "${kill_procs[@]}"; do
-            if ! command -v "$prog" &>/dev/null; then
-                continue
-            fi
             if ! pgrep -x "$prog" &>/dev/null; then
                 continue
             fi
@@ -1255,7 +1254,8 @@ DESKTOP_ENTRY
     }
     alias shutdown-now='shutdown_now'
     alias shutdown_now='shutdown_now'
-    # TODO MIGHT NEED REVIEWING...
+    ## @description Schedule a kill sequence for common desktop applications at a given time using at(1).
+    ## @param $1 {string} start_time - Time in HH:MM format.
     schedule_kill_sequence() {
         local start_time="${1?Usage: schedule_kill_sequence HH:MM}"
         if [[ -z "$start_time" ]]; then
@@ -1336,9 +1336,6 @@ kill_procs=(
     gsd-media-keys gsd-power
 )
 for prog in "${kill_procs[@]}"; do
-    if ! which "$prog" &>/dev/null && ! type -P "$prog" &>/dev/null; then
-        continue
-    fi
     if ! pgrep -x "$prog" &>/dev/null && ! ps -C "$prog" --no-headers 2>/dev/null | grep -q .; then
         continue
     fi
@@ -1383,8 +1380,7 @@ KILL_SCRIPT_EOF
         echo "Kill sequence scheduled successfully at $start_time"
     }
     alias schedule-kill-sequence='schedule_kill_sequence'
-    # ? NEW
-    # @description Waits for any running rsync or find processes to complete, then terminates a list of common applications and finally powers off the system after a delay.
+    ## @description Waits for any running rsync or find processes to complete, then terminates a list of common applications and finally powers off the system after a delay.
     wait_sync_and_terminate() {
         printf "\033[1;33mWaiting for rsync and find processes to complete...\033[0m\n"
         
@@ -1589,18 +1585,24 @@ KILL_SCRIPT_EOF
       alias ls-share-mimecache='sudo cat /usr/share/applications/mimeinfo.cache 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME INFO ==="'
       ## @description Alias for cat-share-mimecache.
       alias show-share-mimecache='sudo cat /usr/share/applications/mimeinfo.cache 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME INFO ==="'
-      # ? NEW
+      ## @description Show GNOME global keyboard shortcuts (keybindings).
       alias show-gnome-global-shortcuts='gsettings list-recursively org.gnome.desktop.wm.keybindings'
-      # ? NEW
+      ## @description Alias for show-gnome-global-shortcuts.
       alias list-gnome-global-shortcuts='gsettings list-recursively org.gnome.desktop.wm.keybindings'
-      # ? NEW
+      ## @description Alias for show-gnome-global-shortcuts.
+      alias ls-gnome-global-shortcuts='gsettings list-recursively org.gnome.desktop.wm.keybindings'
+      ## @description Show KDE global keyboard shortcuts from kglobalshortcutsrc.
       alias show-kde-global-shortcuts='cat ~/.config/kglobalshortcutsrc 2>/dev/null || echo "=== NO KDE GLOBAL SHORTCUTS CONFIG FOUND ==="'
-      # ? NEW
+      ## @description Alias for show-kde-global-shortcuts.
       alias list-kde-global-shortcuts='cat ~/.config/kglobalshortcutsrc 2>/dev/null || echo "=== NO KDE GLOBAL SHORTCUTS CONFIG FOUND ==="'
-      # ? NEW
+      ## @description Alias for show-kde-global-shortcuts.
+      alias ls-kde-global-shortcuts='cat ~/.config/kglobalshortcutsrc 2>/dev/null || echo "=== NO KDE GLOBAL SHORTCUTS CONFIG FOUND ==="'
+      ## @description Show all global keyboard shortcuts (GNOME + KDE).
       alias show-global-shortcuts='show-gnome-global-shortcuts; show-kde-global-shortcuts'
-      # ? NEW
+      ## @description Alias for show-global-shortcuts.
       alias list-global-shortcuts='list-gnome-global-shortcuts; list-kde-global-shortcuts'
+      ## @description Alias for show-global-shortcuts.
+      alias ls-global-shortcuts='show-gnome-global-shortcuts; show-kde-global-shortcuts'
 
 #endregion Kernel_and_OS
 
@@ -1743,6 +1745,19 @@ KILL_SCRIPT_EOF
       alias ls-gdm3-conf='sudo cat /etc/gdm3/custom.conf'
       ## @description Alias for cat-gdm3-conf.
       alias show-gdm3-conf='sudo cat /etc/gdm3/custom.conf'
+      ## @description Show libvirt daemon configuration from /etc/libvirt/libvirtd.conf.
+      alias show-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      ## @description Alias for show-libvirt-conf.
+      alias ls-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      ## @description Alias for show-libvirt-conf.
+      alias cat-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      ## @description Alias for show-libvirt-conf (short form).
+      alias show-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      ## @description Alias for show-libvirt-conf (short form).
+      alias ls-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      ## @description Alias for show-libvirt-conf (short form).
+      alias cat-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      ## @description Show the system hosts file (/etc/hosts).
       alias cat-hosts='sudo cat /etc/hosts'
       ## @description Alias for cat-hosts.
       alias ls-hosts='sudo cat /etc/hosts'
@@ -3576,6 +3591,49 @@ print('✅ GPU disabled in argv.json')
           sudo mkdir -p /mnt/sda2; \
           sudo mount /dev/sda2 /mnt/sda2; \
           echo "Successfully mounted /dev/sda2 to /mnt/sda2";'
+
+      ## @description Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ).
+      ## @param $1 {string} state - Digit string (e.g. "123456789")
+      ## @param $2 {number} total - Modulus base (e.g. 11)
+      calculate_check_sum() {
+        local state="${1:?Usage: calculate_check_sum <digits> <modulus>}"
+        local total="${2:?Usage: calculate_check_sum <digits> <modulus>}"
+        if ! [[ "$state" =~ ^[0-9]+$ ]]; then
+          echo "Error: state must be a numeric string." >&2
+          return 1
+        fi
+        if ! [[ "$total" =~ ^[0-9]+$ ]] || (( total < 2 )); then
+          echo "Error: total must be an integer >= 2." >&2
+          return 1
+        fi
+        local state_len=${#state}
+        local diff=$(( total - state_len ))
+        if (( diff < 1 )); then
+          echo "Error: total must be greater than the length of state." >&2
+          return 1
+        fi
+        local pos
+        for (( pos = 1; pos <= diff; pos++ )); do
+          local cur_len=$(( state_len + pos - 1 ))
+          local sr=0 i
+          for (( i = 0; i < cur_len; i++ )); do
+            local digit="${state:$i:1}"
+            local weight=$(( state_len + pos - i ))
+            sr=$(( sr + digit * weight ))
+          done
+          local rest=$(( sr % total ))
+          local check_digit
+          if (( rest < 2 )); then
+            check_digit=0
+          else
+            check_digit=$(( total - rest ))
+          fi
+          state="${state}${check_digit}"
+        done
+        echo "$state"
+      }
+      alias calculate-check-sum='calculate_check_sum'
+      alias calc-checksum='calculate_check_sum'
 #endregion Basic_Commands
   #endregion Utilities
 
@@ -3976,10 +4034,31 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
     }
     alias ls-host='get_computer_system'
 
-    get_group_user() {
+    ## @description List all groups from the system database.
+    get_groups() {
       getent group
     }
-    alias ls-groups='get_group_user'
+    alias ls-groups='get_groups'
+
+    ## @description List users belonging to a specific group.
+    ## @param $1 {string} group_name - Name of the group to query.
+    get_group_users() {
+      local group_name="${1:?Usage: get_group_users <group_name>}"
+      local groups=($(cut -d: -f1 /etc/group))
+      if [[ ! " ${groups[*]} " =~ " ${group_name} " ]]; then
+        echo "Group '$group_name' does not exist in the system. Aborting."
+        return 1
+      fi
+      grep "^${group_name}:" /etc/group | cut -d: -f4 | tr ',' '\n' | sort -u
+    }
+    ## @description Alias for get_group_users.
+    alias get-group-users='get_group_users'
+    ## @description Alias for get_group_users.
+    alias ls-group-users='get_group_users'
+    ## @description Dump dconf user settings database as readable strings.
+    alias stringify-user-settings='sudo strings ~/.config/dconf/user'
+    ## @description Alias for stringify-user-settings.
+    alias str-user-stg='stringify-user-settings'
 
     get_operating_system() {
       if command -v lsb_release >/dev/null 2>&1; then
