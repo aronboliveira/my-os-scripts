@@ -91,6 +91,11 @@ Transpiled from the Bash publicable section to PowerShell equivalents (cross-pla
 
 - wc-l-novendors
 
+[Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ) — $State: digit string (required), $Total: modulus base (required)]
+
+- calculate-check-sum
+- calc-checksum
+
 ## Pretty_Basic_Commands
 
 [Pretty-decode a URI string showing input and decoded output]
@@ -153,6 +158,18 @@ Transpiled from the Bash publicable section to PowerShell equivalents (cross-pla
 [Pack all files in current directory into subdirectories of 100 files each]
 
 - packf
+
+[Rename all files in the current directory to random 16-char alphanumeric names, preserving extensions]
+
+- fully-randomized-file-names
+
+[Alias for Rename-FilesRandomly]
+
+- randomize-filenames
+
+[Alias for Rename-FilesRandomly (short form)]
+
+- rand-fn
 
 ## Git_Aliases
 

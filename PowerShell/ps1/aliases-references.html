@@ -2701,6 +2701,153 @@ Description
                       </div>
                       <div
                         class="card alias-card shadow-sm"
+                        data-alias="fully-randomized-file-names"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>fully-randomized-file-names</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Rename all files in the current directory to
+                              <b>random 16-char alphanumeric names</b>,
+                              preserving extensions.</span
+                            >
+                          </p>
+                          <span class="badge bg-primary badge-alias"
+                            ><span>function</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="PowerShell code for fully-randomized-file-names"
+                            ><code><span class="ps-keyword">function</span> Rename-FilesRandomly {
+  <span class="ps-cmdlet">Get-ChildItem</span> <span class="ps-flag">-File</span> | <span class="ps-cmdlet">ForEach-Object</span> {
+    <span class="ps-variable">$ext</span> = <span class="ps-variable">$_</span>.Extension
+    <span class="ps-variable">$newName</span> = <span class="ps-flag">-join</span> ((48..57) + (65..90) + (97..122) | <span class="ps-cmdlet">Get-Random</span> <span class="ps-flag">-Count</span> 16 | <span class="ps-cmdlet">ForEach-Object</span> { [char]<span class="ps-variable">$_</span> })
+    <span class="ps-cmdlet">Rename-Item</span> <span class="ps-variable">$_</span>.FullName <span class="ps-flag">-NewName</span> <span class="ps-string">"$newName$ext"</span>
+  }
+}</code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="fully-randomized-file-names"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_frfn_ps_0"
+                                data-cmd="fully-randomized-file-names"
+                                data-output="(Renames photo.jpg → aB3kMn9pQr2xYz1w.jpg, report.pdf → Zt8fGh4jKl6mNp0s.pdf, etc.)"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_frfn_ps_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">PS&gt; </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_frfn_ps_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_frfn_ps_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_frfn_ps_0"
+                                ></div>
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="randomize-filenames"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code>randomize-filenames</code>
+                          </h4>
+                          <p class="mb-2">
+                            <span
+                              >Alias for
+                              <code>Rename-FilesRandomly</code>.</span
+                            >
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="PowerShell code for randomize-filenames"
+                            ><code><span class="ps-cmdlet">Set-Alias</span> <span class="ps-flag">-Name</span> randomize-filenames <span class="ps-flag">-Value</span> Rename-FilesRandomly</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="rand-fn"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2"><code>rand-fn</code></h4>
+                          <p class="mb-2">
+                            <span
+                              >Alias for
+                              <code>Rename-FilesRandomly</code> (short
+                              form).</span
+                            >
+                          </p>
+                          <span class="badge bg-info badge-alias"
+                            ><span>alias</span></span
+                          >
+                          <details class="code-details">
+                            <summary role="button" aria-expanded="false">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              ></i>
+                              <span>View Code</span>
+                            </summary>
+                            <pre
+                              class="code-block"
+                              role="region"
+                              aria-label="PowerShell code for rand-fn"
+                            ><code><span class="ps-cmdlet">Set-Alias</span> <span class="ps-flag">-Name</span> rand-fn <span class="ps-flag">-Value</span> Rename-FilesRandomly</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
                         data-alias="get-mimeapps"
                       >
                         <div class="card-body">

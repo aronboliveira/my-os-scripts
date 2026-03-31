@@ -21,7 +21,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - **`set-ps-very-low`**: Sets OOM score adjustment to very low (600).
 - **`set-ps-irrelevant`**: Sets OOM score adjustment to irrelevant (1000).
 
-
 - **`install_stremio_gnome`**: Downloads and installs Flathub repo (if missing) and then installs Stremio launching it in background mode, ensuring compatibility for both Wayland and X11 sessions.
 
 [Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing — flags: --no-persist, --no-composite]
@@ -421,6 +420,14 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [List connected monitors via xrandr]
 
 - ls-monitors
+
+[Detect connected monitors via EDID and audit panel technology (IPS/VA/TN/OLED) by hardware ID]
+
+- audit-monitors
+
+[Alias for detect_and_audit_monitors]
+
+- ls-display-techs
 
 [Check availability of DE-related programs (KDE/GNOME/XFCE system monitors, Discover, etc.)]
 
@@ -958,7 +965,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 #### Pretty_Kernel_OS
 
-
 - **`cat-mimeapps-pretty`**: Formatted output.
 
 [Pretty-print GRUB boot config with line numbers and syntax coloring]
@@ -1101,7 +1107,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - glx-info-pretty
 
 #### Pretty_System_Config
-
 
 - **`cat-compose-chars-pretty`**: Formatted output.
 
@@ -1529,6 +1534,26 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - gted
 
+[Short alias for rhythmbox-client]
+
+- rtb
+
+[Shuffle the Rhythmbox play order N times by toggling shuffle off and back on — $1: times (default: 5)]
+
+- rtb-mshuffle
+
+[Print D-Bus introspection XML for the Rhythmbox MPRIS2 interface]
+
+- ls-mpris-dbus-sender
+
+[Alias for ls-mpris-dbus-sender]
+
+- show-mpris-dbus-sender
+
+[Alias for ls-mpris-dbus-sender]
+
+- get-mpris-dbus-sender
+
 [Decode a percent-encoded URI string (e.g. %20 → space) — $1: uri (required)]
 
 - uri-decode
@@ -1904,7 +1929,6 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - **`show-compose-chars`**: Alias for cat-compose-chars.
 
-
 - **`cat-compose-chars`**: Displays the correct native sequence of Compose keys available under `en_US.UTF-8/Compose`.
 - **`ls-compose-chars`**: Lists Compose map details in standard `ls -ld` format.
 - **`less-compose-chars`**: Views the long Compose character mapping scheme with `less` pagination.
@@ -2223,6 +2247,18 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Remove double underscores from filenames interactively — $1: path (default: "."), $2: --no-interactive to skip prompts]
 
 - rmmultius
+
+[Rename all files in the current directory to random 16-char alphanumeric names, preserving extensions. Requires sudo]
+
+- fully-randomized-file-names
+
+[Alias for fully_randomized_file_names]
+
+- randomize-filenames
+
+[Alias for fully_randomized_file_names (short form)]
+
+- rand-fn
 
 ### Browser_Dev
 

@@ -421,6 +421,14 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - ls-monitors
 
+[Detecta monitores conectados via EDID e audita a tecnologia do painel (IPS/VA/TN/OLED) pelo ID de hardware]
+
+- audit-monitors
+
+[Alias para detect_and_audit_monitors]
+
+- ls-display-techs
+
 [Verifica disponibilidade de programas relacionados ao DE (monitores de sistema KDE/GNOME/XFCE, Discover, etc.)]
 
 - check-de-programs
@@ -1530,6 +1538,26 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - gted
 
+[Alias curto para rhythmbox-client]
+
+- rtb
+
+[Embaralha a ordem de reprodução do Rhythmbox N vezes alternando shuffle desligado e ligado — $1: vezes (padrão: 5)]
+
+- rtb-mshuffle
+
+[Imprime XML de introspecção D-Bus para a interface MPRIS2 do Rhythmbox]
+
+- ls-mpris-dbus-sender
+
+[Alias para ls-mpris-dbus-sender]
+
+- show-mpris-dbus-sender
+
+[Alias para ls-mpris-dbus-sender]
+
+- get-mpris-dbus-sender
+
 [Decodifica uma string URI codificada por porcentagem (ex. %20 → espaço) — $1: uri (obrigatório)]
 
 - uri-decode
@@ -2223,6 +2251,18 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Remove sublinhados duplos de nomes de arquivos interativamente — $1: caminho (padrão: "."), $2: --no-interactive para pular prompts]
 
 - rmmultius
+
+[Renomeia todos os arquivos no diretório atual para nomes alfanuméricos aleatórios de 16 caracteres, preservando extensões. Requer sudo]
+
+- fully-randomized-file-names
+
+[Alias para fully_randomized_file_names]
+
+- randomize-filenames
+
+[Alias para fully_randomized_file_names (forma abreviada)]
+
+- rand-fn
 
 ### Browser_Dev
 

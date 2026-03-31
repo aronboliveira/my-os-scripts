@@ -551,6 +551,21 @@ function Invoke-PackFiles {
 }
 Set-Alias -Name packf -Value Invoke-PackFiles
 
+<#
+.SYNOPSIS
+  Rename all files in the current directory to random 16-char alphanumeric names, preserving extensions.
+#>
+function Rename-FilesRandomly {
+  Get-ChildItem -File | ForEach-Object {
+    $ext = $_.Extension
+    $newName = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 16 | ForEach-Object { [char]$_ })
+    Rename-Item $_.FullName -NewName "$newName$ext"
+  }
+}
+Set-Alias -Name fully-randomized-file-names -Value Rename-FilesRandomly
+Set-Alias -Name randomize-filenames -Value Rename-FilesRandomly
+Set-Alias -Name rand-fn -Value Rename-FilesRandomly
+
 #endregion Filesystem_Utilities
 
 # ═══════════════════════════════════════════════════════════════════════════

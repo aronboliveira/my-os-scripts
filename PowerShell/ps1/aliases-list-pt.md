@@ -91,6 +91,11 @@ Transpilados da seção publicável do Bash para equivalentes em PowerShell (ape
 
 - wc-l-novendors
 
+[Calcula dígitos verificadores Módulo N para uma string numérica (ex. CPF mod-11, CNPJ) — $State: string de dígitos (obrigatório), $Total: base do módulo (obrigatório)]
+
+- calculate-check-sum
+- calc-checksum
+
 ## Pretty_Basic_Commands
 
 [Decodificação formatada de URI mostrando entrada e saída decodificada]
@@ -153,6 +158,18 @@ Transpilados da seção publicável do Bash para equivalentes em PowerShell (ape
 [Empacota todos os arquivos no diretório atual em subdiretórios de 100 arquivos cada]
 
 - packf
+
+[Renomeia todos os arquivos no diretório atual para nomes alfanuméricos aleatórios de 16 caracteres, preservando extensões]
+
+- fully-randomized-file-names
+
+[Alias para Rename-FilesRandomly]
+
+- randomize-filenames
+
+[Alias para Rename-FilesRandomly (forma abreviada)]
+
+- rand-fn
 
 ## Git_Aliases
 

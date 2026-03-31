@@ -4362,6 +4362,121 @@ Window Manager: Mutter (GNOME)"
                     </details>
                   </div>
                 </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="audit-monitors"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> audit-monitors </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Detect connected monitors via
+                        <b> EDID </b>
+                        and audit panel technology (IPS/VA/TN/OLED) by hardware
+                        ID.
+                      </span>
+                    </p>
+                    <span class="badge bg-warning badge-alias">
+                      <span> function </span>
+                    </span>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> View Code </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for audit-monitors"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> audit-monitors=<span class="bash-string">'detect_and_audit_monitors'</span></code></pre>
+                    </details>
+                    <details
+                      class="example-details"
+                      data-examples-for="audit-monitors"
+                    >
+                      <summary>
+                        <span>Usage Examples</span>
+                      </summary>
+                      <div class="examples-container">
+                        <div
+                          class="example-block"
+                          data-example-id="ex_audit_monitors_0"
+                          data-cmd="audit-monitors"
+                          data-output="╔════════════════════════════════════════════════════════════╗
+║          MONITOR PANEL TECHNOLOGY AUDIT                   ║
+╚════════════════════════════════════════════════════════════╝
+┌────────────────────────────────────────────────────────────┐
+│ PORT  │ HARDWARE_ID  │ PANEL TECHNOLOGY                    │
+├────────────────────────────────────────────────────────────┤
+│ HDMI-1│ 1e6d5bee     │ ✓ IPS Panel (LG 24GS60F UltraGear) │
+└────────────────────────────────────────────────────────────┘
+Total monitors detected: 1"
+                        >
+                          <button
+                            class="demo-btn"
+                            data-demo-target="ex_audit_monitors_0"
+                            type="button"
+                            aria-label="Start demo"
+                          >
+                            <i class="bi bi-play-fill"></i>
+                            <span>Start demo</span>
+                          </button>
+                          <div>
+                            <span class="prompt">$ </span
+                            ><span
+                              class="typed-cmd"
+                              id="typed_ex_audit_monitors_0"
+                            ></span
+                            ><span
+                              class="typing-cursor"
+                              id="cursor_ex_audit_monitors_0"
+                              style="display: none"
+                            ></span>
+                          </div>
+                          <div
+                            class="mock-output"
+                            id="output_ex_audit_monitors_0"
+                          ></div>
+                        </div>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-display-techs"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-display-techs </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Alias for
+                        <code> detect_and_audit_monitors </code>
+                        .
+                      </span>
+                    </p>
+                    <span class="badge bg-info badge-alias">
+                      <span> simple alias </span>
+                    </span>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> View Code </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-display-techs"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-display-techs=<span class="bash-string">'detect_and_audit_monitors'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
                 <div class="card alias-card shadow-sm" data-alias="net-probe">
                   <div class="card-body">
                     <h4 class="alias-name mb-2">
@@ -5785,6 +5900,155 @@ Tags: 12"
                           </details>
                         </div>
                       </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="fully-randomized-file-names"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> fully-randomized-file-names </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Rename all files in the current directory to
+                              <b> random 16-char alphanumeric names </b>
+                              , preserving extensions. Requires
+                              <code> sudo </code>
+                              .
+                            </span>
+                          </p>
+                          <span class="badge bg-warning badge-alias">
+                            <span> function </span>
+                          </span>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for fully-randomized-file-names"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> fully-randomized-file-names=<span class="bash-string">'fully_randomized_file_names'</span></code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="fully-randomized-file-names"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_frfn_0"
+                                data-cmd="fully-randomized-file-names"
+                                data-output="(Renames photo.jpg → aB3kMn9pQr2xYz1w.jpg, report.pdf → Zt8fGh4jKl6mNp0s.pdf, etc.)"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_frfn_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_frfn_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_frfn_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_frfn_0"
+                                ></div>
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="randomize-filenames"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> randomize-filenames </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Alias for
+                              <code> fully_randomized_file_names </code>
+                              .
+                            </span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span> simple alias </span>
+                          </span>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for randomize-filenames"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> randomize-filenames=<span class="bash-string">'fully_randomized_file_names'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="rand-fn"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> rand-fn </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Alias for
+                              <code> fully_randomized_file_names </code>
+                              (short form).
+                            </span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span> simple alias </span>
+                          </span>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for rand-fn"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> rand-fn=<span class="bash-string">'fully_randomized_file_names'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -6159,6 +6423,382 @@ DIMMs: 2x 16GB DDR4 2666MHz"
                                 ></div>
                               </div>
                             </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div class="card alias-card shadow-sm" data-alias="rtb">
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> rtb </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Short alias for
+                              <code> rhythmbox-client </code>
+                              .
+                            </span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span> simple alias </span>
+                          </span>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for rtb"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> rtb=<span class="bash-string">'rhythmbox-client'</span></code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="rtb"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_rtb_0"
+                                data-cmd="rtb --play"
+                                data-output="(Starts playback in Rhythmbox)"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_rtb_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_rtb_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_rtb_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_rtb_0"
+                                ></div>
+                              </div>
+                              <div
+                                class="example-block"
+                                data-example-id="ex_rtb_1"
+                                data-cmd="rtb --pause"
+                                data-output="(Pauses playback in Rhythmbox)"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_rtb_1"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_rtb_1"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_rtb_1"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_rtb_1"
+                                ></div>
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="rtb-mshuffle"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> rtb-mshuffle </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Shuffle the Rhythmbox play order
+                              <b> N times </b>
+                              by toggling shuffle off and back on so each
+                              iteration forces a fresh random sequence.
+                            </span>
+                          </p>
+                          <div class="params-section">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> $1: times (default: 5) </span>
+                            </span>
+                          </div>
+                          <span class="badge bg-warning badge-alias">
+                            <span> function </span>
+                          </span>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for rtb-mshuffle"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> rtb-mshuffle=<span class="bash-string">'rtb_multishuffle'</span></code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="rtb-mshuffle"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_rtb_mshuffle_0"
+                                data-cmd="rtb-mshuffle"
+                                data-output=" ↻ Shuffling Rhythmbox ↺ (iteration 1/5)…
+ ↻ Shuffling Rhythmbox ↺ (iteration 2/5)…
+ ↻ Shuffling Rhythmbox ↺ (iteration 3/5)…
+ ↻ Shuffling Rhythmbox ↺ (iteration 4/5)…
+ ↻ Shuffling Rhythmbox ↺ (iteration 5/5)…"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_rtb_mshuffle_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_rtb_mshuffle_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_rtb_mshuffle_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_rtb_mshuffle_0"
+                                ></div>
+                              </div>
+                              <div
+                                class="example-block"
+                                data-example-id="ex_rtb_mshuffle_1"
+                                data-cmd="rtb-mshuffle 10"
+                                data-output=" ↻ Shuffling Rhythmbox ↺ (iteration 1/10)…
+…
+ ↻ Shuffling Rhythmbox ↺ (iteration 10/10)…"
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_rtb_mshuffle_1"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_rtb_mshuffle_1"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_rtb_mshuffle_1"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_rtb_mshuffle_1"
+                                ></div>
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-mpris-dbus-sender"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-mpris-dbus-sender </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Print
+                              <b> D-Bus introspection XML </b>
+                              for the Rhythmbox MPRIS2 interface.
+                            </span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span> simple alias </span>
+                          </span>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-mpris-dbus-sender"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-mpris-dbus-sender=<span class="bash-string">'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.rhythmbox /org/mpris/MediaPlayer2 org.freedesktop.DBus.Introspectable.Introspect'</span></code></pre>
+                          </details>
+                          <details
+                            class="example-details"
+                            data-examples-for="ls-mpris-dbus-sender"
+                          >
+                            <summary>
+                              <span>Usage Examples</span>
+                            </summary>
+                            <div class="examples-container">
+                              <div
+                                class="example-block"
+                                data-example-id="ex_ls_mpris_0"
+                                data-cmd="ls-mpris-dbus-sender"
+                                data-output='method return time=... sender=:1.42 -> destination=:1.250
+   string "&lt;!DOCTYPE node PUBLIC ...&gt;
+   &lt;node&gt;...&lt;/node&gt;"'
+                              >
+                                <button
+                                  class="demo-btn"
+                                  data-demo-target="ex_ls_mpris_0"
+                                  type="button"
+                                  aria-label="Start demo"
+                                >
+                                  <i class="bi bi-play-fill"></i>
+                                  <span>Start demo</span>
+                                </button>
+                                <div>
+                                  <span class="prompt">$ </span
+                                  ><span
+                                    class="typed-cmd"
+                                    id="typed_ex_ls_mpris_0"
+                                  ></span
+                                  ><span
+                                    class="typing-cursor"
+                                    id="cursor_ex_ls_mpris_0"
+                                    style="display: none"
+                                  ></span>
+                                </div>
+                                <div
+                                  class="mock-output"
+                                  id="output_ex_ls_mpris_0"
+                                ></div>
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="show-mpris-dbus-sender"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> show-mpris-dbus-sender </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Alias for
+                              <code> ls-mpris-dbus-sender </code>
+                              .
+                            </span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span> simple alias </span>
+                          </span>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for show-mpris-dbus-sender"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> show-mpris-dbus-sender=<span class="bash-string">'ls-mpris-dbus-sender'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="get-mpris-dbus-sender"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> get-mpris-dbus-sender </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Alias for
+                              <code> ls-mpris-dbus-sender </code>
+                              .
+                            </span>
+                          </p>
+                          <span class="badge bg-info badge-alias">
+                            <span> simple alias </span>
+                          </span>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> View Code </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for get-mpris-dbus-sender"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> get-mpris-dbus-sender=<span class="bash-string">'ls-mpris-dbus-sender'</span></code></pre>
                           </details>
                         </div>
                       </div>

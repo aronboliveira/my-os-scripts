@@ -37,52 +37,52 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mSoftware GL rendering active.\033[0m"
     }
     alias setup-software-gl='setup_software_gl'
-## @description List all environment variables (env), sorted alphabetically.
+    ## @description List all environment variables (env), sorted alphabetically.
     alias show-all-env-vars='env | grep -v "^$" | sort'
     alias ls-all-env-vars='show-all-env-vars'
-## @description List all exported variables (printenv), sorted alphabetically.
+    ## @description List all exported variables (printenv), sorted alphabetically.
     alias show-all-printenv-vars='printenv | grep -v "^$" | sort'
     alias ls-all-printenv-vars='show-all-printenv-vars'
-## @description List all shell variables (set -o posix; set), sorted alphabetically.
+    ## @description List all shell variables (set -o posix; set), sorted alphabetically.
     alias show-all-sh-vars='( set -o posix; set ) | grep -v "^$" | sort'
     alias ls-all-sh-vars='show-all-sh-vars'
-## @description Show current display session type (x11 or wayland).
+    ## @description Show current display session type (x11 or wayland).
     alias show-display-session="echo \$XDG_SESSION_TYPE"
     alias ls-display-session='show-display-session'
     alias echo-display-session='show-display-session'
-## @description Show current desktop session name (e.g., gnome, plasma).
+    ## @description Show current desktop session name (e.g., gnome, plasma).
     alias show-desktop-session="echo \$XDG_SESSION_DESKTOP"
     alias ls-desktop-session='show-desktop-session'
     alias echo-desktop-session='show-desktop-session'
-## @description Show XDG data directories path list.
+    ## @description Show XDG data directories path list.
     alias show-datadirs-session="echo \$XDG_DATA_DIRS"
     alias ls-datadirs-session='show-datadirs-session'
     alias echo-datadirs-session='show-datadirs-session'
-## @description Show host machine type (e.g., x86_64).
+    ## @description Show host machine type (e.g., x86_64).
     alias show-hosttype="echo \$HOSTTYPE"
     alias ls-hosttype='show-hosttype'
     alias echo-hosttype='show-hosttype'
-## @description Show current user's home directory path.
+    ## @description Show current user's home directory path.
     alias show-home="echo \$HOME"
     alias ls-home='show-home'
     alias echo-home='show-home'
-## @description Show current username.
+    ## @description Show current username.
     alias show-user="echo \$USER"
     alias ls-user='show-user'
     alias echo-user='show-user'
-## @description Show current shell binary path.
+    ## @description Show current shell binary path.
     alias show-shell="echo \$SHELL"
     alias ls-shell='show-shell'
     alias echo-shell='show-shell'
-## @description Show current working directory (alias for pwd).
+    ## @description Show current working directory (alias for pwd).
     alias show-wrkdir="echo \$PWD"
     alias ls-wrkdir='show-wrkdir'
     alias echo-wrkdir='show-wrkdir'
-## @description Show display server type code (x11 or wayland).
+    ## @description Show display server type code (x11 or wayland).
     alias show-display-server-code="echo \$XDG_SESSION_TYPE"
     alias ls-display-server-code='show-display-server-code'
     alias echo-display-server-code='show-display-server-code'
-## @description Show human-readable description of the current display server.
+    ## @description Show human-readable description of the current display server.
     show_display_server() {
       local display="${DISPLAY:-unset}"
       
@@ -118,21 +118,21 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias show-display-server='show_display_server'
     alias ls-display-server='show-display-server'
     alias echo-display-server='show-display-server'
-## @description Show D-Bus session bus address.
+    ## @description Show D-Bus session bus address.
     alias show-dbus-addr="echo \$DBUS_SESSION_BUS_ADDRESS"
     alias ls-dbus-addr='show-dbus-addr'
     alias echo-dbus-addr='show-dbus-addr'
-## @description Show the active display manager service unit name.
+    ## @description Show the active display manager service unit name.
     alias show-display-manager='systemctl show -p Id display-manager.service'
     alias ls-display-manager='show-display-manager'
-## @description Show the default display manager binary from X11 config.
+    ## @description Show the default display manager binary from X11 config.
     alias show-display-manager-x11='sudo cat /etc/X11/default-display-manager'
     alias ls-display-manager-x11='show-display-manager-x11'
-## @description Show the current desktop environment identifier.
+    ## @description Show the current desktop environment identifier.
     alias show-current-de="echo \$XDG_CURRENT_DESKTOP"
     alias ls-current-de='show-current-de'
     alias echo-current-de='show-current-de'
-## @description Show available version of Desktop Environment based on XFCE to be used in session load
+    ## @description Show available version of Desktop Environment based on XFCE to be used in session load
     alias show-av-xde='cat ~/.xsession'
     alias ls-av-xde='show-av-xde'
     alias echo-av-xde='show-av-xde'
@@ -142,11 +142,11 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias show-available-xdesktop='show-av-xde'
     alias ls-available-xdesktop='show-av-xde'
     alias echo-available-xdesktop='show-av-xde'
-## @description Show current desktop environment identifier (alias for show-current-de).
+    ## @description Show current desktop environment identifier (alias for show-current-de).
     alias show-desktop-env="echo \$XDG_CURRENT_DESKTOP"
     alias ls-desktop-env='show-desktop-env'
     alias echo-desktop-env='show-desktop-env'
-## @description Detect the active display manager and show its greeter
+    ## @description Detect the active display manager and show its greeter
     ##   configuration. Supports LightDM, GDM3, SDDM, LXDM, XDM, and SLiM.
     show_greeter_verbose() {
       local dm
@@ -193,39 +193,39 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias show-greeter-verbose='show_greeter_verbose'
     alias ls-greeter-verbose='show-greeter-verbose'
     alias echo-greeter-verbose='show-greeter-verbose'
-## @description Show only the greeter line from display-manager config.
+    ## @description Show only the greeter line from display-manager config.
     alias show-greeter='show-greeter-verbose | grep "Greeter:"'
     alias ls-greeter='show-greeter'
     alias echo-greeter='show-greeter'
-## @description Show SDDM KDE settings from /etc/sddm.conf.d/kde_settings.conf.
+    ## @description Show SDDM KDE settings from /etc/sddm.conf.d/kde_settings.conf.
     alias cat-kde-settings='sudo cat /etc/sddm.conf.d/kde_settings.conf 2>/dev/null || echo "No KDE settings found"'
     ## @description Alias for cat-kde-settings.
     alias ls-kde-settings='sudo cat /etc/sddm.conf.d/kde_settings.conf 2>/dev/null || echo "No KDE settings found"'
     ## @description Alias for cat-kde-settings.
     alias show-kde-settings='sudo cat /etc/sddm.conf.d/kde_settings.conf 2>/dev/null || echo "No KDE settings found"'
-## @description Show GDM3 main config from /etc/gdm3/gdm3.conf.
+    ## @description Show GDM3 main config from /etc/gdm3/gdm3.conf.
     alias cat-gdm3-conf='sudo cat /etc/gdm3/gdm3.conf 2>/dev/null || echo "No GDM3 config found"'
     ## @description Alias for cat-gdm3-conf.
     alias ls-gdm3-conf='sudo cat /etc/gdm3/gdm3.conf 2>/dev/null || echo "No GDM3 config found"'
     ## @description Alias for cat-gdm3-conf.
     alias show-gdm3-conf='sudo cat /etc/gdm3/gdm3.conf 2>/dev/null || echo "No GDM3 config found"'
-## @description Show GDM3 daemon config from /etc/gdm3/daemon.conf.
+    ## @description Show GDM3 daemon config from /etc/gdm3/daemon.conf.
     alias cat-gdm3-daemon='sudo cat /etc/gdm3/daemon.conf 2>/dev/null || echo "No GDM3 daemon config found"'
     ## @description Alias for cat-gdm3-daemon.
     alias ls-gdm3-daemon='sudo cat /etc/gdm3/daemon.conf 2>/dev/null || echo "No GDM3 daemon config found"'
     ## @description Alias for cat-gdm3-daemon.
     alias show-gdm3-daemon='sudo cat /etc/gdm3/daemon.conf 2>/dev/null || echo "No GDM3 daemon config found"'
-## @description Show GDM3 custom config from /etc/gdm3/custom.conf.
+    ## @description Show GDM3 custom config from /etc/gdm3/custom.conf.
     alias cat-gdm3-custom='sudo cat /etc/gdm3/custom.conf 2>/dev/null || echo "No GDM3 custom config found"'
     ## @description Alias for cat-gdm3-custom.
     alias ls-gdm3-custom='sudo cat /etc/gdm3/custom.conf 2>/dev/null || echo "No GDM3 custom config found"'
     ## @description Alias for cat-gdm3-custom.
     alias show-gdm3-custom='sudo cat /etc/gdm3/custom.conf 2>/dev/null || echo "No GDM3 custom config found"'
-## @description Install wmctrl and show window manager info via wmctrl -m.
+    ## @description Install wmctrl and show window manager info via wmctrl -m.
     alias show-win-mng-m='sudo apt install -y wmctrl 2>/dev/null && wmctrl -m || echo "wmctrl not available"'
     alias ls-win-mng-m='show-win-mng-m'
     alias echo-win-mng-m='show-win-mng-m'
-## @description Detect which window manager is running by scanning process
+    ## @description Detect which window manager is running by scanning process
     ##   list against a comprehensive list of known X11/Wayland WMs.
     show_win_mng() {
       local WM_PATTERN='openbox|fluxbox|icewm|jwm|fvwm3|compiz|blackbox|metacity|mutter|kwin|xfwm4|afterstep|windowmaker|enlightenment|ctwm|9wm|aewm\+\+|amiwm|evilwm|flwm|lwm|marco|muffin|pekwm|ratpoison|subtle|twm|ukwm|windowlab|wm2|i3|awesome|bspwm|herbstluftwm|spectrwm|qtile|river|niri|dwm|xmonad|stumpwm|sawfish|wmii|notion|sway|weston|labwc|wayfire|hyprland|cage|phoc|cosmic-comp'
@@ -235,26 +235,26 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias show-window-manager='show_win_mng'
     alias ls-window-manager='show_win_mng'
     alias ls-win-mng='show-win-mng'
-## @description Show running screen compositor processes (picom, compton, kwin, etc.).
+    ## @description Show running screen compositor processes (picom, compton, kwin, etc.).
     alias show-screen-compositor='ps aux | grep -E "picom|compton|kwin|mutter|xfwm|wayfire" | grep -v grep'
     alias ls-screen-compositor='show-screen-compositor'
-## @description Show running screen locker processes (xscreensaver, swaylock, i3lock, etc.).
+    ## @description Show running screen locker processes (xscreensaver, swaylock, i3lock, etc.).
     alias show-screen-locker='ps aux | grep -E "xscreensaver|light-locker|swaylock|i3lock|gnome-screensaver" | grep -v grep'
     alias ls-screen-locker='show-screen-locker'
-## @description Show comprehensive display environment info (session, DM, greeter, compositor, WM).
+    ## @description Show comprehensive display environment info (session, DM, greeter, compositor, WM).
     alias show-full-display-info='show-desktop && show-display-session && show-display-manager && show-greeter && show-screen-compositor && show-win-mng'
     alias ls-full-display-info='show-full-display-info'
     alias echo-full-display-info='show-full-display-info'
-## @description Show compact desktop environment summary.
+    ## @description Show compact desktop environment summary.
     alias show-desktop="show-display-session; show-display-server; show-desktop-session; show-desktop-env; show-display-manager; show-win-mng"
     alias ls-desktop='show-desktop'
     alias echo-desktop='show-desktop'
-## @description List installed GUI toolkit runtime libraries (GTK and Qt).
+    ## @description List installed GUI toolkit runtime libraries (GTK and Qt).
     alias show-installed-tks='dpkg -l | grep -E "libgtk|libqt" | grep -v dev'
     alias ls-installed-tks='show-installed-tks'
 
     alias install-plasma-backends='sudo apt install -y plasma-discover-backend-flatpak plasma-discover-backend-snap'
-## @description Install Stremio (optimized for GNOME/X11), handling Flatpak dependencies.
+    ## @description Install Stremio (optimized for GNOME/X11), handling Flatpak dependencies.
     install_stremio_gnome() {
       if [[ ! "${XDG_CURRENT_DESKTOP,,}" =~ gnome ]]; then
         echo -e "⚠️  \033[1;33mWarning: This installer is tailored for GNOME. Current DE: ${XDG_CURRENT_DESKTOP:-Unknown}\033[0m"
@@ -352,7 +352,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       ip route get "$ip" 2>/dev/null || true
     }
     alias net-probe='net_probe'
-## @description Run powerstat (RAPL) and tee output to a timestamped log,
+    ## @description Run powerstat (RAPL) and tee output to a timestamped log,
     ##   with the Watts column moved from last to second position.
     ## @param $1 {number} duration - Recording duration in seconds (default: 3600)
     ## @param $2 {number} tick     - Sampling interval in seconds (default: 1)
@@ -369,7 +369,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       sudo stdbuf -oL powerstat -R "$tick" "$duration" | tee "$log"
     }
     alias track-power-usage='track_power_usage'
-## @description Like cat_band but tee the bandwidth result to a timestamped
+    ## @description Like cat_band but tee the bandwidth result to a timestamped
     ##   log file in ~/.logs/cat-band/.
     cat_band_tee() {
       mkdir -p "$HOME/.logs/cat-band"
@@ -385,7 +385,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "\033[2;37mSaved to $log\033[0m"
     }
     alias cat-band-tee='cat_band_tee'
-## @description Like cat_band_tee but with an automatic duration (in seconds)
+    ## @description Like cat_band_tee but with an automatic duration (in seconds)
     ##   instead of waiting for Enter. Samples rx_bytes at start, sleeps for
     ##   the given duration, then samples again and tees the result.
     ## @param $1 {number} seconds - Duration to track (default: 60)
@@ -421,7 +421,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mUser '$username' created and added to sudo group.\033[0m"
     }
     alias add-sudo-user='add_sudo_user'
-## @description Display sudoers file content (requires permissions).
+    ## @description Display sudoers file content (requires permissions).
     alias cat-sudoers='cat /etc/sudoers 2>/dev/null || echo "Cannot read sudoers file"'
     ## @description Alias for cat-sudoers.
     alias ls-sudoers='cat /etc/sudoers 2>/dev/null || echo "Cannot read sudoers file"'
@@ -429,7 +429,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias show-sudoers='cat /etc/sudoers 2>/dev/null || echo "Cannot read sudoers file"'
     ## @description Scan sudo health: validates timestamp, shows TTY, sudo sessions, environment vars, and sudoers content.
     alias scan-sudo-health='sudo -v 2>&1; echo "Timestamp: $(sudo -v 2>&1 && echo valid || echo expired)"; echo "---TTY---"; tty; echo "---SUDO SESSION---"; sudo ls /run/sudo/ts/ 2>/dev/null && sudo ls -la /run/sudo/ts/ 2>/dev/null; echo "---ENV---"; echo "TERM=$TERM USER=$USER PWD=$PWD HOSTTYPE=$HOSTTYPE HOME=$HOME SHELL=$SHELL"; echo "---SUDOERS---"; sudo cat /etc/sudoers 2>/dev/null || echo "Cannot read sudoers file"'
-## @description Show sudoers timestamp_timeout setting.
+    ## @description Show sudoers timestamp_timeout setting.
     alias cat-sudoers-timestamp='sudo cat /etc/sudoers | grep timestamp_timeout 2>/dev/null || echo "No timestamp_timeout setting found in sudoers"'
     ## @description Alias for cat-sudoers-timestamp.
     alias ls-sudoers-timestamp='sudo cat /etc/sudoers | grep timestamp_timeout 2>/dev/null || echo "No timestamp_timeout setting found in sudoers"'
@@ -463,7 +463,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mCinnamon removed.\033[0m"
     }
     alias remove-cinnamon='remove_cinnamon'
-## @description Set Nautilus as default file manager (replaces Thunar/other).
+    ## @description Set Nautilus as default file manager (replaces Thunar/other).
     ## @flag --help  Show usage
     set_nautilus_default() {
       if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
@@ -500,7 +500,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mNautilus is now the default file manager.\033[0m"
     }
     alias set-nautilus-default='set_nautilus_default'
-## @description Hide Thunar from MIME associations (user-level override).
+    ## @description Hide Thunar from MIME associations (user-level override).
     ## @flag --help  Show usage
     hide_thunar_mime() {
       if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
@@ -527,11 +527,11 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mThunar hidden from MIME associations.\033[0m"
     }
     alias hide-thunar-mime='hide_thunar_mime'
-## @description List running compositor/window manager processes.
+    ## @description List running compositor/window manager processes.
     alias ps-compositors='ps aux | grep -E "(gnome-shell|xfwm4|mutter|kwin|compositor)" | grep -v grep'
-## @description Show Mutter experimental features.
+    ## @description Show Mutter experimental features.
     alias get-mutter-features='gsettings get org.gnome.mutter experimental-features 2>/dev/null || echo "Mutter settings not available"'
-## @description Reset Mutter experimental features to empty (with confirmation).
+    ## @description Reset Mutter experimental features to empty (with confirmation).
     reset_mutter_features() {
       echo -e "\033[1;33m⚠️  This will reset org.gnome.mutter experimental-features to []\033[0m"
       local current
@@ -546,11 +546,171 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mMutter experimental features reset.\033[0m"
     }
     alias reset-mutter-features='reset_mutter_features'
-## @description Show root window geometry (width, height, depth).
+    ## @description Show root window geometry (width, height, depth).
     alias xwin-root-info='xwininfo -root 2>/dev/null | grep -E "(Width|Height|Depth)"'
-## @description List connected monitors via xrandr.
+    ## @description List connected monitors via xrandr.
     alias ls-monitors='xrandr --listmonitors 2>/dev/null'
-## @description Check availability of DE-related programs (KDE/GNOME/XFCE).
+    ## @description Detect connected monitors via EDID and audit panel technology (IPS/VA/TN/OLED) by hardware ID.
+    detect_and_audit_monitors() {
+        echo "╔════════════════════════════════════════════════════════════╗"
+        echo "║          MONITOR PANEL TECHNOLOGY AUDIT                   ║"
+        echo "║          Generated: $(date '+%Y-%m-%d %H:%M:%S')                      ║"
+        echo "╚════════════════════════════════════════════════════════════╝"
+        echo ""
+        
+        # Extract EDID data and parse manufacturer + product codes
+        local raw_data=$(xrandr --verbose 2>/dev/null | awk '
+            /EDID:/ { 
+                in_edid = 1
+                edid_lines = 0
+                next
+            }
+            in_edid {
+                if ($0 ~ /^[[:space:]]*$/) {
+                    in_edid = 0
+                    next
+                }
+                # Remove all whitespace and concatenate
+                gsub(/[[:space:]]/, "")
+                edid_hex = edid_hex $0
+                edid_lines++
+                if (edid_lines >= 8) {
+                    # Extract bytes 8-11 (manufacturer ID and product code)
+                    # Manufacturer: bytes 8-9 (big-endian)
+                    # Product Code: bytes 10-11 (little-endian, needs swap)
+                    mfr = substr(edid_hex, 17, 4)
+                    prod_low = substr(edid_hex, 21, 2)
+                    prod_high = substr(edid_hex, 23, 2)
+                    # Construct hardware signature
+                    print mfr prod_high prod_low
+                    in_edid = 0
+                    edid_hex = ""
+                    edid_lines = 0
+                }
+            }
+        ')
+        
+        if [ -z "$raw_data" ]; then
+            echo "❌ ERROR: No EDID data detected"
+            echo "   Possible causes:"
+            echo "   • No monitors connected"
+            echo "   • GPU driver blocking DDC/CI"
+            echo "   • xrandr not available"
+            return 1
+        fi
+        
+        local monitor_num=0
+        
+        echo "┌────────────────────────────────────────────────────────────┐"
+        printf "│ %-5s │ %-12s │ %-35s │\n" "PORT" "HARDWARE_ID" "PANEL TECHNOLOGY"
+        echo "├────────────────────────────────────────────────────────────┤"
+        
+        # Get display port names for context
+        local ports=$(xrandr | grep " connected" | awk '{print $1}')
+        local port_array=($ports)
+        
+        for hw_id in $raw_data; do
+            local port="${port_array[$monitor_num]:-UNKNOWN}"
+            monitor_num=$((monitor_num + 1))
+            
+            printf "│ %-5s │ %-12s │ " "$port" "$hw_id"
+            
+            case "$hw_id" in
+                #============================================================
+                # DELL - Professional/Gaming Monitors
+                #============================================================
+                "10ac423d") echo "✓ IPS Panel (Dell P2423D Professional)" ;;
+                "10ac423c") echo "✓ IPS Panel (Dell P2723D Professional)" ;;
+                "10ac411a") echo "✓ IPS Panel (Dell S2421HGF Gaming)" ;;
+                "10ac4110") echo "⚠ TN Panel (Dell E2020H Essential)" ;;
+                "10ac40b3") echo "✓ IPS Panel (Dell UltraSharp U2722DE)" ;;
+                "10aca1af") echo "★ QD-OLED (Alienware AW3423DW)" ;;
+                "10aca1b3") echo "★ QD-OLED (Alienware AW3423DWF)" ;;
+                "10ac41b9") echo "✓ IPS Panel (Dell S2722DGM)" ;;
+                
+                #============================================================
+                # LG - UltraGear Gaming / UltraWide
+                #============================================================
+                "1e6d5bee") echo "✓ IPS Panel (LG 24GS60F UltraGear 180Hz)" ;;
+                "1e6d5b3e") echo "✓ IPS Panel (LG 24GN600 144Hz)" ;;
+                "1e6d5b5c") echo "✓ IPS Panel (LG 29WP500 UltraWide)" ;;
+                "1e6d5acd") echo "⚠ TN Panel (LG 20MK400H Budget)" ;;
+                "1e6d5c"*)  echo "★ OLED Panel (LG OLED Series)" ;;
+                "1e6d5e"*)  echo "✓ IPS Panel (LG UltraFine Series)" ;;
+                "1e6d77"*)  echo "✓ IPS Panel (LG UltraGear High-End)" ;;
+                
+                #============================================================
+                # SAMSUNG - Odyssey Gaming / Professional
+                #============================================================
+                "4c2d0d2c") echo "⚙ VA Panel (Samsung Odyssey G3 FHD)" ;;
+                "4c2d0d2a") echo "✓ IPS Panel (Samsung T350 FHD)" ;;
+                "4c2d0c"*)  echo "⚙ VA Panel (Samsung Odyssey Gaming)" ;;
+                "4c2d0e"*)  echo "✓ IPS Panel (Samsung Professional)" ;;
+                "4c2d06"*)  echo "★ QLED Panel (Samsung High-End)" ;;
+                
+                #============================================================
+                # AOC - Gaming/Budget
+                #============================================================
+                "05e324g2") echo "✓ IPS Panel (AOC 24G2 Hero)" ;;
+                "05e32590") echo "⚠ TN Panel (AOC G2590FX Speed)" ;;
+                "05e327"*)  echo "✓ IPS Panel (AOC 27G2 Series)" ;;
+                "05e325"*)  echo "⚙ VA Panel (AOC Curved Series)" ;;
+                
+                #============================================================
+                # ASUS - ROG/TUF Gaming
+                #============================================================
+                "06b3"*)    echo "✓ IPS Panel (ASUS ROG/TUF Series)" ;;
+                
+                #============================================================
+                # BenQ - Gaming/Professional
+                #============================================================
+                "09d1"*)    echo "✓ IPS Panel (BenQ Professional)" ;;
+                
+                #============================================================
+                # ViewSonic - Professional/Gaming
+                #============================================================
+                "5a63"*)    echo "✓ IPS Panel (ViewSonic Professional)" ;;
+                
+                #============================================================
+                # ACER/Predator
+                #============================================================
+                "4c7"*)     echo "✓ IPS Panel (Acer/Predator)" ;;
+                
+                #============================================================
+                # WHITE LABEL / OEM PANELS (Brazilian Market Common)
+                #============================================================
+                "09e5"*)    echo "≈ IPS-like (BOE Factory - Mancer/Acer OEM)" ;;
+                "1224"*)    echo "≈ VA-like (HKC Factory - Concórdia/Curved)" ;;
+                "0dae"*)    echo "≈ IPS-like (Innolux Panel - Pichau/Mancer)" ;;
+                "3dae"*)    echo "≈ VA-like (Panda Panel - Budget Import)" ;;
+                "30e4"*)    echo "≈ IPS-like (LG Display OEM)" ;;
+                "4dd9"*)    echo "≈ VA-like (Sharp OEM Panel)" ;;
+                "22f0"*)    echo "≈ IPS-like (AUO Panel - Generic)" ;;
+                
+                #============================================================
+                # UNKNOWN / UNRECOGNIZED
+                #============================================================
+                *)          echo "⚠ UNKNOWN (Hardware ID not in database)" ;;
+            esac
+            echo "│"
+        done
+        
+        echo "└────────────────────────────────────────────────────────────┘"
+        echo ""
+        echo "LEGEND:"
+        echo "  ✓ IPS   = Wide viewing angles, accurate colors (Premium)"
+        echo "  ⚙ VA    = High contrast, curved options (Mid-range)"
+        echo "  ⚠ TN    = Fast response, narrow angles (Budget/Esports)"
+        echo "  ★ OLED  = Perfect blacks, premium quality (High-end)"
+        echo "  ≈       = OEM panel (technology estimated from signature)"
+        echo ""
+        echo "Total monitors detected: $monitor_num"
+    }
+    ## @description Alias for detect_and_audit_monitors.
+    alias audit-monitors='detect_and_audit_monitors'
+    ## @description Alias for detect_and_audit_monitors.
+    alias ls-display-techs='detect_and_audit_monitors'
+    ## @description Check availability of DE-related programs (KDE/GNOME/XFCE).
     check_de_programs() {
       local programs=(
         "plasma-systemmonitor"
@@ -573,7 +733,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       done
     }
     alias check-de-programs='check_de_programs'
-## @description Mark a .desktop file as trusted for GNOME/DI NG.
+    ## @description Mark a .desktop file as trusted for GNOME/DI NG.
     ## @param $1 {string} filename or path - Desktop entry file to trust
     trust_desktop_entry() {
       local input="$1"
@@ -655,7 +815,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     }
     ## @description Mark desktop entry as trusted.
     alias trust-desktop='trust_desktop_entry'
-## @description Install essential KDE packages for GTK integration and productivity.
+    ## @description Install essential KDE packages for GTK integration and productivity.
     install_kde_apt_packages() {
       echo -e "📦 \033[1;36mInstalling KDE packages...\033[0m"
       sudo apt update && sudo apt install -y \
@@ -668,14 +828,14 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mKDE packages installed.\033[0m"
     }
     alias install-kde-pkgs='install_kde_apt_packages'
-## @description Ensure ~/Templates directory and "Empty File" template exist.
+    ## @description Ensure ~/Templates directory and "Empty File" template exist.
     ensure_templates_dir() {
       [[ -d "$HOME/Templates" ]] || mkdir -p "$HOME/Templates"
       [[ -f "$HOME/Templates/Empty File" ]] || touch "$HOME/Templates/Empty File"
       echo -e "✅ \033[1;32m~/Templates and 'Empty File' template ensured.\033[0m"
     }
     alias ensure-templates='ensure_templates_dir'
-## @description Install Nautilus extensions and ensure Templates directory.
+    ## @description Install Nautilus extensions and ensure Templates directory.
     install_nautilus_extensions() {
       echo -e "📦 \033[1;36mInstalling Nautilus extensions...\033[0m"
       sudo apt update && sudo apt install -y \
@@ -686,7 +846,7 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       echo -e "✅ \033[1;32mNautilus extensions installed.\033[0m"
     }
     alias install-nautilus-ext='install_nautilus_extensions'
-## @description Create a Nautilus script for creating new files via Zenity dialog.
+    ## @description Create a Nautilus script for creating new files via Zenity dialog.
     create_nautilus_newfile_script() {
       local script_dir="$HOME/.local/share/nautilus/scripts"
       local script_path="$script_dir/New File"
@@ -722,7 +882,7 @@ EOF
       echo -e "✅ \033[1;32mNautilus 'New File' script created at:\033[0m $script_path"
     }
     alias create-nautilus-newfile='create_nautilus_newfile_script'
-## @description Install Docker and comprehensive dev tools on Debian 13 Trixie only.
+    ## @description Install Docker and comprehensive dev tools on Debian 13 Trixie only.
     ## @note Uses bookworm Docker repo; installs NVM, Node 24, PHP 8.4, Brave, and many CLI tools.
     install_debian_trixie_devtools() {
       local distro_id distro_codename
@@ -778,7 +938,7 @@ EOF
       echo -e "   npm: $(npm -v)"
     }
     alias install-trixie-devtools='install_debian_trixie_devtools'
-## @description Show recent journal entries related to screen recording, PipeWire, and desktop portals.
+    ## @description Show recent journal entries related to screen recording, PipeWire, and desktop portals.
     ## @param $1 {int} tail_lines - Number of tail lines to show per section (default: 50)
     show_journal_screens() {
       local tail_lines="${1:-50}"
@@ -824,7 +984,7 @@ EOF
       xdg-mime default "$desktop_file" "$mimetype" && update-desktop-database ~/.local/share/applications/ 2>/dev/null
     }
     alias def-org-gnome-xmime='def_gnome_xmime'
-## @description Query the default application for a MIME type via xdg-mime query default.
+    ## @description Query the default application for a MIME type via xdg-mime query default.
     ## @param $1 {string} mimetype - MIME type to query (e.g., inode/directory, text/plain, application/pdf)
     get_gnome_xmime() {
       _require_gnome_desktop || return 1
@@ -832,14 +992,14 @@ EOF
       xdg-mime query default "$mimetype"
     }
     alias get-org-gnome-xmime='get_gnome_xmime'
-## @description Set the default GNOME application for a MIME type (alias for def-org-gnome-xmime).
+    ## @description Set the default GNOME application for a MIME type (alias for def-org-gnome-xmime).
     ## @param $1 {string} app - GNOME application name (e.g., Nautilus, TextEditor)
     ## @param $2 {string} mimetype - MIME type to associate (e.g., inode/directory, text/plain)
     set_gnome_xmime() {
       def_gnome_xmime "$@"
     }
     alias set-org-gnome-xmime='set_gnome_xmime'
-## @description Reset a GNOME gsettings key to its default value via gsettings reset.
+    ## @description Reset a GNOME gsettings key to its default value via gsettings reset.
     ## @param $1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)
     ## @param $2 {string} key - Key name to reset (e.g., gtk-theme, color-scheme)
     def_gnome_gset() {
@@ -860,7 +1020,7 @@ EOF
       gsettings reset "$schema" "$key"
     }
     alias def-org-gnome-gset='def_gnome_gset'
-## @description Get a GNOME gsettings value via gsettings get.
+    ## @description Get a GNOME gsettings value via gsettings get.
     ## @param $1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)
     ## @param $2 {string} key - Key name to get (e.g., gtk-theme, color-scheme)
     get_gnome_gset() {
@@ -881,7 +1041,7 @@ EOF
       gsettings get "$schema" "$key"
     }
     alias get-org-gnome-gset='get_gnome_gset'
-## @description Set a GNOME gsettings value via gsettings set, with schema/key/value validation.
+    ## @description Set a GNOME gsettings value via gsettings set, with schema/key/value validation.
     ## @param $1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)
     ## @param $2 {string} key - Key name to set (e.g., gtk-theme, color-scheme)
     ## @param $3 {string} value - Value to set (must match the key's type/range)
@@ -1533,19 +1693,19 @@ KILL_SCRIPT_EOF
       alias ls-linux-v='sudo cat /proc/version'
       ## @description Alias for cat-linux-v.
       alias show-linux-v='sudo cat /proc/version'
-## @description Show distro ID (debian, ubuntu, fedora, etc.).
+      ## @description Show distro ID (debian, ubuntu, fedora, etc.).
       alias cat-distro-n='(. /etc/os-release 2>/dev/null && echo "${ID:-unknown}")'
       ## @description Alias for cat-distro-n.
       alias ls-distro-n='(. /etc/os-release 2>/dev/null && echo "${ID:-unknown}")'
       ## @description Alias for cat-distro-n.
       alias show-distro-n='(. /etc/os-release 2>/dev/null && echo "${ID:-unknown}")'
-## @description Show distro version number.
+      ## @description Show distro version number.
       alias cat-distro-v='(. /etc/os-release 2>/dev/null && echo "${VERSION_ID:-unknown}")'
       ## @description Alias for cat-distro-v.
       alias ls-distro-v='(. /etc/os-release 2>/dev/null && echo "${VERSION_ID:-unknown}")'
       ## @description Alias for cat-distro-v.
       alias show-distro-v='(. /etc/os-release 2>/dev/null && echo "${VERSION_ID:-unknown}")'
-## @description Show full distro name with version.
+      ## @description Show full distro name with version.
       alias cat-distro='(. /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-unknown}")'
       ## @description Alias for cat-distro.
       alias ls-distro='(. /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-unknown}")'
@@ -1561,25 +1721,25 @@ KILL_SCRIPT_EOF
       alias ls-cmdline='sudo cat /proc/cmdline'
       ## @description Alias for cat-cmdline.
       alias show-cmdline='sudo cat /proc/cmdline'
-## @description Show mimeapps list in ~/.config
+      ## @description Show mimeapps list in ~/.config
       alias cat-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="'
       ## @description Alias for cat-mimeapps.
       alias ls-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="'
       ## @description Alias for cat-mimeapps.
       alias show-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="'
-## @description Show mimeapps list in ~/.local/share/applications
+      ## @description Show mimeapps list in ~/.local/share/applications
       alias cat-share-mimeapps='cat ~/.local/share/applications/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME FOR APPS ==="'
       ## @description Alias for cat-share-mimeapps.
       alias ls-share-mimeapps='cat ~/.local/share/applications/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME FOR APPS ==="'
       ## @description Alias for cat-share-mimeapps.
       alias show-share-mimeapps='cat ~/.local/share/applications/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME FOR APPS ==="'
-## @description Show both mimeapps lists (config and local share)
+      ## @description Show both mimeapps lists (config and local share)
       alias cat-all-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="; cat ~/.local/share/applications/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME FOR APPS ==="'
       ## @description Alias for cat-all-mimeapps.
       alias ls-all-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="; cat ~/.local/share/applications/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME FOR APPS ==="'
       ## @description Alias for cat-all-mimeapps.
       alias show-all-mimeapps='cat ~/.config/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR CONFIG OF MIME FOR APPS ==="; cat ~/.local/share/applications/mimeapps.list 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME FOR APPS ==="'
-## @description Show mimeinfo.cache
+      ## @description Show mimeinfo.cache
       alias cat-share-mimecache='sudo cat /usr/share/applications/mimeinfo.cache 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME INFO ==="'
       ## @description Alias for cat-share-mimecache.
       alias ls-share-mimecache='sudo cat /usr/share/applications/mimeinfo.cache 2>/dev/null || echo "=== NO LIST FOUND FOR SHARE OF MIME INFO ==="'
@@ -1632,16 +1792,16 @@ KILL_SCRIPT_EOF
       alias ls-mem-inf='sudo cat /proc/meminfo'
       ## @description Alias for cat-mem-inf.
       alias show-mem-inf='sudo cat /proc/meminfo'
-## @description Show systemd OOM daemon configuration from /etc/systemd/oomd.conf.
+      ## @description Show systemd OOM daemon configuration from /etc/systemd/oomd.conf.
       alias cat-oom-conf='sudo cat /etc/systemd/oomd.conf 2>/dev/null || echo "No OOM config file found"'
       ## @description Alias for cat-oom-conf.
       alias ls-oom-conf='sudo cat /etc/systemd/oomd.conf 2>/dev/null || echo "No OOM config file found"'
       ## @description Alias for cat-oom-conf.
       alias show-oom-conf='sudo cat /etc/systemd/oomd.conf 2>/dev/null || echo "No OOM config file found"'
-## @description Show the vm.oom_kill_allocating_task sysctl value (0=kill random, 1=kill allocating task).
+      ## @description Show the vm.oom_kill_allocating_task sysctl value (0=kill random, 1=kill allocating task).
       alias show-oom-kill-alloc='sudo sysctl vm.oom_kill_allocating_task'
       alias ls-oom-kill-alloc='show-oom-kill-alloc'
-## @description Follow earlyoom daemon output with verbose reporting at a set interval.
+      ## @description Follow earlyoom daemon output with verbose reporting at a set interval.
       ## @param $1 {int} interval - Reporting interval in seconds (default: 2)
       follow_early_oom_rec() {
         local interval="${1:-2}"
@@ -1651,7 +1811,7 @@ KILL_SCRIPT_EOF
       alias watch-early-oom-rec='follow_early_oom_rec'
       alias follow-early-oom='follow_early_oom_rec'
       alias watch-early-oom='follow_early_oom_rec'
-## @description Watch memory-hungry processes sorted by RSS in real time.
+      ## @description Watch memory-hungry processes sorted by RSS in real time.
       ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
       watch_mem_hogs() {
         local interval="${1:-0.25}"
@@ -1673,7 +1833,7 @@ KILL_SCRIPT_EOF
         ps aux | awk '$8 ~ /Z/ {print}' | head -n "$head"
       }
       alias find-zombies='find_zombies'
-## @description Show the OOM kill score for a process (higher = more likely to be killed).
+      ## @description Show the OOM kill score for a process (higher = more likely to be killed).
       ## @param $1 {int} pid - Process ID (required)
       cat_pid_oom_kill_score() {
         local pid="${1?"Usage: cat-pid-oom-kill-score <pid>"}"
@@ -1687,7 +1847,7 @@ KILL_SCRIPT_EOF
       }
       alias follow-pid-oom-kill-score='follow_pid_oom_kill_score'
       alias watch-pid-oom-kill-score='follow_pid_oom_kill_score'
-## @description Show the OOM adjustment score for a process (-1000 to 1000; lower = less likely to be killed).
+      ## @description Show the OOM adjustment score for a process (-1000 to 1000; lower = less likely to be killed).
       ## @param $1 {int} pid - Process ID (required)
       cat_pid_oom_adj_score() {
         local pid="${1?"Usage: cat-pid-oom-adj-score <pid>"}"
@@ -1695,7 +1855,7 @@ KILL_SCRIPT_EOF
         sudo cat /proc/"$pid"/oom_score_adj 2>/dev/null || echo "No OOM adj info available"
       }
       alias cat-pid-oom-adj-score='cat_pid_oom_adj_score'
-## @description Show both OOM kill score and adjustment score for a process.
+      ## @description Show both OOM kill score and adjustment score for a process.
       ## @param $1 {int} pid - Process ID (required)
       cat_pid_oom_scores() {
         local pid="${1?"Usage: cat-pid-oom-scores <pid>"}"
@@ -1705,9 +1865,9 @@ KILL_SCRIPT_EOF
         sudo cat /proc/"$pid"/oom_score 2>/dev/null || echo "No OOM adj info available"
       }
       alias cat-pid-oom-scores='cat_pid_oom_scores'
-## @description Follow the earlyoom systemd journal (sudo journalctl -u earlyoom).
+      ## @description Follow the earlyoom systemd journal (sudo journalctl -u earlyoom).
       alias journal-earlyoom='sudo journalctl -u earlyoom'
-## @description Follow the systemd-oomd journal (sudo journalctl -u systemd-oomd).
+      ## @description Follow the systemd-oomd journal (sudo journalctl -u systemd-oomd).
       alias journal-sysoomd='sudo journalctl -u systemd-oomd'
 #endregion VM_and_Memory
 
@@ -1735,7 +1895,7 @@ KILL_SCRIPT_EOF
       alias ls-sys-services='sudo ls /lib/systemd/system/'
       ## @description Alias for cat-mod-dkms.
       alias ls-mod-dkms='sudo ls "/lib/modules/$(uname -r)/updates/dkms/"'
-## @description Show OpenGL renderer, version, and direct rendering status.
+      ## @description Show OpenGL renderer, version, and direct rendering status.
       alias glx-info='glxinfo 2>/dev/null | grep -E "(OpenGL renderer|OpenGL version|direct rendering)" || echo "glxinfo not available (install mesa-utils)"'
 #endregion Drivers_and_Modules
 
@@ -1773,7 +1933,7 @@ KILL_SCRIPT_EOF
       alias ls-ssh-cfg='sudo cat /etc/ssh/sshd_config'
       ## @description Alias for cat-ssh-cfg.
       alias show-ssh-cfg='sudo cat /etc/ssh/sshd_config'
-## @description Show the SSH systemd service unit file.
+      ## @description Show the SSH systemd service unit file.
       alias cat-ssh-service='sudo cat /lib/systemd/system/ssh.service 2>/dev/null || echo "SSH service file not found"'
       ## @description Alias for cat-ssh-service.
       alias ls-ssh-service='sudo cat /lib/systemd/system/ssh.service 2>/dev/null || echo "SSH service file not found"'
@@ -1845,13 +2005,13 @@ KILL_SCRIPT_EOF
       alias ls-term-log='sudo cat /var/log/apt/term.log'
       ## @description Alias for cat-term-log.
       alias show-term-log='sudo cat /var/log/apt/term.log'
-## @description Extract strings from Xorg log files.
+      ## @description Extract strings from Xorg log files.
       stringify_xorg_logs() {
         sudo find /var/log/ -maxdepth 1 -name "Xorg*" -type f \
           -exec sh -c 'echo "=== $1 ==="; strings "$1" 2>/dev/null' _ {} \;
       }
       alias stringify-xorg-logs='stringify_xorg_logs'
-## @description Show GPU/display/compositor errors from current boot journal.
+      ## @description Show GPU/display/compositor errors from current boot journal.
       ## @param $1 {number} lines - Number of journal lines to scan (default: 200)
       journal_gpu_errors() {
         local n="${1:-200}"
@@ -1859,7 +2019,7 @@ KILL_SCRIPT_EOF
           grep -i -E "(error|crash|gpu|display|render|compositor|window manager|fullscreen|xorg)"
       }
       alias journal-gpu-errors='journal_gpu_errors'
-## @description Show GNOME Shell errors from user journal.
+      ## @description Show GNOME Shell errors from user journal.
       ## @param $1 {number} lines - Number of journal lines to scan (default: 100)
       journal_gnome_errors() {
         local n="${1:-100}"
@@ -1867,11 +2027,11 @@ KILL_SCRIPT_EOF
           grep -i -E "(error|warning|fail|crash)"
       }
       alias journal-gnome-errors='journal_gnome_errors'
-## @description List xsession error files and Xorg log directory.
+      ## @description List xsession error files and Xorg log directory.
       alias ls-xsession-errors='ls -lh ~/.xsession-errors* ~/.local/share/xorg/ 2>/dev/null'
-## @description Grep Xorg log for errors (EE) and warnings (WW).
+      ## @description Grep Xorg log for errors (EE) and warnings (WW).
       alias grep-xorg-errors='grep -i -E "(EE|WW).*" ~/.local/share/xorg/Xorg.0.log 2>/dev/null'
-## @description Extract crash-relevant strings from VS Code crash files.
+      ## @description Extract crash-relevant strings from VS Code crash files.
       alias stringify-vscode-crash='sudo strings /var/crash/_usr_share_code_code.1000.crash 2>/dev/null | grep -i -E "(segfault|sigsegv|sigabrt|exception|display|render|gpu|compositor|fullscreen)"'
 #endregion Logs_and_Crashes
 
@@ -1883,13 +2043,13 @@ KILL_SCRIPT_EOF
       ## @description Alias for cat-icons.
       alias ls-icons='sudo ls /usr/share/icons/'
       alias stringify-sign-files='sudo strings "/usr/src/linux-headers-$(uname -r)/scripts/sign-file"'
-## @description Find system/KDE/Plasma binaries in /usr/bin.
+      ## @description Find system/KDE/Plasma binaries in /usr/bin.
       find_system_kde_bins() {
         find /usr/bin -maxdepth 1 -type f -regextype posix-extended \
           -iregex '.*(system|kde|plasma).*' -print 2>/dev/null | sort
       }
       alias find-system-kde-bins='find_system_kde_bins'
-## @description Search for a specific flag or option in a command's man page.
+      ## @description Search for a specific flag or option in a command's man page.
       ## @param $1 {string} cmd - Command name or "cmd subcmd" (default: ls)
       ## @param $2 {int} is_flag_or_option - 0 for flag (-), 1 for option (--) (default: 0)
       ## @param $3 {string} flag_or_option - Flag/option name to search for (default: l)
@@ -1941,9 +2101,9 @@ KILL_SCRIPT_EOF
           man $man_target 2>/dev/null | grep -E "${hyphens}${flag_or_option}" || echo "No such flag or option found"
       }
       alias man-fopt='man_fopt'
-## @description Extract printable strings from the current shell's own executable (/proc/self/exe).
+      ## @description Extract printable strings from the current shell's own executable (/proc/self/exe).
       alias stringify-self='sudo strings /proc/self/exe 2>/dev/null || echo "No strings available for self"'
-## @description List details of the current shell's executable symlink (/proc/self/exe).
+      ## @description List details of the current shell's executable symlink (/proc/self/exe).
       alias ls-self='sudo ls -lh /proc/self/exe 2>/dev/null || echo "No self executable info available"'
 #endregion Applications_and_Icons
 
@@ -1980,31 +2140,31 @@ KILL_SCRIPT_EOF
       alias show-vscode-sqlite-state='sudo cat ~/.config/Code/User/globalStorage/state.vscdb'
       alias stringify-vscode-logs='sudo find ~/.config/Code/logs -type f -exec strings {} \;'
       alias stringify-recent-xbel='sudo find ~/.local/share/recently-used.xbel -type f -exec strings {} \;'
-## @description Extract strings from Copilot chat context files.
+      ## @description Extract strings from Copilot chat context files.
       stringify_copilot_context() {
         find ~/.config/Code/User/workspaceStorage/ -type f -name "content.txt" -exec sh -c 'echo "=== $(basename $(dirname "$1")) ==="; sleep 5; strings "$1" 2>/dev/null; echo "--------------------"; echo "#####END#####"; echo "--------------------"; echo ""; sleep 30;' _ {} \; 2>/dev/null
       }
       alias stringify-copilot-context='stringify_copilot_context'
-## @description List unique workspaceStorage files (potentially containing chat context, logs, etc.).
+      ## @description List unique workspaceStorage files (potentially containing chat context, logs, etc.).
       find_all_vscode_workspace_files() {
         find ~/.config/Code/User/workspaceStorage/ -type f | xargs -I{} basename {} | sort -u
       }
       alias find-all-vscode-workspace-files='find_all_vscode_workspace_files'
-## @description Find VS Code GPU process log files.
+      ## @description Find VS Code GPU process log files.
       alias find-vscode-gpu-logs='find ~/.config/Code/logs/*/ -name "gpu-process.log" -o -name "gpuprocess.log" 2>/dev/null'
-## @description Show GPU/render/display entries from VS Code shared process log.
+      ## @description Show GPU/render/display entries from VS Code shared process log.
       alias cat-vscode-sharedprocess-gpu='cat ~/.config/Code/logs/*/sharedprocess.log 2>/dev/null | grep -i -E "(gpu|render|display|error|warning)"'
       ## @description Alias for cat-vscode-sharedprocess-gpu.
       alias ls-vscode-sharedprocess-gpu='cat ~/.config/Code/logs/*/sharedprocess.log 2>/dev/null | grep -i -E "(gpu|render|display|error|warning)"'
       ## @description Alias for cat-vscode-sharedprocess-gpu.
       alias show-vscode-sharedprocess-gpu='cat ~/.config/Code/logs/*/sharedprocess.log 2>/dev/null | grep -i -E "(gpu|render|display|error|warning)"'
-## @description Show VS Code argv.json (launch flags).
+      ## @description Show VS Code argv.json (launch flags).
       alias cat-vscode-argv='cat ~/.config/Code/User/argv.json 2>/dev/null || echo "No argv.json found"'
       ## @description Alias for cat-vscode-argv.
       alias ls-vscode-argv='cat ~/.config/Code/User/argv.json 2>/dev/null || echo "No argv.json found"'
       ## @description Alias for cat-vscode-argv.
       alias show-vscode-argv='cat ~/.config/Code/User/argv.json 2>/dev/null || echo "No argv.json found"'
-## @description Disable GPU in VS Code argv.json (with backup).
+      ## @description Disable GPU in VS Code argv.json (with backup).
       vscode_disable_gpu() {
         local argv="$HOME/.config/Code/User/argv.json"
         if [ ! -f "$argv" ]; then
@@ -3337,7 +3497,7 @@ print('✅ GPU disabled in argv.json')
   #region Utilities
     #region Package_Management
       alias prune-snap='sudo snap list --all | awk "/disabled/{print \$1, \$3}" | while read snapname revision; do sudo snap remove "$snapname" --revision="$revision"; done'
-## @description Install Portuguese (pt) language packs (with confirmation).
+      ## @description Install Portuguese (pt) language packs (with confirmation).
       install_pt_lang_pack() {
         echo -e "\033[1;36m📦 This will install:\033[0m"
         echo "  • language-pack-pt"
@@ -3396,7 +3556,7 @@ print('✅ GPU disabled in argv.json')
           grep -i "$search_term"
       }
       alias ls-rec-files='show_recent_files'
-## @description Check if a file has multiple consecutive blank lines.
+      ## @description Check if a file has multiple consecutive blank lines.
       ## @param $1 {string} file - File path to check (required)
       has_multiple_blank_lines() {
         local file="$1"
@@ -3408,7 +3568,7 @@ print('✅ GPU disabled in argv.json')
           echo "File does have multiple blank lines" || echo "File does not have multiple blank lines"
       }
       alias is-mblank='has_multiple_blank_lines'
-## @description List files in current directory that have multiple consecutive blank lines.
+      ## @description List files in current directory that have multiple consecutive blank lines.
       show_multiple_blank_lines_files() {
         find . -maxdepth 1 -type f -exec awk '
           /^[[:space:]]*$/ { blank++ }
@@ -3426,7 +3586,7 @@ print('✅ GPU disabled in argv.json')
         ' {} \;
       }
       alias ls-mblank='show_multiple_blank_lines_files'
-## @description List files with name, path, and size.
+      ## @description List files with name, path, and size.
       list_files_detail() {
         find . -type f -exec sh -c '
           for file do
@@ -3437,7 +3597,7 @@ print('✅ GPU disabled in argv.json')
         ' sh {} +
       }
       alias list-files='list_files_detail'
-## @description Check which directories in current dir contain files.
+      ## @description Check which directories in current dir contain files.
       ## @flag -r  Recurse into subdirectories
       contains_files() {
         local recurse=0
@@ -3462,16 +3622,46 @@ print('✅ GPU disabled in argv.json')
     #region Basic_Commands
       ## @description Open GNOME Text Editor.
       alias gted='gnome-text-editor'
+      ## @description Short alias for rhythmbox-client.
+      alias rtb='rhythmbox-client'
+      ## @description Shuffle the Rhythmbox play order N times by toggling shuffle
+      ##              off and back on so each iteration forces a fresh random sequence.
+      ## @param $1 {number} times - Number of reshuffle iterations (default: 5)
+      rtb_multishuffle() {
+        local times="${1:-5}"
+        local colors=(
+          "1;31" "1;32" "1;33" "1;34" "1;35" "1;36"
+          "1;91" "1;92" "1;93" "1;94" "1;95" "1;96"
+        )
+        for i in $(seq 1 "$times"); do
+          local color="${colors[RANDOM % ${#colors[@]}]}"
+          printf "\033[%sm ↻ Shuffling Rhythmbox ↺ (iteration %d/%d)…\033[0m\n" \
+            "$color" "$i" "$times"
+          rhythmbox-client --no-shuffle
+          sleep 0.2
+          rhythmbox-client --shuffle
+          sleep 0.5
+        done
+        rhythmbox-client --play
+      }
+      ## @description Alias for rtb_multishuffle.
+      alias rtb-mshuffle='rtb_multishuffle'
+      ## @description Print D-Bus introspection XML for the Rhythmbox MPRIS2 interface.
+      alias ls-mpris-dbus-sender='dbus-send --print-reply --dest=org.mpris.MediaPlayer2.rhythmbox /org/mpris/MediaPlayer2 org.freedesktop.DBus.Introspectable.Introspect'
+      ## @description Alias for ls-mpris-dbus-sender.
+      alias show-mpris-dbus-sender='ls-mpris-dbus-sender'
+      ## @description Alias for ls-mpris-dbus-sender.
+      alias get-mpris-dbus-sender='ls-mpris-dbus-sender'
       alias mkd='mkdir'
       alias grep='grep --color=auto'
       alias wget-ubuntu-iso='wget https://releases.ubuntu.com/24.04.3/ubuntu-24.04.3-desktop-amd64.iso'
-## @description Decode a percent-encoded URI string (e.g. %20 -> space).
+      ## @description Decode a percent-encoded URI string (e.g. %20 -> space).
       ## @param $1 {string} uri - Percent-encoded string to decode (required)
       uri_decode() {
           printf '%b' "${1//%/\\x}"
       }
       alias uri-decode='uri_decode'
-## @description Printf with field-width, delimiter, and tr-based substitution.
+      ## @description Printf with field-width, delimiter, and tr-based substitution.
       ## @param $1 {string} delimiter - Fill character flag (-, 0, +, or empty)
       ## @param $2 {number} width     - Field width
       ## @param $3 {string} type      - Format type (%b or %s, default: %b)
@@ -3507,14 +3697,14 @@ print('✅ GPU disabled in argv.json')
         printf "%${delimiter}${width}${type#%}" "${target//${pattern}/${substitute}}" | tr "$tr_from" "$tr_to"
       }
       alias printf-tr='printftr'
-## @description List files with index numbers and display the contents of a file by index.
+      ## @description List files with index numbers and display the contents of a file by index.
       ## @param $1 {number} index - 1-based index of the file to display (default: 1)
       cat_indexed() {
         local index="${1:-1}"
         (ls | nl) && file=$(ls | sed -n "${index}p") && output=$(strings "$file") && echo "${output:-"INDEXED HAS NO CONTENT"} 2>/dev/null" || echo "No file found at index $index"
       }
       alias cat-indexed='cat_indexed'
-## @description Run multiple commands against a single target argument.
+      ## @description Run multiple commands against a single target argument.
       ## @param $1 {string} target - The target argument for all commands (required)
       ## @param $@ {string} cmds   - Commands to run against the target
       run_cmds() {
@@ -3526,13 +3716,13 @@ print('✅ GPU disabled in argv.json')
         done
       }
       alias run-cmds='run_cmds'
-## @description Custom ls output: time, size, name.
+      ## @description Custom ls output: time, size, name.
       ls_lah_859() {
         local path="${1:-.}"
         ls -lah "$path" | awk 'BEGIN{FS=" "}; {print $8, $5, $9}'
       }
       alias ls-lah-859='ls_lah_859'
-## @description Count total lines in directory excluding vendor folders.
+      ## @description Count total lines in directory excluding vendor folders.
       wc_lines_novendors() {
         local files=0 total=0
         while IFS= read -r -d $'\0' file; do
@@ -3548,9 +3738,9 @@ print('✅ GPU disabled in argv.json')
         echo "-> TOTAL: $total lines in $files files"
       }
       alias wc-l-novendors='wc_lines_novendors'
-## @description List block devices that are not mounted.
+      ## @description List block devices that are not mounted.
       alias ls-nomount='sudo blkid -o list | grep "not mounted"'
-## @description Mount NTFS drive with proper options and add to fstab.
+      ## @description Mount NTFS drive with proper options and add to fstab.
       ## @param $1 {string} media_path - Mount destination path (required)
       ## @param $2 {string} device - Block device path (required)
       mount_ntfs_media_drive() {
@@ -4579,6 +4769,17 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
       done
     }
     alias rmmultius='remove_multiple_underscores'
+    ## @description Rename all files in the current directory to random 16-char alphanumeric names, preserving extensions. Requires sudo.
+    fully_randomized_file_names() {
+      sudo -v || { echo "Requires sudo privileges to rename files with random names"; return 1; }
+      for f in *; do [[ -f "$f" ]] && mv "$f" "$(openssl rand -base64 12 | tr -dc 'a-zA-Z0-9' | head -c 16).${f##*.}"; done
+    }
+    ## @description Alias for fully_randomized_file_names.
+    alias fully-randomized-file-names='fully_randomized_file_names'
+    ## @description Alias for fully_randomized_file_names.
+    alias randomize-filenames='fully_randomized_file_names'
+    ## @description Alias for fully_randomized_file_names (short form).
+    alias rand-fn='fully_randomized_file_names'
 #endregion Data_Extraction
 
   #region Browser_Dev
@@ -4649,7 +4850,7 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
              --html-whitespace-sensitivity ignore --write "$path"
     }
     alias strip-html-comments='strip_html_comments_format'
-## @description Extract <style> content from an HTML file, minify with clean-css-cli,
+    ## @description Extract <style> content from an HTML file, minify with clean-css-cli,
     ##              and display original vs minified byte sizes.
     ## @param $1 {string} src          - Source HTML file (required)
     ## @param $2 {string} extract_src  - Destination for extracted CSS (required)
@@ -4664,7 +4865,7 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
         && wc -c "$extract_src" "$extract_min"
     }
     alias extract-min-css='extract_minify_css'
-## @description Count HTML comments and total lines in a file.
+    ## @description Count HTML comments and total lines in a file.
     ## @param $1 {string} path - Path to the HTML file (required)
     count_html_comments() {
       local path="${1:?Usage: count-html-comments <html_file>}"
@@ -4673,14 +4874,14 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
       echo "Lines:    $(wc -l < "$path")"
     }
     alias count-html-comments='count_html_comments'
-## @description Check which CSS minifier CLI is available (csso or clean-css-cli).
+    ## @description Check which CSS minifier CLI is available (csso or clean-css-cli).
     check_css_minifier() {
       npx csso --version 2>/dev/null \
         || npx clean-css-cli --version 2>/dev/null \
         || echo "NONE"
     }
     alias check-css-minifier='check_css_minifier'
-## @description Inject a minified CSS file into the <style> block of an HTML file,
+    ## @description Inject a minified CSS file into the <style> block of an HTML file,
     ##              then restore @media and @container at-rules collapsed by minification.
     ## @param $1 {string} src     - HTML file to inject into (required)
     ## @param $2 {string} min_css - Minified CSS file to inject (required)
