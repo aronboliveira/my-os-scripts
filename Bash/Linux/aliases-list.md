@@ -699,9 +699,18 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - ls-sys-kernel-schedules
 - ls-sys-k-schedules
 
-[Show combined kernel and VM diagnostic info]
+[Aggregated view of kernel hung-task and scheduler parameters]
 
 - ls-sys-kernel-info
+- ls-sys-k-info
+
+[Aggregated view of VM overcommit, OOM, swappiness, and dirty-ratio parameters]
+
+- ls-sys-vm-info
+
+[Show all kernel and VM sysctl info (calls ls_sys_kernel_info + ls_sys_vm_info)]
+
+- ls-sys-info
 
 [List zombie processes (state Z) from ps aux output — $1: max number of results (default: 20)]
 

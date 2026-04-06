@@ -1884,6 +1884,7 @@ KILL_SCRIPT_EOF
       }
       alias ls-sys-kernel-schedules='ls_sys_kernel_schedules'
       alias ls-sys-k-schedules='ls_sys_kernel_schedules'
+      ## @description Aggregated view of kernel hung-task and scheduler parameters.
       ls_sys_kernel_info() {
         printf "\n[=== KERNEL INFO ===]\n"
         sleep 1
@@ -1892,7 +1893,11 @@ KILL_SCRIPT_EOF
         sleep 2
         printf "[=== KERNEL SCHEDULER ===]\n"
         ls_sys_kernel_schedules
-        sleep 3
+      }
+      alias ls-sys-kernel-info='ls_sys_kernel_info'
+      alias ls-sys-k-info='ls_sys_kernel_info'
+      ## @description Aggregated view of VM overcommit, OOM, swappiness, and dirty-ratio parameters.
+      ls_sys_vm_info() {
         printf "\n[=== VM INFO ===]\n"
         sleep 1
         printf "[=== VM OVERCOMMIT ===]\n"
@@ -1907,6 +1912,14 @@ KILL_SCRIPT_EOF
         printf "[=== VM DIRTY RATIOS ===]\n"
         ls_sys_vm_dirty_ratios
       }
+      alias ls-sys-vm-info='ls_sys_vm_info'
+      ## @description Show all kernel and VM sysctl info (calls ls_sys_kernel_info + ls_sys_vm_info).
+      ls_sys_info() {
+        ls_sys_kernel_info
+        sleep 3
+        ls_sys_vm_info
+      }
+      alias ls-sys-info='ls_sys_info'
       ## @description List zombie processes (state Z) from ps aux output.
       ## @param $1 {int} head - Max number of results to display (default: 20)
       find_zombies() {

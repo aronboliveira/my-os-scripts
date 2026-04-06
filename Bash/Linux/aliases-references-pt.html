@@ -9911,18 +9911,16 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                         <div class="card-body">
                           <h4 class="alias-name mb-2">
                             <code> ls-sys-kernel-info </code>
-                          </h4>
-                          <p class="mb-2">
-                            <span>
-                              Mostra informações combinadas de diagnóstico do
-                              kernel e da VM.
-                            </span>
-                          </p>
-                          <div class="d-flex flex-wrap gap-1 mb-2">
                             <span class="badge bg-secondary badge-alias">
                               <span> função </span>
                             </span>
-                          </div>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Visão agregada de parâmetros de hung-task e
+                              escalonador do kernel.
+                            </span>
+                          </p>
                           <details class="code-details">
                             <summary aria-expanded="false" role="button">
                               <i
@@ -9937,9 +9935,127 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                               class="code-block"
                               role="region"
                             ><code><span class="bash-keyword">ls_sys_kernel_info</span>() {
-  ls_sys_kernel_hungs; ls_sys_kernel_schedules
-  ls_sys_vm_overcommit; ls_sys_vm_oom_kill_alloc
-  ls_sys_vm_swappiness; ls_sys_vm_dirty_ratios
+  <span class="bash-builtin">printf</span> <span class="bash-string">"\n[=== KERNEL INFO ===]\n"</span>
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== KERNEL HUNGS ===]\n"</span>
+  ls_sys_kernel_hungs
+  sleep 2
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== KERNEL SCHEDULER ===]\n"</span>
+  ls_sys_kernel_schedules
+}</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-k-info"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-k-info </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias curto para ls-sys-kernel-info. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-k-info"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-k-info=<span class="bash-string">'ls_sys_kernel_info'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-info"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-info </code>
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Visão agregada de parâmetros de overcommit, OOM,
+                              swappiness e dirty-ratio da VM.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-info"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_info</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"\n[=== VM INFO ===]\n"</span>
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== VM OVERCOMMIT ===]\n"</span>
+  ls_sys_vm_overcommit
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== VM OOM KILL ALLOCATING TASK ===]\n"</span>
+  ls_sys_vm_oom_kill_alloc
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== VM SWAPPINESS ===]\n"</span>
+  ls_sys_vm_swappiness
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== VM DIRTY RATIOS ===]\n"</span>
+  ls_sys_vm_dirty_ratios
+}</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-info"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-info </code>
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra todas as informações sysctl do kernel e da
+                              VM (chama ls_sys_kernel_info + ls_sys_vm_info).
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-info"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_info</span>() {
+  ls_sys_kernel_info
+  sleep 3
+  ls_sys_vm_info
 }</code></pre>
                           </details>
                         </div>
@@ -10423,18 +10539,16 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                         <div class="card-body">
                           <h4 class="alias-name mb-2">
                             <code> ls-sys-kernel-info </code>
-                          </h4>
-                          <p class="mb-2">
-                            <span>
-                              Mostra informações combinadas de diagnóstico do
-                              kernel e da VM.
-                            </span>
-                          </p>
-                          <div class="d-flex flex-wrap gap-1 mb-2">
                             <span class="badge bg-secondary badge-alias">
                               <span> função </span>
                             </span>
-                          </div>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Visão agregada de parâmetros de hung-task e
+                              escalonador do kernel.
+                            </span>
+                          </p>
                           <details class="code-details">
                             <summary aria-expanded="false" role="button">
                               <i
@@ -10449,9 +10563,127 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                               class="code-block"
                               role="region"
                             ><code><span class="bash-keyword">ls_sys_kernel_info</span>() {
-  ls_sys_kernel_hungs; ls_sys_kernel_schedules
-  ls_sys_vm_overcommit; ls_sys_vm_oom_kill_alloc
-  ls_sys_vm_swappiness; ls_sys_vm_dirty_ratios
+  <span class="bash-builtin">printf</span> <span class="bash-string">"\n[=== KERNEL INFO ===]\n"</span>
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== KERNEL HUNGS ===]\n"</span>
+  ls_sys_kernel_hungs
+  sleep 2
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== KERNEL SCHEDULER ===]\n"</span>
+  ls_sys_kernel_schedules
+}</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-k-info"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-k-info </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias curto para ls-sys-kernel-info. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-k-info"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-k-info=<span class="bash-string">'ls_sys_kernel_info'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-info"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-info </code>
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Visão agregada de parâmetros de overcommit, OOM,
+                              swappiness e dirty-ratio da VM.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-info"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_info</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"\n[=== VM INFO ===]\n"</span>
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== VM OVERCOMMIT ===]\n"</span>
+  ls_sys_vm_overcommit
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== VM OOM KILL ALLOCATING TASK ===]\n"</span>
+  ls_sys_vm_oom_kill_alloc
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== VM SWAPPINESS ===]\n"</span>
+  ls_sys_vm_swappiness
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[=== VM DIRTY RATIOS ===]\n"</span>
+  ls_sys_vm_dirty_ratios
+}</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-info"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-info </code>
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra todas as informações sysctl do kernel e da
+                              VM (chama ls_sys_kernel_info + ls_sys_vm_info).
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-info"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_info</span>() {
+  ls_sys_kernel_info
+  sleep 3
+  ls_sys_vm_info
 }</code></pre>
                           </details>
                         </div>
