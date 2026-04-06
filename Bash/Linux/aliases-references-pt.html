@@ -3849,6 +3849,112 @@ GTK_THEME env: Adwaita:dark
                 </div>
                 <div
                   class="card alias-card shadow-sm"
+                  data-alias="show-user-dirs"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> show-user-dirs </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Mostra conteúdo de configuração de diretórios do usuário
+                        (de ~/.config/user-dirs.dirs).
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver Código </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for show-user-dirs"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> show-user-dirs=<span class="bash-string">'cat ~/.config/user-dirs.dirs 2>/dev/null || printf "[-] No user-dirs config found\n"'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-user-dirs"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-user-dirs </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para show-user-dirs. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver Código </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-user-dirs"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-user-dirs=<span class="bash-string">'show-user-dirs'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="show-user-dirs"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> show-user-dirs </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Mostra conteúdo de configuração de diretórios do usuário
+                        (de ~/.config/user-dirs.dirs).
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver Código </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for show-user-dirs"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> show-user-dirs=<span class="bash-string">'cat ~/.config/user-dirs.dirs 2>/dev/null || printf "[-] No user-dirs config found\n"'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-user-dirs"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-user-dirs </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para show-user-dirs. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver Código </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-user-dirs"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-user-dirs=<span class="bash-string">'show-user-dirs'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
                   data-alias="show-display-server-code"
                 >
                   <div class="card-body">
@@ -8914,6 +9020,236 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                       </div>
                       <div
                         class="card alias-card shadow-sm"
+                        data-alias="cat-def-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-def-earlyoom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configuração padrão do earlyoom de
+                              /etc/default/earlyoom.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-def-earlyoom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-def-earlyoom=<span class="bash-string">'sudo cat /etc/default/earlyoom 2>/dev/null || printf "[-] No default earlyoom config found\n"'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-def-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-def-earlyoom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-earlyoom. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-def-earlyoom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-def-earlyoom=<span class="bash-string">'cat-def-earlyoom'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-default-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-default-earlyoom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-earlyoom. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-default-earlyoom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-default-earlyoom=<span class="bash-string">'cat-def-earlyoom'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-default-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-default-earlyoom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-earlyoom. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-default-earlyoom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-default-earlyoom=<span class="bash-string">'cat-def-earlyoom'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-def-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-def-earlyoom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configuração padrão do earlyoom de
+                              /etc/default/earlyoom.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-def-earlyoom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-def-earlyoom=<span class="bash-string">'sudo cat /etc/default/earlyoom 2>/dev/null || printf "[-] No default earlyoom config found\n"'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-def-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-def-earlyoom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-earlyoom. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-def-earlyoom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-def-earlyoom=<span class="bash-string">'cat-def-earlyoom'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-default-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-default-earlyoom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-earlyoom. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-default-earlyoom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-default-earlyoom=<span class="bash-string">'cat-def-earlyoom'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-default-earlyoom"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-default-earlyoom </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-earlyoom. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-default-earlyoom"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-default-earlyoom=<span class="bash-string">'cat-def-earlyoom'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
                         data-alias="watch-mem-hogs"
                       >
                         <div class="card-body">
@@ -9093,6 +9429,1030 @@ sending SIGTERM when mem ≤ 10% and swap ≤ 10%
                                 ></div>
                               </div>
                             </div>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-overcommit"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-overcommit </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configurações de overcommit de memória da
+                              VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-overcommit"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_overcommit</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.overcommit_memory...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.overcommit_memory 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No overcommit_memory info available\n"</span>
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.overcommit_ratio...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.overcommit_ratio 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No overcommit_ratio info available\n"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-vm-overcommit=<span class="bash-string">'ls_sys_vm_overcommit'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-over-mem"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-over-mem </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-vm-overcommit. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-over-mem"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-vm-over-mem=<span class="bash-string">'ls_sys_vm_overcommit'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-oom-kill-alloc"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-oom-kill-alloc </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configuração de OOM kill para tarefa
+                              alocadora da VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-oom-kill-alloc"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_oom_kill_alloc</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.oom_kill_allocating_task...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.oom_kill_allocating_task 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No oom_kill_allocating_task info available\n"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-vm-oom-kill-alloc=<span class="bash-string">'ls_sys_vm_oom_kill_alloc'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-oom-kill-allocating-task"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-oom-kill-allocating-task </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-vm-oom-kill-alloc. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-oom-kill-allocating-task"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-vm-oom-kill-allocating-task=<span class="bash-string">'ls_sys_vm_oom_kill_alloc'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-swappiness"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-swappiness </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configuração de swappiness da VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-swappiness"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_swappiness</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.swappiness...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.swappiness 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No swappiness info available\n"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-vm-swappiness=<span class="bash-string">'ls_sys_vm_swappiness'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-swap"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-swap </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-vm-swappiness. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-swap"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-vm-swap=<span class="bash-string">'ls_sys_vm_swappiness'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-dirty-ratios"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-dirty-ratios </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra taxas de dirty ratio e dirty background
+                              ratio da VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-dirty-ratios"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_dirty_ratios</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.dirty_ratio...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.dirty_ratio 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No dirty_ratio info available\n"</span>
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.dirty_background_ratio...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.dirty_background_ratio 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No dirty_background_ratio info available\n"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-vm-dirty-ratios=<span class="bash-string">'ls_sys_vm_dirty_ratios'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-dirtyness"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-dirtyness </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-vm-dirty-ratios. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-dirtyness"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-vm-dirtyness=<span class="bash-string">'ls_sys_vm_dirty_ratios'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-kernel-hungs"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-kernel-hungs </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configurações de hung tasks do kernel
+                              (timeout, avisos, backtraces).
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-kernel-hungs"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_kernel_hungs</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking for kernel hungs...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl kernel.hung_task_timeout_secs ...
+  <span class="bash-builtin">sudo</span> sysctl kernel.hung_task_warnings ...
+  <span class="bash-builtin">sudo</span> sysctl kernel.hung_task_all_cpu_backtrace ...
+}
+<span class="bash-builtin">alias</span> ls-sys-kernel-hungs=<span class="bash-string">'ls_sys_kernel_hungs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-k-hungs"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-k-hungs </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-kernel-hungs. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-k-hungs"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-k-hungs=<span class="bash-string">'ls_sys_kernel_hungs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-kernel-hung-tasks"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-kernel-hung-tasks </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-kernel-hungs. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-kernel-hung-tasks"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-kernel-hung-tasks=<span class="bash-string">'ls_sys_kernel_hungs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-k-hung-tasks"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-k-hung-tasks </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-kernel-hungs. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-k-hung-tasks"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-k-hung-tasks=<span class="bash-string">'ls_sys_kernel_hungs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-kernel-schedules"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-kernel-schedules </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configurações do escalonador do kernel
+                              (latência, granularidade, autogroup, custo de
+                              migração).
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-kernel-schedules"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_kernel_schedules</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking for scheduler info...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl kernel.sched_latency_ns ...
+  <span class="bash-builtin">sudo</span> sysctl kernel.sched_min_granularity_ns ...
+  <span class="bash-builtin">sudo</span> sysctl kernel.sched_autogroup_enabled ...
+}
+<span class="bash-builtin">alias</span> ls-sys-kernel-schedules=<span class="bash-string">'ls_sys_kernel_schedules'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-k-schedules"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-k-schedules </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-kernel-schedules. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-k-schedules"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-k-schedules=<span class="bash-string">'ls_sys_kernel_schedules'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-kernel-info"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-kernel-info </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra informações combinadas de diagnóstico do
+                              kernel e da VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-kernel-info"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_kernel_info</span>() {
+  ls_sys_kernel_hungs; ls_sys_kernel_schedules
+  ls_sys_vm_overcommit; ls_sys_vm_oom_kill_alloc
+  ls_sys_vm_swappiness; ls_sys_vm_dirty_ratios
+}</code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-overcommit"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-overcommit </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configurações de overcommit de memória da
+                              VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-overcommit"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_overcommit</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.overcommit_memory...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.overcommit_memory 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No overcommit_memory info available\n"</span>
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.overcommit_ratio...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.overcommit_ratio 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No overcommit_ratio info available\n"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-vm-overcommit=<span class="bash-string">'ls_sys_vm_overcommit'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-over-mem"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-over-mem </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-vm-overcommit. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-over-mem"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-vm-over-mem=<span class="bash-string">'ls_sys_vm_overcommit'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-oom-kill-alloc"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-oom-kill-alloc </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configuração de OOM kill para tarefa
+                              alocadora da VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-oom-kill-alloc"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_oom_kill_alloc</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.oom_kill_allocating_task...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.oom_kill_allocating_task 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No oom_kill_allocating_task info available\n"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-vm-oom-kill-alloc=<span class="bash-string">'ls_sys_vm_oom_kill_alloc'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-oom-kill-allocating-task"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-oom-kill-allocating-task </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-vm-oom-kill-alloc. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-oom-kill-allocating-task"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-vm-oom-kill-allocating-task=<span class="bash-string">'ls_sys_vm_oom_kill_alloc'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-swappiness"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-swappiness </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configuração de swappiness da VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-swappiness"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_swappiness</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.swappiness...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.swappiness 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No swappiness info available\n"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-vm-swappiness=<span class="bash-string">'ls_sys_vm_swappiness'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-swap"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-swap </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-vm-swappiness. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-swap"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-vm-swap=<span class="bash-string">'ls_sys_vm_swappiness'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-dirty-ratios"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-dirty-ratios </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra taxas de dirty ratio e dirty background
+                              ratio da VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-dirty-ratios"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_vm_dirty_ratios</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.dirty_ratio...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.dirty_ratio 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No dirty_ratio info available\n"</span>
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking vm.dirty_background_ratio...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl vm.dirty_background_ratio 2>/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No dirty_background_ratio info available\n"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-vm-dirty-ratios=<span class="bash-string">'ls_sys_vm_dirty_ratios'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-vm-dirtyness"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-vm-dirtyness </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-vm-dirty-ratios. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-vm-dirtyness"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-vm-dirtyness=<span class="bash-string">'ls_sys_vm_dirty_ratios'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-kernel-hungs"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-kernel-hungs </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configurações de hung tasks do kernel
+                              (timeout, avisos, backtraces).
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-kernel-hungs"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_kernel_hungs</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking for kernel hungs...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl kernel.hung_task_timeout_secs ...
+  <span class="bash-builtin">sudo</span> sysctl kernel.hung_task_warnings ...
+  <span class="bash-builtin">sudo</span> sysctl kernel.hung_task_all_cpu_backtrace ...
+}
+<span class="bash-builtin">alias</span> ls-sys-kernel-hungs=<span class="bash-string">'ls_sys_kernel_hungs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-k-hungs"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-k-hungs </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-kernel-hungs. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-k-hungs"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-k-hungs=<span class="bash-string">'ls_sys_kernel_hungs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-kernel-hung-tasks"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-kernel-hung-tasks </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-kernel-hungs. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-kernel-hung-tasks"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-kernel-hung-tasks=<span class="bash-string">'ls_sys_kernel_hungs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-k-hung-tasks"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-k-hung-tasks </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-kernel-hungs. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-k-hung-tasks"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-k-hung-tasks=<span class="bash-string">'ls_sys_kernel_hungs'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-kernel-schedules"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-kernel-schedules </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configurações do escalonador do kernel
+                              (latência, granularidade, autogroup, custo de
+                              migração).
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-kernel-schedules"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_kernel_schedules</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking for scheduler info...\n"</span>
+  <span class="bash-builtin">sudo</span> sysctl kernel.sched_latency_ns ...
+  <span class="bash-builtin">sudo</span> sysctl kernel.sched_min_granularity_ns ...
+  <span class="bash-builtin">sudo</span> sysctl kernel.sched_autogroup_enabled ...
+}
+<span class="bash-builtin">alias</span> ls-sys-kernel-schedules=<span class="bash-string">'ls_sys_kernel_schedules'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-k-schedules"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-k-schedules </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para ls-sys-kernel-schedules. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-k-schedules"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> ls-sys-k-schedules=<span class="bash-string">'ls_sys_kernel_schedules'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="ls-sys-kernel-info"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> ls-sys-kernel-info </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra informações combinadas de diagnóstico do
+                              kernel e da VM.
+                            </span>
+                          </p>
+                          <div class="d-flex flex-wrap gap-1 mb-2">
+                            <span class="badge bg-secondary badge-alias">
+                              <span> função </span>
+                            </span>
+                          </div>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for ls-sys-kernel-info"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-keyword">ls_sys_kernel_info</span>() {
+  ls_sys_kernel_hungs; ls_sys_kernel_schedules
+  ls_sys_vm_overcommit; ls_sys_vm_oom_kill_alloc
+  ls_sys_vm_swappiness; ls_sys_vm_dirty_ratios
+}</code></pre>
                           </details>
                         </div>
                       </div>
@@ -13211,6 +14571,110 @@ Original inline CSS: 4,521 bytes
                   sessão.</span
                 >
               </div>
+              <div class="card alias-card shadow-sm" data-alias="get-all-icons">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> get-all-icons </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span>
+                      Lista TODOS os ícones do sistema (usuário, legado,
+                      sistema, snap, flatpak, pixmaps).
+                    </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for get-all-icons"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-keyword">get_all_icons</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"\n[+] USER SPECIFIC ICONS\n"</span>
+  <span class="bash-builtin">find</span> ~/.local/share/icons/ -type f ...
+  <span class="bash-builtin">printf</span> <span class="bash-string">"\n[+] SYSTEM-WIDE ICONS\n"</span>
+  <span class="bash-builtin">sudo find</span> /usr/share/icons/ -type f ...
+  <span class="bash-comment"># (also checks snap, flatpak, pixmaps)</span>
+}
+<span class="bash-builtin">alias</span> get-all-icons=<span class="bash-string">'get_all_icons'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div class="card alias-card shadow-sm" data-alias="ls-all-icons">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-all-icons </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para get-all-icons. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for ls-all-icons"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> ls-all-icons=<span class="bash-string">'get_all_icons'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div class="card alias-card shadow-sm" data-alias="get-all-icons">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> get-all-icons </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span>
+                      Lista TODOS os ícones do sistema (usuário, legado,
+                      sistema, snap, flatpak, pixmaps).
+                    </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for get-all-icons"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-keyword">get_all_icons</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"\n[+] USER SPECIFIC ICONS\n"</span>
+  <span class="bash-builtin">find</span> ~/.local/share/icons/ -type f ...
+  <span class="bash-builtin">printf</span> <span class="bash-string">"\n[+] SYSTEM-WIDE ICONS\n"</span>
+  <span class="bash-builtin">sudo find</span> /usr/share/icons/ -type f ...
+  <span class="bash-comment"># (also checks snap, flatpak, pixmaps)</span>
+}
+<span class="bash-builtin">alias</span> get-all-icons=<span class="bash-string">'get_all_icons'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div class="card alias-card shadow-sm" data-alias="ls-all-icons">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-all-icons </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para get-all-icons. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for ls-all-icons"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> ls-all-icons=<span class="bash-string">'get_all_icons'</span></code></pre>
+                  </details>
+                </div>
+              </div>
             </article>
             <article class="mb-5 pt-4" id="kernelAndOs">
               <h2 class="mb-3 pb-2 border-bottom border-secondary-subtle">
@@ -13357,6 +14821,180 @@ image/png=org.gnome.eog.desktop
                       </div>
                       <div
                         class="card alias-card shadow-sm"
+                        data-alias="cat-def-grub"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-def-grub </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configuração padrão do GRUB de
+                              /etc/default/grub.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-def-grub"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-def-grub=<span class="bash-string">'sudo cat /etc/default/grub 2>/dev/null || printf "[-] No file found at /etc/default/grub\n"'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-default-grub"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-default-grub </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-grub. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-default-grub"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-default-grub=<span class="bash-string">'cat-def-grub'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-grub-etc"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-grub-etc </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-grub. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-grub-etc"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-grub-etc=<span class="bash-string">'cat-def-grub'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-def-grub"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-def-grub </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span>
+                              Mostra configuração padrão do GRUB de
+                              /etc/default/grub.
+                            </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-def-grub"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-def-grub=<span class="bash-string">'sudo cat /etc/default/grub 2>/dev/null || printf "[-] No file found at /etc/default/grub\n"'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-default-grub"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-default-grub </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-grub. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-default-grub"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-default-grub=<span class="bash-string">'cat-def-grub'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
+                        data-alias="cat-grub-etc"
+                      >
+                        <div class="card-body">
+                          <h4 class="alias-name mb-2">
+                            <code> cat-grub-etc </code>
+                          </h4>
+                          <p class="mb-2">
+                            <span> Alias para cat-def-grub. </span>
+                          </p>
+                          <details class="code-details">
+                            <summary aria-expanded="false" role="button">
+                              <i
+                                aria-hidden="true"
+                                class="bi bi-code-slash me-2"
+                              >
+                              </i>
+                              <span> Ver Código </span>
+                            </summary>
+                            <pre
+                              aria-label="Bash code for cat-grub-etc"
+                              class="code-block"
+                              role="region"
+                            ><code><span class="bash-builtin">alias</span> cat-grub-etc=<span class="bash-string">'cat-def-grub'</span></code></pre>
+                          </details>
+                        </div>
+                      </div>
+                      <div
+                        class="card alias-card shadow-sm"
                         data-alias="ls-grub-etc"
                       >
                         <div class="card-body">
@@ -13377,7 +15015,7 @@ image/png=org.gnome.eog.desktop
                               aria-label="C&oacute;digo Bash para ls-grub-etc"
                               class="code-block"
                               role="region"
-                            ><code>alias ls-grub-etc='cat-grub-etc'</code></pre>
+                            ><code>alias ls-grub-etc='cat-def-grub'</code></pre>
                           </details>
                         </div>
                       </div>
@@ -13403,7 +15041,7 @@ image/png=org.gnome.eog.desktop
                               aria-label="C&oacute;digo Bash para show-grub-etc"
                               class="code-block"
                               role="region"
-                            ><code>alias show-grub-etc='cat-grub-etc'</code></pre>
+                            ><code>alias show-grub-etc='cat-def-grub'</code></pre>
                           </details>
                         </div>
                       </div>
@@ -14333,6 +15971,378 @@ image/png=org.gnome.eog.desktop
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="cat-systemd-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> cat-systemd-conf </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Mostra configuração do systemd system.conf. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for cat-systemd-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> cat-systemd-conf=<span class="bash-string">'sudo cat /etc/systemd/system.conf 2>/dev/null || printf "[-] No systemd system.conf file found\n"'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="ls-systemd-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-systemd-conf </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para cat-systemd-conf. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for ls-systemd-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> ls-systemd-conf=<span class="bash-string">'cat-systemd-conf'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="show-systemd-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> show-systemd-conf </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para cat-systemd-conf. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for show-systemd-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> show-systemd-conf=<span class="bash-string">'cat-systemd-conf'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="cat-systemd-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> cat-systemd-conf </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Mostra configuração do systemd system.conf. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for cat-systemd-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> cat-systemd-conf=<span class="bash-string">'sudo cat /etc/systemd/system.conf 2>/dev/null || printf "[-] No systemd system.conf file found\n"'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="ls-systemd-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-systemd-conf </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para cat-systemd-conf. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for ls-systemd-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> ls-systemd-conf=<span class="bash-string">'cat-systemd-conf'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="show-systemd-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> show-systemd-conf </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para cat-systemd-conf. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for show-systemd-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> show-systemd-conf=<span class="bash-string">'cat-systemd-conf'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="cat-sysctl-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> cat-sysctl-conf </code>
+                    <span class="badge text-bg-info ms-2"> função </span>
+                  </h4>
+                  <p class="mb-2">
+                    <span>
+                      Exibe /etc/sysctl.conf e todos os arquivos em
+                      /etc/sysctl.d/.
+                    </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for cat-sysctl-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-function">cat_sysctl_conf</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking /etc/sysctl.conf...\n"</span>
+  <span class="bash-builtin">sudo</span> cat /etc/sysctl.conf 2&gt;/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No sysctl.conf file found\n"</span>
+  sleep 2
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking /etc/sysctl.d/ directory for additional config files...\n"</span>
+  <span class="bash-builtin">sudo</span> find /etc/sysctl.d/ -type f -exec sh -c '<span class="bash-builtin">printf</span> <span class="bash-string">"[=== %s ===]\n"</span> "$1"; sleep 1; cat "$1" 2&gt;/dev/null' _ {} \;
+}</code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="ls-sysctl-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-sysctl-conf </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para cat-sysctl-conf. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for ls-sysctl-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> ls-sysctl-conf=<span class="bash-string">'cat_sysctl_conf'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="show-sysctl-conf"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> show-sysctl-conf </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para cat-sysctl-conf. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for show-sysctl-conf"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> show-sysctl-conf=<span class="bash-string">'cat_sysctl_conf'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="cat-sysctl-services"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> cat-sysctl-services </code>
+                    <span class="badge text-bg-info ms-2"> função </span>
+                  </h4>
+                  <p class="mb-2">
+                    <span>
+                      Exibe systemd-sysctl.service e overrides de sysctl em
+                      sysinit.target.wants.
+                    </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for cat-sysctl-services"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-function">cat_systemd_sysctl_services</span>() {
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking systemd-sysctl.service for sysctl overrides...\n"</span>
+  <span class="bash-builtin">sudo</span> cat /usr/lib/systemd/system/systemd-sysctl.service 2&gt;/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No systemd-sysctl.service file found\n"</span>
+  sleep 1
+  <span class="bash-builtin">printf</span> <span class="bash-string">"[*] Checking systemd services for sysctl overrides...\n"</span>
+  sleep 2
+  <span class="bash-builtin">sudo</span> cat /usr/lib/systemd/system/sysinit.target.wants/systemd-sysctl.service 2&gt;/dev/null || <span class="bash-builtin">printf</span> <span class="bash-string">"[-] No sysctl overrides found in systemd service files\n"</span>
+}</code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="ls-sysctl-services"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-sysctl-services </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para cat-sysctl-services. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for ls-sysctl-services"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> ls-sysctl-services=<span class="bash-string">'cat_systemd_sysctl_services'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div
+                class="card alias-card shadow-sm"
+                data-alias="show-sysctl-services"
+              >
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> show-sysctl-services </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias para cat-sysctl-services. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for show-sysctl-services"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> show-sysctl-services=<span class="bash-string">'cat_systemd_sysctl_services'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div class="card alias-card shadow-sm" data-alias="cat-sctl-svc">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> cat-sctl-svc </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias curto para cat-sysctl-services. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for cat-sctl-svc"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> cat-sctl-svc=<span class="bash-string">'cat_systemd_sysctl_services'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div class="card alias-card shadow-sm" data-alias="ls-sctl-svc">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> ls-sctl-svc </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias curto para cat-sysctl-services. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for ls-sctl-svc"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> ls-sctl-svc=<span class="bash-string">'cat_systemd_sysctl_services'</span></code></pre>
+                  </details>
+                </div>
+              </div>
+              <div class="card alias-card shadow-sm" data-alias="show-sctl-svc">
+                <div class="card-body">
+                  <h4 class="alias-name mb-2">
+                    <code> show-sctl-svc </code>
+                  </h4>
+                  <p class="mb-2">
+                    <span> Alias curto para cat-sysctl-services. </span>
+                  </p>
+                  <details class="code-details">
+                    <summary aria-expanded="false" role="button">
+                      <i aria-hidden="true" class="bi bi-code-slash me-2"> </i>
+                      <span> Ver Código </span>
+                    </summary>
+                    <pre
+                      aria-label="Bash code for show-sctl-svc"
+                      class="code-block"
+                      role="region"
+                    ><code><span class="bash-builtin">alias</span> show-sctl-svc=<span class="bash-string">'cat_systemd_sysctl_services'</span></code></pre>
+                  </details>
                 </div>
               </div>
             </article>

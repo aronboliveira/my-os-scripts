@@ -279,6 +279,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - echo-wrkdir
 
+[Mostra conteúdo de configuração de diretórios do usuário (de ~/.config/user-dirs.dirs)]
+
+- show-user-dirs
+- ls-user-dirs
+
 [Variante alias ls- para show-display-server-code]
 
 - ls-display-server-code
@@ -499,8 +504,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - **`ls-grub-boot`**: Alias para cat-grub-boot.
 - **`show-grub-boot`**: Alias para cat-grub-boot.
-- **`ls-grub-etc`**: Alias para cat-grub-etc.
-- **`show-grub-etc`**: Alias para cat-grub-etc.
+- **`cat-def-grub`**: Mostra configuração padrão do GRUB de /etc/default/grub.
+- **`cat-default-grub`**: Alias para cat-def-grub.
+- **`cat-grub-etc`**: Alias para cat-def-grub.
+- **`ls-grub-etc`**: Alias para cat-def-grub.
+- **`show-grub-etc`**: Alias para cat-def-grub.
 - **`ls-k-os`**: Alias para cat-k-os.
 - **`show-k-os`**: Alias para cat-k-os.
 - **`ls-etc-os`**: Alias para cat-etc-os.
@@ -648,6 +656,13 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - follow-early-oom
 - watch-early-oom
 
+[Mostra configuração padrão do earlyoom de /etc/default/earlyoom]
+
+- cat-def-earlyoom
+- ls-def-earlyoom
+- cat-default-earlyoom
+- ls-default-earlyoom
+
 [Monitora processos que consomem mais memória ordenados por RSS em tempo real — $1: intervalo de atualização em segundos (padrão: 0,25)]
 
 - watch-mem-hogs
@@ -655,6 +670,42 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Monitora processos que consomem mais CPU em tempo real — $1: intervalo de atualização em segundos (padrão: 0,25)]
 
 - watch-cpu-hogs
+
+[Mostra configurações de overcommit de memória da VM]
+
+- ls-sys-vm-overcommit
+- ls-sys-vm-over-mem
+
+[Mostra configuração de OOM kill para tarefa alocadora da VM]
+
+- ls-sys-vm-oom-kill-alloc
+- ls-sys-vm-oom-kill-allocating-task
+
+[Mostra configuração de swappiness da VM]
+
+- ls-sys-vm-swappiness
+- ls-sys-vm-swap
+
+[Mostra taxas de dirty ratio e dirty background ratio da VM]
+
+- ls-sys-vm-dirty-ratios
+- ls-sys-vm-dirtyness
+
+[Mostra configurações de hung tasks do kernel (timeout, avisos, backtraces)]
+
+- ls-sys-kernel-hungs
+- ls-sys-k-hungs
+- ls-sys-kernel-hung-tasks
+- ls-sys-k-hung-tasks
+
+[Mostra configurações do escalonador do kernel (latência, granularidade, autogroup, custo de migração)]
+
+- ls-sys-kernel-schedules
+- ls-sys-k-schedules
+
+[Mostra informações combinadas de diagnóstico do kernel e da VM]
+
+- ls-sys-kernel-info
 
 [Lista processos zumbis (estado Z) a partir do ps aux — $1: número máximo de resultados (padrão: 20)]
 
@@ -716,6 +767,27 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Lista arquivos de unidade de serviço systemd em /lib/systemd/system/]
 
 - ls-sys-services
+
+[Mostra configuração do systemd system.conf]
+
+- cat-systemd-conf
+- ls-systemd-conf
+- show-systemd-conf
+
+[Exibe /etc/sysctl.conf e todos os arquivos em /etc/sysctl.d/]
+
+- cat-sysctl-conf
+- ls-sysctl-conf
+- show-sysctl-conf
+
+[Exibe systemd-sysctl.service e overrides de sysctl em sysinit.target.wants]
+
+- cat-sysctl-services
+- ls-sysctl-services
+- show-sysctl-services
+- cat-sctl-svc
+- ls-sctl-svc
+- show-sctl-svc
 
 [Lista módulos de kernel DKMS para o kernel atual]
 
@@ -869,6 +941,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Lista temas de ícones em /usr/share/icons/]
 
 - ls-icons
+
+[Lista TODOS os ícones do sistema (usuário, legado, sistema, snap, flatpak, pixmaps)]
+
+- get-all-icons
+- ls-all-icons
 
 [Extrai strings do script sign-file dos cabeçalhos do kernel]
 

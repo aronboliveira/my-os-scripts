@@ -279,6 +279,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - echo-wrkdir
 
+[Show current user directories config content (from ~/.config/user-dirs.dirs)]
+
+- show-user-dirs
+- ls-user-dirs
+
 [ls- alias variant for show-display-server-code]
 
 - ls-display-server-code
@@ -495,8 +500,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - **`ls-grub-boot`**: Alias for cat-grub-boot.
 - **`show-grub-boot`**: Alias for cat-grub-boot.
-- **`ls-grub-etc`**: Alias for cat-grub-etc.
-- **`show-grub-etc`**: Alias for cat-grub-etc.
+- **`cat-def-grub`**: Show GRUB default configuration from /etc/default/grub.
+- **`cat-default-grub`**: Alias for cat-def-grub.
+- **`cat-grub-etc`**: Alias for cat-def-grub.
+- **`ls-grub-etc`**: Alias for cat-def-grub.
+- **`show-grub-etc`**: Alias for cat-def-grub.
 - **`ls-k-os`**: Alias for cat-k-os.
 - **`show-k-os`**: Alias for cat-k-os.
 - **`ls-etc-os`**: Alias for cat-etc-os.
@@ -644,6 +652,13 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - follow-early-oom
 - watch-early-oom
 
+[Show default earlyoom configuration from /etc/default/earlyoom]
+
+- cat-def-earlyoom
+- ls-def-earlyoom
+- cat-default-earlyoom
+- ls-default-earlyoom
+
 [Watch memory-hungry processes sorted by RSS in real time — $1: refresh interval in seconds (default: 0.25)]
 
 - watch-mem-hogs
@@ -651,6 +666,42 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Watch CPU-hungry processes sorted by CPU usage in real time — $1: refresh interval in seconds (default: 0.25)]
 
 - watch-cpu-hogs
+
+[Show VM overcommit memory and ratio settings]
+
+- ls-sys-vm-overcommit
+- ls-sys-vm-over-mem
+
+[Show VM OOM kill allocating task setting]
+
+- ls-sys-vm-oom-kill-alloc
+- ls-sys-vm-oom-kill-allocating-task
+
+[Show VM swappiness setting]
+
+- ls-sys-vm-swappiness
+- ls-sys-vm-swap
+
+[Show VM dirty ratio and dirty background ratio]
+
+- ls-sys-vm-dirty-ratios
+- ls-sys-vm-dirtyness
+
+[Show kernel hung task timeout, warnings, and backtrace settings]
+
+- ls-sys-kernel-hungs
+- ls-sys-k-hungs
+- ls-sys-kernel-hung-tasks
+- ls-sys-k-hung-tasks
+
+[Show kernel scheduler settings (latency, granularity, autogroup, migration cost)]
+
+- ls-sys-kernel-schedules
+- ls-sys-k-schedules
+
+[Show combined kernel and VM diagnostic info]
+
+- ls-sys-kernel-info
 
 [List zombie processes (state Z) from ps aux output — $1: max number of results (default: 20)]
 
@@ -712,6 +763,27 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [List systemd service unit files in /lib/systemd/system/]
 
 - ls-sys-services
+
+[Show systemd system.conf configuration]
+
+- cat-systemd-conf
+- ls-systemd-conf
+- show-systemd-conf
+
+[Display /etc/sysctl.conf and all files in /etc/sysctl.d/]
+
+- cat-sysctl-conf
+- ls-sysctl-conf
+- show-sysctl-conf
+
+[Display systemd-sysctl.service and sysinit.target.wants sysctl overrides]
+
+- cat-sysctl-services
+- ls-sysctl-services
+- show-sysctl-services
+- cat-sctl-svc
+- ls-sctl-svc
+- show-sctl-svc
 
 [List DKMS kernel modules for current kernel]
 
@@ -865,6 +937,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [List icon themes in /usr/share/icons/]
 
 - ls-icons
+
+[List ALL icons in the system (user, legacy, system-wide, snap, flatpak, pixmaps)]
+
+- get-all-icons
+- ls-all-icons
 
 [Extract strings from kernel headers sign-file script]
 

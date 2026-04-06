@@ -78,6 +78,9 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias show-wrkdir="echo \$PWD"
     alias ls-wrkdir='show-wrkdir'
     alias echo-wrkdir='show-wrkdir'
+    ## @description Show current user directories config content (from ~/.config/user-dirs.dirs).
+    alias show-user-dirs='cat ~/.config/user-dirs.dirs 2>/dev/null || printf "[-] No user-dirs config found\n"'
+    alias ls-user-dirs='show-user-dirs'
     ## @description Show display server type code (x11 or wayland).
     alias show-display-server-code="echo \$XDG_SESSION_TYPE"
     alias ls-display-server-code='show-display-server-code'
@@ -949,7 +952,7 @@ EOF
       sleep 2
       journalctl --user -b -u gnome-shell | grep -i screencast | tail -n "$tail_lines"
       sleep 2
-      echo -e "\n⚠️  \033[1;36mChecking for errors/warnings in gnome-shell logs...\033[0m"
+        printf "[*] Checking %s...\n" "for"
       journalctl --user -u gnome-shell -n 100 --no-pager | grep -i -E "(screencast|error|warning|fail|crash)" | tail -n "$tail_lines"
       sleep 2
       echo -e "\n👀 \033[1;36mListing relevant active processes...\033[0m"
@@ -1668,11 +1671,13 @@ KILL_SCRIPT_EOF
       alias ls-grub-boot='sudo cat /boot/grub/grub.cfg'
       ## @description Alias for cat-grub-boot.
       alias show-grub-boot='sudo cat /boot/grub/grub.cfg'
-      alias cat-grub-etc='sudo cat /etc/default/grub'
+      alias cat-def-grub='sudo cat /etc/default/grub 2>/dev/null || printf "[-] No file found at /etc/default/grub\n"'
+      alias cat-default-grub='cat-def-grub'
+      alias cat-grub-etc='cat-def-grub'
       ## @description Alias for cat-grub-etc.
-      alias ls-grub-etc='sudo cat /etc/default/grub'
+      alias ls-grub-etc='cat-def-grub'
       ## @description Alias for cat-grub-etc.
-      alias show-grub-etc='sudo cat /etc/default/grub'
+      alias show-grub-etc='cat-def-grub'
       alias cat-k-os='sudo cat /proc/sys/kernel/osrelease'
       ## @description Alias for cat-k-os.
       alias ls-k-os='sudo cat /proc/sys/kernel/osrelease'
@@ -1811,6 +1816,10 @@ KILL_SCRIPT_EOF
       alias watch-early-oom-rec='follow_early_oom_rec'
       alias follow-early-oom='follow_early_oom_rec'
       alias watch-early-oom='follow_early_oom_rec'
+      alias cat-def-earlyoom='sudo cat /etc/default/earlyoom 2>/dev/null || printf "[-] No default earlyoom config found\n"'
+      alias ls-def-earlyoom='cat-def-earlyoom'
+      alias cat-default-earlyoom='cat-def-earlyoom'
+      alias ls-default-earlyoom='cat-def-earlyoom'
       ## @description Watch memory-hungry processes sorted by RSS in real time.
       ## @param $1 {float} interval - Refresh interval in seconds (default: 0.25)
       watch_mem_hogs() {
@@ -1825,7 +1834,79 @@ KILL_SCRIPT_EOF
         watch -n "$interval" 'ps aux --sort=-%cpu | awk "{print \$1,\$2,\$3,\$8,\$11}"'
       }
       alias watch-cpu-hogs='watch_cpu_hogs'
-
+      ls_sys_vm_overcommit() {
+        printf "[*] Checking vm.overcommit_memory...\n"
+        sudo sysctl vm.overcommit_memory 2>/dev/null || printf "[-] No overcommit_memory info available\n"
+        printf "[*] Checking vm.overcommit_ratio...\n"
+        sudo sysctl vm.overcommit_ratio 2>/dev/null || printf "[-] No overcommit_ratio info available\n"
+      }
+      alias ls-sys-vm-overcommit='ls_sys_vm_overcommit'
+      alias ls-sys-vm-over-mem='ls_sys_vm_overcommit'
+      ls_sys_vm_oom_kill_alloc() {
+        printf "[*] Checking vm.oom_kill_allocating_task...\n"
+        sudo sysctl vm.oom_kill_allocating_task 2>/dev/null || printf "[-] No oom_kill_allocating_task info available\n"
+      }
+      alias ls-sys-vm-oom-kill-alloc='ls_sys_vm_oom_kill_alloc'
+      alias ls-sys-vm-oom-kill-allocating-task='ls_sys_vm_oom_kill_alloc'
+      ls_sys_vm_swappiness() {
+        printf "[*] Checking vm.swappiness...\n"
+        sudo sysctl vm.swappiness 2>/dev/null || printf "[-] No swappiness info available\n"
+      }
+      alias ls-sys-vm-swappiness='ls_sys_vm_swappiness'
+      alias ls-sys-vm-swap='ls_sys_vm_swappiness'
+      ls_sys_vm_dirty_ratios() {
+        printf "[*] Checking vm.dirty_ratio...\n"
+        sudo sysctl vm.dirty_ratio 2>/dev/null || printf "[-] No dirty_ratio info available\n"
+        printf "[*] Checking vm.dirty_background_ratio...\n"
+        sudo sysctl vm.dirty_background_ratio 2>/dev/null || printf "[-] No dirty_background_ratio info available\n"
+      }
+      alias ls-sys-vm-dirty-ratios='ls_sys_vm_dirty_ratios'
+      alias ls-sys-vm-dirtyness='ls_sys_vm_dirty_ratios'
+      ls_sys_kernel_hungs() {
+        printf "[*] Checking for kernel hungs...\n"
+        sudo sysctl kernel.hung_task_timeout_secs 2>/dev/null || printf "[-] No hung task timeout info available\n"
+        printf "[*] Checking for warning about hung tasks...\n"
+        sudo sysctl kernel.hung_task_warnings 2>/dev/null || printf "[-] No hung task warning info available\n"
+        printf "[*] Checking for hung task backtraces...\n"
+        sudo sysctl kernel.hung_task_all_cpu_backtrace 2>/dev/null || printf "[-] No hung task backtrace info available\n"
+      }
+      alias ls-sys-kernel-hungs='ls_sys_kernel_hungs'
+      alias ls-sys-k-hungs='ls_sys_kernel_hungs'
+      alias ls-sys-kernel-hung-tasks='ls_sys_kernel_hungs'
+      alias ls-sys-k-hung-tasks='ls_sys_kernel_hungs'
+      ls_sys_kernel_schedules() {
+        printf "[*] Checking for scheduler info...\n"
+        sudo sysctl kernel.sched_latency_ns 2>/dev/null || printf "[-] No scheduler latency info available\n"
+        sudo sysctl kernel.sched_min_granularity_ns 2>/dev/null || printf "[-] No scheduler min granularity info available\n"
+        sudo sysctl kernel.sched_child_runs_first 2>/dev/null || printf "[-] No scheduler child runs first info available\n"
+        sudo sysctl kernel.sched_autogroup_enabled 2>/dev/null || printf "[-] No scheduler autogroup info available\n"
+        sudo sysctl kernel.sched_migration_cost_ns 2>/dev/null || printf "[-] No scheduler migration cost info available\n"
+      }
+      alias ls-sys-kernel-schedules='ls_sys_kernel_schedules'
+      alias ls-sys-k-schedules='ls_sys_kernel_schedules'
+      ls_sys_kernel_info() {
+        printf "\n[=== KERNEL INFO ===]\n"
+        sleep 1
+        printf "[=== KERNEL HUNGS ===]\n"
+        ls_sys_kernel_hungs
+        sleep 2
+        printf "[=== KERNEL SCHEDULER ===]\n"
+        ls_sys_kernel_schedules
+        sleep 3
+        printf "\n[=== VM INFO ===]\n"
+        sleep 1
+        printf "[=== VM OVERCOMMIT ===]\n"
+        ls_sys_vm_overcommit
+        sleep 1
+        printf "[=== VM OOM KILL ALLOCATING TASK ===]\n"
+        ls_sys_vm_oom_kill_alloc
+        sleep 1
+        printf "[=== VM SWAPPINESS ===]\n"
+        ls_sys_vm_swappiness
+        sleep 1
+        printf "[=== VM DIRTY RATIOS ===]\n"
+        ls_sys_vm_dirty_ratios
+      }
       ## @description List zombie processes (state Z) from ps aux output.
       ## @param $1 {int} head - Max number of results to display (default: 20)
       find_zombies() {
@@ -1838,7 +1919,7 @@ KILL_SCRIPT_EOF
       cat_pid_oom_kill_score() {
         local pid="${1?"Usage: cat-pid-oom-kill-score <pid>"}"
         echo ==== "OOM SCORE (TO BE KILLED)" ====
-        sudo cat /proc/"$pid"/oom_score 2>/dev/null || echo "No OOM score info available"
+        sudo cat /proc/"$pid"/oom_score 2>/dev/null || printf "[-] No OOM score info available\n"
       }
       alias cat-pid-oom-kill-score='cat_pid_oom_kill_score'
       follow_pid_oom_kill_score() {
@@ -1852,7 +1933,7 @@ KILL_SCRIPT_EOF
       cat_pid_oom_adj_score() {
         local pid="${1?"Usage: cat-pid-oom-adj-score <pid>"}"
         echo ==== "OOM SCORE (TO BE ADJUSTED)" ====
-        sudo cat /proc/"$pid"/oom_score_adj 2>/dev/null || echo "No OOM adj info available"
+        sudo cat /proc/"$pid"/oom_score_adj 2>/dev/null || printf "[-] No OOM adj info available\n"
       }
       alias cat-pid-oom-adj-score='cat_pid_oom_adj_score'
       ## @description Show both OOM kill score and adjustment score for a process.
@@ -1860,9 +1941,9 @@ KILL_SCRIPT_EOF
       cat_pid_oom_scores() {
         local pid="${1?"Usage: cat-pid-oom-scores <pid>"}"
         echo ==== "OOM SCORE (TO BE KILLED)" ====
-        sudo cat /proc/"$pid"/oom_score 2>/dev/null || echo "No OOM score info available"
+        sudo cat /proc/"$pid"/oom_score 2>/dev/null || printf "[-] No OOM score info available\n"
         echo ==== "OOM SCORE (TO BE ADJUSTED)" ====
-        sudo cat /proc/"$pid"/oom_score 2>/dev/null || echo "No OOM adj info available"
+        sudo cat /proc/"$pid"/oom_score_adj 2>/dev/null || printf "[-] No OOM adj info available\n"
       }
       alias cat-pid-oom-scores='cat_pid_oom_scores'
       ## @description Follow the earlyoom systemd journal (sudo journalctl -u earlyoom).
@@ -1893,6 +1974,35 @@ KILL_SCRIPT_EOF
       alias stringify-snapd='sudo strings /lib/snapd/snapd'
       ## @description Alias for cat-sys-services.
       alias ls-sys-services='sudo ls /lib/systemd/system/'
+      alias cat-systemd-conf='sudo cat /etc/systemd/system.conf 2>/dev/null || printf "[-] No systemd system.conf file found\n"'
+      alias ls-systemd-conf='cat-systemd-conf'
+      alias show-systemd-conf='cat-systemd-conf'
+      ## @description Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
+      cat_sysctl_conf() {
+        printf "[*] Checking /etc/sysctl.conf...\n"
+        sudo cat /etc/sysctl.conf 2>/dev/null || printf "[-] No sysctl.conf file found\n"
+        sleep 2
+        printf "[*] Checking /etc/sysctl.d/ directory for additional config files...\n"
+        sudo find /etc/sysctl.d/ -type f -exec sh -c 'printf "[=== %s ===]\n" "$1"; sleep 1; cat "$1" 2>/dev/null' _ {} \;
+      }
+      alias cat-sysctl-conf='cat_sysctl_conf'
+      alias ls-sysctl-conf='cat_sysctl_conf'
+      alias show-sysctl-conf='cat_sysctl_conf'
+      ## @description Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
+      cat_systemd_sysctl_services() {
+        printf "[*] Checking systemd-sysctl.service for sysctl overrides...\n"
+        sudo cat /usr/lib/systemd/system/systemd-sysctl.service 2>/dev/null || printf "[-] No systemd-sysctl.service file found\n"
+        sleep 1
+        printf "[*] Checking systemd services for sysctl overrides...\n"
+        sleep 2
+        sudo cat /usr/lib/systemd/system/sysinit.target.wants/systemd-sysctl.service 2>/dev/null || printf "[-] No sysctl overrides found in systemd service files\n"
+      }
+      alias cat-sysctl-services='cat_systemd_sysctl_services'
+      alias ls-sysctl-services='cat_systemd_sysctl_services'
+      alias show-sysctl-services='cat_systemd_sysctl_services'
+      alias cat-sctl-svc='cat_systemd_sysctl_services'
+      alias ls-sctl-svc='cat_systemd_sysctl_services'
+      alias show-sctl-svc='cat_systemd_sysctl_services'
       ## @description Alias for cat-mod-dkms.
       alias ls-mod-dkms='sudo ls "/lib/modules/$(uname -r)/updates/dkms/"'
       ## @description Show OpenGL renderer, version, and direct rendering status.
@@ -2042,6 +2152,53 @@ KILL_SCRIPT_EOF
       alias ls-apps-u='ls ~/.local/share/applications/'
       ## @description Alias for cat-icons.
       alias ls-icons='sudo ls /usr/share/icons/'
+      ## @description Function for listing ALL icons in the system
+      get_all_icons() {
+        printf "\n[+] USER SPECIFIC ICONS\n"
+        if [[ -d ~/.local/share/icons/ ]]; then
+          find ~/.local/share/icons/ -type f -exec sh -c 'echo "Filename: $(basename "$1")"; ls -lh "$1" 2>/dev/null' _ {} \;
+        else
+          echo "No user-specific icons found"
+        fi
+        sleep 2
+        printf "\n[+] LEGACY USER SPECIFIC ICONS (if any)\n"
+        if [[ -d ~/.icons/ ]]; then
+          find ~/.icons/ -type f -exec sh -c 'echo "Filename: $(basename "$1")"; ls -lh "$1" 2>/dev/null' _ {} \;
+        else
+          echo "No legacy user-specific icons found"
+        fi
+        sleep 2
+        printf "\n[+] SYSTEM-WIDE ICONS\n"
+        sudo -v
+        if [[ -d /usr/share/icons/ ]]; then
+          sudo find /usr/share/icons/ -type f -exec sh -c 'echo "Filename: $(basename "$1")"; ls -lh "$1" 2>/dev/null' _ {} \;
+        else
+          echo "No system-wide icons found"
+        fi
+        sleep 2
+        printf "\n[+] SYSTEM-WIDE SNAP-INSTALLED ICONS\n"
+        if [[ -d /var/lib/snapd/desktop/icons/ ]]; then
+          sudo find /var/lib/snapd/desktop/icons/ -type f -exec sh -c 'echo "Filename: $(basename "$1")"; ls -lh "$1" 2>/dev/null' _ {} \;
+        else
+          echo "No system-wide snap-installed icons found"
+        fi
+        sleep 2
+        printf "\n[+] SYSTEM-WIDE FLATPAK-INSTALLED ICONS\n"
+        if [[ -d /var/lib/flatpak/exports/share/icons/ ]]; then
+          sudo find /var/lib/flatpak/exports/share/icons/ -type f -exec sh -c 'echo "Filename: $(basename "$1")"; ls -lh "$1" 2>/dev/null' _ {} \;
+        else
+          echo "No system-wide flatpak-installed icons found"
+        fi
+        sleep 2
+        printf "\n[+] LEGACY SYSTEM-WIDE PIXMAPS\n"
+        if [[ -d /usr/share/pixmaps/ ]]; then
+          sudo find /usr/share/pixmaps/ -type f -exec sh -c 'echo "Filename: $(basename "$1")"; ls -lh "$1" 2>/dev/null' _ {} \;
+        else
+          echo "No legacy system-wide pixmaps found"
+        fi
+      }
+      alias get-all-icons='get_all_icons'
+      alias ls-all-icons='get_all_icons'
       alias stringify-sign-files='sudo strings "/usr/src/linux-headers-$(uname -r)/scripts/sign-file"'
       ## @description Find system/KDE/Plasma binaries in /usr/bin.
       find_system_kde_bins() {
@@ -2104,7 +2261,7 @@ KILL_SCRIPT_EOF
       ## @description Extract printable strings from the current shell's own executable (/proc/self/exe).
       alias stringify-self='sudo strings /proc/self/exe 2>/dev/null || echo "No strings available for self"'
       ## @description List details of the current shell's executable symlink (/proc/self/exe).
-      alias ls-self='sudo ls -lh /proc/self/exe 2>/dev/null || echo "No self executable info available"'
+      alias ls-self='sudo ls -lh /proc/self/exe 2>/dev/null || printf "[-] No self executable info available\n"'
 #endregion Applications_and_Icons
 
     #region VSCode_and_GTK
@@ -4772,7 +4929,7 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
     ## @description Rename all files in the current directory to random 16-char alphanumeric names, preserving extensions. Requires sudo.
     fully_randomized_file_names() {
       sudo -v || { echo "Requires sudo privileges to rename files with random names"; return 1; }
-      for f in *; do [[ -f "$f" ]] && mv "$f" "$(openssl rand -base64 12 | tr -dc 'a-zA-Z0-9' | head -c 16).${f##*.}"; done
+      for f in *; do [[ -f "$f" ]] && mv -- "$f" "$(openssl rand -base64 12 | tr -dc 'a-zA-Z0-9' | head -c 16).${f##*.}"; done
     }
     ## @description Alias for fully_randomized_file_names.
     alias fully-randomized-file-names='fully_randomized_file_names'
