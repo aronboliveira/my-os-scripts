@@ -355,6 +355,225 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
       ip route get "$ip" 2>/dev/null || true
     }
     alias net-probe='net_probe'
+    ## @description Show /proc/net/tcp, tcp6, and IPv4 TCP config files.
+    ls_tcp_proc_config() {
+      echo -e "\n\033[1;34m── 📁 NET PROCESS FILES ──\033[0m\n"
+      sleep 1
+      echo -e "\033[1;34m── 🌐 TCP IPv4 ──\033[0m\n"
+      sudo cat /proc/net/tcp 2>/dev/null || echo -e "❌ \033[1;31mNo TCP IPv4 info\033[0m"
+      sleep 1
+      echo -e "\033[1;34m── 🌐 TCP IPv6 ──\033[0m\n"
+      sudo cat /proc/net/tcp6 2>/dev/null || echo -e "❌ \033[1;31mNo TCP IPv6 info\033[0m"
+      sleep 1
+      if [[ -d /proc/sys/net/ipv4/conf ]]; then
+        echo -e "\033[1;34m── ⚙️  TCP CONFIG FILES ──\033[0m\n"
+        sudo find /proc/sys/net/ipv4/conf -type f -name "tcp_*" -exec sh -c 'echo -e "\033[1;34m── {} ──\033[0m"; cat "$1" 2>/dev/null; echo ""' _ {} \;
+      fi
+    }
+    alias ls-tcp-proc-config='ls_tcp_proc_config'
+    alias ls-tcp-config-proc='ls_tcp_proc_config'
+    alias ls-tcp-conf-proc='ls_tcp_proc_config'
+    alias ls-tcp-proc-conf='ls_tcp_proc_config'
+    ## @description Show IPv4 and IPv6 socket statistics from /proc/net/sockstat.
+    ls_net_sockstats() {
+      echo -e "\n\033[1;34m── 📊 SOCKSTAT INFO ──\033[0m\n"
+      sleep 1
+      echo -e "\033[1;34m── 🌐 SOCKSTAT IPv4 ──\033[0m\n"
+      sudo cat /proc/net/sockstat 2>/dev/null || echo -e "❌ \033[1;31mNo IPv4 sockstat info\033[0m"
+      sleep 1
+      echo -e "\033[1;34m── 🌐 SOCKSTAT IPv6 ──\033[0m\n"
+      sudo cat /proc/net/sockstat6 2>/dev/null || echo -e "❌ \033[1;31mNo IPv6 sockstat info\033[0m"
+    }
+    alias ls-net-sockstats='ls_net_sockstats'
+    alias ls-sockstats='ls_net_sockstats'
+    alias ls-sock-statistics='ls_net_sockstats'
+    ## @description Show SNMP TCP statistics from /proc/net/snmp and snmp6.
+    ls_net_snmp() {
+      echo -e "\n\033[1;34m── 📊 SNMP INFO ──\033[0m\n"
+      sleep 1
+      echo -e "\033[1;34m── 🌐 SNMP TCP IPv4 ──\033[0m\n"
+      sudo cat /proc/net/snmp 2>/dev/null | grep -A10 "Tcp:" || echo -e "❌ \033[1;31mNo SNMP TCP info\033[0m"
+      sleep 1
+      echo -e "\033[1;34m── 🌐 SNMP TCP IPv6 ──\033[0m\n"
+      sudo cat /proc/net/snmp6 2>/dev/null | grep -A10 "Tcp:" || echo -e "❌ \033[1;31mNo SNMP TCP6 info\033[0m"
+    }
+    alias ls-net-snmp='ls_net_snmp'
+    alias ls-snmp='ls_net_snmp'
+    ## @description Show iptables rules filtered for TCP across filter, nat, and raw tables.
+    ls_tcp_iptables_rules() {
+      echo -e "\n\033[1;34m── 🔒 ALL IPTABLES RULES FOR TCP ──\033[0m\n"
+      sleep 3
+      sudo iptables -L -n -v --line-numbers 2>/dev/null | grep -i "tcp" || echo -e "❌ \033[1;31mNo iptables rules for TCP or iptables available\033[0m"
+      sleep 2
+      echo -e "\n\033[1;34m── 🔒 NAT IPTABLES RULES FOR TCP ──\033[0m\n"
+      sudo iptables -t nat -L -n -v --line-numbers 2>/dev/null | grep -i "tcp" || echo -e "❌ \033[1;31mNo NAT iptables rules for TCP or iptables available\033[0m"
+      sleep 2
+      echo -e "\n\033[1;34m── 🔒 RAW IPTABLES FOR TCP ──\033[0m\n"
+      sudo iptables -t raw -L -n -v --line-numbers 2>/dev/null | grep -i "tcp" || echo -e "❌ \033[1;31mNo RAW iptables rules for TCP or iptables available\033[0m"
+    }
+    alias ls-tcp-iptables='ls_tcp_iptables_rules'
+    alias ls-iptables-tcp='ls_tcp_iptables_rules'
+    alias ls-tcp-iptables-rules='ls_tcp_iptables_rules'
+    ## @description Show TCP congestion control algorithm and available algorithms.
+    ls_sys_tcp_v4_congestion_control() {
+      echo -e "\n\033[1;34m── ⚙️  TCP CONGESTION CONTROL CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_available_congestion_control 2>/dev/null || echo -e "❌ \033[1;31mtcp_available_congestion_control sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_congestion_control 2>/dev/null || echo -e "❌ \033[1;31mtcp_congestion_control sysctl not available\033[0m"
+    }
+    alias ls-sys-tcp-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias ls-sysctl-tcp-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias ls-tcp-sysctl-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias ls-sys-tcp-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias ls-sys-tcp-cgt-ctrl='ls_sys_tcp_v4_congestion_control'
+    alias ls-sysctl-tcp-cgt-ctrl='ls_sys_tcp_v4_congestion_control'
+    ## @description Show TCP keepalive, timeout, and retry sysctl parameters.
+    ls_sys_tcp_v4_time_control() {
+      echo -e "\n\033[1;34m── ⏱️  TCP TIME CONTROL CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_keepalive_time 2>/dev/null || echo -e "❌ \033[1;31mtcp_keepalive_time sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_fin_timeout 2>/dev/null || echo -e "❌ \033[1;31mtcp_fin_timeout sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_retries1 2>/dev/null || echo -e "❌ \033[1;31mtcp_retries1 sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_retries2 2>/dev/null || echo -e "❌ \033[1;31mtcp_retries2 sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_synack_retries 2>/dev/null || echo -e "❌ \033[1;31mtcp_synack_retries sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_syn_retries 2>/dev/null || echo -e "❌ \033[1;31mtcp_syn_retries sysctl not available\033[0m"
+    }
+    alias ls-sys-tcp-v4-time-control='ls_sys_tcp_v4_time_control'
+    alias ls-sysctl-tcp-v4-time-control='ls_sys_tcp_v4_time_control'
+    alias ls-tcp-sysctl-v4-time-control='ls_sys_tcp_v4_time_control'
+    alias ls-tcp-sys-time-control='ls_sys_tcp_v4_time_control'
+    ## @description Show TCP backlog, orphan, and TIME_WAIT bucket limits.
+    ls_sys_tcp_v4_limits() {
+      echo -e "\n\033[1;34m── 📏 TCP LIMIT CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_max_syn_backlog 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_syn_backlog sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_max_tw_buckets 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_tw_buckets sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_max_orphans 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_orphans sysctl not available\033[0m"
+    }
+    alias ls-sys-tcp-v4-limits='ls_sys_tcp_v4_limits'
+    alias ls-sysctl-tcp-v4-limits='ls_sys_tcp_v4_limits'
+    alias ls-tcp-sysctl-v4-limits='ls_sys_tcp_v4_limits'
+    alias ls-tcp-sys-limits='ls_sys_tcp_v4_limits'
+    ## @description Show TCP base MSS and MTU probing sysctl settings.
+    ls_sys_tcp_v4_mtu() {
+      echo -e "\n\033[1;34m── 📐 TCP MTU CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_base_mss 2>/dev/null || echo -e "❌ \033[1;31mtcp_base_mss sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_mtu_probing 2>/dev/null || echo -e "❌ \033[1;31mtcp_mtu_probing sysctl not available\033[0m"
+    }
+    alias ls-sys-tcp-v4-mtu='ls_sys_tcp_v4_mtu'
+    alias ls-sysctl-tcp-v4-mtu='ls_sys_tcp_v4_mtu'
+    alias ls-tcp-sysctl-v4-mtu='ls_sys_tcp_v4_mtu'
+    ## @description Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+    ls_sys_tcp_v4_base_config() {
+      echo -e "\n\033[1;34m── 🔧 BASE TCP CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_rmem 2>/dev/null || echo -e "❌ \033[1;31mtcp_rmem sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_wmem 2>/dev/null || echo -e "❌ \033[1;31mtcp_wmem sysctl not available\033[0m"
+      sudo sysctl net.core.rmem_default 2>/dev/null || echo -e "❌ \033[1;31mcore rmem_default sysctl not available\033[0m"
+      sudo sysctl net.core.wmem_default 2>/dev/null || echo -e "❌ \033[1;31mcore wmem_default sysctl not available\033[0m"
+      sudo sysctl net.core.rmem_max 2>/dev/null || echo -e "❌ \033[1;31mcore rmem_max sysctl not available\033[0m"
+      sudo sysctl net.core.wmem_max 2>/dev/null || echo -e "❌ \033[1;31mcore wmem_max sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_fastopen 2>/dev/null || echo -e "❌ \033[1;31mtcp_fastopen sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_syncookies 2>/dev/null || echo -e "❌ \033[1;31mtcp_syncookies sysctl not available\033[0m"
+    }
+    alias ls-tcp-sys-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-tcp-sysctl-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-tcp-sysctl-base-v4-conf='ls_sys_tcp_v4_base_config'
+    alias ls-tcp-sys-tcp-base-v4-conf='ls_sys_tcp_v4_base_config'
+    alias ls-sys-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-sysctl-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-tcp-sysctl-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-tcp-sys-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-sys-tcp-base-config='ls_sys_tcp_v4_base_config'
+    ## @description Aggregated view of all IPv4 TCP sysctl settings.
+    ls_sys_tcp_v4() {
+      echo -e "\n\033[1;34m── 🌐 SYSCTL CONFIGS FOR IPv4 ──\033[0m\n"
+      ls_sys_tcp_v4_congestion_control
+      sleep 2
+      ls_sys_tcp_v4_time_control
+      sleep 2
+      ls_sys_tcp_v4_limits
+      sleep 2
+      ls_sys_tcp_v4_mtu
+      sleep 2
+      ls_sys_tcp_v4_base_config
+    }
+    alias ls-sys-tcp-v4='ls_sys_tcp_v4'
+    alias ls-sysctl-tcp-v4='ls_sys_tcp_v4'
+    alias ls-tcp-sysctl-v4='ls_sys_tcp_v4'
+    alias ls-sys-tcp='ls_sys_tcp_v4'
+    alias ls-tcp-sys='ls_sys_tcp_v4'
+    alias ls_tcp_sys='ls_sys_tcp_v4'
+    ## @description Show listening TCP ports via lsof.
+    ls_tcp_listening_ports() {
+      echo -e "\n\033[1;34m── 👂 Listening TCP Ports ──\033[0m\n"
+      sudo lsof -i TCP -s TCP:LISTEN 2>/dev/null || echo -e "❌ \033[1;31mNo listening TCP ports or lsof not available\033[0m"
+    }
+    alias ls-tcp-listening-ports='ls_tcp_listening_ports'
+    alias ls-tcp-listen-ports='ls_tcp_listening_ports'
+    alias ls-tcp-lp='ls_tcp_listening_ports'
+    ## @description Show established TCP connections via lsof.
+    ls_tcp_established_connections() {
+      echo -e "\n\033[1;34m── 🔗 Established TCP Connections ──\033[0m\n"
+      sudo lsof -i TCP -s TCP:ESTABLISHED 2>/dev/null || echo -e "❌ \033[1;31mNo established TCP connections or lsof not available\033[0m"
+    }
+    alias ls-tcp-established-connections='ls_tcp_established_connections'
+    alias ls-tcp-established-conns='ls_tcp_established_connections'
+    alias ls-tcp-est-conns='ls_tcp_established_connections'
+    alias ls-tcp-est-connections='ls_tcp_established_connections'
+    ## @description Show all active TCP connections, listening ports, and established connections.
+    ls_tcp_active_connections() {
+      echo -e "\n\033[1;34m── 🔌 All Active TCP Connections ──\033[0m\n"
+      sleep 3
+      sudo lsof -i TCP -nP 2>/dev/null || echo -e "❌ \033[1;31mNo active TCP connections or lsof not available\033[0m"
+      sleep 2
+      ls_tcp_listening_ports
+      sleep 2
+      ls_tcp_established_connections
+    }
+    alias ls-tcp-active-connections='ls_tcp_active_connections'
+    alias ls-tcp-active-conns='ls_tcp_active_connections'
+    alias ls-tcp-act-conns='ls_tcp_active_connections'
+    ## @description Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+    ls_active_tcp_net_sockets() {
+      echo -e "\n\033[1;34m── 📡 SS OUTPUT ──\033[0m\n"
+      if command -v ss &>/dev/null; then
+        sudo ss -tlnp 2>/dev/null || echo -e "❌ \033[1;31mss command not available\033[0m"
+      fi
+      sleep 3
+      echo -e "\n\033[1;34m── 📡 NETSTAT OUTPUT ──\033[0m\n"
+      if command -v netstat &>/dev/null; then
+        echo -e "⚠️  \033[1;33mWarning: netstat is deprecated. Consider using ss instead.\033[0m"
+        sudo netstat -tlnp 2>/dev/null || echo -e "❌ \033[1;31mnetstat command not available\033[0m"
+      fi
+    }
+    alias ls-active-tcp-net-sockets='ls_active_tcp_net_sockets'
+    alias ls-active-tcp-sockets='ls_active_tcp_net_sockets'
+    alias ls-act-tcp-sockets='ls_active_tcp_net_sockets'
+    alias ls-act-tcp-net-sockets='ls_active_tcp_net_sockets'
+    alias ls-act-tcp-s='ls_active_tcp_net_sockets'
+    alias ls-act-tcp-ns='ls_active_tcp_net_sockets'
+    alias ls-act-tcp-net-s='ls_active_tcp_net_sockets'
+    alias ls_tcp_active_net_sockets='ls_active_tcp_net_sockets'
+    alias ls_tcp_active_sockets='ls_active_tcp_net_sockets'
+    alias ls_tcp_active_nsockets='ls_active_tcp_net_sockets'
+    ## @description Full TCP diagnostic: proc files, sockstats, SNMP, iptables, sysctl, connections, and sockets.
+    ls_tcp_config() {
+      echo -e "\n\033[1;36m══════════ 🌐 TCP CONFIGURATION ══════════\033[0m\n"
+      sleep 2
+      ls_tcp_proc_config
+      sleep 2
+      ls_net_sockstats
+      sleep 2
+      ls_net_snmp
+      sleep 1
+      ls_tcp_iptables_rules
+      sleep 1
+      ls_sys_tcp_v4
+      sleep 3
+      ls_tcp_active_connections
+      sleep 3
+      ls_active_tcp_net_sockets
+    }
+    alias ls-tcp-config='ls_tcp_config'
+    alias ls-tcp-conf='ls_tcp_config'
+    alias ls-tcp-all='ls_tcp_config'
     ## @description Run powerstat (RAPL) and tee output to a timestamped log,
     ##   with the Watts column moved from last to second position.
     ## @param $1 {number} duration - Recording duration in seconds (default: 3600)
@@ -1836,8 +2055,22 @@ KILL_SCRIPT_EOF
       alias watch-cpu-hogs='watch_cpu_hogs'
       ls_sys_vm_overcommit() {
         printf "[*] Checking vm.overcommit_memory...\n"
-        sudo sysctl vm.overcommit_memory 2>/dev/null || printf "[-] No overcommit_memory info available\n"
-        printf "[*] Checking vm.overcommit_ratio...\n"
+        local overcommit_mode=$(sudo sysctl vm.overcommit_memory 2>/dev/null || printf "[-] No overcommit_memory info available\n")
+        case "$overcommit_mode" in
+          *"vm.overcommit_memory = 0"*)
+            printf "  → Overcommit mode: Heuristic (0, default)\n"
+            ;;
+          *"vm.overcommit_memory = 1"*)
+            printf "  → Overcommit mode: Always overcommit (1)\n"
+            ;;
+          *"vm.overcommit_memory = 2"*)
+            printf "  → Overcommit mode: Don't overcommit (2)\n"
+            ;;
+          *)
+            printf "  → Overcommit mode: Unknown or not available\n"
+            ;;
+        esac
+        printf "[*] Checking vm.overcommit_ratio (only relevant for mode 2)...\n"
         sudo sysctl vm.overcommit_ratio 2>/dev/null || printf "[-] No overcommit_ratio info available\n"
       }
       alias ls-sys-vm-overcommit='ls_sys_vm_overcommit'
@@ -1855,17 +2088,17 @@ KILL_SCRIPT_EOF
       alias ls-sys-vm-swappiness='ls_sys_vm_swappiness'
       alias ls-sys-vm-swap='ls_sys_vm_swappiness'
       ls_sys_vm_dirty_ratios() {
-        printf "[*] Checking vm.dirty_ratio...\n"
+        printf "[*] Checking vm.dirty_ratio (unblocked, no flushing threads, R or S alternating state)...\n"
         sudo sysctl vm.dirty_ratio 2>/dev/null || printf "[-] No dirty_ratio info available\n"
-        printf "[*] Checking vm.dirty_background_ratio...\n"
+        printf "[*] Checking vm.dirty_background_ratio... (asynchronous writing, like flush-*, kworker/u*, jbd, kswapd, etc., OR stuck in D | S state)\n"
         sudo sysctl vm.dirty_background_ratio 2>/dev/null || printf "[-] No dirty_background_ratio info available\n"
       }
       alias ls-sys-vm-dirty-ratios='ls_sys_vm_dirty_ratios'
       alias ls-sys-vm-dirtyness='ls_sys_vm_dirty_ratios'
       ls_sys_kernel_hungs() {
-        printf "[*] Checking for kernel hungs...\n"
+        printf "[*] Checking for kernel hungs (stuck at D state)...\n"
         sudo sysctl kernel.hung_task_timeout_secs 2>/dev/null || printf "[-] No hung task timeout info available\n"
-        printf "[*] Checking for warning about hung tasks...\n"
+        printf "[*] Checking for warning about hung tasks (limit)...\n"
         sudo sysctl kernel.hung_task_warnings 2>/dev/null || printf "[-] No hung task warning info available\n"
         printf "[*] Checking for hung task backtraces...\n"
         sudo sysctl kernel.hung_task_all_cpu_backtrace 2>/dev/null || printf "[-] No hung task backtrace info available\n"
@@ -1988,8 +2221,11 @@ KILL_SCRIPT_EOF
       ## @description Alias for cat-sys-services.
       alias ls-sys-services='sudo ls /lib/systemd/system/'
       alias cat-systemd-conf='sudo cat /etc/systemd/system.conf 2>/dev/null || printf "[-] No systemd system.conf file found\n"'
+      alias cat-systemd-config='cat-systemd-conf'
       alias ls-systemd-conf='cat-systemd-conf'
+      alias ls-systemd-config='cat-systemd-conf'
       alias show-systemd-conf='cat-systemd-conf'
+      alias show-systemd-config='cat-systemd-conf'
       ## @description Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
       cat_sysctl_conf() {
         printf "[*] Checking /etc/sysctl.conf...\n"
@@ -1999,8 +2235,11 @@ KILL_SCRIPT_EOF
         sudo find /etc/sysctl.d/ -type f -exec sh -c 'printf "[=== %s ===]\n" "$1"; sleep 1; cat "$1" 2>/dev/null' _ {} \;
       }
       alias cat-sysctl-conf='cat_sysctl_conf'
+      alias cat-sysctl-config='cat_sysctl_conf'
       alias ls-sysctl-conf='cat_sysctl_conf'
+      alias ls-sysctl-config='cat_sysctl_conf'
       alias show-sysctl-conf='cat_sysctl_conf'
+      alias show-sysctl-config='cat_sysctl_conf'
       ## @description Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
       cat_systemd_sysctl_services() {
         printf "[*] Checking systemd-sysctl.service for sysctl overrides...\n"
@@ -2024,22 +2263,31 @@ KILL_SCRIPT_EOF
 
     #region System_Config_Files
       alias cat-gdm3-conf='sudo cat /etc/gdm3/custom.conf'
+      alias cat-gdm3-config='cat-gdm3-conf'
       ## @description Alias for cat-gdm3-conf.
       alias ls-gdm3-conf='sudo cat /etc/gdm3/custom.conf'
+      alias ls-gdm3-config='ls-gdm3-conf'
       ## @description Alias for cat-gdm3-conf.
       alias show-gdm3-conf='sudo cat /etc/gdm3/custom.conf'
+      alias show-gdm3-config='show-gdm3-conf'
       ## @description Show libvirt daemon configuration from /etc/libvirt/libvirtd.conf.
       alias show-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias show-libvirt-config='show-libvirt-conf'
       ## @description Alias for show-libvirt-conf.
       alias ls-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias ls-libvirt-config='ls-libvirt-conf'
       ## @description Alias for show-libvirt-conf.
       alias cat-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias cat-libvirt-config='cat-libvirt-conf'
       ## @description Alias for show-libvirt-conf (short form).
       alias show-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias show-libv-config='show-libv-conf'
       ## @description Alias for show-libvirt-conf (short form).
       alias ls-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias ls-libv-config='ls-libv-conf'
       ## @description Alias for show-libvirt-conf (short form).
       alias cat-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias cat-libv-config='cat-libv-conf'
       ## @description Show the system hosts file (/etc/hosts).
       alias cat-hosts='sudo cat /etc/hosts'
       ## @description Alias for cat-hosts.
@@ -2071,6 +2319,7 @@ KILL_SCRIPT_EOF
         sudo find /etc/sysctl.d/ -type f -exec sh -c 'echo "=== $1 ==="; sleep 1; cat "$1" 2>/dev/null' _ {} \;
       }
       alias cat-sysctl-conf='_cat_sysctl_conf'
+      alias cat-sysctl-config='_cat_sysctl_conf'
 
       _cat_ssh_hosts() {
         sudo find /etc/ssh/ -name "ssh_host_*" -exec sh -c 'echo "=== $1 ==="; sleep 1; cat "$1" 2>/dev/null' _ {} \;

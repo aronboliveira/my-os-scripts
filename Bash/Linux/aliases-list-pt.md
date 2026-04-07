@@ -346,6 +346,109 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - net-probe
 
+[Exibe /proc/net/tcp, tcp6 e arquivos de configuração TCP IPv4]
+
+- ls-tcp-proc-config
+- ls-tcp-config-proc
+- ls-tcp-conf-proc
+- ls-tcp-proc-conf
+
+[Exibe estatísticas de sockets IPv4 e IPv6 de /proc/net/sockstat]
+
+- ls-net-sockstats
+- ls-sockstats
+- ls-sock-statistics
+
+[Exibe estatísticas SNMP TCP de /proc/net/snmp e snmp6]
+
+- ls-net-snmp
+- ls-snmp
+
+[Exibe regras iptables filtradas para TCP nas tabelas filter, nat e raw]
+
+- ls-tcp-iptables
+- ls-iptables-tcp
+- ls-tcp-iptables-rules
+
+[Exibe algoritmo de controle de congestionamento TCP e algoritmos disponíveis]
+
+- ls-sys-tcp-v4-congestion-control
+- ls-sysctl-tcp-v4-congestion-control
+- ls-tcp-sysctl-v4-congestion-control
+- ls-sys-tcp-congestion-control
+- ls-sys-tcp-cgt-ctrl
+- ls-sysctl-tcp-cgt-ctrl
+
+[Exibe parâmetros sysctl de keepalive, timeout e retentativas TCP]
+
+- ls-sys-tcp-v4-time-control
+- ls-sysctl-tcp-v4-time-control
+- ls-tcp-sysctl-v4-time-control
+- ls-tcp-sys-time-control
+
+[Exibe limites de backlog, órfãos e buckets TIME_WAIT do TCP]
+
+- ls-sys-tcp-v4-limits
+- ls-sysctl-tcp-v4-limits
+- ls-tcp-sysctl-v4-limits
+- ls-tcp-sys-limits
+
+[Exibe configurações sysctl de MSS base e MTU probing do TCP]
+
+- ls-sys-tcp-v4-mtu
+- ls-sysctl-tcp-v4-mtu
+- ls-tcp-sysctl-v4-mtu
+
+[Exibe tamanhos de buffer TCP, fast open e syncookies]
+
+- ls-sys-base-v4-config
+- ls-sysctl-base-v4-config
+- ls-tcp-sysctl-base-v4-config
+- ls-tcp-sys-base-v4-config
+- ls-sys-tcp-base-config
+
+[Visão agregada de todas as configurações sysctl TCP IPv4]
+
+- ls-sys-tcp-v4
+- ls-sysctl-tcp-v4
+- ls-tcp-sysctl-v4
+- ls-sys-tcp
+
+[Exibe portas TCP em escuta via lsof]
+
+- ls-tcp-listening-ports
+- ls-tcp-listen-ports
+- ls-tcp-lp
+
+[Exibe conexões TCP estabelecidas via lsof]
+
+- ls-tcp-established-connections
+- ls-tcp-established-conns
+- ls-tcp-est-conns
+- ls-tcp-est-connections
+
+[Exibe todas as conexões TCP ativas, portas em escuta e conexões estabelecidas]
+
+- ls-tcp-active-connections
+- ls-tcp-active-conns
+- ls-tcp-act-conns
+
+[Exibe sockets TCP via ss e netstat (com aviso de depreciação para netstat)]
+
+- ls-active-tcp-net-sockets
+- ls-active-tcp-sockets
+- ls-act-tcp-sockets
+- ls-act-tcp-net-sockets
+- ls-act-tcp-s
+- ls-act-tcp-ns
+- ls-act-tcp-net-s
+
+[Diagnóstico TCP completo: arquivos proc, sockstats, SNMP, iptables, sysctl, conexões e sockets]
+
+- ls-tcp-config
+- ls-tcp-conf
+- ls-tcp-all
+
 [Executa powerstat (RAPL) e redireciona saída para ~/.logs/ — $1: duração em segundos (padrão: 3600), $2: intervalo de amostragem em segundos (padrão: 1)]
 
 - track-power-usage

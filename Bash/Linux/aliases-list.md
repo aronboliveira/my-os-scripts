@@ -346,6 +346,109 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - net-probe
 
+[Show /proc/net/tcp, tcp6, and IPv4 TCP config files]
+
+- ls-tcp-proc-config
+- ls-tcp-config-proc
+- ls-tcp-conf-proc
+- ls-tcp-proc-conf
+
+[Show IPv4 and IPv6 socket statistics from /proc/net/sockstat]
+
+- ls-net-sockstats
+- ls-sockstats
+- ls-sock-statistics
+
+[Show SNMP TCP statistics from /proc/net/snmp and snmp6]
+
+- ls-net-snmp
+- ls-snmp
+
+[Show iptables rules filtered for TCP across filter, nat, and raw tables]
+
+- ls-tcp-iptables
+- ls-iptables-tcp
+- ls-tcp-iptables-rules
+
+[Show TCP congestion control algorithm and available algorithms]
+
+- ls-sys-tcp-v4-congestion-control
+- ls-sysctl-tcp-v4-congestion-control
+- ls-tcp-sysctl-v4-congestion-control
+- ls-sys-tcp-congestion-control
+- ls-sys-tcp-cgt-ctrl
+- ls-sysctl-tcp-cgt-ctrl
+
+[Show TCP keepalive, timeout, and retry sysctl parameters]
+
+- ls-sys-tcp-v4-time-control
+- ls-sysctl-tcp-v4-time-control
+- ls-tcp-sysctl-v4-time-control
+- ls-tcp-sys-time-control
+
+[Show TCP backlog, orphan, and TIME_WAIT bucket limits]
+
+- ls-sys-tcp-v4-limits
+- ls-sysctl-tcp-v4-limits
+- ls-tcp-sysctl-v4-limits
+- ls-tcp-sys-limits
+
+[Show TCP base MSS and MTU probing sysctl settings]
+
+- ls-sys-tcp-v4-mtu
+- ls-sysctl-tcp-v4-mtu
+- ls-tcp-sysctl-v4-mtu
+
+[Show TCP buffer sizes, fast open, and syncookies sysctl settings]
+
+- ls-sys-base-v4-config
+- ls-sysctl-base-v4-config
+- ls-tcp-sysctl-base-v4-config
+- ls-tcp-sys-base-v4-config
+- ls-sys-tcp-base-config
+
+[Aggregated view of all IPv4 TCP sysctl settings]
+
+- ls-sys-tcp-v4
+- ls-sysctl-tcp-v4
+- ls-tcp-sysctl-v4
+- ls-sys-tcp
+
+[Show listening TCP ports via lsof]
+
+- ls-tcp-listening-ports
+- ls-tcp-listen-ports
+- ls-tcp-lp
+
+[Show established TCP connections via lsof]
+
+- ls-tcp-established-connections
+- ls-tcp-established-conns
+- ls-tcp-est-conns
+- ls-tcp-est-connections
+
+[Show all active TCP connections, listening ports, and established connections]
+
+- ls-tcp-active-connections
+- ls-tcp-active-conns
+- ls-tcp-act-conns
+
+[Show TCP sockets via ss and netstat (with deprecation warning for netstat)]
+
+- ls-active-tcp-net-sockets
+- ls-active-tcp-sockets
+- ls-act-tcp-sockets
+- ls-act-tcp-net-sockets
+- ls-act-tcp-s
+- ls-act-tcp-ns
+- ls-act-tcp-net-s
+
+[Full TCP diagnostic: proc files, sockstats, SNMP, iptables, sysctl, connections, and sockets]
+
+- ls-tcp-config
+- ls-tcp-conf
+- ls-tcp-all
+
 [Run powerstat (RAPL) and tee output to ~/.logs/ — $1: duration in seconds (default: 3600), $2: sampling interval in seconds (default: 1)]
 
 - track-power-usage

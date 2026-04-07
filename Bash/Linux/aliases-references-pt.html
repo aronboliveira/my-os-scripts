@@ -4759,6 +4759,1673 @@ Total monitors detected: 1"
                     </details>
                   </div>
                 </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-proc-config"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-proc-config </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe <b>/proc/net/tcp</b>, <b>tcp6</b> e arquivos de
+                        configura&ccedil;&atilde;o TCP IPv4.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-proc-config"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_tcp_proc_config</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 📁 NET PROCESS FILES ──\033[0m\n"</span>
+  sleep 1
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\033[1;34m── 🌐 TCP IPv4 ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">cat</span> /proc/net/tcp 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo TCP IPv4 info\033[0m"</span>
+  sleep 1
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\033[1;34m── 🌐 TCP IPv6 ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">cat</span> /proc/net/tcp6 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo TCP IPv6 info\033[0m"</span>
+  sleep 1
+  <span class="bash-keyword">if</span> [[ -d /proc/sys/net/ipv4/conf ]]; <span class="bash-keyword">then</span>
+    <span class="bash-builtin">echo</span> -e <span class="bash-string">"\033[1;34m── ⚙️  TCP CONFIG FILES ──\033[0m\n"</span>
+    <span class="bash-builtin">sudo</span> <span class="bash-builtin">find</span> /proc/sys/net/ipv4/conf -type f -name <span class="bash-string">"tcp_*"</span> -exec <span class="bash-builtin">sh</span> -c '<span class="bash-builtin">echo</span> -e <span class="bash-string">"\033[1;34m── {} ──\033[0m"</span>; <span class="bash-builtin">cat</span> <span class="bash-string">"$1"</span> 2&gt;/dev/null; <span class="bash-builtin">echo</span> <span class="bash-string">""</span>' _ {} \;
+  <span class="bash-keyword">fi</span>
+}
+<span class="bash-builtin">alias</span> ls-tcp-proc-config=<span class="bash-string">'ls_tcp_proc_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-config-proc"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-config-proc </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-proc-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-config-proc"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-config-proc=<span class="bash-string">'ls_tcp_proc_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-conf-proc"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-conf-proc </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-proc-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-conf-proc"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-conf-proc=<span class="bash-string">'ls_tcp_proc_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-proc-conf"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-proc-conf </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-proc-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-proc-conf"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-proc-conf=<span class="bash-string">'ls_tcp_proc_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-net-sockstats"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-net-sockstats </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe estat&iacute;sticas de sockets IPv4 e IPv6 de
+                        <b>/proc/net/sockstat</b>.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-net-sockstats"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_net_sockstats</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 📊 SOCKSTAT INFO ──\033[0m\n"</span>
+  sleep 1
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\033[1;34m── 🌐 SOCKSTAT IPv4 ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">cat</span> /proc/net/sockstat 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo IPv4 sockstat info\033[0m"</span>
+  sleep 1
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\033[1;34m── 🌐 SOCKSTAT IPv6 ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">cat</span> /proc/net/sockstat6 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo IPv6 sockstat info\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-net-sockstats=<span class="bash-string">'ls_net_sockstats'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sockstats"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sockstats </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-net-sockstats. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sockstats"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sockstats=<span class="bash-string">'ls_net_sockstats'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sock-statistics"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sock-statistics </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-net-sockstats. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sock-statistics"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sock-statistics=<span class="bash-string">'ls_net_sockstats'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div class="card alias-card shadow-sm" data-alias="ls-net-snmp">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-net-snmp </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe estat&iacute;sticas TCP SNMP de
+                        <b>/proc/net/snmp</b> e <b>snmp6</b>.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-net-snmp"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_net_snmp</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 📊 SNMP INFO ──\033[0m\n"</span>
+  sleep 1
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\033[1;34m── 🌐 SNMP TCP IPv4 ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">cat</span> /proc/net/snmp 2&gt;/dev/null | <span class="bash-builtin">grep</span> -A10 <span class="bash-string">"Tcp:"</span> || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo SNMP TCP info\033[0m"</span>
+  sleep 1
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\033[1;34m── 🌐 SNMP TCP IPv6 ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">cat</span> /proc/net/snmp6 2&gt;/dev/null | <span class="bash-builtin">grep</span> -A10 <span class="bash-string">"Tcp:"</span> || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo SNMP TCP6 info\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-net-snmp=<span class="bash-string">'ls_net_snmp'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div class="card alias-card shadow-sm" data-alias="ls-snmp">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-snmp </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-net-snmp. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-snmp"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-snmp=<span class="bash-string">'ls_net_snmp'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-iptables"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-iptables </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe regras do <b>iptables</b> filtradas para TCP nas
+                        tabelas filter, nat e raw.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-iptables"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_tcp_iptables_rules</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 🔒 ALL IPTABLES RULES FOR TCP ──\033[0m\n"</span>
+  sleep 3
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">iptables</span> -L -n -v --line-numbers 2&gt;/dev/null | <span class="bash-builtin">grep</span> -i <span class="bash-string">"tcp"</span> || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo iptables rules for TCP or iptables not available\033[0m"</span>
+  sleep 2
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 🔒 NAT IPTABLES RULES FOR TCP ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">iptables</span> -t nat -L -n -v --line-numbers 2&gt;/dev/null | <span class="bash-builtin">grep</span> -i <span class="bash-string">"tcp"</span> || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo NAT iptables rules for TCP or iptables not available\033[0m"</span>
+  sleep 2
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 🔒 RAW IPTABLES FOR TCP ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">iptables</span> -t raw -L -n -v --line-numbers 2&gt;/dev/null | <span class="bash-builtin">grep</span> -i <span class="bash-string">"tcp"</span> || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo RAW iptables rules for TCP or iptables not available\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-tcp-iptables=<span class="bash-string">'ls_tcp_iptables_rules'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-iptables-tcp"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-iptables-tcp </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-iptables. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-iptables-tcp"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-iptables-tcp=<span class="bash-string">'ls_tcp_iptables_rules'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-iptables-rules"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-iptables-rules </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-iptables. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-iptables-rules"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-iptables-rules=<span class="bash-string">'ls_tcp_iptables_rules'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-tcp-v4-congestion-control"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp-v4-congestion-control </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe o algoritmo de
+                        <b>controle de congestionamento</b> TCP e algoritmos
+                        dispon&iacute;veis.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp-v4-congestion-control"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_sys_tcp_v4_congestion_control</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── ⚙️  TCP CONGESTION CONTROL CONFIGS ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_available_congestion_control 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_available_congestion_control sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_congestion_control 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_congestion_control sysctl not available\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-tcp-v4-congestion-control=<span class="bash-string">'ls_sys_tcp_v4_congestion_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sysctl-tcp-v4-congestion-control"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sysctl-tcp-v4-congestion-control </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Alias para ls-sys-tcp-v4-congestion-control.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sysctl-tcp-v4-congestion-control"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sysctl-tcp-v4-congestion-control=<span class="bash-string">'ls_sys_tcp_v4_congestion_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sysctl-v4-congestion-control"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sysctl-v4-congestion-control </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Alias para ls-sys-tcp-v4-congestion-control.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sysctl-v4-congestion-control"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sysctl-v4-congestion-control=<span class="bash-string">'ls_sys_tcp_v4_congestion_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-tcp-congestion-control"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp-congestion-control </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Alias para ls-sys-tcp-v4-congestion-control.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp-congestion-control"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sys-tcp-congestion-control=<span class="bash-string">'ls_sys_tcp_v4_congestion_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-tcp-cgt-ctrl"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp-cgt-ctrl </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Alias para ls-sys-tcp-v4-congestion-control.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp-cgt-ctrl"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sys-tcp-cgt-ctrl=<span class="bash-string">'ls_sys_tcp_v4_congestion_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sysctl-tcp-cgt-ctrl"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sysctl-tcp-cgt-ctrl </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Alias para ls-sys-tcp-v4-congestion-control.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sysctl-tcp-cgt-ctrl"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sysctl-tcp-cgt-ctrl=<span class="bash-string">'ls_sys_tcp_v4_congestion_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-tcp-v4-time-control"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp-v4-time-control </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe par&acirc;metros sysctl de <b>keepalive</b>,
+                        timeout e retentativa TCP.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp-v4-time-control"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_sys_tcp_v4_time_control</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── ⏱️  TCP TIME CONTROL CONFIGS ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_keepalive_time 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_keepalive_time sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_fin_timeout 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_fin_timeout sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_retries1 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_retries1 sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_retries2 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_retries2 sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_synack_retries 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_synack_retries sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_syn_retries 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_syn_retries sysctl not available\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-tcp-v4-time-control=<span class="bash-string">'ls_sys_tcp_v4_time_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sysctl-tcp-v4-time-control"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sysctl-tcp-v4-time-control </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4-time-control. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sysctl-tcp-v4-time-control"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sysctl-tcp-v4-time-control=<span class="bash-string">'ls_sys_tcp_v4_time_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sysctl-v4-time-control"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sysctl-v4-time-control </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4-time-control. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sysctl-v4-time-control"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sysctl-v4-time-control=<span class="bash-string">'ls_sys_tcp_v4_time_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sys-time-control"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sys-time-control </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4-time-control. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sys-time-control"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sys-time-control=<span class="bash-string">'ls_sys_tcp_v4_time_control'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-tcp-v4-limits"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp-v4-limits </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe limites TCP de <b>backlog</b>,
+                        &oacute;rf&atilde;os e buckets TIME_WAIT.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp-v4-limits"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_sys_tcp_v4_limits</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 📏 TCP LIMIT CONFIGS ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_max_syn_backlog 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_max_syn_backlog sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_max_tw_buckets 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_max_tw_buckets sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_max_orphans 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_max_orphans sysctl not available\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-tcp-v4-limits=<span class="bash-string">'ls_sys_tcp_v4_limits'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sysctl-tcp-v4-limits"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sysctl-tcp-v4-limits </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4-limits. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sysctl-tcp-v4-limits"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sysctl-tcp-v4-limits=<span class="bash-string">'ls_sys_tcp_v4_limits'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sysctl-v4-limits"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sysctl-v4-limits </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4-limits. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sysctl-v4-limits"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sysctl-v4-limits=<span class="bash-string">'ls_sys_tcp_v4_limits'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sys-limits"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sys-limits </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4-limits. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sys-limits"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sys-limits=<span class="bash-string">'ls_sys_tcp_v4_limits'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-tcp-v4-mtu"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp-v4-mtu </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe configura&ccedil;&otilde;es sysctl de
+                        <b>base MSS</b> e <b>MTU probing</b> TCP.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp-v4-mtu"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_sys_tcp_v4_mtu</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 📐 TCP MTU CONFIGS ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_base_mss 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_base_mss sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_mtu_probing 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_mtu_probing sysctl not available\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-tcp-v4-mtu=<span class="bash-string">'ls_sys_tcp_v4_mtu'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sysctl-tcp-v4-mtu"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sysctl-tcp-v4-mtu </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4-mtu. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sysctl-tcp-v4-mtu"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sysctl-tcp-v4-mtu=<span class="bash-string">'ls_sys_tcp_v4_mtu'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sysctl-v4-mtu"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sysctl-v4-mtu </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4-mtu. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sysctl-v4-mtu"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sysctl-v4-mtu=<span class="bash-string">'ls_sys_tcp_v4_mtu'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-base-v4-config"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-base-v4-config </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe configura&ccedil;&otilde;es sysctl de
+                        <b>tamanhos de buffer</b>, fast open e syncookies TCP.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-base-v4-config"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_sys_tcp_v4_base_config</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 🔧 BASE TCP CONFIGS ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_rmem 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_rmem sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_wmem 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_wmem sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.core.rmem_default 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mcore rmem_default sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.core.wmem_default 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mcore wmem_default sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.core.rmem_max 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mcore rmem_max sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.core.wmem_max 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mcore wmem_max sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_fastopen 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_fastopen sysctl not available\033[0m"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">sysctl</span> net.ipv4.tcp_syncookies 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mtcp_syncookies sysctl not available\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-sys-base-v4-config=<span class="bash-string">'ls_sys_tcp_v4_base_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sysctl-base-v4-config"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sysctl-base-v4-config </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-base-v4-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sysctl-base-v4-config"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sysctl-base-v4-config=<span class="bash-string">'ls_sys_tcp_v4_base_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sysctl-base-v4-config"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sysctl-base-v4-config </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-base-v4-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sysctl-base-v4-config"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sysctl-base-v4-config=<span class="bash-string">'ls_sys_tcp_v4_base_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sys-base-v4-config"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sys-base-v4-config </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-base-v4-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sys-base-v4-config"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sys-base-v4-config=<span class="bash-string">'ls_sys_tcp_v4_base_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-tcp-base-config"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp-base-config </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-base-v4-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp-base-config"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sys-tcp-base-config=<span class="bash-string">'ls_sys_tcp_v4_base_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sys-tcp-v4"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp-v4 </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Vis&atilde;o agregada de todas as
+                        configura&ccedil;&otilde;es sysctl TCP IPv4.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp-v4"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_sys_tcp_v4</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 🌐 SYSCTL CONFIGS FOR IPv4 ──\033[0m\n"</span>
+  ls_sys_tcp_v4_congestion_control
+  sleep 2
+  ls_sys_tcp_v4_time_control
+  sleep 2
+  ls_sys_tcp_v4_limits
+  sleep 2
+  ls_sys_tcp_v4_mtu
+  sleep 2
+  ls_sys_tcp_v4_base_config
+}
+<span class="bash-builtin">alias</span> ls-sys-tcp-v4=<span class="bash-string">'ls_sys_tcp_v4'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-sysctl-tcp-v4"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sysctl-tcp-v4 </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sysctl-tcp-v4"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sysctl-tcp-v4=<span class="bash-string">'ls_sys_tcp_v4'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-sysctl-v4"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-sysctl-v4 </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-sysctl-v4"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-sysctl-v4=<span class="bash-string">'ls_sys_tcp_v4'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div class="card alias-card shadow-sm" data-alias="ls-sys-tcp">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-sys-tcp </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-sys-tcp-v4. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-sys-tcp"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-sys-tcp=<span class="bash-string">'ls_sys_tcp_v4'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-listening-ports"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-listening-ports </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Exibe <b>portas TCP em escuta</b> via lsof. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-listening-ports"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_tcp_listening_ports</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 👂 Listening TCP Ports ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">lsof</span> -i TCP -s TCP:LISTEN 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo listening TCP ports or lsof not available\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-tcp-listening-ports=<span class="bash-string">'ls_tcp_listening_ports'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-listen-ports"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-listen-ports </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-listening-ports. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-listen-ports"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-listen-ports=<span class="bash-string">'ls_tcp_listening_ports'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div class="card alias-card shadow-sm" data-alias="ls-tcp-lp">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-lp </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-listening-ports. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-lp"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-lp=<span class="bash-string">'ls_tcp_listening_ports'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-established-connections"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-established-connections </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe <b>conex&otilde;es TCP estabelecidas</b> via lsof.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-established-connections"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_tcp_established_connections</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 🔗 Established TCP Connections ──\033[0m\n"</span>
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">lsof</span> -i TCP -s TCP:ESTABLISHED 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo established TCP connections or lsof not available\033[0m"</span>
+}
+<span class="bash-builtin">alias</span> ls-tcp-established-connections=<span class="bash-string">'ls_tcp_established_connections'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-established-conns"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-established-conns </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-established-connections. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-established-conns"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-established-conns=<span class="bash-string">'ls_tcp_established_connections'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-est-conns"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-est-conns </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-established-connections. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-est-conns"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-est-conns=<span class="bash-string">'ls_tcp_established_connections'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-est-connections"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-est-connections </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-established-connections. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-est-connections"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-est-connections=<span class="bash-string">'ls_tcp_established_connections'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-active-connections"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-active-connections </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe todas as <b>conex&otilde;es TCP ativas</b>, portas
+                        em escuta e conex&otilde;es estabelecidas.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-active-connections"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_tcp_active_connections</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 🔌 All Active TCP Connections ──\033[0m\n"</span>
+  sleep 3
+  <span class="bash-builtin">sudo</span> <span class="bash-builtin">lsof</span> -i TCP -nP 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mNo active TCP connections or lsof not available\033[0m"</span>
+  sleep 2
+  ls_tcp_listening_ports
+  sleep 2
+  ls_tcp_established_connections
+}
+<span class="bash-builtin">alias</span> ls-tcp-active-connections=<span class="bash-string">'ls_tcp_active_connections'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-active-conns"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-active-conns </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-active-connections. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-active-conns"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-active-conns=<span class="bash-string">'ls_tcp_active_connections'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-act-conns"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-act-conns </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-active-connections. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-act-conns"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-act-conns=<span class="bash-string">'ls_tcp_active_connections'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-active-tcp-net-sockets"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-active-tcp-net-sockets </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Exibe sockets TCP via <b>ss</b> e <b>netstat</b> (com
+                        aviso de deprecia&ccedil;&atilde;o para netstat).
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-active-tcp-net-sockets"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_active_tcp_net_sockets</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 📡 SS OUTPUT ──\033[0m\n"</span>
+  <span class="bash-keyword">if</span> <span class="bash-builtin">command</span> -v <span class="bash-builtin">ss</span> &amp;&gt;/dev/null; <span class="bash-keyword">then</span>
+    <span class="bash-builtin">sudo</span> <span class="bash-builtin">ss</span> -tlnp 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mss command not available\033[0m"</span>
+  <span class="bash-keyword">fi</span>
+  sleep 3
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;34m── 📡 NETSTAT OUTPUT ──\033[0m\n"</span>
+  <span class="bash-keyword">if</span> <span class="bash-builtin">command</span> -v <span class="bash-builtin">netstat</span> &amp;&gt;/dev/null; <span class="bash-keyword">then</span>
+    <span class="bash-builtin">echo</span> -e <span class="bash-string">"⚠️  \033[1;33mWarning: netstat is deprecated. Consider using ss instead.\033[0m"</span>
+    <span class="bash-builtin">sudo</span> <span class="bash-builtin">netstat</span> -tlnp 2&gt;/dev/null || <span class="bash-builtin">echo</span> -e <span class="bash-string">"❌ \033[1;31mnetstat command not available\033[0m"</span>
+  <span class="bash-keyword">fi</span>
+}
+<span class="bash-builtin">alias</span> ls-active-tcp-net-sockets=<span class="bash-string">'ls_active_tcp_net_sockets'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-active-tcp-sockets"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-active-tcp-sockets </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-active-tcp-net-sockets. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-active-tcp-sockets"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-active-tcp-sockets=<span class="bash-string">'ls_active_tcp_net_sockets'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-act-tcp-sockets"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-act-tcp-sockets </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-active-tcp-net-sockets. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-act-tcp-sockets"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-act-tcp-sockets=<span class="bash-string">'ls_active_tcp_net_sockets'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-act-tcp-net-sockets"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-act-tcp-net-sockets </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-active-tcp-net-sockets. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-act-tcp-net-sockets"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-act-tcp-net-sockets=<span class="bash-string">'ls_active_tcp_net_sockets'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-act-tcp-s"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-act-tcp-s </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-active-tcp-net-sockets. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-act-tcp-s"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-act-tcp-s=<span class="bash-string">'ls_active_tcp_net_sockets'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-act-tcp-ns"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-act-tcp-ns </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-active-tcp-net-sockets. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-act-tcp-ns"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-act-tcp-ns=<span class="bash-string">'ls_active_tcp_net_sockets'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-act-tcp-net-s"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-act-tcp-net-s </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-active-tcp-net-sockets. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-act-tcp-net-s"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-act-tcp-net-s=<span class="bash-string">'ls_active_tcp_net_sockets'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div
+                  class="card alias-card shadow-sm"
+                  data-alias="ls-tcp-config"
+                >
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-config </code>
+                      <span class="badge text-bg-info ms-2">
+                        fun&ccedil;&atilde;o
+                      </span>
+                    </h4>
+                    <p class="mb-2">
+                      <span>
+                        Diagn&oacute;stico TCP completo: arquivos proc,
+                        sockstats, SNMP, iptables, sysctl, conex&otilde;es e
+                        sockets.
+                      </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-config"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-function">ls_tcp_config</span>() {
+  <span class="bash-builtin">echo</span> -e <span class="bash-string">"\n\033[1;36m══════════ 🌐 TCP CONFIGURATION ══════════\033[0m\n"</span>
+  sleep 2
+  ls_tcp_proc_config
+  sleep 2
+  ls_net_sockstats
+  sleep 2
+  ls_net_snmp
+  sleep 1
+  ls_tcp_iptables_rules
+  sleep 1
+  ls_sys_tcp_v4
+  sleep 3
+  ls_tcp_active_connections
+  sleep 3
+  ls_active_tcp_net_sockets
+}
+<span class="bash-builtin">alias</span> ls-tcp-config=<span class="bash-string">'ls_tcp_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div class="card alias-card shadow-sm" data-alias="ls-tcp-conf">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-conf </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-conf"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-conf=<span class="bash-string">'ls_tcp_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
+                <div class="card alias-card shadow-sm" data-alias="ls-tcp-all">
+                  <div class="card-body">
+                    <h4 class="alias-name mb-2">
+                      <code> ls-tcp-all </code>
+                    </h4>
+                    <p class="mb-2">
+                      <span> Alias para ls-tcp-config. </span>
+                    </p>
+                    <details class="code-details">
+                      <summary aria-expanded="false" role="button">
+                        <i aria-hidden="true" class="bi bi-code-slash me-2">
+                        </i>
+                        <span> Ver C&oacute;digo </span>
+                      </summary>
+                      <pre
+                        aria-label="Bash code for ls-tcp-all"
+                        class="code-block"
+                        role="region"
+                      ><code><span class="bash-builtin">alias</span> ls-tcp-all=<span class="bash-string">'ls_tcp_config'</span></code></pre>
+                    </details>
+                  </div>
+                </div>
                 <div class="card alias-card shadow-sm" data-alias="cat-band">
                   <div class="card-body">
                     <h4 class="alias-name mb-2">
