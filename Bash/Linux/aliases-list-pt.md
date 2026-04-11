@@ -340,6 +340,68 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - echo-desktop
 
+[Exibe variáveis de ambiente, variáveis exportadas, variáveis de shell, aliases e funções]
+
+- ls-env-profile
+- show-env-profile
+- ls-env-prof
+- show-env-prof
+
+[Exibe conteúdo de fstab e crypttab]
+
+- ls-tabs-profile
+- show-tabs-profile
+- ls-fstab-profile
+- show-fstab-profile
+
+[Exibe grupos sudo/admin, sudoers, MOTD, /etc/profile, config chrony e chaves APT]
+
+- ls-rbac-profile
+- show-rbac-profile
+- ls-rbac-prof
+- show-rbac-prof
+
+[Exibe configuração do gerenciador de exibição SLiM]
+
+- ls-dm-slim
+- show-dm-slim
+
+[Exibe configuração do gerenciador de exibição SDDM e arquivos drop-in]
+
+- ls-dm-sddm
+- show-dm-sddm
+
+[Exibe configurações do gerenciador de exibição GDM3]
+
+- ls-dm-gdm3
+- show-dm-gdm3
+- ls-dm-gdm
+- show-dm-gdm
+
+[Exibe configurações do gerenciador de exibição LightDM]
+
+- ls-dm-lightdm
+- show-dm-lightdm
+
+[Exibe configuração do gerenciador de exibição LXDM]
+
+- ls-dm-lxdm
+- show-dm-lxdm
+
+[Exibe configuração de exibição X11/XDM e gerenciador de exibição padrão (seguro para binários via strings)]
+
+- ls-dm-x11
+- show-dm-x11
+- ls-x11-config
+- show-x11-config
+
+[Perfil agregado de gerenciadores de exibição: SLiM, SDDM, GDM3, LightDM, LXDM, X11]
+
+- ls-full-display-profile
+- show-full-display-profile
+- ls-dm-profile
+- show-dm-profile
+
 ### Network_Procedures
 
 [Sonda um host de rede com ARP, ping, netcat e busca de rota — $1: IP alvo (obrigatório), $2: porta alvo (opcional) — flags: --gateway, --local]
@@ -378,6 +440,8 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - ls-sys-tcp-congestion-control
 - ls-sys-tcp-cgt-ctrl
 - ls-sysctl-tcp-cgt-ctrl
+- show-sys-tcp-v4-congestion-control
+- show-sys-tcp-cgt-ctrl
 
 [Exibe parâmetros sysctl de keepalive, timeout e retentativas TCP]
 
@@ -385,6 +449,7 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - ls-sysctl-tcp-v4-time-control
 - ls-tcp-sysctl-v4-time-control
 - ls-tcp-sys-time-control
+- show-sys-tcp-v4-time-control
 
 [Exibe limites de backlog, órfãos e buckets TIME_WAIT do TCP]
 
@@ -392,20 +457,26 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - ls-sysctl-tcp-v4-limits
 - ls-tcp-sysctl-v4-limits
 - ls-tcp-sys-limits
+- show-sys-tcp-v4-limits
 
 [Exibe configurações sysctl de MSS base e MTU probing do TCP]
 
 - ls-sys-tcp-v4-mtu
 - ls-sysctl-tcp-v4-mtu
 - ls-tcp-sysctl-v4-mtu
+- show-sys-tcp-v4-mtu
 
 [Exibe tamanhos de buffer TCP, fast open e syncookies]
 
+- ls-tcp-sys-base-v4-config
+- ls-tcp-sysctl-base-v4-config
+- ls-tcp-sysctl-base-v4-conf
+- ls-tcp-sys-tcp-base-v4-conf
 - ls-sys-base-v4-config
 - ls-sysctl-base-v4-config
-- ls-tcp-sysctl-base-v4-config
-- ls-tcp-sys-base-v4-config
 - ls-sys-tcp-base-config
+- show-tcp-sys-base-v4-config
+- show-sys-tcp-base-config
 
 [Visão agregada de todas as configurações sysctl TCP IPv4]
 
@@ -413,6 +484,10 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - ls-sysctl-tcp-v4
 - ls-tcp-sysctl-v4
 - ls-sys-tcp
+- ls-tcp-sys
+- show-sys-tcp-v4
+- show-sysctl-tcp-v4
+- show-sys-tcp
 
 [Exibe portas TCP em escuta via lsof]
 
@@ -448,6 +523,69 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - ls-tcp-config
 - ls-tcp-conf
 - ls-tcp-all
+
+[Exibe configuração DNS, hostname e endereços IP]
+
+- ls-net-dns
+- show-net-dns
+- ls-dns-info
+- show-dns-info
+
+[Exibe endereço IP público via curl ifconfig.me (IPv4 e IPv6)]
+
+- ls-net-public-ip
+- show-net-public-ip
+- ls-public-ip
+- show-public-ip
+
+[Exibe endereços IP via ip addr e ifconfig]
+
+- ls-net-ip-addrs
+- show-net-ip-addrs
+- ls-ip-addrs
+- show-ip-addrs
+
+[Exibe /etc/hosts e /etc/network/interfaces]
+
+- ls-net-hosts
+- show-net-hosts
+- ls-hosts-info
+- show-hosts-info
+
+[Exibe conexões NetworkManager e status do serviço]
+
+- ls-net-nm-status
+- show-net-nm-status
+- ls-nm-status
+- show-nm-status
+
+[Exibe regras de firewall iptables e ufw]
+
+- ls-net-firewall
+- show-net-firewall
+- ls-firewall
+- show-firewall
+
+[Perfil de rede agregado: DNS, IP público, sysctl, endereços IP, hosts, NetworkManager, firewall]
+
+- ls-net-profile
+- show-net-profile
+- ls-network-profile
+- show-network-profile
+
+[Exibe configuração dconf do usuário (binário), sessões/info de usuário via loginctl e listagem do diretório home]
+
+- ls-home-profile
+- show-home-profile
+- ls-dconf-profile
+- show-dconf-profile
+
+[Perfil completo do sistema: env, fstab, RBAC, gerenciadores de exibição, rede e config home]
+
+- ls-full-profile
+- show-full-profile
+- ls-all-profiles
+- show-all-profiles
 
 [Executa powerstat (RAPL) e redireciona saída para ~/.logs/ — $1: duração em segundos (padrão: 3600), $2: intervalo de amostragem em segundos (padrão: 1)]
 

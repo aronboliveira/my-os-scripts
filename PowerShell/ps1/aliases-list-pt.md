@@ -532,3 +532,91 @@ Transpilados da seção publicável do Bash para equivalentes em PowerShell (ape
 [Injeção formatada de CSS minificado em HTML com comparação de linhas]
 
 - inject-min-css-pretty
+
+### System_Profiling
+
+[Exibe variáveis de ambiente, variáveis exportadas, variáveis de shell, aliases e funções]
+
+- ls-env-profile
+- show-env-profile
+- ls-env-prof
+- show-env-prof
+
+[Exibe info RBAC: grupos admin, tarefas agendadas, perfil e certificados]
+
+- ls-rbac-profile
+- show-rbac-profile
+- ls-rbac-prof
+- show-rbac-prof
+
+[Exibe informações de adaptadores gráficos e monitores]
+
+- ls-full-display-profile
+- show-full-display-profile
+- ls-dm-profile
+- show-dm-profile
+
+### Network_Procedures
+
+[Exibe configuração DNS, hostname e endereços IP]
+
+- ls-net-dns
+- show-net-dns
+- ls-dns-info
+- show-dns-info
+
+[Exibe endereço IP público via Invoke-RestMethod]
+
+- ls-net-public-ip
+- show-net-public-ip
+- ls-public-ip
+- show-public-ip
+
+[Exibe endereços IP e detalhes de adaptadores de rede]
+
+- ls-net-ip-addrs
+- show-net-ip-addrs
+- ls-ip-addrs
+- show-ip-addrs
+
+[Exibe arquivo hosts e rotas de rede]
+
+- ls-net-hosts
+- show-net-hosts
+- ls-hosts-info
+- show-hosts-info
+
+[Exibe perfis de conexão de rede e status dos serviços]
+
+- ls-net-nm-status
+- show-net-nm-status
+- ls-nm-status
+- show-nm-status
+
+[Exibe regras e perfis do Firewall do Windows]
+
+- ls-net-firewall
+- show-net-firewall
+- ls-firewall
+- show-firewall
+
+[Perfil de rede agregado: DNS, IP público, endereços IP, hosts, perfis de conexão, firewall]
+
+- ls-net-profile
+- show-net-profile
+- ls-network-profile
+- show-network-profile
+
+[Exibe info do registro do usuário, sessões de logon, info de usuário e listagem do diretório home (equivalente Windows do dconf)]
+
+- ls-home-profile
+- show-home-profile
+- ls-dconf-profile
+- show-dconf-profile
+
+[Perfil completo do sistema: env, RBAC, exibição, rede e config home]
+
+- ls-full-profile
+- show-full-profile
+- ls-all-profiles
+- show-all-profiles

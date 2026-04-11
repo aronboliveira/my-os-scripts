@@ -532,3 +532,91 @@ Transpiled from the Bash publicable section to PowerShell equivalents (cross-pla
 [Pretty-inject minified CSS into HTML with line count comparison]
 
 - inject-min-css-pretty
+
+### System_Profiling
+
+[Show environment variables, exported variables, shell variables, aliases, and functions]
+
+- ls-env-profile
+- show-env-profile
+- ls-env-prof
+- show-env-prof
+
+[Show RBAC info: admin groups, scheduled tasks, profile, and certificates]
+
+- ls-rbac-profile
+- show-rbac-profile
+- ls-rbac-prof
+- show-rbac-prof
+
+[Show display/graphics adapter information and monitor details]
+
+- ls-full-display-profile
+- show-full-display-profile
+- ls-dm-profile
+- show-dm-profile
+
+### Network_Procedures
+
+[Show DNS config, hostname, and IP addresses]
+
+- ls-net-dns
+- show-net-dns
+- ls-dns-info
+- show-dns-info
+
+[Show public IP address via Invoke-RestMethod]
+
+- ls-net-public-ip
+- show-net-public-ip
+- ls-public-ip
+- show-public-ip
+
+[Show IP addresses and network adapter details]
+
+- ls-net-ip-addrs
+- show-net-ip-addrs
+- ls-ip-addrs
+- show-ip-addrs
+
+[Show hosts file and network routes]
+
+- ls-net-hosts
+- show-net-hosts
+- ls-hosts-info
+- show-hosts-info
+
+[Show network connection profiles and service status]
+
+- ls-net-nm-status
+- show-net-nm-status
+- ls-nm-status
+- show-nm-status
+
+[Show Windows Firewall rules and profiles]
+
+- ls-net-firewall
+- show-net-firewall
+- ls-firewall
+- show-firewall
+
+[Aggregated network profile: DNS, public IP, IP addresses, hosts, connection profiles, firewall]
+
+- ls-net-profile
+- show-net-profile
+- ls-network-profile
+- show-network-profile
+
+[Show user registry hive info, logon sessions, user info, and home directory listing (Windows equivalent of dconf)]
+
+- ls-home-profile
+- show-home-profile
+- ls-dconf-profile
+- show-dconf-profile
+
+[Full system profile: env, RBAC, display, network, and home config]
+
+- ls-full-profile
+- show-full-profile
+- ls-all-profiles
+- show-all-profiles

@@ -46,6 +46,450 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     ## @description List all shell variables (set -o posix; set), sorted alphabetically.
     alias show-all-sh-vars='( set -o posix; set ) | grep -v "^$" | sort'
     alias ls-all-sh-vars='show-all-sh-vars'
+    ## @description Show environment variables, exported variables, shell variables, aliases, and functions.
+    ls_env_profile() {
+      echo -e "\n\033[1;34m── 📋 ENVIRONMENT VARIABLES (env) ──\033[0m\n"
+      show-all-env-vars
+      echo -e "\n\033[1;34m── 💾 EXPORTED VARIABLES (printenv) ──\033[0m\n"
+      show-all-printenv-vars
+      echo -e "\n\033[1;34m── 🐚 SHELL VARIABLES (set) ──\033[0m\n"
+      show-all-sh-vars
+      sleep 3
+      echo -e "\n\033[1;34m── 📂 SHELL ALIASES ──\033[0m\n"
+      alias | sort
+      echo -e "\n\033[1;34m── ⚡ SHELL FUNCTIONS ──\033[0m\n"
+      declare -F | awk '{print $3}' | sort -u
+    }
+    alias ls-env-profile='ls_env_profile'
+    alias show-env-profile='ls_env_profile'
+    alias ls-env-prof='ls_env_profile'
+    alias show-env-prof='ls_env_profile'
+    ## @description Show fstab and crypttab contents.
+    ls_tabs_profile() {
+      echo -e "\n\033[1;34m── 🗂️  FSTAB ──\033[0m\n"
+      sudo cat /etc/fstab 2>/dev/null || echo -e "❌ \033[1;31mNo fstab file found or permission denied\033[0m"
+      if [[ -f /etc/crypttab ]]; then
+        echo -e "\n\033[1;34m── 🔐 CRYPTTAB ──\033[0m\n"
+        sudo cat /etc/crypttab 2>/dev/null || echo -e "❌ \033[1;31mNo crypttab file found or permission denied\033[0m"
+      fi
+    }
+    alias ls-tabs-profile='ls_tabs_profile'
+    alias show-tabs-profile='ls_tabs_profile'
+    alias ls-fstab-profile='ls_tabs_profile'
+    alias show-fstab-profile='ls_tabs_profile'
+    ## @description Show sudo/admin groups, sudoers, MOTD, /etc/profile, chrony config, and APT keyrings.
+    ls_rbac_profile() {
+      echo -e "\n\033[1;34m── 👥 USER GROUPS ──\033[0m\n"
+      sudo getent group 2>/dev/null | grep -E "sudo|adm|wheel|admin" || echo -e "❌ \033[1;31mNo sudo/admin groups found\033[0m"
+      echo -e "\n\033[1;34m── 📜 SUDOERS ──\033[0m\n"
+      sudo cat /etc/sudoers 2>/dev/null || echo -e "❌ \033[1;31mNo sudoers file found or permission denied\033[0m"
+      echo -e "\n\033[1;34m── 📢 MOTD ──\033[0m\n"
+      sudo cat /etc/motd 2>/dev/null || echo -e "❌ \033[1;31mNo MOTD file found or permission denied\033[0m"
+      echo -e "\n\033[1;34m── 🧾 /ETC/PROFILE ──\033[0m\n"
+      sudo cat /etc/profile 2>/dev/null || echo -e "❌ \033[1;31mNo profile file found or permission denied\033[0m"
+      echo -e "\n\033[1;34m── 🕐 CHRONY CONFIG ──\033[0m\n"
+      sudo cat /etc/chrony/chrony.conf 2>/dev/null || sudo cat /etc/chrony.conf 2>/dev/null || echo -e "❌ \033[1;31mNo Chrony config found or permission denied\033[0m"
+      echo -e "\n\033[1;34m── 🔑 APT KEYRINGS ──\033[0m\n"
+      sudo find /etc/apt/keyrings -type f \( -name "*.gpg" -o -name "*.asc" \) -exec sh -c 'echo -e "\033[1;34m── {} ──\033[0m"; sudo strings "$1" 2>/dev/null || echo "No GPG key found or permission denied for {}"; echo ""' _ {} \;
+    }
+    alias ls-rbac-profile='ls_rbac_profile'
+    alias show-rbac-profile='ls_rbac_profile'
+    alias ls-rbac-prof='ls_rbac_profile'
+    alias show-rbac-prof='ls_rbac_profile'
+    ## @description Show SLiM display manager config.
+    ls_dm_slim() {
+      echo -e "\n\033[1;34m── 🖥️  SLiM CONFIG ──\033[0m\n"
+      sudo cat /etc/slim.conf 2>/dev/null || echo -e "❌ \033[1;31mNo SLiM config found or permission denied\033[0m"
+    }
+    alias ls-dm-slim='ls_dm_slim'
+    alias show-dm-slim='ls_dm_slim'
+    ## @description Show SDDM display manager config and drop-in files.
+    ls_dm_sddm() {
+      echo -e "\n\033[1;34m── 🖥️  SDDM CONFIG ──\033[0m\n"
+      sudo cat /etc/sddm.conf 2>/dev/null || echo -e "❌ \033[1;31mNo SDDM config found or permission denied\033[0m"
+      if [[ -d /etc/sddm.conf.d ]]; then
+        echo -e "\n\033[1;34m── 📁 SDDM DROP-IN CONFIGS ──\033[0m\n"
+        sudo find /etc/sddm.conf.d -type f -name "*.conf" -exec sh -c 'echo -e "\033[1;34m── {} ──\033[0m"; cat "$1" 2>/dev/null; echo ""' _ {} \;
+      fi
+    }
+    alias ls-dm-sddm='ls_dm_sddm'
+    alias show-dm-sddm='ls_dm_sddm'
+    ## @description Show GDM3 display manager configs.
+    ls_dm_gdm3() {
+      if [[ -d /etc/gdm3 ]]; then
+        echo -e "\n\033[1;34m── 🖥️  GDM3 CONFIGS ──\033[0m\n"
+        for conf in /etc/gdm3/daemon.conf /etc/gdm3/custom.conf /etc/gdm3/gdm3.conf; do
+          if [[ -f "$conf" ]]; then
+            echo -e "\033[1;34m── $conf ──\033[0m\n"
+            sudo cat "$conf" 2>/dev/null || echo -e "❌ \033[1;31mPermission denied for $conf\033[0m"
+            echo ""
+          fi
+        done
+      else
+        echo -e "❌ \033[1;31mNo GDM3 config directory found\033[0m"
+      fi
+    }
+    alias ls-dm-gdm3='ls_dm_gdm3'
+    alias show-dm-gdm3='ls_dm_gdm3'
+    alias ls-dm-gdm='ls_dm_gdm3'
+    alias show-dm-gdm='ls_dm_gdm3'
+    ## @description Show LightDM display manager configs.
+    ls_dm_lightdm() {
+      if [[ -d /etc/lightdm ]]; then
+        echo -e "\n\033[1;34m── 🖥️  LightDM CONFIGS ──\033[0m\n"
+        sudo find /etc/lightdm -type f -name "*.conf" -exec sh -c 'echo -e "\033[1;34m── {} ──\033[0m"; cat "$1" 2>/dev/null; echo ""' _ {} \;
+      else
+        echo -e "❌ \033[1;31mNo LightDM config directory found\033[0m"
+      fi
+    }
+    alias ls-dm-lightdm='ls_dm_lightdm'
+    alias show-dm-lightdm='ls_dm_lightdm'
+    ## @description Show LXDM display manager config.
+    ls_dm_lxdm() {
+      if [[ -d /etc/lxdm ]]; then
+        echo -e "\n\033[1;34m── 🖥️  LXDM CONFIG ──\033[0m\n"
+        sudo cat /etc/lxdm/lxdm.conf 2>/dev/null || echo -e "❌ \033[1;31mPermission denied for /etc/lxdm/lxdm.conf\033[0m"
+      else
+        echo -e "❌ \033[1;31mNo LXDM config directory found\033[0m"
+      fi
+    }
+    alias ls-dm-lxdm='ls_dm_lxdm'
+    alias show-dm-lxdm='ls_dm_lxdm'
+    ## @description Show X11/XDM display config and default display manager.
+    ls_dm_x11() {
+      if [[ -d /etc/X11/ ]]; then
+        echo -e "\n\033[1;34m── 🖥️  X11 CONFIGS ──\033[0m\n"
+        echo -e "\033[1;34m── 🏷️  DEFAULT DISPLAY MANAGER ──\033[0m\n"
+        sudo cat /etc/X11/default-display-manager 2>/dev/null || echo -e "❌ \033[1;31mNo default-display-manager file found or permission denied\033[0m"
+        sudo find /etc/X11 -type f -name "*.conf" -exec sh -c '
+          echo -e "\033[1;34m── {} ──\033[0m"
+          if file -b --mime-encoding "$1" 2>/dev/null | grep -qi "binary"; then
+            echo -e "⚠️  \033[1;33m(binary — showing printable strings)\033[0m"
+            strings "$1" 2>/dev/null
+          else
+            cat "$1" 2>/dev/null
+          fi
+          echo ""
+        ' _ {} \;
+        if [[ -d /etc/X11/xdm ]]; then
+          echo -e "\n\033[1;34m── 📂 XDM NON-CONFIG FILES ──\033[0m\n"
+          sudo find /etc/X11/xdm -type f ! -name "*.conf" -exec sh -c '
+            echo -e "\033[1;34m── {} ──\033[0m"
+            if file -b --mime-encoding "$1" 2>/dev/null | grep -qi "binary"; then
+              echo -e "⚠️  \033[1;33m(binary — showing printable strings)\033[0m"
+              strings "$1" 2>/dev/null
+            else
+              cat "$1" 2>/dev/null
+            fi
+            echo ""
+          ' _ {} \;
+        fi
+      else
+        echo -e "❌ \033[1;31mNo X11 config directory found\033[0m"
+      fi
+    }
+    alias ls-dm-x11='ls_dm_x11'
+    alias show-dm-x11='ls_dm_x11'
+    alias ls-x11-config='ls_dm_x11'
+    alias show-x11-config='ls_dm_x11'
+    ## @description Aggregated display manager profile: SLiM, SDDM, GDM3, LightDM, LXDM, X11.
+    ls_full_display_profile() {
+      echo -e "\n\033[1;36m══════════ 🖥️  DISPLAY MANAGER PROFILE ══════════\033[0m\n"
+      ls_dm_slim
+      sleep 1
+      ls_dm_sddm
+      sleep 1
+      ls_dm_gdm3
+      sleep 1
+      ls_dm_lightdm
+      sleep 1
+      ls_dm_lxdm
+      sleep 1
+      ls_dm_x11
+    }
+    alias ls-full-display-profile='ls_full_display_profile'
+    alias show-full-display-profile='ls_full_display_profile'
+    alias ls-dm-profile='ls_full_display_profile'
+    alias show-dm-profile='ls_full_display_profile'
+    ## @description Show TCP congestion control algorithm and available algorithms.
+    ls_sys_tcp_v4_congestion_control() {
+      echo -e "\n\033[1;34m── ⚙️  TCP CONGESTION CONTROL CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_available_congestion_control 2>/dev/null || echo -e "❌ \033[1;31mtcp_available_congestion_control sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_congestion_control 2>/dev/null || echo -e "❌ \033[1;31mtcp_congestion_control sysctl not available\033[0m"
+    }
+    alias ls-sys-tcp-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias ls-sysctl-tcp-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias ls-tcp-sysctl-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias ls-sys-tcp-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias ls-sys-tcp-cgt-ctrl='ls_sys_tcp_v4_congestion_control'
+    alias ls-sysctl-tcp-cgt-ctrl='ls_sys_tcp_v4_congestion_control'
+    alias show-sys-tcp-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
+    alias show-sys-tcp-cgt-ctrl='ls_sys_tcp_v4_congestion_control'
+    ## @description Show TCP keepalive, timeout, and retry sysctl parameters.
+    ls_sys_tcp_v4_time_control() {
+      echo -e "\n\033[1;34m── ⏱️  TCP TIME CONTROL CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_keepalive_time 2>/dev/null || echo -e "❌ \033[1;31mtcp_keepalive_time sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_fin_timeout 2>/dev/null || echo -e "❌ \033[1;31mtcp_fin_timeout sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_retries1 2>/dev/null || echo -e "❌ \033[1;31mtcp_retries1 sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_retries2 2>/dev/null || echo -e "❌ \033[1;31mtcp_retries2 sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_synack_retries 2>/dev/null || echo -e "❌ \033[1;31mtcp_synack_retries sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_syn_retries 2>/dev/null || echo -e "❌ \033[1;31mtcp_syn_retries sysctl not available\033[0m"
+    }
+    alias ls-sys-tcp-v4-time-control='ls_sys_tcp_v4_time_control'
+    alias ls-sysctl-tcp-v4-time-control='ls_sys_tcp_v4_time_control'
+    alias ls-tcp-sysctl-v4-time-control='ls_sys_tcp_v4_time_control'
+    alias ls-tcp-sys-time-control='ls_sys_tcp_v4_time_control'
+    alias show-sys-tcp-v4-time-control='ls_sys_tcp_v4_time_control'
+    ## @description Show TCP backlog, orphan, and TIME_WAIT bucket limits.
+    ls_sys_tcp_v4_limits() {
+      echo -e "\n\033[1;34m── 📏 TCP LIMIT CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_max_syn_backlog 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_syn_backlog sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_max_tw_buckets 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_tw_buckets sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_max_orphans 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_orphans sysctl not available\033[0m"
+    }
+    alias ls-sys-tcp-v4-limits='ls_sys_tcp_v4_limits'
+    alias ls-sysctl-tcp-v4-limits='ls_sys_tcp_v4_limits'
+    alias ls-tcp-sysctl-v4-limits='ls_sys_tcp_v4_limits'
+    alias ls-tcp-sys-limits='ls_sys_tcp_v4_limits'
+    alias show-sys-tcp-v4-limits='ls_sys_tcp_v4_limits'
+    ## @description Show TCP base MSS and MTU probing sysctl settings.
+    ls_sys_tcp_v4_mtu() {
+      echo -e "\n\033[1;34m── 📐 TCP MTU CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_base_mss 2>/dev/null || echo -e "❌ \033[1;31mtcp_base_mss sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_mtu_probing 2>/dev/null || echo -e "❌ \033[1;31mtcp_mtu_probing sysctl not available\033[0m"
+    }
+    alias ls-sys-tcp-v4-mtu='ls_sys_tcp_v4_mtu'
+    alias ls-sysctl-tcp-v4-mtu='ls_sys_tcp_v4_mtu'
+    alias ls-tcp-sysctl-v4-mtu='ls_sys_tcp_v4_mtu'
+    alias show-sys-tcp-v4-mtu='ls_sys_tcp_v4_mtu'
+    ## @description Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+    ls_sys_tcp_v4_base_config() {
+      echo -e "\n\033[1;34m── 🔧 BASE TCP CONFIGS ──\033[0m\n"
+      sudo sysctl net.ipv4.tcp_rmem 2>/dev/null || echo -e "❌ \033[1;31mtcp_rmem sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_wmem 2>/dev/null || echo -e "❌ \033[1;31mtcp_wmem sysctl not available\033[0m"
+      sudo sysctl net.core.rmem_default 2>/dev/null || echo -e "❌ \033[1;31mcore rmem_default sysctl not available\033[0m"
+      sudo sysctl net.core.wmem_default 2>/dev/null || echo -e "❌ \033[1;31mcore wmem_default sysctl not available\033[0m"
+      sudo sysctl net.core.rmem_max 2>/dev/null || echo -e "❌ \033[1;31mcore rmem_max sysctl not available\033[0m"
+      sudo sysctl net.core.wmem_max 2>/dev/null || echo -e "❌ \033[1;31mcore wmem_max sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_fastopen 2>/dev/null || echo -e "❌ \033[1;31mtcp_fastopen sysctl not available\033[0m"
+      sudo sysctl net.ipv4.tcp_syncookies 2>/dev/null || echo -e "❌ \033[1;31mtcp_syncookies sysctl not available\033[0m"
+    }
+    alias ls-tcp-sys-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-tcp-sysctl-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-tcp-sysctl-base-v4-conf='ls_sys_tcp_v4_base_config'
+    alias ls-tcp-sys-tcp-base-v4-conf='ls_sys_tcp_v4_base_config'
+    alias ls-sys-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-sysctl-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias ls-sys-tcp-base-config='ls_sys_tcp_v4_base_config'
+    alias show-tcp-sys-base-v4-config='ls_sys_tcp_v4_base_config'
+    alias show-sys-tcp-base-config='ls_sys_tcp_v4_base_config'
+    ## @description Aggregated view of all IPv4 TCP sysctl settings.
+    ls_sys_tcp_v4() {
+      echo -e "\n\033[1;34m── 📊 SYSCTL CONFIGS FOR IPv4 ──\033[0m\n"
+      ls_sys_tcp_v4_congestion_control
+      sleep 2
+      ls_sys_tcp_v4_time_control
+      sleep 2
+      ls_sys_tcp_v4_limits
+      sleep 2
+      ls_sys_tcp_v4_mtu
+      sleep 2
+      ls_sys_tcp_v4_base_config
+    }
+    alias ls-sys-tcp-v4='ls_sys_tcp_v4'
+    alias ls-sysctl-tcp-v4='ls_sys_tcp_v4'
+    alias ls-tcp-sysctl-v4='ls_sys_tcp_v4'
+    alias ls-sys-tcp='ls_sys_tcp_v4'
+    alias ls-tcp-sys='ls_sys_tcp_v4'
+    alias show-sys-tcp-v4='ls_sys_tcp_v4'
+    alias show-sysctl-tcp-v4='ls_sys_tcp_v4'
+    alias show-sys-tcp='ls_sys_tcp_v4'
+    ## @description Show DNS config, hostname, and IP addresses.
+    ls_net_dns_info() {
+      echo -e "\n\033[1;34m── 🔎 RESOLV.CONF ──\033[0m\n"
+      sudo cat /etc/resolv.conf 2>/dev/null || echo -e "❌ \033[1;31mNo resolv.conf found or permission denied\033[0m"
+      echo -e "\n\033[1;34m── 🏷️  HOSTNAME ──\033[0m\n"
+      sudo cat /etc/hostname 2>/dev/null || echo -e "❌ \033[1;31mNo hostname file found or permission denied\033[0m"
+      echo ""
+      hostname -I 2>/dev/null || echo -e "❌ \033[1;31mUnable to retrieve IP addresses\033[0m"
+    }
+    alias ls-net-dns='ls_net_dns_info'
+    alias show-net-dns='ls_net_dns_info'
+    alias ls-dns-info='ls_net_dns_info'
+    alias show-dns-info='ls_net_dns_info'
+    ## @description Show public IP address via curl ifconfig.me (IPv4 and IPv6).
+    ls_net_public_ip() {
+      if [ -x "$(command -v curl)" ]; then
+        echo -e "\n\033[1;34m── 🌍 PUBLIC IP (curl ifconfig.me) ──\033[0m\n"
+        echo -e "\033[1;33mNote: This may not work if the system is behind a NAT or firewall that blocks outgoing HTTP requests.\033[0m\n"
+        echo -e "\n\nIPv6\n"
+        echo -e "(IPv6 may not be shown if the system prefers IPv4 or if IPv6 connectivity is unavailable)\n"
+        curl ifconfig.me
+        echo -e "\n\nIPv4\n"
+        curl -4 ifconfig.me
+        echo ""
+      else
+        echo -e "❌ \033[1;31m'curl' command not found, could not show public IP\033[0m"
+      fi
+    }
+    alias ls-net-public-ip='ls_net_public_ip'
+    alias show-net-public-ip='ls_net_public_ip'
+    alias ls-public-ip='ls_net_public_ip'
+    alias show-public-ip='ls_net_public_ip'
+    ## @description Show IP addresses via ip addr and ifconfig.
+    ls_net_ip_addrs() {
+      if [ -x "$(command -v ip)" ]; then
+        echo -e "\n\033[1;34m── 📡 IP ADDRESSES (ip addr) ──\033[0m\n"
+        ip addr 2>/dev/null || echo -e "❌ \033[1;31mUnable to run 'ip addr' or permission denied\033[0m"
+      else
+        echo -e "❌ \033[1;31m'ip' command not found, cannot show IP addresses\033[0m"
+      fi
+      if [ -x "$(command -v ifconfig)" ]; then
+        echo -e "\n\033[1;34m── 📟 IP ADDRESSES (ifconfig) ──\033[0m\n"
+        ifconfig 2>/dev/null || echo -e "❌ \033[1;31mUnable to run 'ifconfig' or permission denied\033[0m"
+      else
+        echo -e "❌ \033[1;31m'ifconfig' command not found, cannot show IP addresses with ifconfig\033[0m"
+      fi
+    }
+    alias ls-net-ip-addrs='ls_net_ip_addrs'
+    alias show-net-ip-addrs='ls_net_ip_addrs'
+    alias ls-ip-addrs='ls_net_ip_addrs'
+    alias show-ip-addrs='ls_net_ip_addrs'
+    ## @description Show /etc/hosts and /etc/network/interfaces.
+    ls_net_hosts_info() {
+      echo -e "\n\033[1;34m── 🗃️  HOSTS ──\033[0m\n"
+      sudo cat /etc/hosts 2>/dev/null || echo -e "❌ \033[1;31mNo hosts file found or permission denied\033[0m"
+      echo -e "\n\033[1;34m── 🔌 NETWORK INTERFACES ──\033[0m\n"
+      sudo cat /etc/network/interfaces 2>/dev/null || echo -e "❌ \033[1;31mNo /etc/network/interfaces file found or permission denied\033[0m"
+    }
+    alias ls-net-hosts='ls_net_hosts_info'
+    alias show-net-hosts='ls_net_hosts_info'
+    alias ls-hosts-info='ls_net_hosts_info'
+    alias show-hosts-info='ls_net_hosts_info'
+    ## @description Show NetworkManager connections and service status.
+    ls_net_nm_status() {
+      if [ -x "$(command -v nmcli)" ]; then
+        echo -e "\n\033[1;34m── 📶 NetworkManager Connections (nmcli) ──\033[0m\n"
+        nmcli connection show 2>/dev/null || echo -e "❌ \033[1;31mUnable to run 'nmcli connection show' or permission denied\033[0m"
+      else
+        echo -e "❌ \033[1;31m'nmcli' command not found, cannot show NetworkManager connections\033[0m"
+      fi
+      if [ -x "$(command -v systemctl)" ]; then
+        echo -e "\n\033[1;34m── 🔄 NetworkManager Service Status (systemctl) ──\033[0m\n"
+        systemctl status NetworkManager 2>/dev/null || echo -e "❌ \033[1;31mUnable to check NetworkManager service status or permission denied\033[0m"
+      else
+        echo -e "❌ \033[1;31m'systemctl' command not found, cannot check NetworkManager service status\033[0m"
+      fi
+    }
+    alias ls-net-nm-status='ls_net_nm_status'
+    alias show-net-nm-status='ls_net_nm_status'
+    alias ls-nm-status='ls_net_nm_status'
+    alias show-nm-status='ls_net_nm_status'
+    ## @description Show iptables and ufw firewall rules.
+    ls_net_firewall() {
+      if [ -x "$(command -v iptables)" ]; then
+        echo -e "\n\033[1;34m── 🔒 IPTABLES RULES ──\033[0m\n"
+        sudo iptables -L -n -v 2>/dev/null || echo -e "❌ \033[1;31mUnable to run 'iptables' or permission denied\033[0m"
+      else
+        echo -e "❌ \033[1;31m'iptables' command not found, cannot show firewall rules\033[0m"
+      fi
+      if [ -x "$(command -v ufw)" ]; then
+        echo -e "\n\033[1;34m── 🛡️  UFW STATUS ──\033[0m\n"
+        sudo ufw status verbose 2>/dev/null || echo -e "❌ \033[1;31mUnable to run 'ufw' or permission denied\033[0m"
+      else
+        echo -e "❌ \033[1;31m'ufw' command not found, cannot show UFW firewall status\033[0m"
+      fi
+    }
+    alias ls-net-firewall='ls_net_firewall'
+    alias show-net-firewall='ls_net_firewall'
+    alias ls-firewall='ls_net_firewall'
+    alias show-firewall='ls_net_firewall'
+    ## @description Aggregated network profile: DNS, public IP, sysctl, IP addresses, hosts, NetworkManager, firewall.
+    ls_net_profile() {
+      echo -e "\n\033[1;36m══════════ 🌐 NETWORK PROFILE ══════════\033[0m\n"
+      ls_net_dns_info
+      sleep 3
+      ls_net_public_ip
+      sleep 3
+      if [ -x "$(command -v sysctl)" ]; then
+        echo -e "\n\033[1;34m── 📊 SYSCTL NETWORK CONFIGS FOR IPv4 ──\033[0m\n"
+        ls_sys_tcp_v4
+      else
+        echo -e "❌ \033[1;31m'sysctl' command not found, cannot show sysctl network configs\033[0m"
+      fi
+      sleep 3
+      ls_net_ip_addrs
+      sleep 3
+      ls_net_hosts_info
+      sleep 3
+      ls_net_nm_status
+      sleep 3
+      ls_net_firewall
+    }
+    alias ls-net-profile='ls_net_profile'
+    alias show-net-profile='ls_net_profile'
+    alias ls-network-profile='ls_net_profile'
+    alias show-network-profile='ls_net_profile'
+    ## @description Show dconf user config (binary), loginctl sessions/user info, and home directory listing.
+    ls_home_profile() {
+      echo -e "\n\033[1;34m── 🏠 DCONF USER CONFIG ──\033[0m\n"
+      if [[ -f ~/.config/dconf/user ]]; then
+        echo -e "⚠️  \033[1;33m(binary GVariant database — showing printable strings)\033[0m"
+        strings ~/.config/dconf/user 2>/dev/null || echo -e "❌ \033[1;31mUnable to read dconf user config\033[0m"
+      else
+        echo -e "❌ \033[1;31mdconf user config not found\033[0m"
+      fi
+      sleep 2
+
+      echo -e "\n\033[1;34m── 🗂️  LISTED SESSIONS ──\033[0m\n"
+      loginctl list-sessions 2>/dev/null || echo -e "❌ \033[1;31mUnable to list sessions with loginctl\033[0m"
+      sleep 2
+
+      echo -e "\n\033[1;34m── 🏷️  CURRENT SESSION ID ──\033[0m\n"
+      if [[ -n "$XDG_SESSION_ID" ]]; then
+        echo "$XDG_SESSION_ID"
+      else
+        echo -e "❌ \033[1;31mXDG_SESSION_ID environment variable not set\033[0m"
+      fi
+      echo -e "\n\033[1;34m── ⚙️  CURRENT SESSION INFO ──\033[0m\n"
+      loginctl show-session "${XDG_SESSION_ID}" 2>/dev/null || echo -e "❌ \033[1;31mUnable to show current session info with loginctl\033[0m"
+      sleep 2
+
+      echo -e "\n\033[1;34m── 👤 CURRENT USER INFO ──\033[0m\n"
+      loginctl show-user "${USER}" 2>/dev/null || echo -e "❌ \033[1;31mUnable to show current user info with loginctl\033[0m"
+      sleep 2
+
+      echo -e "\n\033[1;34m── 📁 HOME DIRECTORY ──\033[0m\n"
+      echo "$HOME"
+      ls -lAh --color=auto "$HOME" 2>/dev/null || echo -e "❌ \033[1;31mUnable to list home directory contents\033[0m"
+
+      echo -e "\n\033[1;34m── 🗂️  ACCOUNTS SERVICE USER PROFILES ──\033[0m\n"
+      local up="/var/lib/AccountsService/users"; 
+      sudo find "$up" ! -path "$up" -exec bash -c 'echo -e "\n[[USER $(basename "$1")]]\n"; cat "$1"; echo -e "\n"' _ {} \;
+    }
+    alias ls-home-profile='ls_home_profile'
+    alias show-home-profile='ls_home_profile'
+    alias ls-dconf-profile='ls_home_profile'
+    alias show-dconf-profile='ls_home_profile'
+    ## @description Full system profile: env, fstab, RBAC, display managers, network, and home config.
+    ls_full_profile() {
+      echo -e "\n\033[1;36m══════════ 📦 FULL SYSTEM PROFILE ══════════\033[0m\n"
+      ls_env_profile
+      sleep 3
+      ls_tabs_profile
+      sleep 3
+      ls_rbac_profile
+      sleep 3
+      ls_full_display_profile
+      sleep 3
+      ls_net_profile
+      sleep 3
+      ls_home_profile
+    }
+    alias ls-full-profile='ls_full_profile'
+    alias show-full-profile='ls_full_profile'
+    alias ls-all-profiles='ls_full_profile'
+    alias show-all-profiles='ls_full_profile'
     ## @description Show current display session type (x11 or wayland).
     alias show-display-session="echo \$XDG_SESSION_TYPE"
     alias ls-display-session='show-display-session'
@@ -414,92 +858,6 @@ export MESA_GL_VERSION_OVERRIDE=3.3'
     alias ls-tcp-iptables='ls_tcp_iptables_rules'
     alias ls-iptables-tcp='ls_tcp_iptables_rules'
     alias ls-tcp-iptables-rules='ls_tcp_iptables_rules'
-    ## @description Show TCP congestion control algorithm and available algorithms.
-    ls_sys_tcp_v4_congestion_control() {
-      echo -e "\n\033[1;34m── ⚙️  TCP CONGESTION CONTROL CONFIGS ──\033[0m\n"
-      sudo sysctl net.ipv4.tcp_available_congestion_control 2>/dev/null || echo -e "❌ \033[1;31mtcp_available_congestion_control sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_congestion_control 2>/dev/null || echo -e "❌ \033[1;31mtcp_congestion_control sysctl not available\033[0m"
-    }
-    alias ls-sys-tcp-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
-    alias ls-sysctl-tcp-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
-    alias ls-tcp-sysctl-v4-congestion-control='ls_sys_tcp_v4_congestion_control'
-    alias ls-sys-tcp-congestion-control='ls_sys_tcp_v4_congestion_control'
-    alias ls-sys-tcp-cgt-ctrl='ls_sys_tcp_v4_congestion_control'
-    alias ls-sysctl-tcp-cgt-ctrl='ls_sys_tcp_v4_congestion_control'
-    ## @description Show TCP keepalive, timeout, and retry sysctl parameters.
-    ls_sys_tcp_v4_time_control() {
-      echo -e "\n\033[1;34m── ⏱️  TCP TIME CONTROL CONFIGS ──\033[0m\n"
-      sudo sysctl net.ipv4.tcp_keepalive_time 2>/dev/null || echo -e "❌ \033[1;31mtcp_keepalive_time sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_fin_timeout 2>/dev/null || echo -e "❌ \033[1;31mtcp_fin_timeout sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_retries1 2>/dev/null || echo -e "❌ \033[1;31mtcp_retries1 sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_retries2 2>/dev/null || echo -e "❌ \033[1;31mtcp_retries2 sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_synack_retries 2>/dev/null || echo -e "❌ \033[1;31mtcp_synack_retries sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_syn_retries 2>/dev/null || echo -e "❌ \033[1;31mtcp_syn_retries sysctl not available\033[0m"
-    }
-    alias ls-sys-tcp-v4-time-control='ls_sys_tcp_v4_time_control'
-    alias ls-sysctl-tcp-v4-time-control='ls_sys_tcp_v4_time_control'
-    alias ls-tcp-sysctl-v4-time-control='ls_sys_tcp_v4_time_control'
-    alias ls-tcp-sys-time-control='ls_sys_tcp_v4_time_control'
-    ## @description Show TCP backlog, orphan, and TIME_WAIT bucket limits.
-    ls_sys_tcp_v4_limits() {
-      echo -e "\n\033[1;34m── 📏 TCP LIMIT CONFIGS ──\033[0m\n"
-      sudo sysctl net.ipv4.tcp_max_syn_backlog 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_syn_backlog sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_max_tw_buckets 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_tw_buckets sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_max_orphans 2>/dev/null || echo -e "❌ \033[1;31mtcp_max_orphans sysctl not available\033[0m"
-    }
-    alias ls-sys-tcp-v4-limits='ls_sys_tcp_v4_limits'
-    alias ls-sysctl-tcp-v4-limits='ls_sys_tcp_v4_limits'
-    alias ls-tcp-sysctl-v4-limits='ls_sys_tcp_v4_limits'
-    alias ls-tcp-sys-limits='ls_sys_tcp_v4_limits'
-    ## @description Show TCP base MSS and MTU probing sysctl settings.
-    ls_sys_tcp_v4_mtu() {
-      echo -e "\n\033[1;34m── 📐 TCP MTU CONFIGS ──\033[0m\n"
-      sudo sysctl net.ipv4.tcp_base_mss 2>/dev/null || echo -e "❌ \033[1;31mtcp_base_mss sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_mtu_probing 2>/dev/null || echo -e "❌ \033[1;31mtcp_mtu_probing sysctl not available\033[0m"
-    }
-    alias ls-sys-tcp-v4-mtu='ls_sys_tcp_v4_mtu'
-    alias ls-sysctl-tcp-v4-mtu='ls_sys_tcp_v4_mtu'
-    alias ls-tcp-sysctl-v4-mtu='ls_sys_tcp_v4_mtu'
-    ## @description Show TCP buffer sizes, fast open, and syncookies sysctl settings.
-    ls_sys_tcp_v4_base_config() {
-      echo -e "\n\033[1;34m── 🔧 BASE TCP CONFIGS ──\033[0m\n"
-      sudo sysctl net.ipv4.tcp_rmem 2>/dev/null || echo -e "❌ \033[1;31mtcp_rmem sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_wmem 2>/dev/null || echo -e "❌ \033[1;31mtcp_wmem sysctl not available\033[0m"
-      sudo sysctl net.core.rmem_default 2>/dev/null || echo -e "❌ \033[1;31mcore rmem_default sysctl not available\033[0m"
-      sudo sysctl net.core.wmem_default 2>/dev/null || echo -e "❌ \033[1;31mcore wmem_default sysctl not available\033[0m"
-      sudo sysctl net.core.rmem_max 2>/dev/null || echo -e "❌ \033[1;31mcore rmem_max sysctl not available\033[0m"
-      sudo sysctl net.core.wmem_max 2>/dev/null || echo -e "❌ \033[1;31mcore wmem_max sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_fastopen 2>/dev/null || echo -e "❌ \033[1;31mtcp_fastopen sysctl not available\033[0m"
-      sudo sysctl net.ipv4.tcp_syncookies 2>/dev/null || echo -e "❌ \033[1;31mtcp_syncookies sysctl not available\033[0m"
-    }
-    alias ls-tcp-sys-base-v4-config='ls_sys_tcp_v4_base_config'
-    alias ls-tcp-sysctl-base-v4-config='ls_sys_tcp_v4_base_config'
-    alias ls-tcp-sysctl-base-v4-conf='ls_sys_tcp_v4_base_config'
-    alias ls-tcp-sys-tcp-base-v4-conf='ls_sys_tcp_v4_base_config'
-    alias ls-sys-base-v4-config='ls_sys_tcp_v4_base_config'
-    alias ls-sysctl-base-v4-config='ls_sys_tcp_v4_base_config'
-    alias ls-tcp-sysctl-base-v4-config='ls_sys_tcp_v4_base_config'
-    alias ls-tcp-sys-base-v4-config='ls_sys_tcp_v4_base_config'
-    alias ls-sys-tcp-base-config='ls_sys_tcp_v4_base_config'
-    ## @description Aggregated view of all IPv4 TCP sysctl settings.
-    ls_sys_tcp_v4() {
-      echo -e "\n\033[1;34m── 🌐 SYSCTL CONFIGS FOR IPv4 ──\033[0m\n"
-      ls_sys_tcp_v4_congestion_control
-      sleep 2
-      ls_sys_tcp_v4_time_control
-      sleep 2
-      ls_sys_tcp_v4_limits
-      sleep 2
-      ls_sys_tcp_v4_mtu
-      sleep 2
-      ls_sys_tcp_v4_base_config
-    }
-    alias ls-sys-tcp-v4='ls_sys_tcp_v4'
-    alias ls-sysctl-tcp-v4='ls_sys_tcp_v4'
-    alias ls-tcp-sysctl-v4='ls_sys_tcp_v4'
-    alias ls-sys-tcp='ls_sys_tcp_v4'
-    alias ls-tcp-sys='ls_sys_tcp_v4'
-    alias ls_tcp_sys='ls_sys_tcp_v4'
     ## @description Show listening TCP ports via lsof.
     ls_tcp_listening_ports() {
       echo -e "\n\033[1;34m── 👂 Listening TCP Ports ──\033[0m\n"
@@ -5640,4 +5998,4 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
 #endregion XFCE_Settings
 
 #endregion POWERSHELL_PROFILE_EQUIVALENTS
-### * END OF POWERSHELL PROFILE EQUIVALENTS * ###
+### * END OF POWERSHELL PROFILE EQUIVALENTS * ###1

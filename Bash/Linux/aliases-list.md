@@ -340,6 +340,68 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 
 - echo-desktop
 
+[Show environment variables, exported variables, shell variables, aliases, and functions]
+
+- ls-env-profile
+- show-env-profile
+- ls-env-prof
+- show-env-prof
+
+[Show fstab and crypttab contents]
+
+- ls-tabs-profile
+- show-tabs-profile
+- ls-fstab-profile
+- show-fstab-profile
+
+[Show sudo/admin groups, sudoers, MOTD, /etc/profile, chrony config, and APT keyrings]
+
+- ls-rbac-profile
+- show-rbac-profile
+- ls-rbac-prof
+- show-rbac-prof
+
+[Show SLiM display manager config]
+
+- ls-dm-slim
+- show-dm-slim
+
+[Show SDDM display manager config and drop-in files]
+
+- ls-dm-sddm
+- show-dm-sddm
+
+[Show GDM3 display manager configs]
+
+- ls-dm-gdm3
+- show-dm-gdm3
+- ls-dm-gdm
+- show-dm-gdm
+
+[Show LightDM display manager configs]
+
+- ls-dm-lightdm
+- show-dm-lightdm
+
+[Show LXDM display manager config]
+
+- ls-dm-lxdm
+- show-dm-lxdm
+
+[Show X11/XDM display config and default display manager (binary-safe with strings)]
+
+- ls-dm-x11
+- show-dm-x11
+- ls-x11-config
+- show-x11-config
+
+[Aggregated display manager profile: SLiM, SDDM, GDM3, LightDM, LXDM, X11]
+
+- ls-full-display-profile
+- show-full-display-profile
+- ls-dm-profile
+- show-dm-profile
+
 ### Network_Procedures
 
 [Probe a network host with ARP, ping, netcat, and route lookup — $1: target IP (required), $2: target port (optional) — flags: --gateway, --local]
@@ -378,6 +440,8 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - ls-sys-tcp-congestion-control
 - ls-sys-tcp-cgt-ctrl
 - ls-sysctl-tcp-cgt-ctrl
+- show-sys-tcp-v4-congestion-control
+- show-sys-tcp-cgt-ctrl
 
 [Show TCP keepalive, timeout, and retry sysctl parameters]
 
@@ -385,6 +449,7 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - ls-sysctl-tcp-v4-time-control
 - ls-tcp-sysctl-v4-time-control
 - ls-tcp-sys-time-control
+- show-sys-tcp-v4-time-control
 
 [Show TCP backlog, orphan, and TIME_WAIT bucket limits]
 
@@ -392,20 +457,26 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - ls-sysctl-tcp-v4-limits
 - ls-tcp-sysctl-v4-limits
 - ls-tcp-sys-limits
+- show-sys-tcp-v4-limits
 
 [Show TCP base MSS and MTU probing sysctl settings]
 
 - ls-sys-tcp-v4-mtu
 - ls-sysctl-tcp-v4-mtu
 - ls-tcp-sysctl-v4-mtu
+- show-sys-tcp-v4-mtu
 
 [Show TCP buffer sizes, fast open, and syncookies sysctl settings]
 
+- ls-tcp-sys-base-v4-config
+- ls-tcp-sysctl-base-v4-config
+- ls-tcp-sysctl-base-v4-conf
+- ls-tcp-sys-tcp-base-v4-conf
 - ls-sys-base-v4-config
 - ls-sysctl-base-v4-config
-- ls-tcp-sysctl-base-v4-config
-- ls-tcp-sys-base-v4-config
 - ls-sys-tcp-base-config
+- show-tcp-sys-base-v4-config
+- show-sys-tcp-base-config
 
 [Aggregated view of all IPv4 TCP sysctl settings]
 
@@ -413,6 +484,10 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - ls-sysctl-tcp-v4
 - ls-tcp-sysctl-v4
 - ls-sys-tcp
+- ls-tcp-sys
+- show-sys-tcp-v4
+- show-sysctl-tcp-v4
+- show-sys-tcp
 
 [Show listening TCP ports via lsof]
 
@@ -448,6 +523,69 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - ls-tcp-config
 - ls-tcp-conf
 - ls-tcp-all
+
+[Show DNS config, hostname, and IP addresses]
+
+- ls-net-dns
+- show-net-dns
+- ls-dns-info
+- show-dns-info
+
+[Show public IP address via curl ifconfig.me (IPv4 and IPv6)]
+
+- ls-net-public-ip
+- show-net-public-ip
+- ls-public-ip
+- show-public-ip
+
+[Show IP addresses via ip addr and ifconfig]
+
+- ls-net-ip-addrs
+- show-net-ip-addrs
+- ls-ip-addrs
+- show-ip-addrs
+
+[Show /etc/hosts and /etc/network/interfaces]
+
+- ls-net-hosts
+- show-net-hosts
+- ls-hosts-info
+- show-hosts-info
+
+[Show NetworkManager connections and service status]
+
+- ls-net-nm-status
+- show-net-nm-status
+- ls-nm-status
+- show-nm-status
+
+[Show iptables and ufw firewall rules]
+
+- ls-net-firewall
+- show-net-firewall
+- ls-firewall
+- show-firewall
+
+[Aggregated network profile: DNS, public IP, sysctl, IP addresses, hosts, NetworkManager, firewall]
+
+- ls-net-profile
+- show-net-profile
+- ls-network-profile
+- show-network-profile
+
+[Show dconf user config (binary), loginctl sessions/user info, and home directory listing]
+
+- ls-home-profile
+- show-home-profile
+- ls-dconf-profile
+- show-dconf-profile
+
+[Full system profile: env, fstab, RBAC, display managers, network, and home config]
+
+- ls-full-profile
+- show-full-profile
+- ls-all-profiles
+- show-all-profiles
 
 [Run powerstat (RAPL) and tee output to ~/.logs/ — $1: duration in seconds (default: 3600), $2: sampling interval in seconds (default: 1)]
 
