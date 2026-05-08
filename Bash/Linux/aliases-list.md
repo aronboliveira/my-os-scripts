@@ -1926,6 +1926,30 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 - calculate-check-sum
 - **`calc-checksum`**: Alias for calculate-check-sum.
 
+[Change directory up N levels using dots or .{N} — e.g., cdup ... or cdup .{3}]
+
+- cdup
+
+[Find common web image formats in a directory — $1: path (default: .), remaining args passed to find]
+
+- ls-web-images
+- show-web-images
+
+[Find a broad set of image formats (web + RAW + design files) — $1: path (default: .), remaining args passed to find]
+
+- ls-all-images
+- show-all-images
+
+[Find common web image formats with depth controls — flags: --path/-p, --min-depth/-m, --max-depth/-M, --help]
+
+- ls-web-images-deep
+- show-web-images-deep
+
+[Find a broad set of image formats with depth controls — flags: --path/-p, --min-depth/-m, --max-depth/-M, --help]
+
+- ls-all-images-deep
+- show-all-images-deep
+
 ### Git_Aliases
 
 [Pretty git log showing author email, date, and subject for all branches]
@@ -2288,6 +2312,11 @@ All publicable aliases from `~/.bashrc`, grouped by region.
 [Find and sort files by path length, excluding vendor/node_modules/backup directories — $1: extension (required) $2: src (default: .) $3: max_depth (default: 15) $4: cut_indexes (default: 0)]
 
 - list-paths-no-vendors
+
+[List journal files under /var/log/journal with type, size, and strings preview]
+
+- ls-journal-files
+- show-journal-files
 
 ---
 

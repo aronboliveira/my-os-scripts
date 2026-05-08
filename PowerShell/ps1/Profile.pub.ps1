@@ -622,6 +622,40 @@ function Get-CheckSum {
 Set-Alias -Name calculate-check-sum -Value Get-CheckSum
 Set-Alias -Name calc-checksum -Value Get-CheckSum
 
+<#
+.SYNOPSIS Change directory up N levels using dots or .{N}.
+.PARAMETER Dots
+  Dot pattern (e.g. ... or .{3}).
+.EXAMPLE
+  cdup ...
+.EXAMPLE
+  cdup .{3}
+#>
+function Invoke-CdUp {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)][string]$Dots)
+
+  $usage = "Usage: cdup .... | cdup .{N}"
+  if ($Dots -match '^\.+$') {
+    $n = $Dots.Length
+  } elseif ($Dots -match '^\.\{(\d+)\}$') {
+    $n = [int]$Matches[1]
+  } else {
+    Write-Error $usage
+    return
+  }
+
+  if ($n -lt 1) {
+    Write-Error "N must be >= 1"
+    return
+  }
+
+  $sep = [System.IO.Path]::DirectorySeparatorChar
+  $path = (@('..') * $n) -join $sep
+  Set-Location -Path $path
+}
+Set-Alias -Name cdup -Value Invoke-CdUp
+
 #endregion Basic_Commands
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -801,6 +835,111 @@ function get-all-mimeapps {
 }
 Set-Alias cat-all-mimeapps get-all-mimeapps
 # -----------------------
+
+<#
+.SYNOPSIS Find common web image formats in a directory.
+.PARAMETER Path
+  Directory to search (default: .).
+#>
+function Find-WebImages {
+  param([string]$Path = '.')
+  $exts = @('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.avif', '.bmp', '.ico', '.tiff', '.tif')
+  Get-ChildItem -Path $Path -File -ErrorAction SilentlyContinue |
+    Where-Object { $exts -contains $_.Extension.ToLower() } |
+    Select-Object -ExpandProperty FullName
+}
+Set-Alias -Name ls-web-images -Value Find-WebImages
+Set-Alias -Name show-web-images -Value Find-WebImages
+
+<#
+.SYNOPSIS Find a broad set of image formats (web + RAW + design files).
+.PARAMETER Path
+  Directory to search (default: .).
+#>
+function Find-AllImages {
+  param([string]$Path = '.')
+  $exts = @(
+    '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.avif', '.bmp', '.ico', '.tiff', '.tif', '.jfif',
+    '.jpe', '.jif', '.jp2', '.j2k', '.jpf', '.jpx', '.jpm', '.mj2', '.cr2', '.cr3', '.nef', '.nrw',
+    '.arw', '.srf', '.sr2', '.orf', '.rw2', '.pef', '.ptx', '.raf', '.3fr', '.fff', '.dcr', '.dng',
+    '.mrw', '.iiq', '.kdc', '.mos', '.erf', '.bay', '.psd', '.psb', '.ai', '.eps', '.indd', '.xcf',
+    '.cdr', '.heic', '.heif', '.jxr', '.jxl'
+  )
+  Get-ChildItem -Path $Path -File -ErrorAction SilentlyContinue |
+    Where-Object { $exts -contains $_.Extension.ToLower() } |
+    Select-Object -ExpandProperty FullName
+}
+Set-Alias -Name ls-all-images -Value Find-AllImages
+Set-Alias -Name show-all-images -Value Find-AllImages
+
+function Get-PathDepth {
+  param([Parameter(Mandatory)][string]$Base, [Parameter(Mandatory)][string]$FullPath)
+  $rel = [System.IO.Path]::GetRelativePath($Base, $FullPath)
+  if ($rel -eq '.' -or [string]::IsNullOrWhiteSpace($rel)) { return 0 }
+  return ($rel -split '[\\/]').Count - 1
+}
+
+<#
+.SYNOPSIS Find common web image formats with depth controls.
+.PARAMETER Path
+  Directory to search (default: .).
+.PARAMETER MaxDepth
+  Maximum directory depth (default: -1 = no limit).
+.PARAMETER MinDepth
+  Minimum directory depth (default: 0).
+#>
+function Find-WebImagesDeep {
+  param(
+    [string]$Path = '.',
+    [int]$MaxDepth = -1,
+    [int]$MinDepth = 0
+  )
+  $base = (Resolve-Path $Path).Path
+  $exts = @('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.avif', '.bmp', '.ico', '.tiff', '.tif')
+  Get-ChildItem -Path $base -File -Recurse -ErrorAction SilentlyContinue |
+    Where-Object {
+      $depth = Get-PathDepth -Base $base -FullPath $_.FullName
+      ($depth -ge $MinDepth) -and (($MaxDepth -lt 0) -or ($depth -le $MaxDepth))
+    } |
+    Where-Object { $exts -contains $_.Extension.ToLower() } |
+    Select-Object -ExpandProperty FullName
+}
+Set-Alias -Name ls-web-images-deep -Value Find-WebImagesDeep
+Set-Alias -Name show-web-images-deep -Value Find-WebImagesDeep
+
+<#
+.SYNOPSIS Find a broad set of image formats with depth controls.
+.PARAMETER Path
+  Directory to search (default: .).
+.PARAMETER MaxDepth
+  Maximum directory depth (default: -1 = no limit).
+.PARAMETER MinDepth
+  Minimum directory depth (default: 0).
+#>
+function Find-AllImagesDeep {
+  param(
+    [string]$Path = '.',
+    [int]$MaxDepth = -1,
+    [int]$MinDepth = 0
+  )
+  $base = (Resolve-Path $Path).Path
+  $exts = @(
+    '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.avif', '.bmp', '.ico', '.tiff', '.tif', '.jfif',
+    '.jpe', '.jif', '.jp2', '.j2k', '.jpf', '.jpx', '.jpm', '.mj2', '.cr2', '.cr3', '.nef', '.nrw',
+    '.arw', '.srf', '.sr2', '.orf', '.rw2', '.pef', '.ptx', '.raf', '.3fr', '.fff', '.dcr', '.dng',
+    '.mrw', '.iiq', '.kdc', '.mos', '.erf', '.bay', '.psd', '.psb', '.ai', '.eps', '.indd', '.xcf',
+    '.cdr', '.heic', '.heif', '.jxr', '.jxl'
+  )
+  Get-ChildItem -Path $base -File -Recurse -ErrorAction SilentlyContinue |
+    Where-Object {
+      $depth = Get-PathDepth -Base $base -FullPath $_.FullName
+      ($depth -ge $MinDepth) -and (($MaxDepth -lt 0) -or ($depth -le $MaxDepth))
+    } |
+    Where-Object { $exts -contains $_.Extension.ToLower() } |
+    Select-Object -ExpandProperty FullName
+}
+Set-Alias -Name ls-all-images-deep -Value Find-AllImagesDeep
+Set-Alias -Name show-all-images-deep -Value Find-AllImagesDeep
 
 # ═══════════════════════════════════════════════════════════════════════════
 

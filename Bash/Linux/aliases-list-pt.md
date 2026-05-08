@@ -1930,6 +1930,30 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - calculate-check-sum
 - **`calc-checksum`**: Alias para calculate-check-sum.
 
+[Sobe N níveis no diretório usando pontos ou .{N} — ex.: cdup ... ou cdup .{3}]
+
+- cdup
+
+[Encontra formatos comuns de imagens web em um diretório — $1: caminho (padrão: .), args restantes passam para find]
+
+- ls-web-images
+- show-web-images
+
+[Encontra um conjunto amplo de formatos de imagem (web + RAW + design) — $1: caminho (padrão: .), args restantes passam para find]
+
+- ls-all-images
+- show-all-images
+
+[Encontra formatos comuns de imagens web com controle de profundidade — flags: --path/-p, --min-depth/-m, --max-depth/-M, --help]
+
+- ls-web-images-deep
+- show-web-images-deep
+
+[Encontra um conjunto amplo de formatos de imagem com controle de profundidade — flags: --path/-p, --min-depth/-m, --max-depth/-M, --help]
+
+- ls-all-images-deep
+- show-all-images-deep
+
 ### Git_Aliases
 
 [Log git formatado mostrando email do autor, data e assunto para todos os branches]
@@ -2292,6 +2316,11 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Encontra e ordena arquivos por comprimento de caminho, excluindo diretórios vendor/node_modules/backup — $1: extensão (obrigatório) $2: src (padrão: .) $3: max_depth (padrão: 15) $4: cut_indexes (padrão: 0)]
 
 - list-paths-no-vendors
+
+[Lista arquivos do journal em /var/log/journal com tipo, tamanho e prévia via strings]
+
+- ls-journal-files
+- show-journal-files
 
 ---
 

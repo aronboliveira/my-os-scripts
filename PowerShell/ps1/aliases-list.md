@@ -96,6 +96,30 @@ Transpiled from the Bash publicable section to PowerShell equivalents (cross-pla
 - calculate-check-sum
 - calc-checksum
 
+[Change directory up N levels using dots or .{N} — e.g., cdup ... or cdup .{3}]
+
+- cdup
+
+[Find common web image formats in a directory — $Path (default: .)]
+
+- ls-web-images
+- show-web-images
+
+[Find a broad set of image formats (web + RAW + design files) — $Path (default: .)]
+
+- ls-all-images
+- show-all-images
+
+[Find common web image formats with depth controls — $Path (default: .), $MinDepth (default: 0), $MaxDepth (default: -1)]
+
+- ls-web-images-deep
+- show-web-images-deep
+
+[Find a broad set of image formats with depth controls — $Path (default: .), $MinDepth (default: 0), $MaxDepth (default: -1)]
+
+- ls-all-images-deep
+- show-all-images-deep
+
 ## Pretty_Basic_Commands
 
 [Pretty-decode a URI string showing input and decoded output]

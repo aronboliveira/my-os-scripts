@@ -96,6 +96,30 @@ Transpilados da seção publicável do Bash para equivalentes em PowerShell (ape
 - calculate-check-sum
 - calc-checksum
 
+[Sobe N níveis no diretório usando pontos ou .{N} — ex.: cdup ... ou cdup .{3}]
+
+- cdup
+
+[Encontra formatos comuns de imagens web em um diretório — $Path (padrão: .)]
+
+- ls-web-images
+- show-web-images
+
+[Encontra um conjunto amplo de formatos de imagem (web + RAW + design) — $Path (padrão: .)]
+
+- ls-all-images
+- show-all-images
+
+[Encontra formatos comuns de imagens web com controle de profundidade — $Path (padrão: .), $MinDepth (padrão: 0), $MaxDepth (padrão: -1)]
+
+- ls-web-images-deep
+- show-web-images-deep
+
+[Encontra um conjunto amplo de formatos de imagem com controle de profundidade — $Path (padrão: .), $MinDepth (padrão: 0), $MaxDepth (padrão: -1)]
+
+- ls-all-images-deep
+- show-all-images-deep
+
 ## Pretty_Basic_Commands
 
 [Decodificação formatada de URI mostrando entrada e saída decodificada]
