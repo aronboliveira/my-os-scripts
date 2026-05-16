@@ -1,0 +1,32 @@
+{
+  "name": "os-aliases-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "npx ts-node src/server.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:e2e": "npx cypress run",
+    "cypress:open": "npx cypress open",
+    "lint": "eslint 'src/**/*.ts' '__tests__/**/*.ts' 'cypress/**/*.ts'",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "@typescript-eslint/parser": "^8.16.0",
+    "eslint": "^8.57.1",
+    "express": "^4.21.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "optionalDependencies": {
+    "cypress": "^13.16.0"
+  }
+}

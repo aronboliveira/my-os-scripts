@@ -1,2 +1,6 @@
 _test*
 **/_test*
+AGENTS.md
+__tests__/node_modules/
+__tests__/coverage/
+__tests__/dist/
