@@ -1,4 +1,7 @@
   #region Audiovisual_Processing
+    ## Convert a GIF to MP4 using ffmpeg with palette optimization for better quality
+    # @param $1 input .gif file
+    # @param $2 output .mp4 file (optional, defaults to input name with .mp4 extension)
     gif_to_mp4() {
         local input="$1"
         local output="${2:-${input%.gif}.mp4}"
