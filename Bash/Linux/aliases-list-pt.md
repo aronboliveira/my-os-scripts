@@ -21,6 +21,7 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - **`set-ps-very-low`**: Define ajuste OOM como muito baixo (600).
 - **`set-ps-irrelevant`**: Define ajuste OOM como irrelevante (1000).
 
+
 - **`install_stremio_gnome`**: Baixa e instala o repositório Flathub (se ausente) e, em seguida, instala o Stremio executando-o em modo de segundo plano, garantindo compatibilidade com sessões Wayland e X11.
 
 [Ativa renderização GL de software (Mesa llvmpipe), persiste no bashrc, opcionalmente desativa composição X11 — flags: --no-persist, --no-composite]
@@ -339,6 +340,7 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Variante alias echo- para show-desktop]
 
 - echo-desktop
+
 
 [Exibe variáveis de ambiente, variáveis exportadas, variáveis de shell, aliases e funções]
 
@@ -1296,6 +1298,7 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 #### Pretty_Kernel_OS
 
+
 - **`cat-mimeapps-pretty`**: Saída formatada.
 
 [Imprime configuração de boot do GRUB formatada com números de linha e colorização de sintaxe]
@@ -1438,6 +1441,7 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 - glx-info-pretty
 
 #### Pretty_System_Config
+
 
 - **`cat-compose-chars-pretty`**: Saída formatada.
 
@@ -1806,6 +1810,15 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 [Backup rsync com progresso/checksum, excluindo node_modules, venv, __pycache__, .gradle, .m2, vendor, target, .next, dist, build]
 
 - backup-projects
+
+[Varredura forense de downloads no Chromium — $1: formato, flags: -b/--browser, -p/--profile, -d/--days, --filter-existing, --redownload, --search-root]
+
+- search-chromium-download-traces
+
+[Rebaixa URLs/IDs do YouTube via cookies do navegador — $1: dest_dir, $@: urls/ids, flags: --browser, --format, --quality, --no-thumb]
+
+- recover-chromium-yt-downloads-by-traces
+
 
 #### File_Analysis
 
@@ -2284,6 +2297,7 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - **`show-compose-chars`**: Alias para cat-compose-chars.
 
+
 - **`cat-compose-chars`**: Exibe a sequência nativa correta de teclas Compose disponíveis em `en_US.UTF-8/Compose`.
 - **`ls-compose-chars`**: Lista detalhes do mapa Compose em um formato padrão `ls -ld`.
 - **`less-compose-chars`**: Visualiza o longo esquema de mapeamento de caracteres Compose com paginação `less`.
@@ -2321,6 +2335,843 @@ Todos os aliases publicáveis de `~/.bashrc`, agrupados por região.
 
 - ls-journal-files
 - show-journal-files
+
+### Audiovisual_Processing
+
+[Converte AAC para AIFF.]
+
+- ffmpeg-aac-to-aiff
+- aac-to-aiff
+
+[Converte AAC para ALAC.]
+
+- ffmpeg-aac-to-alac
+- aac-to-alac
+
+[Converte AAC para FLAC.]
+
+- ffmpeg-aac-to-flac
+- aac-to-flac
+
+[Converte AAC para MP3.]
+
+- ffmpeg-aac-to-mp3
+- aac-to-mp3
+
+[Converte AAC para OGA.]
+
+- ffmpeg-aac-to-oga
+- aac-to-oga
+
+[Converte AAC para OGG.]
+
+- ffmpeg-aac-to-ogg
+- aac-to-ogg
+
+[Converte AAC para WAV.]
+
+- ffmpeg-aac-to-wav
+- aac-to-wav
+
+[Converte AAC para WMA.]
+
+- ffmpeg-aac-to-wma
+- aac-to-wma
+
+[Converte AIFF para AAC.]
+
+- ffmpeg-aiff-to-aac
+- aiff-to-aac
+
+[Converte AIFF para ALAC.]
+
+- ffmpeg-aiff-to-alac
+- aiff-to-alac
+
+[Converte AIFF para FLAC.]
+
+- ffmpeg-aiff-to-flac
+- aiff-to-flac
+
+[Converte AIFF para MP3.]
+
+- ffmpeg-aiff-to-mp3
+- aiff-to-mp3
+
+[Converte AIFF para OGA.]
+
+- ffmpeg-aiff-to-oga
+- aiff-to-oga
+
+[Converte AIFF para OGG.]
+
+- ffmpeg-aiff-to-ogg
+- aiff-to-ogg
+
+[Converte AIFF para WAV.]
+
+- ffmpeg-aiff-to-wav
+- aiff-to-wav
+
+[Converte AIFF para WMA.]
+
+- ffmpeg-aiff-to-wma
+- aiff-to-wma
+
+[Converte ALAC para AAC.]
+
+- ffmpeg-alac-to-aac
+- alac-to-aac
+
+[Converte ALAC para AIFF.]
+
+- ffmpeg-alac-to-aiff
+- alac-to-aiff
+
+[Converte ALAC para FLAC.]
+
+- ffmpeg-alac-to-flac
+- alac-to-flac
+
+[Converte ALAC para MP3.]
+
+- ffmpeg-alac-to-mp3
+- alac-to-mp3
+
+[Converte ALAC para OGA.]
+
+- ffmpeg-alac-to-oga
+- alac-to-oga
+
+[Converte ALAC para OGG.]
+
+- ffmpeg-alac-to-ogg
+- alac-to-ogg
+
+[Converte ALAC para WAV.]
+
+- ffmpeg-alac-to-wav
+- alac-to-wav
+
+[Converte ALAC para WMA.]
+
+- ffmpeg-alac-to-wma
+- alac-to-wma
+
+[Converte AVI para AAC.]
+
+- ffmpeg-avi-to-aac
+- avi-to-aac
+
+[Converte AVI para AIFF.]
+
+- ffmpeg-avi-to-aiff
+- avi-to-aiff
+
+[Converte AVI para ALAC.]
+
+- ffmpeg-avi-to-alac
+- avi-to-alac
+
+[Converte AVI para FLAC.]
+
+- ffmpeg-avi-to-flac
+- avi-to-flac
+
+[Converte AVI para FLV.]
+
+- ffmpeg-avi-to-flv
+- avi-to-flv
+
+[Converte AVI para MOV.]
+
+- ffmpeg-avi-to-mov
+- avi-to-mov
+
+[Converte AVI para MP3.]
+
+- ffmpeg-avi-to-mp3
+- avi-to-mp3
+
+[Converte AVI para MP4.]
+
+- ffmpeg-avi-to-mp4
+- avi-to-mp4
+
+[Converte AVI para MPG.]
+
+- ffmpeg-avi-to-mpg
+- avi-to-mpg
+
+[Converte AVI para OGA.]
+
+- ffmpeg-avi-to-oga
+- avi-to-oga
+
+[Converte AVI para OGG.]
+
+- ffmpeg-avi-to-ogg
+- avi-to-ogg
+
+[Converte AVI para WAV.]
+
+- ffmpeg-avi-to-wav
+- avi-to-wav
+
+[Converte AVI para WEBM.]
+
+- ffmpeg-avi-to-webm
+- avi-to-webm
+
+[Converte AVI para WMA.]
+
+- ffmpeg-avi-to-wma
+- avi-to-wma
+
+[Concatena segmentos .m4s em um unico arquivo de saida.]
+
+- ffmpeg-concat-m4s
+- concat-m4s
+
+[Converte FLAC para AAC.]
+
+- ffmpeg-flac-to-aac
+- flac-to-aac
+
+[Converte FLAC para AIFF.]
+
+- ffmpeg-flac-to-aiff
+- flac-to-aiff
+
+[Converte FLAC para ALAC.]
+
+- ffmpeg-flac-to-alac
+- flac-to-alac
+
+[Converte FLAC para MP3.]
+
+- ffmpeg-flac-to-mp3
+- flac-to-mp3
+
+[Converte FLAC para OGA.]
+
+- ffmpeg-flac-to-oga
+- flac-to-oga
+
+[Converte FLAC para OGG.]
+
+- ffmpeg-flac-to-ogg
+- flac-to-ogg
+
+[Converte FLAC para WAV.]
+
+- ffmpeg-flac-to-wav
+- flac-to-wav
+
+[Converte FLAC para WMA.]
+
+- ffmpeg-flac-to-wma
+- flac-to-wma
+
+[Converte FLV para AAC.]
+
+- ffmpeg-flv-to-aac
+- flv-to-aac
+
+[Converte FLV para AIFF.]
+
+- ffmpeg-flv-to-aiff
+- flv-to-aiff
+
+[Converte FLV para ALAC.]
+
+- ffmpeg-flv-to-alac
+- flv-to-alac
+
+[Converte FLV para AVI.]
+
+- ffmpeg-flv-to-avi
+- flv-to-avi
+
+[Converte FLV para FLAC.]
+
+- ffmpeg-flv-to-flac
+- flv-to-flac
+
+[Converte FLV para MOV.]
+
+- ffmpeg-flv-to-mov
+- flv-to-mov
+
+[Converte FLV para MP3.]
+
+- ffmpeg-flv-to-mp3
+- flv-to-mp3
+
+[Converte FLV para MP4.]
+
+- ffmpeg-flv-to-mp4
+- flv-to-mp4
+
+[Converte FLV para MPG.]
+
+- ffmpeg-flv-to-mpg
+- flv-to-mpg
+
+[Converte FLV para OGA.]
+
+- ffmpeg-flv-to-oga
+- flv-to-oga
+
+[Converte FLV para OGG.]
+
+- ffmpeg-flv-to-ogg
+- flv-to-ogg
+
+[Converte FLV para WAV.]
+
+- ffmpeg-flv-to-wav
+- flv-to-wav
+
+[Converte FLV para WEBM.]
+
+- ffmpeg-flv-to-webm
+- flv-to-webm
+
+[Converte FLV para WMA.]
+
+- ffmpeg-flv-to-wma
+- flv-to-wma
+
+[Converte GIF para MP4 (libx264 yuv420p).]
+
+- ffmpeg-gif-to-mp4
+- gif-to-mp4
+
+[Converte MOV para AAC.]
+
+- ffmpeg-mov-to-aac
+- mov-to-aac
+
+[Converte MOV para AIFF.]
+
+- ffmpeg-mov-to-aiff
+- mov-to-aiff
+
+[Converte MOV para ALAC.]
+
+- ffmpeg-mov-to-alac
+- mov-to-alac
+
+[Converte MOV para AVI.]
+
+- ffmpeg-mov-to-avi
+- mov-to-avi
+
+[Converte MOV para FLAC.]
+
+- ffmpeg-mov-to-flac
+- mov-to-flac
+
+[Converte MOV para FLV.]
+
+- ffmpeg-mov-to-flv
+- mov-to-flv
+
+[Converte MOV para MP3.]
+
+- ffmpeg-mov-to-mp3
+- mov-to-mp3
+
+[Converte MOV para MP4.]
+
+- ffmpeg-mov-to-mp4
+- mov-to-mp4
+
+[Converte MOV para MPG.]
+
+- ffmpeg-mov-to-mpg
+- mov-to-mpg
+
+[Converte MOV para OGA.]
+
+- ffmpeg-mov-to-oga
+- mov-to-oga
+
+[Converte MOV para OGG.]
+
+- ffmpeg-mov-to-ogg
+- mov-to-ogg
+
+[Converte MOV para WAV.]
+
+- ffmpeg-mov-to-wav
+- mov-to-wav
+
+[Converte MOV para WEBM.]
+
+- ffmpeg-mov-to-webm
+- mov-to-webm
+
+[Converte MOV para WMA.]
+
+- ffmpeg-mov-to-wma
+- mov-to-wma
+
+[Converte MP3 para AAC.]
+
+- ffmpeg-mp3-to-aac
+- mp3-to-aac
+
+[Converte MP3 para AIFF.]
+
+- ffmpeg-mp3-to-aiff
+- mp3-to-aiff
+
+[Converte MP3 para ALAC.]
+
+- ffmpeg-mp3-to-alac
+- mp3-to-alac
+
+[Converte MP3 para FLAC.]
+
+- ffmpeg-mp3-to-flac
+- mp3-to-flac
+
+[Converte MP3 para OGA (libvorbis).]
+
+- ffmpeg-mp3-to-oga
+- mp3-to-oga
+
+[Converte MP3 para OGG.]
+
+- ffmpeg-mp3-to-ogg
+- mp3-to-ogg
+
+[Converte MP3 para WAV.]
+
+- ffmpeg-mp3-to-wav
+- mp3-to-wav
+
+[Converte MP3 para WMA.]
+
+- ffmpeg-mp3-to-wma
+- mp3-to-wma
+
+[Converte MP4 para AAC.]
+
+- ffmpeg-mp4-to-aac
+- mp4-to-aac
+
+[Converte MP4 para AIFF.]
+
+- ffmpeg-mp4-to-aiff
+- mp4-to-aiff
+
+[Converte MP4 para ALAC.]
+
+- ffmpeg-mp4-to-alac
+- mp4-to-alac
+
+[Converte MP4 para AVI.]
+
+- ffmpeg-mp4-to-avi
+- mp4-to-avi
+
+[Converte MP4 para FLAC.]
+
+- ffmpeg-mp4-to-flac
+- mp4-to-flac
+
+[Converte MP4 para FLV.]
+
+- ffmpeg-mp4-to-flv
+- mp4-to-flv
+
+[Converte MP4 para GIF com paleta e dithering.]
+
+- ffmpeg-mp4-to-gif
+- mp4-to-gif
+
+[Converte MP4 para MOV.]
+
+- ffmpeg-mp4-to-mov
+- mp4-to-mov
+
+[Converte MP4 para MP3.]
+
+- ffmpeg-mp4-to-mp3
+- mp4-to-mp3
+
+[Converte MP4 para MPG.]
+
+- ffmpeg-mp4-to-mpg
+- mp4-to-mpg
+
+[Converte MP4 para OGA.]
+
+- ffmpeg-mp4-to-oga
+- mp4-to-oga
+
+[Converte MP4 para OGG.]
+
+- ffmpeg-mp4-to-ogg
+- mp4-to-ogg
+
+[Converte MP4 para WAV.]
+
+- ffmpeg-mp4-to-wav
+- mp4-to-wav
+
+[Converte MP4 para WEBM.]
+
+- ffmpeg-mp4-to-webm
+- mp4-to-webm
+
+[Converte MP4 para WMA.]
+
+- ffmpeg-mp4-to-wma
+- mp4-to-wma
+
+[Converte MPG para AAC.]
+
+- ffmpeg-mpg-to-aac
+- mpg-to-aac
+
+[Converte MPG para AIFF.]
+
+- ffmpeg-mpg-to-aiff
+- mpg-to-aiff
+
+[Converte MPG para ALAC.]
+
+- ffmpeg-mpg-to-alac
+- mpg-to-alac
+
+[Converte MPG para AVI.]
+
+- ffmpeg-mpg-to-avi
+- mpg-to-avi
+
+[Converte MPG para FLAC.]
+
+- ffmpeg-mpg-to-flac
+- mpg-to-flac
+
+[Converte MPG para FLV.]
+
+- ffmpeg-mpg-to-flv
+- mpg-to-flv
+
+[Converte MPG para MOV.]
+
+- ffmpeg-mpg-to-mov
+- mpg-to-mov
+
+[Converte MPG para MP3.]
+
+- ffmpeg-mpg-to-mp3
+- mpg-to-mp3
+
+[Converte MPG para MP4.]
+
+- ffmpeg-mpg-to-mp4
+- mpg-to-mp4
+
+[Converte MPG para OGA.]
+
+- ffmpeg-mpg-to-oga
+- mpg-to-oga
+
+[Converte MPG para OGG.]
+
+- ffmpeg-mpg-to-ogg
+- mpg-to-ogg
+
+[Converte MPG para WAV.]
+
+- ffmpeg-mpg-to-wav
+- mpg-to-wav
+
+[Converte MPG para WEBM.]
+
+- ffmpeg-mpg-to-webm
+- mpg-to-webm
+
+[Converte MPG para WMA.]
+
+- ffmpeg-mpg-to-wma
+- mpg-to-wma
+
+[Converte OGA para AAC.]
+
+- ffmpeg-oga-to-aac
+- oga-to-aac
+
+[Converte OGA para AIFF.]
+
+- ffmpeg-oga-to-aiff
+- oga-to-aiff
+
+[Converte OGA para ALAC.]
+
+- ffmpeg-oga-to-alac
+- oga-to-alac
+
+[Converte OGA para FLAC.]
+
+- ffmpeg-oga-to-flac
+- oga-to-flac
+
+[Converte OGA para MP3.]
+
+- ffmpeg-oga-to-mp3
+- oga-to-mp3
+
+[Converte OGA para OGG.]
+
+- ffmpeg-oga-to-ogg
+- oga-to-ogg
+
+[Converte OGA para WAV.]
+
+- ffmpeg-oga-to-wav
+- oga-to-wav
+
+[Converte OGA para WMA.]
+
+- ffmpeg-oga-to-wma
+- oga-to-wma
+
+[Converte OGG para AAC.]
+
+- ffmpeg-ogg-to-aac
+- ogg-to-aac
+
+[Converte OGG para AIFF.]
+
+- ffmpeg-ogg-to-aiff
+- ogg-to-aiff
+
+[Converte OGG para ALAC.]
+
+- ffmpeg-ogg-to-alac
+- ogg-to-alac
+
+[Converte OGG para AVI.]
+
+- ffmpeg-ogg-to-avi
+- ogg-to-avi
+
+[Converte OGG para FLAC.]
+
+- ffmpeg-ogg-to-flac
+- ogg-to-flac
+
+[Converte OGG para FLV.]
+
+- ffmpeg-ogg-to-flv
+- ogg-to-flv
+
+[Converte OGG para MOV.]
+
+- ffmpeg-ogg-to-mov
+- ogg-to-mov
+
+[Converte OGG para MP3.]
+
+- ffmpeg-ogg-to-mp3
+- ogg-to-mp3
+
+[Converte OGG para MP4.]
+
+- ffmpeg-ogg-to-mp4
+- ogg-to-mp4
+
+[Converte OGG para MPG.]
+
+- ffmpeg-ogg-to-mpg
+- ogg-to-mpg
+
+[Converte OGG para OGA.]
+
+- ffmpeg-ogg-to-oga
+- ogg-to-oga
+
+[Converte OGG para OGG.]
+
+- ffmpeg-ogg-to-ogg
+- ogg-to-ogg
+
+[Converte OGG para WAV.]
+
+- ffmpeg-ogg-to-wav
+- ogg-to-wav
+
+[Converte OGG para WEBM.]
+
+- ffmpeg-ogg-to-webm
+- ogg-to-webm
+
+[Converte OGG para WMA.]
+
+- ffmpeg-ogg-to-wma
+- ogg-to-wma
+
+[Divide um video em chunks GIF.]
+
+- ffmpeg-video-to-gif-chunks
+- video-to-gif-chunks
+
+[Converte WAV para AAC.]
+
+- ffmpeg-wav-to-aac
+- wav-to-aac
+
+[Converte WAV para AIFF.]
+
+- ffmpeg-wav-to-aiff
+- wav-to-aiff
+
+[Converte WAV para ALAC.]
+
+- ffmpeg-wav-to-alac
+- wav-to-alac
+
+[Converte WAV para FLAC.]
+
+- ffmpeg-wav-to-flac
+- wav-to-flac
+
+[Converte WAV para MP3.]
+
+- ffmpeg-wav-to-mp3
+- wav-to-mp3
+
+[Converte WAV para OGA.]
+
+- ffmpeg-wav-to-oga
+- wav-to-oga
+
+[Converte WAV para OGG.]
+
+- ffmpeg-wav-to-ogg
+- wav-to-ogg
+
+[Converte WAV para WMA.]
+
+- ffmpeg-wav-to-wma
+- wav-to-wma
+
+[Converte WEBM para AAC.]
+
+- ffmpeg-webm-to-aac
+- webm-to-aac
+
+[Converte WEBM para AIFF.]
+
+- ffmpeg-webm-to-aiff
+- webm-to-aiff
+
+[Converte WEBM para ALAC.]
+
+- ffmpeg-webm-to-alac
+- webm-to-alac
+
+[Converte WEBM para AVI.]
+
+- ffmpeg-webm-to-avi
+- webm-to-avi
+
+[Converte WEBM para FLAC.]
+
+- ffmpeg-webm-to-flac
+- webm-to-flac
+
+[Converte WEBM para FLV.]
+
+- ffmpeg-webm-to-flv
+- webm-to-flv
+
+[Converte WEBM para MOV.]
+
+- ffmpeg-webm-to-mov
+- webm-to-mov
+
+[Converte WEBM para MP3.]
+
+- ffmpeg-webm-to-mp3
+- webm-to-mp3
+
+[Converte WebM para MP4 (dimensoes pares, libx264 + AAC).]
+
+- ffmpeg-webm-to-mp4
+- webm-to-mp4
+
+[Converte WEBM para MPG.]
+
+- ffmpeg-webm-to-mpg
+- webm-to-mpg
+
+[Converte WEBM para OGA.]
+
+- ffmpeg-webm-to-oga
+- webm-to-oga
+
+[Converte WEBM para OGG.]
+
+- ffmpeg-webm-to-ogg
+- webm-to-ogg
+
+[Converte WEBM para WAV.]
+
+- ffmpeg-webm-to-wav
+- webm-to-wav
+
+[Converte WEBM para WMA.]
+
+- ffmpeg-webm-to-wma
+- webm-to-wma
+
+[Converte WMA para AAC.]
+
+- ffmpeg-wma-to-aac
+- wma-to-aac
+
+[Converte WMA para AIFF.]
+
+- ffmpeg-wma-to-aiff
+- wma-to-aiff
+
+[Converte WMA para ALAC.]
+
+- ffmpeg-wma-to-alac
+- wma-to-alac
+
+[Converte WMA para FLAC.]
+
+- ffmpeg-wma-to-flac
+- wma-to-flac
+
+[Converte WMA para MP3.]
+
+- ffmpeg-wma-to-mp3
+- wma-to-mp3
+
+[Converte WMA para OGA.]
+
+- ffmpeg-wma-to-oga
+- wma-to-oga
+
+[Converte WMA para OGG.]
+
+- ffmpeg-wma-to-ogg
+- wma-to-ogg
+
+[Converte WMA para WAV.]
+
+- ffmpeg-wma-to-wav
+- wma-to-wav
 
 ---
 

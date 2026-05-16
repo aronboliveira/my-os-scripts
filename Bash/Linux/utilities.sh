@@ -29,19 +29,562 @@
 #endregion Network_Monitoring
 
     #region Backup
+      cleanup_before_sync() {
+          local SRC="$1"
+          local DST="$2"
+          [ -d "$SRC" ] || { echo "Source not found: $SRC" >&2; return 1; }
+          [ -d "$DST" ] || return 0
+          local TRASH="${DST}/.trashed"
+          mkdir -p "$TRASH"
+          local tmpfile
+          tmpfile=$(mktemp) || return 1
+          local rsync_out deletions=()
+          # Leading / anchors exclude to transfer root — only the top-level .trashed/
+          rsync -ain --delete --out-format='%i %n' --exclude='/.trashed/' \
+              "$SRC/" "$DST/" 2>/dev/null >"$tmpfile"
+          local rsync_rc=$?
+          # 23=partial transfer OK, 24=source files vanished OK
+          if [ $rsync_rc -ne 0 ] && [ $rsync_rc -ne 23 ] && [ $rsync_rc -ne 24 ]; then
+              rm -f "$tmpfile"
+              echo "cleanup: rsync failed (exit $rsync_rc), aborting" >&2
+              return 1
+          fi
+          mapfile -t rsync_out <"$tmpfile"
+          rm -f "$tmpfile"
+          local line relpath dst_item trash_item ts count=0
+          declare -A moved_ancestors
+          for line in "${rsync_out[@]}"; do
+              [[ "$line" == \*deleting* ]] || continue
+              relpath="${line#\*deleting }"
+              relpath="${relpath%/}"
+              [ -z "$relpath" ] && continue
+              dst_item="$DST/$relpath"
+              # Skip if we already moved an ancestor directory containing this item
+              local ancestor="$relpath"
+              while [[ "$ancestor" == */* ]]; do
+                  ancestor="${ancestor%/*}"
+                  [ -n "${moved_ancestors[$ancestor]:-}" ] && continue 2
+              done
+              [ -e "$dst_item" ] || continue
+              trash_item="$TRASH/$relpath"
+              mkdir -p "$(dirname "$trash_item")"
+              if [ -e "$trash_item" ]; then
+                  trash_item="${trash_item}.bak.$(date +%s%N)"
+              fi
+              mv "$dst_item" "$trash_item" && {
+                  count=$((count + 1))
+                  [ -d "$trash_item" ] && moved_ancestors[$relpath]=1
+              }
+          done
+          [ "$count" -gt 0 ] && echo "cleanup: $count orphaned items moved to $TRASH"
+          return 0
+      }
+      run_backup_projects() {
+        local src="${1:?Usage: run_backup_projects <source_dir> <dest_dir>}"
+        local dest="${2:?Usage: run_backup_projects <source_dir> <dest_dir>}"
+        rsync -aHAXv --progress --checksum \
+          --exclude={node_modules/,venv/,.venv/,__pycache__/,.gradle/,.m2/,vendor/,target/,.next/,dist/,build/,.docker/,docker/volumes/,docker/data/} \
+          "$src" "$dest"
+      }
       alias backup_projects='rsync -aHAXv --progress --checksum \
-        --exclude="node_modules/" \
-        --exclude="venv/" \
-        --exclude=".venv/" \
-        --exclude="__pycache__/" \
-        --exclude=".gradle/" \
-        --exclude=".m2/" \
-        --exclude="vendor/" \
-        --exclude="target/" \
-        --exclude=".next/" \
-        --exclude="dist/" \
-        --exclude="build/"'
+        --exclude={node_modules/,venv/,.venv/,__pycache__/,.gradle/,.m2/,vendor/,target/,.next/,dist/,build/,.docker/,docker/volumes/,docker/data/}'
       alias backup-projects='backup_projects'
+      ## @description Forensic scan of a Chromium-based browser profile for download
+      ## @description traces of a given file format. Runs every query class used during
+      ## @description the May 15 music-recovery session: History DB (downloads table,
+      ## @description downloads_url_chains, urls, visits, Cookies), per-site IndexedDB,
+      ## @description Local/Session Storage strings dumps, and recently-used.xbel.
+      ## @description Prints a categorized summary, optionally cross-checks against the
+      ## @description filesystem with `find`, and optionally hands off to
+      ## @description recover_chromium_yt_downloads_by_traces for re-download.
+      ## @param $1 {string} format          - File extension to search for, e.g. mp3, webm, m4a (MANDATORY)
+      ## @flag -b, --browser <name>         Chromium variant: brave (default), chromium, chrome, edge, vivaldi, opera
+      ## @flag -p, --profile <name>         Profile directory name (default: Default)
+      ## @flag -d, --days <N>               Lookback window in days (default: since browser install)
+      ## @flag --filter-existing            After scan, run `find` to drop entries that already exist locally
+      ## @flag --redownload                 If any traces look YouTube-shaped, prompt to call recover_chromium_yt_downloads_by_traces
+      ## @flag --search-root <dir>          Root for the existing-file `find` (default: $HOME and /media)
+      ## @flag -h, --help                   Show usage
+      search_chromium_download_traces() {
+        local format="" browser="brave" profile="Default" days="" filter_existing=0 redownload=0
+        local -a search_roots=("$HOME" "/media" "/mnt")
+        while [[ $# -gt 0 ]]; do
+          case "$1" in
+            -b|--browser)         browser="$2"; shift 2 ;;
+            -p|--profile)         profile="$2"; shift 2 ;;
+            -d|--days)            days="$2"; shift 2 ;;
+            --filter-existing)    filter_existing=1; shift ;;
+            --redownload)         redownload=1; shift ;;
+            --search-root)        search_roots=("$2"); shift 2 ;;
+            -h|--help)
+              echo -e "📖 \033[1msearch_chromium_download_traces\033[0m <format> [-b brave|chromium|chrome|edge|vivaldi|opera] [-p <profile>] [-d <days>] [--filter-existing] [--redownload]"
+              return 0 ;;
+            -*) echo -e "❌ Unknown flag: $1"; return 1 ;;
+            *)  [ -z "$format" ] && format="$1" || { echo -e "❌ Unexpected arg: $1"; return 1; }; shift ;;
+          esac
+        done
+        if [ -z "$format" ]; then
+          echo -e "❌ Usage: search_chromium_download_traces <format> [...]"
+          return 1
+        fi
+        format="${format#.}"
+
+        # ---- browser → (config-dir, binary candidates) registry
+        declare -A BROWSER_DIRS=(
+          [brave]="$HOME/.config/BraveSoftware/Brave-Browser"
+          [chromium]="$HOME/.config/chromium"
+          [chrome]="$HOME/.config/google-chrome"
+          [edge]="$HOME/.config/microsoft-edge"
+          [vivaldi]="$HOME/.config/vivaldi"
+          [opera]="$HOME/.config/opera"
+        )
+        declare -A BROWSER_BINS=(
+          [brave]="brave brave-browser brave-browser-stable"
+          [chromium]="chromium chromium-browser"
+          [chrome]="google-chrome google-chrome-stable"
+          [edge]="microsoft-edge microsoft-edge-stable"
+          [vivaldi]="vivaldi vivaldi-stable"
+          [opera]="opera"
+        )
+        _is_installed() {
+          local key="$1" b
+          for b in ${BROWSER_BINS[$key]}; do command -v "$b" >/dev/null 2>&1 && return 0; done
+          [ -d "${BROWSER_DIRS[$key]}" ] && return 0
+          return 1
+        }
+        echo -e "🔬 \033[1mPHASE 1\033[0m — Browser detection"
+        echo -e "  Requested browser: \033[1m$browser\033[0m"
+        echo -e "  Searching binaries: ${BROWSER_BINS[$browser]:-<none>}"
+        echo -e "  Searching config dir: ${BROWSER_DIRS[$browser]:-<none>}"
+        if ! _is_installed "$browser"; then
+          echo -e "  ⚠️  \033[1;33m$browser is not installed.\033[0m"
+          local -a avail=()
+          for k in "${!BROWSER_DIRS[@]}"; do
+            if _is_installed "$k"; then
+              avail+=("$k")
+              echo -e "    • $k found at ${BROWSER_DIRS[$k]}"
+            fi
+          done
+          if [ "${#avail[@]}" -eq 0 ]; then
+            echo -e "  ❌ No supported Chromium browser is installed."; return 1
+          fi
+          local pick
+          read -rp "  Proceed with one of them? [name / n=cancel]: " pick
+          if [[ " ${avail[*]} " =~ " $pick " ]]; then
+            browser="$pick"
+            echo -e "  ✅ Switched to: $browser"
+          else
+            echo -e "  ❌ Aborted."; return 1
+          fi
+        else
+          echo -e "  ✅ Installed and config dir present."
+        fi
+        local cfg="${BROWSER_DIRS[$browser]}"
+        local prof_dir="$cfg/$profile"
+        echo -e "🔬 \033[1mPHASE 2\033[0m — Profile resolution"
+        echo -e "  Profile name: \033[1m$profile\033[0m"
+        echo -e "  Profile path: $prof_dir"
+        if [ ! -d "$prof_dir" ]; then
+          echo -e "  ❌ Profile not found."
+          echo -n "  Available profiles: "; ls "$cfg" 2>/dev/null | grep -E "^(Default|Profile|Guest)" | tr '\n' ' '; echo
+          return 1
+        fi
+        echo -e "  ✅ Profile directory readable."
+
+        # ---- compute time window
+        echo -e "🔬 \033[1mPHASE 3\033[0m — Time window resolution"
+        local since_unix until_unix since_source
+        until_unix=$(date +%s)
+        if [ -n "$days" ]; then
+          since_unix=$(( until_unix - days*86400 ))
+          since_source="--days $days override"
+        else
+          since_unix=$(stat -c %Y "$cfg" 2>/dev/null || echo 0)
+          since_source="mtime of $cfg (browser install/first-run proxy)"
+        fi
+        local since_chrome=$(( (since_unix + 11644473600) * 1000000 ))
+        local until_chrome=$(( (until_unix + 11644473600) * 1000000 ))
+        local since_iso=$(date -d "@$since_unix" '+%Y-%m-%d %H:%M:%S')
+        local until_iso=$(date -d "@$until_unix" '+%Y-%m-%d %H:%M:%S')
+        echo -e "  Since: $since_iso  ($since_source)"
+        echo -e "  Until: $until_iso  (now)"
+        echo -e "  Chrome epoch range: [$since_chrome, $until_chrome]"
+        echo -e "  Format filter: \033[1m*.$format\033[0m"
+
+        echo -e "🔍 \033[1;36mScanning $browser / $profile from $since_iso to $until_iso for *.$format\033[0m"
+        local TMP
+        TMP=$(mktemp -d)
+        trap 'rm -rf "$TMP"' RETURN
+
+        # =========================================================================
+        # QUERY CLASS 1 — History.downloads (final filename, MIME, state, start_time)
+        # =========================================================================
+        echo -e "\n🔬 \033[1mPHASE 4 / Query 1\033[0m — History.downloads (Chromium download manager records)"
+        echo -e "  Source: $prof_dir/History  (SQLite)"
+        echo -e "  Tables: downloads JOIN downloads_url_chains"
+        echo -e "  Filter: target_path LIKE '%.$format' AND start_time in window"
+        cp -f "$prof_dir/History" "$TMP/h.db" 2>/dev/null \
+          && echo -e "  ✅ DB copied (live DB is locked while browser is open; we work on a snapshot)" \
+          || echo -e "  ⚠️  Could not copy History DB"
+        local q1="
+          SELECT datetime(d.start_time/1000000 - 11644473600,'unixepoch','localtime') AS ts,
+                d.target_path, d.mime_type, d.state,
+                (SELECT u.url FROM downloads_url_chains u WHERE u.id=d.id ORDER BY u.chain_index DESC LIMIT 1) AS final_url,
+                (SELECT u.url FROM downloads_url_chains u WHERE u.id=d.id ORDER BY u.chain_index ASC LIMIT 1)  AS first_url,
+                d.referrer, d.tab_url
+          FROM downloads d
+          WHERE d.start_time BETWEEN $since_chrome AND $until_chrome
+            AND LOWER(d.target_path) LIKE '%.$format'
+          ORDER BY d.start_time ASC;"
+        local Q1_OUT="$TMP/q1.txt"; sqlite3 "$TMP/h.db" "$q1" > "$Q1_OUT" 2>/dev/null
+        echo -e "  → $(grep -c . "$Q1_OUT" 2>/dev/null || echo 0) records"
+
+        # =========================================================================
+        # QUERY CLASS 2 — History.visits + History.urls (referrers to converter sites
+        # and to YouTube searches that match the format we're after)
+        # =========================================================================
+        local converter_pat="orangemp3|ytmp3|y2mate|savefrom|freeconvert|cnvmp3|mp3juices|flvto|2conv|320ytmp3|320kbpsmp3"
+        local q2="
+          SELECT datetime(v.visit_time/1000000 - 11644473600,'unixepoch','localtime') AS ts, u.url, u.title
+          FROM visits v JOIN urls u ON v.url=u.id
+          WHERE v.visit_time BETWEEN $since_chrome AND $until_chrome
+            AND (u.url REGEXP '$converter_pat' OR u.title LIKE '%$format%' OR u.url LIKE '%search_query%')
+          ORDER BY ts;"
+        echo -e "\n🔬 \033[1mQuery 2\033[0m — History.visits + History.urls (converter/search visits)"
+        echo -e "  Tables: visits JOIN urls"
+        echo -e "  Filter: url LIKE any-of {orangemp3, ytmp3, y2mate, savefrom, freeconvert, cnvmp3, mp3juices, flvto, search_query}"
+        local Q2_OUT="$TMP/q2.txt"
+        sqlite3 "$TMP/h.db" "SELECT load_extension('/usr/lib/sqlite3/pcre.so');" 2>/dev/null
+        sqlite3 "$TMP/h.db" "
+          SELECT datetime(v.visit_time/1000000 - 11644473600,'unixepoch','localtime') AS ts, u.url, u.title
+          FROM visits v JOIN urls u ON v.url=u.id
+          WHERE v.visit_time BETWEEN $since_chrome AND $until_chrome
+            AND (u.url LIKE '%orangemp3%' OR u.url LIKE '%ytmp3%' OR u.url LIKE '%y2mate%'
+              OR u.url LIKE '%savefrom%' OR u.url LIKE '%freeconvert%' OR u.url LIKE '%cnvmp3%'
+              OR u.url LIKE '%mp3juices%' OR u.url LIKE '%flvto%' OR u.url LIKE '%search_query%')
+          ORDER BY ts;" > "$Q2_OUT" 2>/dev/null
+        echo -e "  → $(grep -c . "$Q2_OUT" 2>/dev/null || echo 0) records"
+
+        # =========================================================================
+        # QUERY CLASS 3 — Cookies for converter / YouTube hosts (presence == used)
+        # =========================================================================
+        echo -e "\n🔬 \033[1mQuery 3\033[0m — Cookies for converter/YouTube hosts (presence implies a visit)"
+        echo -e "  Source: $prof_dir/Cookies  (SQLite)"
+        local Q3_OUT="$TMP/q3.txt"
+        if cp -f "$prof_dir/Cookies" "$TMP/c.db" 2>/dev/null; then
+          echo -e "  ✅ Cookies DB copied"
+          sqlite3 "$TMP/c.db" "
+            SELECT host_key, name, datetime(creation_utc/1000000 - 11644473600,'unixepoch') AS created
+            FROM cookies
+            WHERE host_key LIKE '%orangemp3%' OR host_key LIKE '%ytmp3%' OR host_key LIKE '%y2mate%'
+              OR host_key LIKE '%savefrom%' OR host_key LIKE '%freeconvert%' OR host_key LIKE '%cnvmp3%'
+              OR host_key LIKE '%mp3juices%' OR host_key LIKE '%youtube%';" > "$Q3_OUT" 2>/dev/null
+        else
+          echo -e "  ⚠️  Could not copy Cookies DB"
+        fi
+        echo -e "  → $(grep -c . "$Q3_OUT" 2>/dev/null || echo 0) cookies"
+
+        # =========================================================================
+        # QUERY CLASS 4 — IndexedDB strings dump for per-site converters AND YouTube
+        # (YouTube's playback telemetry stores docid + list + referrer, which is how
+        # we forensically resolved which playlist items were actually watched.)
+        # =========================================================================
+        echo -e "\n🔬 \033[1mQuery 4\033[0m — IndexedDB (LevelDB) strings dump per site"
+        echo -e "  Source dirs: $prof_dir/IndexedDB/*"
+        echo -e "  Targeted hosts: youtube, orangemp3, ytmp3, y2mate, savefrom, freeconvert, cnvmp3"
+        echo -e "  Extracting: docid/list/referrer pairs (YT watch telemetry), search_query strings"
+        local Q4_OUT="$TMP/q4.txt"
+        : > "$Q4_OUT"
+        for site_dir in "$prof_dir/IndexedDB"/*; do
+          [ -d "$site_dir" ] || continue
+          local site
+          site=$(basename "$site_dir")
+          case "$site" in
+            *youtube*|*orangemp3*|*ytmp3*|*y2mate*|*savefrom*|*freeconvert*|*cnvmp3*)
+              echo -e "  • probing: $site"
+              echo "### IndexedDB site: $site ###" >> "$Q4_OUT"
+              strings -n 6 "$site_dir"/*.{ldb,log} 2>/dev/null \
+                | grep -oE "docid=[A-Za-z0-9_-]+[^\"]*?(list=[A-Za-z0-9_-]+|referrer=[^&\"]+)" \
+                | sort -u >> "$Q4_OUT"
+              strings -n 6 "$site_dir"/*.{ldb,log} 2>/dev/null \
+                | grep -oE "search_query%3D[^&\"]+" | sort -u >> "$Q4_OUT"
+              ;;
+          esac
+        done
+        echo -e "  → $(grep -cE "^docid=|^search_query" "$Q4_OUT" 2>/dev/null || echo 0) extracted refs"
+
+        # =========================================================================
+        # QUERY CLASS 5 — Local Storage / Session Storage strings dump for hosts
+        # that the user clearly used. Catches cached track titles dropped by
+        # converter front-ends that store recent jobs in localStorage.
+        # =========================================================================
+        echo -e "\n🔬 \033[1mQuery 5\033[0m — Local Storage / Session Storage strings dump"
+        echo -e "  Source: $prof_dir/Local Storage/leveldb and $prof_dir/Session Storage"
+        echo -e "  Heuristic filters: site keywords, .${format}, videoId, title, search_query"
+        local Q5_OUT="$TMP/q5.txt"
+        : > "$Q5_OUT"
+        for stor_root in "$prof_dir/Local Storage/leveldb" "$prof_dir/Session Storage"; do
+          [ -d "$stor_root" ] || continue
+          echo -e "  • probing: $stor_root"
+          echo "### $stor_root ###" >> "$Q5_OUT"
+          strings -n 8 "$stor_root"/*.{ldb,log} 2>/dev/null \
+            | grep -iE "orangemp3|ytmp3|youtube|\.${format}\b|search_query|videoId|title" \
+            | sort -u | head -80 >> "$Q5_OUT"
+        done
+        echo -e "  → $(grep -cE "." "$Q5_OUT" 2>/dev/null || echo 0) suggestive strings"
+
+        # =========================================================================
+        # QUERY CLASS 6 — recently-used.xbel (GNOME's app-opened-files index).
+        # Browser-independent but it caught files the browser registry missed.
+        # =========================================================================
+        echo -e "\n🔬 \033[1mQuery 6\033[0m — recently-used.xbel (GNOME app-opened-files registry)"
+        echo -e "  Sources: $HOME/.local/share/recently-used.xbel*"
+        echo -e "  Filter: href=\"file://...\\.${format}\""
+        local Q6_OUT="$TMP/q6.txt"
+        : > "$Q6_OUT"
+        for xbel in "$HOME"/.local/share/recently-used.xbel*; do
+          [ -f "$xbel" ] || continue
+          echo -e "  • probing: $(basename "$xbel")"
+          grep -oE "href=\"file://[^\"]+\.${format}\"" "$xbel" 2>/dev/null \
+            | sed -E 's/^href="file:\/\///;s/"$//' \
+            | python3 -c "import sys, urllib.parse; [print(urllib.parse.unquote(l), end='') for l in sys.stdin]" \
+            >> "$Q6_OUT"
+        done
+        echo -e "  → $(grep -c . "$Q6_OUT" 2>/dev/null || echo 0) .${format} paths"
+
+        echo -e "\n🔬 \033[1mPHASE 5\033[0m — Consolidating traces (tagged by origin)"
+        # ---- consolidated trace list (just basenames + their sources)
+        local TRACES="$TMP/traces.txt"
+        : > "$TRACES"
+        awk -F'|' 'NF>=2 && $2!="" {print "[downloads]\t" $2}' "$Q1_OUT" >> "$TRACES"
+        awk -F'\t' '{print "[xbel]\t" $0}' "$Q6_OUT" >> "$TRACES"
+        # YouTube docids → reconstruct URLs the recover function can pull
+        grep -oE "docid=[A-Za-z0-9_-]+" "$Q4_OUT" | sort -u \
+          | sed 's|^docid=|[yt-id]\thttps://www.youtube.com/watch?v=|' >> "$TRACES"
+        local dl_n xb_n yt_n
+        dl_n=$(grep -c "^\[downloads\]" "$TRACES" 2>/dev/null || echo 0)
+        xb_n=$(grep -c "^\[xbel\]"      "$TRACES" 2>/dev/null || echo 0)
+        yt_n=$(grep -c "^\[yt-id\]"     "$TRACES" 2>/dev/null || echo 0)
+        echo -e "  [downloads]  $dl_n entries (file paths from History.downloads)"
+        echo -e "  [xbel]       $xb_n entries (file paths from recently-used.xbel)"
+        echo -e "  [yt-id]      $yt_n entries (reconstructable YT URLs from IndexedDB)"
+
+        # =========================================================================
+        # SUMMARY
+        # =========================================================================
+        echo -e "\n📊 \033[1;36mSummary\033[0m"
+        printf "  %-32s %d hits\n" "downloads table (.${format})"   "$(grep -c . "$Q1_OUT" 2>/dev/null || echo 0)"
+        printf "  %-32s %d hits\n" "visits/urls (converter+search)" "$(grep -c . "$Q2_OUT" 2>/dev/null || echo 0)"
+        printf "  %-32s %d hits\n" "cookies (converter+YouTube)"    "$(grep -c . "$Q3_OUT" 2>/dev/null || echo 0)"
+        printf "  %-32s %d hits\n" "IndexedDB (docid/list/refer.)"  "$(grep -c . "$Q4_OUT" 2>/dev/null || echo 0)"
+        printf "  %-32s %d hits\n" "Local/Session Storage strings"  "$(grep -c . "$Q5_OUT" 2>/dev/null || echo 0)"
+        printf "  %-32s %d hits\n" "recently-used.xbel (.${format})" "$(grep -c . "$Q6_OUT" 2>/dev/null || echo 0)"
+        printf "  %-32s %d entries\n" "Consolidated traces"            "$(wc -l < "$TRACES")"
+
+        # ---- export full payloads so a follow-up command can use them
+        local OUT_DIR="${TMPDIR:-/tmp}/chromium-traces-$(date +%s)"
+        mkdir -p "$OUT_DIR"
+        cp "$Q1_OUT" "$OUT_DIR/01-downloads.txt"
+        cp "$Q2_OUT" "$OUT_DIR/02-visits.txt"
+        cp "$Q3_OUT" "$OUT_DIR/03-cookies.txt"
+        cp "$Q4_OUT" "$OUT_DIR/04-indexeddb.txt"
+        cp "$Q5_OUT" "$OUT_DIR/05-storage.txt"
+        cp "$Q6_OUT" "$OUT_DIR/06-xbel.txt"
+        cp "$TRACES" "$OUT_DIR/traces.tsv"
+        echo -e "📁 Full dumps: \033[1m$OUT_DIR\033[0m"
+
+        # =========================================================================
+        # OPTIONAL: filter against filesystem with `find`
+        # =========================================================================
+        if [ "$filter_existing" -eq 0 ] && [ -t 0 ]; then
+          local yn
+          read -rp $'❓ Cross-check against filesystem (find for already-existing files)? [y/N]: ' yn
+          [[ "$yn" =~ ^[Yy]$ ]] && filter_existing=1
+        fi
+        local MISSING="$OUT_DIR/missing.tsv"
+        : > "$MISSING"
+        if [ "$filter_existing" -eq 1 ]; then
+          echo -e "\n🔬 \033[1mPHASE 6\033[0m — Filesystem cross-check via \`find\`"
+          echo -e "  Search roots: ${search_roots[*]}"
+          echo -e "  For each trace, matching basename against the filesystem."
+          local n=0 total_traces; total_traces=$(wc -l < "$TRACES")
+          while IFS=$'\t' read -r src target; do
+            [ -z "$target" ] && continue
+            n=$((n+1))
+            local basename_only
+            basename_only=$(basename "$target")
+            local found=""
+            for root in "${search_roots[@]}"; do
+              [ -d "$root" ] || continue
+              found=$(find "$root" -type f -name "$basename_only" -print -quit 2>/dev/null)
+              [ -n "$found" ] && break
+            done
+            if [ -n "$found" ]; then
+              echo -e "  [$n/$total_traces] \033[32m✓\033[0m $basename_only  →  $found"
+            else
+              echo -e "  [$n/$total_traces] \033[31m✗\033[0m $basename_only  (missing)"
+              printf "%s\t%s\n" "$src" "$target" >> "$MISSING"
+            fi
+          done < "$TRACES"
+          echo -e "❎ Missing: \033[1m$(wc -l < "$MISSING")\033[0m / $(wc -l < "$TRACES")"
+          echo -e "📋 Missing list:"
+          sed 's/^/  /' "$MISSING"
+        fi
+
+        # =========================================================================
+        # OPTIONAL: hand off YouTube-shaped missing traces to the recover function
+        # =========================================================================
+        local -a yt_urls=()
+        while IFS=$'\t' read -r src target; do
+          [ "$src" = "[yt-id]" ] && yt_urls+=("$target")
+        done < "${MISSING:-$TRACES}"
+        if [ "$redownload" -eq 0 ] && [ "${#yt_urls[@]}" -gt 0 ] && [ -t 0 ]; then
+          local yn
+          read -rp $'❓ '"${#yt_urls[@]}"$' YouTube-shaped traces found. Redownload them? [y/N]: ' yn
+          [[ "$yn" =~ ^[Yy]$ ]] && redownload=1
+        fi
+        if [ "$redownload" -eq 1 ] && [ "${#yt_urls[@]}" -gt 0 ]; then
+          echo -e "\n🔬 \033[1mPHASE 7\033[0m — Destination prompt (3 retries max)"
+          local dest="" tries=0
+          while [ "$tries" -lt 3 ]; do
+            read -rp "  📍 Destination directory: " dest
+            echo -e "  Validating: '$dest'"
+            if [ -d "$dest" ] && [ -w "$dest" ]; then
+              echo -e "  ✅ Exists + writable"; break
+            fi
+            if [ -z "$dest" ]; then echo -e "  ❌ Empty path."; tries=$((tries+1)); continue; fi
+            read -rp "  Path does not exist or is not writable. Create '$dest'? [y/N]: " yn
+            if [[ "$yn" =~ ^[Yy]$ ]] && mkdir -p "$dest" 2>/dev/null; then
+              echo -e "  ✅ Created"; break
+            fi
+            echo -e "  ⚠️  Try again ($((tries+1))/3)"
+            tries=$((tries+1))
+          done
+          if [ ! -d "$dest" ] || [ ! -w "$dest" ]; then
+            echo -e "❌ Failed to obtain a valid destination after 3 attempts."
+            return 2
+          fi
+          echo -e "\n🔬 \033[1mPHASE 8\033[0m — Handing off to recover_chromium_yt_downloads_by_traces"
+          echo -e "  → ${#yt_urls[@]} URL(s)  →  $dest"
+          if declare -F recover_chromium_yt_downloads_by_traces >/dev/null; then
+            recover_chromium_yt_downloads_by_traces "$dest" "${yt_urls[@]}"
+          else
+            echo -e "❌ recover_chromium_yt_downloads_by_traces is not defined."
+            return 3
+          fi
+        fi
+        echo -e "\n🏁 \033[1;32msearch_chromium_download_traces complete\033[0m"
+        return 0
+      }
+      alias search-chromium-download-traces='search_chromium_download_traces'
+
+      ## @description Re-download a list of YouTube URLs (or video IDs) into a target
+      ## @description directory. Companion to search_chromium_download_traces — the
+      ## @description body holds the actual yt-dlp invocation, browser cookies, node
+      ## @description JS runtime, and the post-process / verify step.
+      ## @param $1 {string} dest_dir  - Destination directory (required, must exist + writable)
+      ## @param $@ {url...}           - One or more YouTube URLs or 11-char IDs
+      ## @flag --browser <name>       Browser to extract cookies from (default: brave)
+      ## @flag --format <ext>         Audio container (default: mp3)
+      ## @flag --quality <0-9>        --audio-quality (default: 0 = best)
+      ## @flag --no-thumb             Skip embed-thumbnail step
+      recover_chromium_yt_downloads_by_traces() {
+        local dest="" browser="brave" format="mp3" quality="0" thumb="--embed-thumbnail"
+        local -a urls=()
+        while [[ $# -gt 0 ]]; do
+          case "$1" in
+            --browser)   browser="$2"; shift 2 ;;
+            --format)    format="$2"; shift 2 ;;
+            --quality)   quality="$2"; shift 2 ;;
+            --no-thumb)  thumb=""; shift ;;
+            -h|--help)
+              echo -e "📖 \033[1mrecover_chromium_yt_downloads_by_traces\033[0m <dest_dir> <url|id> [<url|id>...]"
+              return 0 ;;
+            *)
+              if [ -z "$dest" ]; then dest="$1"
+              else urls+=("$1"); fi
+              shift ;;
+          esac
+        done
+        if [ -z "$dest" ] || [ "${#urls[@]}" -eq 0 ]; then
+          echo -e "❌ Usage: recover_chromium_yt_downloads_by_traces <dest_dir> <url|id>..."
+          return 1
+        fi
+        echo -e "🔬 \033[1mPHASE A\033[0m — Inputs validation"
+        echo -e "  Destination: $dest"
+        echo -e "  URLs queued: ${#urls[@]}"
+        echo -e "  Browser cookies: $browser    Format: $format    Quality: $quality    Thumbs: ${thumb:-off}"
+        [ ! -d "$dest" ] && { echo -e "❌ Destination not a dir: $dest"; return 1; }
+        [ ! -w "$dest" ] && { echo -e "❌ Destination not writable: $dest"; return 1; }
+
+        echo -e "🔬 \033[1mPHASE B\033[0m — Dependency check"
+        command -v python3 >/dev/null && echo -e "  ✓ python3: $(command -v python3)" || { echo -e "❌ python3 required"; return 1; }
+        python3 -c "import yt_dlp; import yt_dlp_ejs" 2>/dev/null \
+          && echo -e "  ✓ yt_dlp + yt_dlp_ejs Python modules present" \
+          || { echo -e "❌ Run: pip install --user --break-system-packages -U yt-dlp yt-dlp-ejs"; return 1; }
+        command -v node >/dev/null && echo -e "  ✓ node: $(node --version 2>/dev/null)" \
+          || echo -e "  ⚠️  node not found — YT JS challenges may fail."
+        command -v ffmpeg >/dev/null && echo -e "  ✓ ffmpeg: $(ffmpeg -version 2>/dev/null | head -1)" \
+          || { echo -e "❌ ffmpeg required for audio conversion"; return 1; }
+
+        local LOG="/tmp/recover-chromium-yt-$(date +%Y%m%d-%H%M%S).log"
+        echo -e "📜 Log file: $LOG"
+        local -i ok=0 skipped=0 failed=0 total="${#urls[@]}" i=0
+        echo -e "\n🎵 \033[1;36mPHASE C — Downloading $total URL(s) → $dest\033[0m"
+        for u in "${urls[@]}"; do
+          i=$((i+1))
+          if [[ "$u" =~ ^[A-Za-z0-9_-]{11}$ ]]; then u="https://www.youtube.com/watch?v=$u"; fi
+          echo -e "\n────────── [$i/$total] $u ──────────" | tee -a "$LOG"
+          echo -e "  ⓘ Resolving title via yt-dlp --skip-download"
+          local title
+          title=$(python3 -m yt_dlp --no-js-runtimes --js-runtimes node \
+                    --cookies-from-browser "$browser" --no-playlist --skip-download \
+                    --print "%(title)s" "$u" 2>&1 | tee -a "$LOG" | tail -1)
+          if [ -z "$title" ] || [[ "$title" == *"ERROR"* ]]; then
+            echo -e "  ⚠️  Title not resolved — skipping"
+            failed=$((failed+1)); continue
+          fi
+          local safe="${title//\//-}"; safe="${safe//$'\n'/ }"
+          echo -e "  📝 Title:    $title"
+          echo -e "  💾 Filename: $safe.$format"
+          local out="$dest/$safe.$format"
+          if [ -e "$out" ]; then
+            echo -e "  ✋ Already exists — skip"
+            skipped=$((skipped+1)); continue
+          fi
+          echo -e "  ⬇️  Invoking yt-dlp (bestaudio → $format @ q$quality)"
+          if python3 -m yt_dlp --no-js-runtimes --js-runtimes node \
+              --cookies-from-browser "$browser" \
+              --no-playlist --retries 10 --fragment-retries 20 \
+              --sleep-interval 2 --max-sleep-interval 5 \
+              --extract-audio --audio-format "$format" --audio-quality "$quality" \
+              $thumb --add-metadata --no-mtime \
+              -f bestaudio \
+              -o "$dest/$safe.%(ext)s" \
+              "$u" 2>&1 | tee -a "$LOG" | grep -E "(\[download\] |\[ExtractAudio\]|\[EmbedThumbnail\]|ERROR|WARNING)" | sed 's/^/    /'; then
+            if [ -f "$out" ]; then
+              local dur
+              dur=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$out" 2>/dev/null)
+              echo -e "  ✅ Saved [$dur s]"
+              ok=$((ok+1))
+            else
+              echo -e "  ❌ Expected output not found at $out"
+              failed=$((failed+1))
+            fi
+          else
+            echo -e "  ❌ yt-dlp exited non-zero"
+            failed=$((failed+1))
+          fi
+        done
+        echo -e "\n🏁 \033[1;32mPHASE D — Summary\033[0m"
+        echo -e "  ✅ ok:      $ok"
+        echo -e "  ✋ skipped: $skipped"
+        echo -e "  ❌ failed:  $failed"
+        echo -e "  📜 Log:     $LOG"
+        [ "$failed" -gt 0 ] && return 2 || return 0
+      }
+      alias recover-chromium-yt-downloads-by-traces='recover_chromium_yt_downloads_by_traces'
+
 #endregion Backup
 
     #region File_Analysis
