@@ -13,6 +13,6 @@
     alias ms-edge-list-profiles="ls -la ~/.config/microsoft-edge | grep -E '^Default$|^Profile'"
     alias vivaldi-list-profiles="ls -la ~/.config/vivaldi | grep -E '^Default$|^Profile'"
     alias ffx-i="firefox -private-window"
-    alias brave-tor='brave-browser --incognito --tor    
+    alias brave-tor='brave-browser --incognito --tor'    
   #endregion Navigation_Aliases
 
