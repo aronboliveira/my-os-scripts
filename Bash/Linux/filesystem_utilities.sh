@@ -68,7 +68,6 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
       echo "$sorted_res"
     }
     alias list-paths-no-vendors='list_paths_no_vendors'
-    ## @description List files under /var/log/journal with file type, size, and optional strings preview.
     ls_journal_files() {
       local path="/var/log/journal"
       if [[ ! -d "$path" ]]; then
@@ -86,10 +85,7 @@ echo \"-> TOTAL NUMBER OF LINES IN THE DIRECTORY: \$total, distributed in \$file
         echo -e "\n"
       done
     }
-    ## @description Alias for ls-journal-files.
     alias ls-journal-files='ls_journal_files'
-    ## @description Alias for ls-journal-files.
     alias show-journal-files='ls_journal_files'
 
 #endregion Filesystem_Utilities
-

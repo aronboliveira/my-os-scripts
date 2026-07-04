@@ -82,16 +82,16 @@
       run_backup_projects() {
         local src="${1:?Usage: run_backup_projects <source_dir> <dest_dir>}"
         local dest="${2:?Usage: run_backup_projects <source_dir> <dest_dir>}"
-        rsync -aHAXv --progress --checksum \
-          --exclude={node_modules/,venv/,.venv/,__pycache__/,.gradle/,.m2/,vendor/,target/,.next/,dist/,build/,.docker/,docker/volumes/,docker/data/} \
+        rsync -aHAXv --no-owner --no-group --progress --checksum \
+          --exclude={node_modules/,venv/,.venv/,__pycache__/,.gradle/,.m2/,vendor/,target/,.next/,dist/,build/,.docker/,docker/volumes/,docker/data/,docker/,containers/,podman/,Cypress/,storage/debugbar/,storage/logs/,bootstrap/cache/,storage/framework/cache/,storage/framework/sessions/,storage/framework/views/,Trash,.Trash-*} \
           "$src" "$dest"
       }
-      alias backup_projects='rsync -aHAXv --progress --checksum \
-        --exclude={node_modules/,venv/,.venv/,__pycache__/,.gradle/,.m2/,vendor/,target/,.next/,dist/,build/,.docker/,docker/volumes/,docker/data/}'
+      alias backup_projects='rsync -aHAXv --no-owner --no-group --progress --checksum \
+        --exclude={node_modules/,venv/,.venv/,__pycache__/,.gradle/,.m2/,vendor/,target/,.next/,dist/,build/,.docker/,docker/volumes/,docker/data/,docker/,containers/,podman/,Cypress/,storage/debugbar/,storage/logs/,bootstrap/cache/,storage/framework/cache/,storage/framework/sessions/,storage/framework/views/,Trash,.Trash-*}'
       alias backup-projects='backup_projects'
       ## @description Forensic scan of a Chromium-based browser profile for download
       ## @description traces of a given file format. Runs every query class used during
-      ## @description the May 15 music-recovery session: History DB (downloads table,
+      ## @description a generic media-recovery workflow: History DB (downloads table,
       ## @description downloads_url_chains, urls, visits, Cookies), per-site IndexedDB,
       ## @description Local/Session Storage strings dumps, and recently-used.xbel.
       ## @description Prints a categorized summary, optionally cross-checks against the
@@ -596,7 +596,7 @@
           grep -o 'href="[^"]*"' | \
           sed 's/href="file:\/\///' | \
           sed 's/"//' | \
-          while read line; do 
+          while read line; do
             echo "${line//\%/\\x}"
           done | \
           xargs -0 printf "%b" 2>/dev/null | \
@@ -619,16 +619,16 @@
       show_multiple_blank_lines_files() {
         find . -maxdepth 1 -type f -exec awk '
           /^[[:space:]]*$/ { blank++ }
-          !/^[[:space:]]*$/ { 
-            if (blank >= 2) { 
+          !/^[[:space:]]*$/ {
+            if (blank >= 2) {
               print FILENAME ": has multiple consecutive blank lines"
-              exit 
+              exit
             }
-            blank = 0 
+            blank = 0
           }
-          END { 
-            if (blank >= 2) 
-              print FILENAME ": has multiple consecutive blank lines" 
+          END {
+            if (blank >= 2)
+              print FILENAME ": has multiple consecutive blank lines"
           }
         ' {} \;
       }
@@ -667,6 +667,8 @@
     #endregion Hardware_Shortcuts
 
     #region Basic_Commands
+      alias alct='alacritty'
+      alias alct-nohup='nohup alacritty >/dev/null 2>&1 &'
       ## @description Open GNOME Text Editor.
       alias gted='gnome-text-editor'
       ## @description Short alias for rhythmbox-client.
@@ -758,7 +760,7 @@
         [ -z "$1" ] && { echo "Error: target required" >&2; return 1; }
         local target="$1"
         shift
-        for cmd in "$@"; do 
+        for cmd in "$@"; do
             eval "$cmd \"$target\"" 2>/dev/null
         done
       }
@@ -795,7 +797,7 @@
         local device="$2"
         if [ -z "$media_path" ] || [ -z "$device" ]; then
           echo "Usage: mount-recover-ntfs '/media/user/Drive Name' /dev/sdX1"
-          echo "Example: mount-recover-ntfs '/media/aronboliveira/Seagate Expansion Drive1' /dev/sdc1"
+          echo "Example: mount-recover-ntfs '/media/user/External Drive' /dev/sdc1"
           return 1
         fi
         if [ ! -b "$device" ]; then
@@ -822,12 +824,6 @@
         "
       }
       alias mount-recover-ntfs='mount_ntfs_media_drive'
-
-      # sda2 is plain ext4 — no LUKS unlock needed (use mount-sda2 directly)
-      alias mount-sda2='\
-          sudo mkdir -p /mnt/sda2; \
-          sudo mount /dev/sda2 /mnt/sda2; \
-          echo "Successfully mounted /dev/sda2 to /mnt/sda2";'
 
       ## @description Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ).
       ## @param $1 {string} state - Digit string (e.g. "123456789")
@@ -900,176 +896,159 @@
         path="${path%/}"
         cd "$path" || return
       }
-        ## @description Find common web image formats in a directory (png/jpg/gif/svg/webp/etc).
-        ## @param $1 {string} path - Directory to search (default: .)
-        ## @param $@ {string[]} extra - Additional find arguments
-        find_web_images() {
+      find_web_images() {
           local path="${1:-.}"
           if [[ ! -d "$path" ]]; then
-          echo "Error: $path is not a directory" >&2
-          return 1
+            echo "Error: $path is not a directory" >&2
+            return 1
           fi
           find "$path" -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o \
-                    -name "*.gif" -o -name "*.svg" -o -name "*.webp" -o \
-                    -name "*.avif" -o -name "*.bmp" -o -name "*.ico" -o \
-                    -name "*.tiff" -o -name "*.tif" \) "${@:2}"
-        }
-        ## @description Alias for find-web-images.
-        alias ls-web-images='find_web_images'
-        ## @description Alias for find-web-images.
-        alias show-web-images='find_web_images'
-        ## @description Find a broad set of image formats (web + RAW + design files).
-        ## @param $1 {string} path - Directory to search (default: .)
-        ## @param $@ {string[]} extra - Additional find arguments
-        find_all_images() {
+                                -name "*.gif" -o -name "*.svg" -o -name "*.webp" -o \
+                                -name "*.avif" -o -name "*.bmp" -o -name "*.ico" -o \
+                                -name "*.tiff" -o -name "*.tif" \) "${@:2}"
+      }
+      alias ls-web-images='find_web_images'
+      alias show-web-images='find_web_images'
+      find_all_images() {
           local path="${1:-.}"
           if [[ ! -d "$path" ]]; then
-          echo "Error: $path is not a directory" >&2
-          return 1
+            echo "Error: $path is not a directory" >&2
+            return 1
           fi
           find "$path" -type f \( \
-            -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o \
-            -name "*.gif" -o -name "*.svg" -o -name "*.webp" -o \
-            -name "*.avif" -o -name "*.bmp" -o -name "*.ico" -o \
-            -name "*.tiff" -o -name "*.tif" -o -name "*.jfif" -o \
-            -name "*.jpe" -o -name "*.jif" -o -name "*.jp2" -o \
-            -name "*.j2k" -o -name "*.jpf" -o -name "*.jpx" -o \
-            -name "*.jpm" -o -name "*.mj2" -o -name "*.cr2" -o \
-            -name "*.cr3" -o -name "*.nef" -o -name "*.nrw" -o \
-            -name "*.arw" -o -name "*.srf" -o -name "*.sr2" -o \
-            -name "*.orf" -o -name "*.rw2" -o -name "*.pef" -o \
-            -name "*.ptx" -o -name "*.raf" -o -name "*.3fr" -o \
-            -name "*.fff" -o -name "*.dcr" -o -name "*.dng" -o \
-            -name "*.mrw" -o -name "*.iiq" -o -name "*.kdc" -o \
-            -name "*.mos" -o -name "*.erf" -o -name "*.bay" -o \
-            -name "*.psd" -o -name "*.psb" -o -name "*.ai" -o \
-            -name "*.eps" -o -name "*.indd" -o -name "*.xcf" -o \
-            -name "*.cdr" -o -name "*.heic" -o -name "*.heif" -o \
-            -name "*.jxr" -o -name "*.jxl" \
+              -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o \
+              -name "*.gif" -o -name "*.svg" -o -name "*.webp" -o \
+              -name "*.avif" -o -name "*.bmp" -o -name "*.ico" -o \
+              -name "*.tiff" -o -name "*.tif" -o -name "*.jfif" -o \
+              -name "*.jpe" -o -name "*.jif" -o -name "*.jp2" -o \
+              -name "*.j2k" -o -name "*.jpf" -o -name "*.jpx" -o \
+              -name "*.jpm" -o -name "*.mj2" -o -name "*.cr2" -o \
+              -name "*.cr3" -o -name "*.nef" -o -name "*.nrw" -o \
+              -name "*.arw" -o -name "*.srf" -o -name "*.sr2" -o \
+              -name "*.orf" -o -name "*.rw2" -o -name "*.pef" -o \
+              -name "*.ptx" -o -name "*.raf" -o -name "*.3fr" -o \
+              -name "*.fff" -o -name "*.dcr" -o -name "*.dng" -o \
+              -name "*.mrw" -o -name "*.iiq" -o -name "*.kdc" -o \
+              -name "*.mos" -o -name "*.erf" -o -name "*.bay" -o \
+              -name "*.psd" -o -name "*.psb" -o -name "*.ai" -o \
+              -name "*.eps" -o -name "*.indd" -o -name "*.xcf" -o \
+              -name "*.cdr" -o -name "*.heic" -o -name "*.heif" -o \
+              -name "*.jxr" -o -name "*.jxl" \
           \) "${@:2}"
-        }
-        ## @description Alias for find-all-images.
-        alias ls-all-images='find_all_images'
-        ## @description Alias for find-all-images.
-        alias show-all-images='find_all_images'
-        ## @description Parse common find options for deep image search helpers.
-        parse_find_options() {
+      }
+      alias ls-all-images='find_all_images'
+      alias show-all-images='find_all_images'
+      parse_find_options() {
           local path="."
           local max_depth=""
           local min_depth="0"
           local args=()
           while [[ $# -gt 0 ]]; do
-            case "$1" in
-              --path|-p)
-                path="$2"
-                shift 2
-                ;;
-              --max-depth|-M)
-                max_depth="$2"
-                shift 2
-                ;;
-              --min-depth|-m)
-                min_depth="$2"
-                shift 2
-                ;;
-              --help|-h)
-                echo "Usage: ${FUNCNAME[1]} [OPTIONS] [-- extra find args]"
-                echo "Options:"
-                echo "  --path, -p DIR     Directory to search (default: .)"
-                echo "  --max-depth, -M N  Maximum depth (default: no limit)"
-                echo "  --min-depth, -m N  Minimum depth (default: 0)"
-                echo "  --help, -h         Show this help"
-                echo "All remaining arguments are passed directly to find."
-                return 1
-                ;;
-              --)
-                shift
-                args+=("$@")
-                break
-                ;;
-              -*)
-                args+=("$@")
-                break
-                ;;
-              *)
-                if [[ "$path" == "." ]]; then
-                  path="$1"
-                  shift
-                else
-                  args+=("$@")
-                  break
-                fi
-                ;;
-            esac
+              case "$1" in
+                  --path|-p)
+                      path="$2"
+                      shift 2
+                      ;;
+                  --max-depth|-M)
+                      max_depth="$2"
+                      shift 2
+                      ;;
+                  --min-depth|-m)
+                      min_depth="$2"
+                      shift 2
+                      ;;
+                  --help|-h)
+                      echo "Usage: ${FUNCNAME[1]} [OPTIONS] [-- extra find args]"
+                      echo "Options:"
+                      echo "  --path, -p DIR     Directory to search (default: .)"
+                      echo "  --max-depth, -M N  Maximum depth (default: no limit)"
+                      echo "  --min-depth, -m N  Minimum depth (default: 0)"
+                      echo "  --help, -h         Show this help"
+                      echo "All remaining arguments are passed directly to find."
+                      return 1
+                      ;;
+                  --)
+                      shift
+                      args+=("$@")
+                      break
+                      ;;
+                  -*)
+                      args+=("$@")
+                      break
+                      ;;
+                  *)
+                      if [[ "$path" == "." ]]; then
+                          path="$1"
+                          shift
+                      else
+                          args+=("$@")
+                          break
+                      fi
+                      ;;
+              esac
           done
           if [[ ! -d "$path" ]]; then
-            echo "Error: '$path' is not a directory" >&2
-            return 1
+              echo "Error: '$path' is not a directory" >&2
+              return 1
           fi
           FIND_OPTS_PATH="$path"
           FIND_OPTS_MIN="$min_depth"
           FIND_OPTS_MAX="$max_depth"
           FIND_OPTS_ARGS=("${args[@]}")
           return 0
-        }
-        ## @description Find common web image formats with depth controls.
-        find_web_images_deep() {
+      }
+      find_web_images_deep() {
           parse_find_options "$@" || return 1
           local cmd=(find "$FIND_OPTS_PATH" -type f)
           if [[ -n "$FIND_OPTS_MIN" && "$FIND_OPTS_MIN" != "0" ]]; then
-          cmd+=( -mindepth "$FIND_OPTS_MIN" )
+            cmd+=( -mindepth "$FIND_OPTS_MIN" )
           fi
           if [[ -n "$FIND_OPTS_MAX" ]]; then
-          cmd+=( -maxdepth "$FIND_OPTS_MAX" )
+            cmd+=( -maxdepth "$FIND_OPTS_MAX" )
           fi
           cmd+=( \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o \
-                -name "*.gif" -o -name "*.svg" -o -name "*.webp" -o \
-                -name "*.avif" -o -name "*.bmp" -o -name "*.ico" -o \
-                -name "*.tiff" -o -name "*.tif" \) )
+                      -name "*.gif" -o -name "*.svg" -o -name "*.webp" -o \
+                      -name "*.avif" -o -name "*.bmp" -o -name "*.ico" -o \
+                      -name "*.tiff" -o -name "*.tif" \) )
           cmd+=( "${FIND_OPTS_ARGS[@]}" )
           "${cmd[@]}"
-        }
-        ## @description Alias for find-web-images-deep.
-        alias ls-web-images-deep='find_web_images_deep'
-        ## @description Alias for find-web-images-deep.
-        alias show-web-images-deep='find_web_images_deep'
-        ## @description Find a broad set of image formats with depth controls.
-        find_all_images_deep() {
+      }
+      alias ls-web-images-deep='find_web_images_deep'
+      alias show-web-images-deep='find_web_images_deep'
+      find_all_images_deep() {
           parse_find_options "$@" || return 1
           local cmd=(find "$FIND_OPTS_PATH" -type f)
           if [[ -n "$FIND_OPTS_MIN" && "$FIND_OPTS_MIN" != "0" ]]; then
-          cmd+=( -mindepth "$FIND_OPTS_MIN" )
+            cmd+=( -mindepth "$FIND_OPTS_MIN" )
           fi
           if [[ -n "$FIND_OPTS_MAX" ]]; then
-          cmd+=( -maxdepth "$FIND_OPTS_MAX" )
+            cmd+=( -maxdepth "$FIND_OPTS_MAX" )
           fi
           cmd+=( \( \
-            -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o \
-            -name "*.gif" -o -name "*.svg" -o -name "*.webp" -o \
-            -name "*.avif" -o -name "*.bmp" -o -name "*.ico" -o \
-            -name "*.tiff" -o -name "*.tif" -o -name "*.jfif" -o \
-            -name "*.jpe" -o -name "*.jif" -o -name "*.jp2" -o \
-            -name "*.j2k" -o -name "*.jpf" -o -name "*.jpx" -o \
-            -name "*.jpm" -o -name "*.mj2" -o -name "*.cr2" -o \
-            -name "*.cr3" -o -name "*.nef" -o -name "*.nrw" -o \
-            -name "*.arw" -o -name "*.srf" -o -name "*.sr2" -o \
-            -name "*.orf" -o -name "*.rw2" -o -name "*.pef" -o \
-            -name "*.ptx" -o -name "*.raf" -o -name "*.3fr" -o \
-            -name "*.fff" -o -name "*.dcr" -o -name "*.dng" -o \
-            -name "*.mrw" -o -name "*.iiq" -o -name "*.kdc" -o \
-            -name "*.mos" -o -name "*.erf" -o -name "*.bay" -o \
-            -name "*.psd" -o -name "*.psb" -o -name "*.ai" -o \
-            -name "*.eps" -o -name "*.indd" -o -name "*.xcf" -o \
-            -name "*.cdr" -o -name "*.heic" -o -name "*.heif" -o \
-            -name "*.jxr" -o -name "*.jxl" \
+              -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o \
+              -name "*.gif" -o -name "*.svg" -o -name "*.webp" -o \
+              -name "*.avif" -o -name "*.bmp" -o -name "*.ico" -o \
+              -name "*.tiff" -o -name "*.tif" -o -name "*.jfif" -o \
+              -name "*.jpe" -o -name "*.jif" -o -name "*.jp2" -o \
+              -name "*.j2k" -o -name "*.jpf" -o -name "*.jpx" -o \
+              -name "*.jpm" -o -name "*.mj2" -o -name "*.cr2" -o \
+              -name "*.cr3" -o -name "*.nef" -o -name "*.nrw" -o \
+              -name "*.arw" -o -name "*.srf" -o -name "*.sr2" -o \
+              -name "*.orf" -o -name "*.rw2" -o -name "*.pef" -o \
+              -name "*.ptx" -o -name "*.raf" -o -name "*.3fr" -o \
+              -name "*.fff" -o -name "*.dcr" -o -name "*.dng" -o \
+              -name "*.mrw" -o -name "*.iiq" -o -name "*.kdc" -o \
+              -name "*.mos" -o -name "*.erf" -o -name "*.bay" -o \
+              -name "*.psd" -o -name "*.psb" -o -name "*.ai" -o \
+              -name "*.eps" -o -name "*.indd" -o -name "*.xcf" -o \
+              -name "*.cdr" -o -name "*.heic" -o -name "*.heif" -o \
+              -name "*.jxr" -o -name "*.jxl" \
           \) )
           cmd+=( "${FIND_OPTS_ARGS[@]}" )
           "${cmd[@]}"
-        }
-        ## @description Alias for find-all-images-deep.
-        alias ls-all-images-deep='find_all_images_deep'
-        ## @description Alias for find-all-images-deep.
-        alias show-all-images-deep='find_all_images_deep'
+      }
+      alias ls-all-images-deep='find_all_images_deep'
+      alias show-all-images-deep='find_all_images_deep'
+
 #endregion Basic_Commands
   #endregion Utilities
-

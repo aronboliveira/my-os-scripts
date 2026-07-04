@@ -28,4 +28,3 @@
     ## @description Alias for cat-sudoers-timestamp.
     alias show-sudoers-timestamp='sudo cat /etc/sudoers | grep timestamp_timeout 2>/dev/null || echo "No timestamp_timeout setting found in sudoers"'
 #endregion User_Management
-

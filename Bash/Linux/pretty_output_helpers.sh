@@ -24,4 +24,3 @@
         -e "s/\(#.*\)/$(printf '\033[0;32m')\1$(printf '\033[0m')/"
     }
   #endregion Pretty_Output_Helpers
-

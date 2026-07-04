@@ -1,7 +1,4 @@
   #region Audiovisual_Processing
-    ## Convert a GIF to MP4 using ffmpeg with palette optimization for better quality
-    # @param $1 input .gif file
-    # @param $2 output .mp4 file (optional, defaults to input name with .mp4 extension)
     gif_to_mp4() {
         local input="$1"
         local output="${2:-${input%.gif}.mp4}"
@@ -30,9 +27,6 @@
                 return 1
             }
     }
-    ## Convert webm to mp4 (re-encode video stream, copy audio if present)
-    # @param $1 input file
-    # @param $2 output file (optional, defaults to input name with .mp4 extension)
     webm_to_mp4() {
         local input="$1"
         local output="${2:-${input%.webm}.mp4}"
@@ -62,13 +56,6 @@
                 return 1
             }
     }
-    ## Split a video into multiple GIF chunks of specified duration, with optional scaling and fps settings
-    # @param $1 input video file (e.g. input.mp4)
-    # @param $2 chunk duration in seconds (optional, default 60)
-    # @param $3 target fps for output GIFs (optional, default 15)
-    # @param $4 target width for output GIFs (optional, default 480, maintains aspect ratio)
-    # @param $5 target height for output GIFs (optional, maintains aspect ratio)
-    # @param $6 output filename prefix (optional, default "video", results in video_00.gif, video_01.gif, etc.)
     video_to_gif_chunks() {
         local input="$1"
         local chunk_duration="${2:-60}"      # seconds per chunk
@@ -120,9 +107,6 @@
             return 1
         fi
     }
-    ## Concatenate multiple .m4s video segments into a single MP4 file using ffmpeg's concat demuxer
-    # @param $1 output file (e.g. output.mp4)
-    # @PARAM $2... input .m4s files (e.g. part0.m4s part1.m4s part2.m4s)
     concat_m4s() {
         if [ $# -lt 2 ]; then
             echo "Usage: ffmpeg_concat_m4s <output_file> <input_part1> [input_part2] ..."
@@ -148,8 +132,6 @@
         fi
         rm -f "$concat_list"
     }
-    ## Convert mp3 to oga (Ogg Vorbis)
-    # @param $1... input .mp3 files (e.g. track1.mp3 track2.mp3)
     mp3_to_oga() {
       if ! command -v ffmpeg &>/dev/null; then
         echo "ERROR: ffmpeg not found" >&2
@@ -181,13 +163,6 @@
                   "$oga_file" </dev/null
         done
     }
-    ## Convert mp4 to gif with palette optimization and optional scaling/fps/dithering
-    # @param $1 input video file (e.g. input.mp4)
-    # @param $2 output gif file (optional, defaults to input name with .gif extension)
-    # @param $3 target width (optional, maintains aspect ratio)
-    # @param $4 target height (optional, maintains aspect ratio)
-    # @param $5 target fps (optional, defaults to input fps)
-    # @param $6 dither method (optional, default "bayer:bayer_scale=5", set to "none" for no dithering)
     mp4_to_gif() {
         command -v ffmpeg  >/dev/null 2>&1 || { echo "ERROR: ffmpeg is required but not found." >&2; return 1; }
         command -v ffprobe >/dev/null 2>&1 || { echo "ERROR: ffprobe is required but not found." >&2; return 1; }
@@ -2819,4 +2794,3 @@
     alias ffmpeg-wma-to-oga='wma_to_oga'
     alias wma-to-oga='wma_to_oga'
   #endregion Audiovisual_Processing
-

@@ -35,7 +35,7 @@
       ## @description Show Git work tree info: repo dir, common dir, top level, and superproject status.
       git_tree_info() { if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then printf "\n[Inside work tree]\n\nGit repo directory:\n%s\nGit repo common directory:\n%s\nPath to top level repo:\n%s\nSuperproject working tree:\n%s\n" "$(git rev-parse --git-dir)" "$(git rev-parse --git-common-dir)" "$(git rev-parse --show-toplevel)" "$(git rev-parse --show-superproject-working-tree 2>/dev/null | grep . || echo 'NOT A SUBMODULE')"; else printf "NO WORK TREE PRESENT FOR A REPO\n"; fi; }
       alias git-tree-info='git_tree_info'
-      
+
     #region Git_Basic
       alias gra='git remote add'
       alias gra-o='git remote add origin'
@@ -111,4 +111,3 @@
       alias gst-filter-rdm='git filter-branch --force --prune-empty --index-filter "git rm --cached --ignore-unmatch README.md" cat -- --all'
 #endregion Git_Stash
   #endregion Git_Aliases
-

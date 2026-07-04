@@ -26,4 +26,3 @@ php artisan serve
     alias compdp='composer dump-autoload -o'
     alias mysqlr='mysql -u root -p'
 #endregion Laravel_PHP_Aliases
-

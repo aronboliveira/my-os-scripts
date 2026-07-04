@@ -1,4162 +1,3313 @@
 # Bash Aliases — Publicable
 
-All publicable aliases from `~/.bashrc`, grouped by region.
+Publicable aliases and functions extracted from the `PUBLICABLE_CODE` region in `~/.bashrc` and synchronized with the `.sh` fragments in this directory.
 
 ---
 
 ## PUBLICABLE_CODE
 
-### System_Setup
+### System Setup
+
+- **`setup_software_gl`** (function): Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing. No args needed.
+  - Source: `system_setup.sh`
+  - Flags: `-no-persist   Skip writing env vars to ~/.bashrc`; `-no-composite Skip disabling XFWM4 compositing`
+- **`setup-software-gl`** (alias → `setup_software_gl`): Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing. No args needed.
+  - Source: `system_setup.sh`
+- **`show-all-env-vars`** (alias → `env`): List all environment variables (env), sorted alphabetically.
+  - Source: `system_setup.sh`
+- **`ls-all-env-vars`** (alias → `show-all-env-vars`): Alias for show-all-env-vars.
+  - Source: `system_setup.sh`
+- **`show-all-printenv-vars`** (alias → `printenv`): List all exported variables (printenv), sorted alphabetically.
+  - Source: `system_setup.sh`
+- **`ls-all-printenv-vars`** (alias → `show-all-printenv-vars`): Alias for show-all-printenv-vars.
+  - Source: `system_setup.sh`
+- **`show-all-sh-vars`** (alias → `(`): List all shell variables (set -o posix; set), sorted alphabetically.
+  - Source: `system_setup.sh`
+- **`ls-all-sh-vars`** (alias → `show-all-sh-vars`): Alias for show-all-sh-vars.
+  - Source: `system_setup.sh`
+- **`ls_env_profile`** (function): Show environment variables, exported variables, shell variables, aliases, and functions.
+  - Source: `system_setup.sh`
+- **`ls-env-profile`** (alias → `ls_env_profile`): Show environment variables, exported variables, shell variables, aliases, and functions.
+  - Source: `system_setup.sh`
+- **`show-env-profile`** (alias → `ls_env_profile`): Show environment variables, exported variables, shell variables, aliases, and functions.
+  - Source: `system_setup.sh`
+- **`ls-env-prof`** (alias → `ls_env_profile`): Show environment variables, exported variables, shell variables, aliases, and functions.
+  - Source: `system_setup.sh`
+- **`show-env-prof`** (alias → `ls_env_profile`): Show environment variables, exported variables, shell variables, aliases, and functions.
+  - Source: `system_setup.sh`
+- **`ls_tabs_profile`** (function): Show fstab and crypttab contents.
+  - Source: `system_setup.sh`
+- **`ls-tabs-profile`** (alias → `ls_tabs_profile`): Show fstab and crypttab contents.
+  - Source: `system_setup.sh`
+- **`show-tabs-profile`** (alias → `ls_tabs_profile`): Show fstab and crypttab contents.
+  - Source: `system_setup.sh`
+- **`ls-fstab-profile`** (alias → `ls_tabs_profile`): Show fstab and crypttab contents.
+  - Source: `system_setup.sh`
+- **`show-fstab-profile`** (alias → `ls_tabs_profile`): Show fstab and crypttab contents.
+  - Source: `system_setup.sh`
+- **`ls_rbac_profile`** (function): Show sudo/admin groups, sudoers, MOTD, /etc/profile, chrony config, and APT keyrings.
+  - Source: `system_setup.sh`
+- **`ls-rbac-profile`** (alias → `ls_rbac_profile`): Show sudo/admin groups, sudoers, MOTD, /etc/profile, chrony config, and APT keyrings.
+  - Source: `system_setup.sh`
+- **`show-rbac-profile`** (alias → `ls_rbac_profile`): Show sudo/admin groups, sudoers, MOTD, /etc/profile, chrony config, and APT keyrings.
+  - Source: `system_setup.sh`
+- **`ls-rbac-prof`** (alias → `ls_rbac_profile`): Show sudo/admin groups, sudoers, MOTD, /etc/profile, chrony config, and APT keyrings.
+  - Source: `system_setup.sh`
+- **`show-rbac-prof`** (alias → `ls_rbac_profile`): Show sudo/admin groups, sudoers, MOTD, /etc/profile, chrony config, and APT keyrings.
+  - Source: `system_setup.sh`
+- **`ls_dm_slim`** (function): Show SLiM display manager config.
+  - Source: `system_setup.sh`
+- **`ls-dm-slim`** (alias → `ls_dm_slim`): Show SLiM display manager config.
+  - Source: `system_setup.sh`
+- **`show-dm-slim`** (alias → `ls_dm_slim`): Show SLiM display manager config.
+  - Source: `system_setup.sh`
+- **`ls_dm_sddm`** (function): Show SDDM display manager config and drop-in files.
+  - Source: `system_setup.sh`
+- **`ls-dm-sddm`** (alias → `ls_dm_sddm`): Show SDDM display manager config and drop-in files.
+  - Source: `system_setup.sh`
+- **`show-dm-sddm`** (alias → `ls_dm_sddm`): Show SDDM display manager config and drop-in files.
+  - Source: `system_setup.sh`
+- **`ls_dm_gdm3`** (function): Show GDM3 display manager configs.
+  - Source: `system_setup.sh`
+- **`ls-dm-gdm3`** (alias → `ls_dm_gdm3`): Show GDM3 display manager configs.
+  - Source: `system_setup.sh`
+- **`show-dm-gdm3`** (alias → `ls_dm_gdm3`): Show GDM3 display manager configs.
+  - Source: `system_setup.sh`
+- **`ls-dm-gdm`** (alias → `ls_dm_gdm3`): Show GDM3 display manager configs.
+  - Source: `system_setup.sh`
+- **`show-dm-gdm`** (alias → `ls_dm_gdm3`): Show GDM3 display manager configs.
+  - Source: `system_setup.sh`
+- **`ls_dm_lightdm`** (function): Show LightDM display manager configs.
+  - Source: `system_setup.sh`
+- **`ls-dm-lightdm`** (alias → `ls_dm_lightdm`): Show LightDM display manager configs.
+  - Source: `system_setup.sh`
+- **`show-dm-lightdm`** (alias → `ls_dm_lightdm`): Show LightDM display manager configs.
+  - Source: `system_setup.sh`
+- **`ls_dm_lxdm`** (function): Show LXDM display manager config.
+  - Source: `system_setup.sh`
+- **`ls-dm-lxdm`** (alias → `ls_dm_lxdm`): Show LXDM display manager config.
+  - Source: `system_setup.sh`
+- **`show-dm-lxdm`** (alias → `ls_dm_lxdm`): Show LXDM display manager config.
+  - Source: `system_setup.sh`
+- **`ls_dm_x11`** (function): Show X11/XDM display config and default display manager.
+  - Source: `system_setup.sh`
+- **`ls-dm-x11`** (alias → `ls_dm_x11`): Show X11/XDM display config and default display manager.
+  - Source: `system_setup.sh`
+- **`show-dm-x11`** (alias → `ls_dm_x11`): Show X11/XDM display config and default display manager.
+  - Source: `system_setup.sh`
+- **`ls-x11-config`** (alias → `ls_dm_x11`): Show X11/XDM display config and default display manager.
+  - Source: `system_setup.sh`
+- **`show-x11-config`** (alias → `ls_dm_x11`): Show X11/XDM display config and default display manager.
+  - Source: `system_setup.sh`
+- **`ls_full_display_profile`** (function): Aggregated display manager profile: SLiM, SDDM, GDM3, LightDM, LXDM, X11.
+  - Source: `system_setup.sh`
+- **`ls-full-display-profile`** (alias → `ls_full_display_profile`): Aggregated display manager profile: SLiM, SDDM, GDM3, LightDM, LXDM, X11.
+  - Source: `system_setup.sh`
+- **`show-full-display-profile`** (alias → `ls_full_display_profile`): Aggregated display manager profile: SLiM, SDDM, GDM3, LightDM, LXDM, X11.
+  - Source: `system_setup.sh`
+- **`ls-dm-profile`** (alias → `ls_full_display_profile`): Aggregated display manager profile: SLiM, SDDM, GDM3, LightDM, LXDM, X11.
+  - Source: `system_setup.sh`
+- **`show-dm-profile`** (alias → `ls_full_display_profile`): Aggregated display manager profile: SLiM, SDDM, GDM3, LightDM, LXDM, X11.
+  - Source: `system_setup.sh`
+- **`ls_sys_tcp_v4_congestion_control`** (function): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp-v4-congestion-control`** (alias → `ls_sys_tcp_v4_congestion_control`): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`ls-sysctl-tcp-v4-congestion-control`** (alias → `ls_sys_tcp_v4_congestion_control`): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sysctl-v4-congestion-control`** (alias → `ls_sys_tcp_v4_congestion_control`): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp-congestion-control`** (alias → `ls_sys_tcp_v4_congestion_control`): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp-cgt-ctrl`** (alias → `ls_sys_tcp_v4_congestion_control`): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`ls-sysctl-tcp-cgt-ctrl`** (alias → `ls_sys_tcp_v4_congestion_control`): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`show-sys-tcp-v4-congestion-control`** (alias → `ls_sys_tcp_v4_congestion_control`): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`show-sys-tcp-cgt-ctrl`** (alias → `ls_sys_tcp_v4_congestion_control`): Show TCP congestion control algorithm and available algorithms.
+  - Source: `system_setup.sh`
+- **`ls_sys_tcp_v4_time_control`** (function): Show TCP keepalive, timeout, and retry sysctl parameters.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp-v4-time-control`** (alias → `ls_sys_tcp_v4_time_control`): Show TCP keepalive, timeout, and retry sysctl parameters.
+  - Source: `system_setup.sh`
+- **`ls-sysctl-tcp-v4-time-control`** (alias → `ls_sys_tcp_v4_time_control`): Show TCP keepalive, timeout, and retry sysctl parameters.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sysctl-v4-time-control`** (alias → `ls_sys_tcp_v4_time_control`): Show TCP keepalive, timeout, and retry sysctl parameters.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sys-time-control`** (alias → `ls_sys_tcp_v4_time_control`): Show TCP keepalive, timeout, and retry sysctl parameters.
+  - Source: `system_setup.sh`
+- **`show-sys-tcp-v4-time-control`** (alias → `ls_sys_tcp_v4_time_control`): Show TCP keepalive, timeout, and retry sysctl parameters.
+  - Source: `system_setup.sh`
+- **`ls_sys_tcp_v4_limits`** (function): Show TCP backlog, orphan, and TIME_WAIT bucket limits.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp-v4-limits`** (alias → `ls_sys_tcp_v4_limits`): Show TCP backlog, orphan, and TIME_WAIT bucket limits.
+  - Source: `system_setup.sh`
+- **`ls-sysctl-tcp-v4-limits`** (alias → `ls_sys_tcp_v4_limits`): Show TCP backlog, orphan, and TIME_WAIT bucket limits.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sysctl-v4-limits`** (alias → `ls_sys_tcp_v4_limits`): Show TCP backlog, orphan, and TIME_WAIT bucket limits.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sys-limits`** (alias → `ls_sys_tcp_v4_limits`): Show TCP backlog, orphan, and TIME_WAIT bucket limits.
+  - Source: `system_setup.sh`
+- **`show-sys-tcp-v4-limits`** (alias → `ls_sys_tcp_v4_limits`): Show TCP backlog, orphan, and TIME_WAIT bucket limits.
+  - Source: `system_setup.sh`
+- **`ls_sys_tcp_v4_mtu`** (function): Show TCP base MSS and MTU probing sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp-v4-mtu`** (alias → `ls_sys_tcp_v4_mtu`): Show TCP base MSS and MTU probing sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-sysctl-tcp-v4-mtu`** (alias → `ls_sys_tcp_v4_mtu`): Show TCP base MSS and MTU probing sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sysctl-v4-mtu`** (alias → `ls_sys_tcp_v4_mtu`): Show TCP base MSS and MTU probing sysctl settings.
+  - Source: `system_setup.sh`
+- **`show-sys-tcp-v4-mtu`** (alias → `ls_sys_tcp_v4_mtu`): Show TCP base MSS and MTU probing sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls_sys_tcp_v4_base_config`** (function): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sys-base-v4-config`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sysctl-base-v4-config`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sysctl-base-v4-conf`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sys-tcp-base-v4-conf`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-sys-base-v4-config`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-sysctl-base-v4-config`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp-base-config`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`show-tcp-sys-base-v4-config`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`show-sys-tcp-base-config`** (alias → `ls_sys_tcp_v4_base_config`): Show TCP buffer sizes, fast open, and syncookies sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls_sys_tcp_v4`** (function): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp-v4`** (alias → `ls_sys_tcp_v4`): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-sysctl-tcp-v4`** (alias → `ls_sys_tcp_v4`): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sysctl-v4`** (alias → `ls_sys_tcp_v4`): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-sys-tcp`** (alias → `ls_sys_tcp_v4`): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls-tcp-sys`** (alias → `ls_sys_tcp_v4`): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`show-sys-tcp-v4`** (alias → `ls_sys_tcp_v4`): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`show-sysctl-tcp-v4`** (alias → `ls_sys_tcp_v4`): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`show-sys-tcp`** (alias → `ls_sys_tcp_v4`): Aggregated view of all IPv4 TCP sysctl settings.
+  - Source: `system_setup.sh`
+- **`ls_net_dns_info`** (function): Show DNS config, hostname, and IP addresses.
+  - Source: `system_setup.sh`
+- **`ls-net-dns`** (alias → `ls_net_dns_info`): Show DNS config, hostname, and IP addresses.
+  - Source: `system_setup.sh`
+- **`show-net-dns`** (alias → `ls_net_dns_info`): Show DNS config, hostname, and IP addresses.
+  - Source: `system_setup.sh`
+- **`ls-dns-info`** (alias → `ls_net_dns_info`): Show DNS config, hostname, and IP addresses.
+  - Source: `system_setup.sh`
+- **`show-dns-info`** (alias → `ls_net_dns_info`): Show DNS config, hostname, and IP addresses.
+  - Source: `system_setup.sh`
+- **`ls_net_public_ip`** (function): Show public IP address via curl ifconfig.me (IPv4 and IPv6).
+  - Source: `system_setup.sh`
+- **`ls-net-public-ip`** (alias → `ls_net_public_ip`): Show public IP address via curl ifconfig.me (IPv4 and IPv6).
+  - Source: `system_setup.sh`
+- **`show-net-public-ip`** (alias → `ls_net_public_ip`): Show public IP address via curl ifconfig.me (IPv4 and IPv6).
+  - Source: `system_setup.sh`
+- **`ls-public-ip`** (alias → `ls_net_public_ip`): Show public IP address via curl ifconfig.me (IPv4 and IPv6).
+  - Source: `system_setup.sh`
+- **`show-public-ip`** (alias → `ls_net_public_ip`): Show public IP address via curl ifconfig.me (IPv4 and IPv6).
+  - Source: `system_setup.sh`
+- **`ls_net_ip_addrs`** (function): Show IP addresses via ip addr and ifconfig.
+  - Source: `system_setup.sh`
+- **`ls-net-ip-addrs`** (alias → `ls_net_ip_addrs`): Show IP addresses via ip addr and ifconfig.
+  - Source: `system_setup.sh`
+- **`show-net-ip-addrs`** (alias → `ls_net_ip_addrs`): Show IP addresses via ip addr and ifconfig.
+  - Source: `system_setup.sh`
+- **`ls-ip-addrs`** (alias → `ls_net_ip_addrs`): Show IP addresses via ip addr and ifconfig.
+  - Source: `system_setup.sh`
+- **`show-ip-addrs`** (alias → `ls_net_ip_addrs`): Show IP addresses via ip addr and ifconfig.
+  - Source: `system_setup.sh`
+- **`ls_net_hosts_info`** (function): Show /etc/hosts and /etc/network/interfaces.
+  - Source: `system_setup.sh`
+- **`ls-net-hosts`** (alias → `ls_net_hosts_info`): Show /etc/hosts and /etc/network/interfaces.
+  - Source: `system_setup.sh`
+- **`show-net-hosts`** (alias → `ls_net_hosts_info`): Show /etc/hosts and /etc/network/interfaces.
+  - Source: `system_setup.sh`
+- **`ls-hosts-info`** (alias → `ls_net_hosts_info`): Show /etc/hosts and /etc/network/interfaces.
+  - Source: `system_setup.sh`
+- **`show-hosts-info`** (alias → `ls_net_hosts_info`): Show /etc/hosts and /etc/network/interfaces.
+  - Source: `system_setup.sh`
+- **`ls_net_nm_status`** (function): Show NetworkManager connections and service status.
+  - Source: `system_setup.sh`
+- **`ls-net-nm-status`** (alias → `ls_net_nm_status`): Show NetworkManager connections and service status.
+  - Source: `system_setup.sh`
+- **`show-net-nm-status`** (alias → `ls_net_nm_status`): Show NetworkManager connections and service status.
+  - Source: `system_setup.sh`
+- **`ls-nm-status`** (alias → `ls_net_nm_status`): Show NetworkManager connections and service status.
+  - Source: `system_setup.sh`
+- **`show-nm-status`** (alias → `ls_net_nm_status`): Show NetworkManager connections and service status.
+  - Source: `system_setup.sh`
+- **`ls_net_firewall`** (function): Show iptables and ufw firewall rules.
+  - Source: `system_setup.sh`
+- **`ls-net-firewall`** (alias → `ls_net_firewall`): Show iptables and ufw firewall rules.
+  - Source: `system_setup.sh`
+- **`show-net-firewall`** (alias → `ls_net_firewall`): Show iptables and ufw firewall rules.
+  - Source: `system_setup.sh`
+- **`ls-firewall`** (alias → `ls_net_firewall`): Show iptables and ufw firewall rules.
+  - Source: `system_setup.sh`
+- **`show-firewall`** (alias → `ls_net_firewall`): Show iptables and ufw firewall rules.
+  - Source: `system_setup.sh`
+- **`ls_net_profile`** (function): Aggregated network profile: DNS, public IP, sysctl, IP addresses, hosts, NetworkManager, firewall.
+  - Source: `system_setup.sh`
+- **`ls-net-profile`** (alias → `ls_net_profile`): Aggregated network profile: DNS, public IP, sysctl, IP addresses, hosts, NetworkManager, firewall.
+  - Source: `system_setup.sh`
+- **`show-net-profile`** (alias → `ls_net_profile`): Aggregated network profile: DNS, public IP, sysctl, IP addresses, hosts, NetworkManager, firewall.
+  - Source: `system_setup.sh`
+- **`ls-network-profile`** (alias → `ls_net_profile`): Aggregated network profile: DNS, public IP, sysctl, IP addresses, hosts, NetworkManager, firewall.
+  - Source: `system_setup.sh`
+- **`show-network-profile`** (alias → `ls_net_profile`): Aggregated network profile: DNS, public IP, sysctl, IP addresses, hosts, NetworkManager, firewall.
+  - Source: `system_setup.sh`
+- **`ls_home_profile`** (function): Show dconf user config (binary), loginctl sessions/user info, and home directory listing.
+  - Source: `system_setup.sh`
+- **`ls-home-profile`** (alias → `ls_home_profile`): Show dconf user config (binary), loginctl sessions/user info, and home directory listing.
+  - Source: `system_setup.sh`
+- **`show-home-profile`** (alias → `ls_home_profile`): Show dconf user config (binary), loginctl sessions/user info, and home directory listing.
+  - Source: `system_setup.sh`
+- **`ls-dconf-profile`** (alias → `ls_home_profile`): Show dconf user config (binary), loginctl sessions/user info, and home directory listing.
+  - Source: `system_setup.sh`
+- **`show-dconf-profile`** (alias → `ls_home_profile`): Show dconf user config (binary), loginctl sessions/user info, and home directory listing.
+  - Source: `system_setup.sh`
+- **`ls_full_profile`** (function): Full system profile: env, fstab, RBAC, display managers, network, and home config.
+  - Source: `system_setup.sh`
+- **`ls-full-profile`** (alias → `ls_full_profile`): Full system profile: env, fstab, RBAC, display managers, network, and home config.
+  - Source: `system_setup.sh`
+- **`show-full-profile`** (alias → `ls_full_profile`): Full system profile: env, fstab, RBAC, display managers, network, and home config.
+  - Source: `system_setup.sh`
+- **`ls-all-profiles`** (alias → `ls_full_profile`): Full system profile: env, fstab, RBAC, display managers, network, and home config.
+  - Source: `system_setup.sh`
+- **`show-all-profiles`** (alias → `ls_full_profile`): Full system profile: env, fstab, RBAC, display managers, network, and home config.
+  - Source: `system_setup.sh`
+- **`show-display-session`** (alias → `echo`): Show current display session type (x11 or wayland).
+  - Source: `system_setup.sh`
+- **`ls-display-session`** (alias → `show-display-session`): Alias for show-display-session.
+  - Source: `system_setup.sh`
+- **`echo-display-session`** (alias → `show-display-session`): Alias for show-display-session.
+  - Source: `system_setup.sh`
+- **`show-desktop-session`** (alias → `echo`): Show current desktop session name (e.g., gnome, plasma).
+  - Source: `system_setup.sh`
+- **`ls-desktop-session`** (alias → `show-desktop-session`): Alias for show-desktop-session.
+  - Source: `system_setup.sh`
+- **`echo-desktop-session`** (alias → `show-desktop-session`): Alias for show-desktop-session.
+  - Source: `system_setup.sh`
+- **`show-datadirs-session`** (alias → `echo`): Show XDG data directories path list.
+  - Source: `system_setup.sh`
+- **`ls-datadirs-session`** (alias → `show-datadirs-session`): Alias for show-datadirs-session.
+  - Source: `system_setup.sh`
+- **`echo-datadirs-session`** (alias → `show-datadirs-session`): Alias for show-datadirs-session.
+  - Source: `system_setup.sh`
+- **`show-hosttype`** (alias → `echo`): Show host machine type (e.g., x86_64).
+  - Source: `system_setup.sh`
+- **`ls-hosttype`** (alias → `show-hosttype`): Alias for show-hosttype.
+  - Source: `system_setup.sh`
+- **`echo-hosttype`** (alias → `show-hosttype`): Alias for show-hosttype.
+  - Source: `system_setup.sh`
+- **`show-home`** (alias → `echo`): Show current user's home directory path.
+  - Source: `system_setup.sh`
+- **`ls-home`** (alias → `show-home`): Alias for show-home.
+  - Source: `system_setup.sh`
+- **`echo-home`** (alias → `show-home`): Alias for show-home.
+  - Source: `system_setup.sh`
+- **`show-user`** (alias → `echo`): Show current username.
+  - Source: `system_setup.sh`
+- **`ls-user`** (alias → `show-user`): Alias for show-user.
+  - Source: `system_setup.sh`
+- **`echo-user`** (alias → `show-user`): Alias for show-user.
+  - Source: `system_setup.sh`
+- **`show-shell`** (alias → `echo`): Show current shell binary path.
+  - Source: `system_setup.sh`
+- **`ls-shell`** (alias → `show-shell`): Alias for show-shell.
+  - Source: `system_setup.sh`
+- **`echo-shell`** (alias → `show-shell`): Alias for show-shell.
+  - Source: `system_setup.sh`
+- **`show-wrkdir`** (alias → `echo`): Show current working directory (alias for pwd).
+  - Source: `system_setup.sh`
+- **`ls-wrkdir`** (alias → `show-wrkdir`): Alias for show-wrkdir.
+  - Source: `system_setup.sh`
+- **`echo-wrkdir`** (alias → `show-wrkdir`): Alias for show-wrkdir.
+  - Source: `system_setup.sh`
+- **`show-user-dirs`** (alias → `cat`): Show current user directories config content (from ~/.config/user-dirs.dirs).
+  - Source: `system_setup.sh`
+- **`ls-user-dirs`** (alias → `show-user-dirs`): Alias for show-user-dirs.
+  - Source: `system_setup.sh`
+- **`show-display-server-code`** (alias → `echo`): Show display server type code (x11 or wayland).
+  - Source: `system_setup.sh`
+- **`ls-display-server-code`** (alias → `show-display-server-code`): Alias for show-display-server-code.
+  - Source: `system_setup.sh`
+- **`echo-display-server-code`** (alias → `show-display-server-code`): Alias for show-display-server-code.
+  - Source: `system_setup.sh`
+- **`show_display_server`** (function): Show human-readable description of the current display server.
+  - Source: `system_setup.sh`
+- **`show-display-server`** (alias → `show_display_server`): Show human-readable display server info.
+  - Source: `system_setup.sh`
+- **`ls-display-server`** (alias → `show-display-server`): Alias for show-display-server.
+  - Source: `system_setup.sh`
+- **`echo-display-server`** (alias → `show-display-server`): Alias for show-display-server.
+  - Source: `system_setup.sh`
+- **`show-dbus-addr`** (alias → `echo`): Show D-Bus session bus address.
+  - Source: `system_setup.sh`
+- **`ls-dbus-addr`** (alias → `show-dbus-addr`): Alias for show-dbus-addr.
+  - Source: `system_setup.sh`
+- **`echo-dbus-addr`** (alias → `show-dbus-addr`): Alias for show-dbus-addr.
+  - Source: `system_setup.sh`
+- **`show-display-manager`** (alias → `systemctl`): Show the active display manager service unit name.
+  - Source: `system_setup.sh`
+- **`ls-display-manager`** (alias → `show-display-manager`): Alias for show-display-manager.
+  - Source: `system_setup.sh`
+- **`show-display-manager-x11`** (alias → `sudo`): Show the default display manager binary from X11 config.
+  - Source: `system_setup.sh`
+- **`ls-display-manager-x11`** (alias → `show-display-manager-x11`): Alias for show-display-manager-x11.
+  - Source: `system_setup.sh`
+- **`show-current-de`** (alias → `echo`): Show the current desktop environment identifier.
+  - Source: `system_setup.sh`
+- **`ls-current-de`** (alias → `show-current-de`): Alias for show-current-de.
+  - Source: `system_setup.sh`
+- **`echo-current-de`** (alias → `show-current-de`): Alias for show-current-de.
+  - Source: `system_setup.sh`
+- **`show-av-xde`** (alias → `cat`): Show available version of Desktop Environment based on XFCE to be used in session load
+  - Source: `system_setup.sh`
+- **`ls-av-xde`** (alias → `show-av-xde`): Alias for show-av-xde.
+  - Source: `system_setup.sh`
+- **`echo-av-xde`** (alias → `show-av-xde`): Alias for show-av-xde.
+  - Source: `system_setup.sh`
+- **`show-available-xde`** (alias → `show-av-xde`): Alias for show-av-xde.
+  - Source: `system_setup.sh`
+- **`ls-available-xde`** (alias → `show-av-xde`): Alias for show-av-xde.
+  - Source: `system_setup.sh`
+- **`echo-available-xde`** (alias → `show-av-xde`): Alias for show-av-xde.
+  - Source: `system_setup.sh`
+- **`show-available-xdesktop`** (alias → `show-av-xde`): Alias for show-av-xde.
+  - Source: `system_setup.sh`
+- **`ls-available-xdesktop`** (alias → `show-av-xde`): Alias for show-av-xde.
+  - Source: `system_setup.sh`
+- **`echo-available-xdesktop`** (alias → `show-av-xde`): Alias for show-av-xde.
+  - Source: `system_setup.sh`
+- **`show-desktop-env`** (alias → `echo`): Show current desktop environment identifier (alias for show-current-de).
+  - Source: `system_setup.sh`
+- **`ls-desktop-env`** (alias → `show-desktop-env`): Alias for show-desktop-env.
+  - Source: `system_setup.sh`
+- **`echo-desktop-env`** (alias → `show-desktop-env`): Alias for show-desktop-env.
+  - Source: `system_setup.sh`
+- **`show_greeter_verbose`** (function): Detect the active display manager and show its greeter configuration. Supports LightDM, GDM3, SDDM, LXDM, XDM, and SLiM.
+  - Source: `system_setup.sh`
+- **`show-greeter-verbose`** (alias → `show_greeter_verbose`): Show verbose greeter/display-manager configuration.
+  - Source: `system_setup.sh`
+- **`ls-greeter-verbose`** (alias → `show-greeter-verbose`): Alias for show-greeter-verbose.
+  - Source: `system_setup.sh`
+- **`echo-greeter-verbose`** (alias → `show-greeter-verbose`): Alias for show-greeter-verbose.
+  - Source: `system_setup.sh`
+- **`show-greeter`** (alias → `show-greeter-verbose`): Show only the greeter line from display-manager config.
+  - Source: `system_setup.sh`
+- **`ls-greeter`** (alias → `show-greeter`): Alias for show-greeter.
+  - Source: `system_setup.sh`
+- **`echo-greeter`** (alias → `show-greeter`): Alias for show-greeter.
+  - Source: `system_setup.sh`
+- **`cat-kde-settings`** (alias → `sudo`): Show SDDM KDE settings from /etc/sddm.conf.d/kde_settings.conf.
+  - Source: `system_setup.sh`
+- **`ls-kde-settings`** (alias → `sudo`): Alias for cat-kde-settings.
+  - Source: `system_setup.sh`
+- **`show-kde-settings`** (alias → `sudo`): Alias for cat-kde-settings.
+  - Source: `system_setup.sh`
+- **`cat-gdm3-conf`** (alias → `sudo`): Show GDM3 main config from /etc/gdm3/gdm3.conf.
+  - Source: `system_setup.sh`
+- **`ls-gdm3-conf`** (alias → `sudo`): Alias for cat-gdm3-conf.
+  - Source: `system_setup.sh`
+- **`show-gdm3-conf`** (alias → `sudo`): Alias for cat-gdm3-conf.
+  - Source: `system_setup.sh`
+- **`cat-gdm3-daemon`** (alias → `sudo`): Show GDM3 daemon config from /etc/gdm3/daemon.conf.
+  - Source: `system_setup.sh`
+- **`ls-gdm3-daemon`** (alias → `sudo`): Alias for cat-gdm3-daemon.
+  - Source: `system_setup.sh`
+- **`show-gdm3-daemon`** (alias → `sudo`): Alias for cat-gdm3-daemon.
+  - Source: `system_setup.sh`
+- **`cat-gdm3-custom`** (alias → `sudo`): Show GDM3 custom config from /etc/gdm3/custom.conf.
+  - Source: `system_setup.sh`
+- **`ls-gdm3-custom`** (alias → `sudo`): Alias for cat-gdm3-custom.
+  - Source: `system_setup.sh`
+- **`show-gdm3-custom`** (alias → `sudo`): Alias for cat-gdm3-custom.
+  - Source: `system_setup.sh`
+- **`show-win-mng-m`** (alias → `sudo`): Install wmctrl and show window manager info via wmctrl -m.
+  - Source: `system_setup.sh`
+- **`ls-win-mng-m`** (alias → `show-win-mng-m`): Alias for show-win-mng-m.
+  - Source: `system_setup.sh`
+- **`echo-win-mng-m`** (alias → `show-win-mng-m`): Alias for show-win-mng-m.
+  - Source: `system_setup.sh`
+- **`show_win_mng`** (function): Detect which window manager is running by scanning process list against a comprehensive list of known X11/Wayland WMs.
+  - Source: `system_setup.sh`
+- **`show-win-mng`** (alias → `show_win_mng`): Detect which window manager is running by scanning process list against a comprehensive list of known X11/Wayland WMs.
+  - Source: `system_setup.sh`
+- **`show-window-manager`** (alias → `show_win_mng`): Detect which window manager is running by scanning process list against a comprehensive list of known X11/Wayland WMs.
+  - Source: `system_setup.sh`
+- **`ls-window-manager`** (alias → `show_win_mng`): Detect which window manager is running by scanning process list against a comprehensive list of known X11/Wayland WMs.
+  - Source: `system_setup.sh`
+- **`ls-win-mng`** (alias → `show-win-mng`): Alias for show-win-mng.
+  - Source: `system_setup.sh`
+- **`show-screen-compositor`** (alias → `ps`): Show running screen compositor processes (picom, compton, kwin, etc.).
+  - Source: `system_setup.sh`
+- **`ls-screen-compositor`** (alias → `show-screen-compositor`): Alias for show-screen-compositor.
+  - Source: `system_setup.sh`
+- **`show-screen-locker`** (alias → `ps`): Show running screen locker processes (xscreensaver, swaylock, i3lock, etc.).
+  - Source: `system_setup.sh`
+- **`ls-screen-locker`** (alias → `show-screen-locker`): Alias for show-screen-locker.
+  - Source: `system_setup.sh`
+- **`show-full-display-info`** (alias → `show-desktop`): Show comprehensive display environment info (session, DM, greeter, compositor, WM).
+  - Source: `system_setup.sh`
+- **`ls-full-display-info`** (alias → `show-full-display-info`): Alias for show-full-display-info.
+  - Source: `system_setup.sh`
+- **`echo-full-display-info`** (alias → `show-full-display-info`): Alias for show-full-display-info.
+  - Source: `system_setup.sh`
+- **`show-desktop`** (alias → `show-display-session;`): Show compact desktop environment summary.
+  - Source: `system_setup.sh`
+- **`ls-desktop`** (alias → `show-desktop`): Alias for show-desktop.
+  - Source: `system_setup.sh`
+- **`echo-desktop`** (alias → `show-desktop`): Alias for show-desktop.
+  - Source: `system_setup.sh`
+- **`show-installed-tks`** (alias → `dpkg`): List installed GUI toolkit runtime libraries (GTK and Qt).
+  - Source: `system_setup.sh`
+- **`ls-installed-tks`** (alias → `show-installed-tks`): Alias for show-installed-tks.
+  - Source: `system_setup.sh`
+- **`install-plasma-backends`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_setup.sh`
+- **`install_stremio_gnome`** (function): Install Stremio (optimized for GNOME/X11), handling Flatpak dependencies.
+  - Source: `system_setup.sh`
+- **`install-stremio-gnome`** (alias → `install_stremio_gnome`): Install Stremio (optimized for GNOME/X11), handling Flatpak dependencies.
+  - Source: `system_setup.sh`
+- **`install_protonvpn_deb_13`** (function): Function install_protonvpn_deb_13.
+  - Source: `system_setup.sh`
+
+
+### Network Procedures
+
+- **`net_probe`** (function): Probe a network host with ARP, ping, netcat, and route lookup.
+  - Source: `network_procedures.sh`
+  - Params: `$1 {string} ip   - Target IP address (required)`; `$2 {number} port - Target port for netcat (optional)`
+  - Flags: `-gateway  Probe the default gateway automatically`; `-local    Probe 192.168.1.1:22 (common local router + SSH)`
+- **`net-probe`** (alias → `net_probe`): Probe a network host with ARP, ping, netcat, and route lookup.
+  - Source: `network_procedures.sh`
+- **`ls_tcp_proc_config`** (function): Show /proc/net/tcp, tcp6, and IPv4 TCP config files.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-proc-config`** (alias → `ls_tcp_proc_config`): Show /proc/net/tcp, tcp6, and IPv4 TCP config files.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-config-proc`** (alias → `ls_tcp_proc_config`): Show /proc/net/tcp, tcp6, and IPv4 TCP config files.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-conf-proc`** (alias → `ls_tcp_proc_config`): Show /proc/net/tcp, tcp6, and IPv4 TCP config files.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-proc-conf`** (alias → `ls_tcp_proc_config`): Show /proc/net/tcp, tcp6, and IPv4 TCP config files.
+  - Source: `network_procedures.sh`
+- **`ls_net_sockstats`** (function): Show IPv4 and IPv6 socket statistics from /proc/net/sockstat.
+  - Source: `network_procedures.sh`
+- **`ls-net-sockstats`** (alias → `ls_net_sockstats`): Show IPv4 and IPv6 socket statistics from /proc/net/sockstat.
+  - Source: `network_procedures.sh`
+- **`ls-sockstats`** (alias → `ls_net_sockstats`): Show IPv4 and IPv6 socket statistics from /proc/net/sockstat.
+  - Source: `network_procedures.sh`
+- **`ls-sock-statistics`** (alias → `ls_net_sockstats`): Show IPv4 and IPv6 socket statistics from /proc/net/sockstat.
+  - Source: `network_procedures.sh`
+- **`ls_net_snmp`** (function): Show SNMP TCP statistics from /proc/net/snmp and snmp6.
+  - Source: `network_procedures.sh`
+- **`ls-net-snmp`** (alias → `ls_net_snmp`): Show SNMP TCP statistics from /proc/net/snmp and snmp6.
+  - Source: `network_procedures.sh`
+- **`ls-snmp`** (alias → `ls_net_snmp`): Show SNMP TCP statistics from /proc/net/snmp and snmp6.
+  - Source: `network_procedures.sh`
+- **`ls_tcp_iptables_rules`** (function): Show iptables rules filtered for TCP across filter, nat, and raw tables.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-iptables`** (alias → `ls_tcp_iptables_rules`): Show iptables rules filtered for TCP across filter, nat, and raw tables.
+  - Source: `network_procedures.sh`
+- **`ls-iptables-tcp`** (alias → `ls_tcp_iptables_rules`): Show iptables rules filtered for TCP across filter, nat, and raw tables.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-iptables-rules`** (alias → `ls_tcp_iptables_rules`): Show iptables rules filtered for TCP across filter, nat, and raw tables.
+  - Source: `network_procedures.sh`
+- **`ls_tcp_listening_ports`** (function): Show listening TCP ports via lsof.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-listening-ports`** (alias → `ls_tcp_listening_ports`): Show listening TCP ports via lsof.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-listen-ports`** (alias → `ls_tcp_listening_ports`): Show listening TCP ports via lsof.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-lp`** (alias → `ls_tcp_listening_ports`): Show listening TCP ports via lsof.
+  - Source: `network_procedures.sh`
+- **`ls_tcp_established_connections`** (function): Show established TCP connections via lsof.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-established-connections`** (alias → `ls_tcp_established_connections`): Show established TCP connections via lsof.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-established-conns`** (alias → `ls_tcp_established_connections`): Show established TCP connections via lsof.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-est-conns`** (alias → `ls_tcp_established_connections`): Show established TCP connections via lsof.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-est-connections`** (alias → `ls_tcp_established_connections`): Show established TCP connections via lsof.
+  - Source: `network_procedures.sh`
+- **`ls_tcp_active_connections`** (function): Show all active TCP connections, listening ports, and established connections.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-active-connections`** (alias → `ls_tcp_active_connections`): Show all active TCP connections, listening ports, and established connections.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-active-conns`** (alias → `ls_tcp_active_connections`): Show all active TCP connections, listening ports, and established connections.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-act-conns`** (alias → `ls_tcp_active_connections`): Show all active TCP connections, listening ports, and established connections.
+  - Source: `network_procedures.sh`
+- **`ls_active_tcp_net_sockets`** (function): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls-active-tcp-net-sockets`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls-active-tcp-sockets`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls-act-tcp-sockets`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls-act-tcp-net-sockets`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls-act-tcp-s`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls-act-tcp-ns`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls-act-tcp-net-s`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls_tcp_active_net_sockets`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls_tcp_active_sockets`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls_tcp_active_nsockets`** (alias → `ls_active_tcp_net_sockets`): Show TCP sockets via ss and netstat (with deprecation warning for netstat).
+  - Source: `network_procedures.sh`
+- **`ls_tcp_config`** (function): Full TCP diagnostic: proc files, sockstats, SNMP, iptables, sysctl, connections, and sockets.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-config`** (alias → `ls_tcp_config`): Full TCP diagnostic: proc files, sockstats, SNMP, iptables, sysctl, connections, and sockets.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-conf`** (alias → `ls_tcp_config`): Full TCP diagnostic: proc files, sockstats, SNMP, iptables, sysctl, connections, and sockets.
+  - Source: `network_procedures.sh`
+- **`ls-tcp-all`** (alias → `ls_tcp_config`): Full TCP diagnostic: proc files, sockstats, SNMP, iptables, sysctl, connections, and sockets.
+  - Source: `network_procedures.sh`
+- **`track_power_usage`** (function): Run powerstat (RAPL) and tee output to a timestamped log, with the Watts column moved from last to second position.
+  - Source: `network_procedures.sh`
+  - Params: `$1 {number} duration - Recording duration in seconds (default: 3600)`; `$2 {number} tick     - Sampling interval in seconds (default: 1)`
+- **`track-power-usage`** (alias → `track_power_usage`): Run powerstat (RAPL) and tee output to a timestamped log, with the Watts column moved from last to second position.
+  - Source: `network_procedures.sh`
+- **`cat_band_tee`** (function): Like cat_band but tee the bandwidth result to a timestamped log file in ~/.logs/cat-band/.
+  - Source: `network_procedures.sh`
+- **`cat-band-tee`** (alias → `cat_band_tee`): Like cat_band but tee the bandwidth result to a timestamped log file in ~/.logs/cat-band/.
+  - Source: `network_procedures.sh`
+- **`cat_band_tee_d`** (function): Like cat_band_tee but with an automatic duration (in seconds) instead of waiting for Enter. Samples rx_bytes at start, sleeps for the given duration, then samples again and tees the result.
+  - Source: `network_procedures.sh`
+  - Params: `$1 {number} seconds - Duration to track (default: 60)`
+- **`cat-band-tee-d`** (alias → `cat_band_tee_d`): Like cat_band_tee but with an automatic duration (in seconds) instead of waiting for Enter. Samples rx_bytes at start, sleeps for the given duration, then samples again and tees the result.
+  - Source: `network_procedures.sh`
+
+
+### User Management
+
+- **`add_sudo_user`** (function): Create a new user and add them to the sudo group.
+  - Source: `user_management.sh`
+  - Params: `$1 {string} username - New username (required)`
+- **`add-sudo-user`** (alias → `add_sudo_user`): Create a new user and add them to the sudo group.
+  - Source: `user_management.sh`
+- **`cat-sudoers`** (alias → `cat`): Display sudoers file content (requires permissions).
+  - Source: `user_management.sh`
+- **`ls-sudoers`** (alias → `cat`): Alias for cat-sudoers.
+  - Source: `user_management.sh`
+- **`show-sudoers`** (alias → `cat`): Alias for cat-sudoers.
+  - Source: `user_management.sh`
+- **`scan-sudo-health`** (alias → `sudo`): Scan sudo health: validates timestamp, shows TTY, sudo sessions, environment vars, and sudoers content.
+  - Source: `user_management.sh`
+- **`cat-sudoers-timestamp`** (alias → `sudo`): Show sudoers timestamp_timeout setting.
+  - Source: `user_management.sh`
+- **`ls-sudoers-timestamp`** (alias → `sudo`): Alias for cat-sudoers-timestamp.
+  - Source: `user_management.sh`
+- **`show-sudoers-timestamp`** (alias → `sudo`): Alias for cat-sudoers-timestamp.
+  - Source: `user_management.sh`
+
+
+### Desktop Environment
+
+- **`remove_cinnamon`** (function): Purge Cinnamon DE and its config files, reconfigure GDM3.
+  - Source: `desktop_environment.sh`
+  - Flags: `-keep-config  Keep ~/.cinnamon and ~/.config/cinnamon-session`
+- **`remove-cinnamon`** (alias → `remove_cinnamon`): Purge Cinnamon DE and its config files, reconfigure GDM3.
+  - Source: `desktop_environment.sh`
+- **`set_nautilus_default`** (function): Set Nautilus as default file manager (replaces Thunar/other).
+  - Source: `desktop_environment.sh`
+  - Flags: `-help  Show usage`
+- **`set-nautilus-default`** (alias → `set_nautilus_default`): Set Nautilus as default file manager (replaces Thunar/other).
+  - Source: `desktop_environment.sh`
+- **`hide_thunar_mime`** (function): Hide Thunar from MIME associations (user-level override).
+  - Source: `desktop_environment.sh`
+  - Flags: `-help  Show usage`
+- **`hide-thunar-mime`** (alias → `hide_thunar_mime`): Hide Thunar from MIME associations (user-level override).
+  - Source: `desktop_environment.sh`
+- **`ps-compositors`** (alias → `ps`): List running compositor/window manager processes.
+  - Source: `desktop_environment.sh`
+- **`get-mutter-features`** (alias → `gsettings`): Show Mutter experimental features.
+  - Source: `desktop_environment.sh`
+- **`reset_mutter_features`** (function): Reset Mutter experimental features to empty (with confirmation).
+  - Source: `desktop_environment.sh`
+- **`reset-mutter-features`** (alias → `reset_mutter_features`): Reset Mutter experimental features to empty (with confirmation).
+  - Source: `desktop_environment.sh`
+- **`xwin-root-info`** (alias → `xwininfo`): Show root window geometry (width, height, depth).
+  - Source: `desktop_environment.sh`
+- **`ls-monitors`** (alias → `xrandr`): List connected monitors via xrandr.
+  - Source: `desktop_environment.sh`
+- **`detect_and_audit_monitors`** (function): Detect connected monitors via EDID and audit panel technology (IPS/VA/TN/OLED) by hardware ID.
+  - Source: `desktop_environment.sh`
+- **`audit-monitors`** (alias → `detect_and_audit_monitors`): Alias for detect_and_audit_monitors.
+  - Source: `desktop_environment.sh`
+- **`ls-display-techs`** (alias → `detect_and_audit_monitors`): Alias for detect_and_audit_monitors.
+  - Source: `desktop_environment.sh`
+- **`check_de_programs`** (function): Check availability of DE-related programs (KDE/GNOME/XFCE).
+  - Source: `desktop_environment.sh`
+- **`check-de-programs`** (alias → `check_de_programs`): Check availability of DE-related programs (KDE/GNOME/XFCE).
+  - Source: `desktop_environment.sh`
+- **`trust_desktop_entry`** (function): Mark a .desktop file as trusted for GNOME/DI NG.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {string} filename or path - Desktop entry file to trust`
+- **`trust-desktop`** (alias → `trust_desktop_entry`): Mark desktop entry as trusted.
+  - Source: `desktop_environment.sh`
+- **`install_kde_apt_packages`** (function): Install essential KDE packages for GTK integration and productivity.
+  - Source: `desktop_environment.sh`
+- **`install-kde-pkgs`** (alias → `install_kde_apt_packages`): Install essential KDE packages for GTK integration and productivity.
+  - Source: `desktop_environment.sh`
+- **`ensure_templates_dir`** (function): Ensure ~/Templates directory and "Empty File" template exist.
+  - Source: `desktop_environment.sh`
+- **`ensure-templates`** (alias → `ensure_templates_dir`): Ensure ~/Templates directory and "Empty File" template exist.
+  - Source: `desktop_environment.sh`
+- **`install_nautilus_extensions`** (function): Install Nautilus extensions and ensure Templates directory.
+  - Source: `desktop_environment.sh`
+- **`install-nautilus-ext`** (alias → `install_nautilus_extensions`): Install Nautilus extensions and ensure Templates directory.
+  - Source: `desktop_environment.sh`
+- **`create_nautilus_newfile_script`** (function): Create a Nautilus script for creating new files via Zenity dialog.
+  - Source: `desktop_environment.sh`
+- **`create-nautilus-newfile`** (alias → `create_nautilus_newfile_script`): Create a Nautilus script for creating new files via Zenity dialog.
+  - Source: `desktop_environment.sh`
+- **`install_debian_trixie_devtools`** (function): Install Docker and comprehensive dev tools on Debian 13 Trixie only.
+  - Source: `desktop_environment.sh`
+- **`install-trixie-devtools`** (alias → `install_debian_trixie_devtools`): Install Docker and comprehensive dev tools on Debian 13 Trixie only.
+  - Source: `desktop_environment.sh`
+- **`show_journal_screens`** (function): Show recent journal entries related to screen recording, PipeWire, and desktop portals.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {int} tail_lines - Number of tail lines to show per section (default: 50)`
+- **`show-journal-screens`** (alias → `show_journal_screens`): Show recent journal entries related to screen recording, PipeWire, and desktop portals.
+  - Source: `desktop_environment.sh`
+- **`ls-journal-screens`** (alias → `show-journal-screens`): Alias for show-journal-screens.
+  - Source: `desktop_environment.sh`
+- **`echo-journal-screens`** (alias → `show-journal-screens`): Alias for show-journal-screens.
+  - Source: `desktop_environment.sh`
+- **`_require_gnome_desktop`** (function): Function _require_gnome_desktop.
+  - Source: `desktop_environment.sh`
+- **`def_gnome_xmime`** (function): Set the default GNOME application for a MIME type via xdg-mime default.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {string} app - GNOME application name (e.g., Nautilus, TextEditor). Must exist as org.gnome.<app>.desktop`; `$2 {string} mimetype - MIME type to associate (e.g., inode/directory, text/plain)`
+- **`def-org-gnome-xmime`** (alias → `def_gnome_xmime`): Set the default GNOME application for a MIME type via xdg-mime default.
+  - Source: `desktop_environment.sh`
+- **`get_gnome_xmime`** (function): Query the default application for a MIME type via xdg-mime query default.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {string} mimetype - MIME type to query (e.g., inode/directory, text/plain, application/pdf)`
+- **`get-org-gnome-xmime`** (alias → `get_gnome_xmime`): Query the default application for a MIME type via xdg-mime query default.
+  - Source: `desktop_environment.sh`
+- **`set_gnome_xmime`** (function): Set the default GNOME application for a MIME type (alias for def-org-gnome-xmime).
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {string} app - GNOME application name (e.g., Nautilus, TextEditor)`; `$2 {string} mimetype - MIME type to associate (e.g., inode/directory, text/plain)`
+- **`set-org-gnome-xmime`** (alias → `set_gnome_xmime`): Set the default GNOME application for a MIME type (alias for def-org-gnome-xmime).
+  - Source: `desktop_environment.sh`
+- **`def_gnome_gset`** (function): Reset a GNOME gsettings key to its default value via gsettings reset.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)`; `$2 {string} key - Key name to reset (e.g., gtk-theme, color-scheme)`
+- **`def-org-gnome-gset`** (alias → `def_gnome_gset`): Reset a GNOME gsettings key to its default value via gsettings reset.
+  - Source: `desktop_environment.sh`
+- **`get_gnome_gset`** (function): Get a GNOME gsettings value via gsettings get.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)`; `$2 {string} key - Key name to get (e.g., gtk-theme, color-scheme)`
+- **`get-org-gnome-gset`** (alias → `get_gnome_gset`): Get a GNOME gsettings value via gsettings get.
+  - Source: `desktop_environment.sh`
+- **`set_gnome_gset`** (function): Set a GNOME gsettings value via gsettings set, with schema/key/value validation.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {string} schema_suffix - Schema suffix after org.gnome. (e.g., desktop.interface, shell)`; `$2 {string} key - Key name to set (e.g., gtk-theme, color-scheme)`; `$3 {string} value - Value to set (must match the key's type/range)`
+- **`set-org-gnome-gset`** (alias → `set_gnome_gset`): Set a GNOME gsettings value via gsettings set, with schema/key/value validation.
+  - Source: `desktop_environment.sh`
+- **`apply_gtk_dark_theme`** (function): Apply dark theme for GTK4/GTK3 (Nautilus / Mutter-managed windows). Ensures org.gnome.desktop.interface color-scheme=prefer-dark via gsettings and gtk-application-prefer-dark-theme=true in both gtk-4.0 and gtk-3.0 settings.ini. KDE's kde-gtk-config can silently reset these; run this function to restore them.
+  - Source: `desktop_environment.sh`
+  - Flags: `-check   Check current state without applying any changes`; `-help    Show usage`
+- **`apply-gtk-dark`** (alias → `apply_gtk_dark_theme`): Apply dark theme for GTK4/GTK3 (Nautilus / Mutter-managed windows). Ensures org.gnome.desktop.interface color-scheme=prefer-dark via gsettings and gtk-application-prefer-dark-theme=true in both gtk-4.0 and gtk-3.0 settings.ini. KDE's kde-gtk-config can silently reset these; run this function to restore them.
+  - Source: `desktop_environment.sh`
+- **`fix-gtk-dark`** (alias → `apply_gtk_dark_theme`): Apply dark theme for GTK4/GTK3 (Nautilus / Mutter-managed windows). Ensures org.gnome.desktop.interface color-scheme=prefer-dark via gsettings and gtk-application-prefer-dark-theme=true in both gtk-4.0 and gtk-3.0 settings.ini. KDE's kde-gtk-config can silently reset these; run this function to restore them.
+  - Source: `desktop_environment.sh`
+- **`check-gtk-dark`** (alias → `apply_gtk_dark_theme`): Apply dark theme for GTK4/GTK3 (Nautilus / Mutter-managed windows). Ensures org.gnome.desktop.interface color-scheme=prefer-dark via gsettings and gtk-application-prefer-dark-theme=true in both gtk-4.0 and gtk-3.0 settings.ini. KDE's kde-gtk-config can silently reset these; run this function to restore them.
+  - Source: `desktop_environment.sh`
+- **`install_portal_dark_autostart`** (function): Installs (or force-overwrites) the GNOME autostart entry that restarts xdg-desktop-portal-gnome and xdg-desktop-portal-gtk 6 seconds after login, fixing the libadwaita / Nautilus light-mode race condition.
+  - Source: `desktop_environment.sh`
+  - Flags: `-check   Print the current file content (if any) without writing`; `-remove  Delete the autostart entry`; `-help    Show usage`
+- **`install-portal-dark-autostart`** (alias → `install_portal_dark_autostart`): Installs (or force-overwrites) the GNOME autostart entry that restarts xdg-desktop-portal-gnome and xdg-desktop-portal-gtk 6 seconds after login, fixing the libadwaita / Nautilus light-mode race condition.
+  - Source: `desktop_environment.sh`
+- **`check-portal-dark-autostart`** (alias → `install_portal_dark_autostart`): Installs (or force-overwrites) the GNOME autostart entry that restarts xdg-desktop-portal-gnome and xdg-desktop-portal-gtk 6 seconds after login, fixing the libadwaita / Nautilus light-mode race condition.
+  - Source: `desktop_environment.sh`
+- **`remove-portal-dark-autostart`** (alias → `install_portal_dark_autostart`): Installs (or force-overwrites) the GNOME autostart entry that restarts xdg-desktop-portal-gnome and xdg-desktop-portal-gtk 6 seconds after login, fixing the libadwaita / Nautilus light-mode race condition.
+  - Source: `desktop_environment.sh`
+- **`shutdown_now`** (function): Kill a list of common desktop applications and power off immediately.
+  - Source: `desktop_environment.sh`
+- **`shutdown-now`** (alias → `shutdown_now`): Kill a list of common desktop applications and power off immediately.
+  - Source: `desktop_environment.sh`
+- **`shutdown_now`** (alias → `shutdown_now`): Kill a list of common desktop applications and power off immediately.
+  - Source: `desktop_environment.sh`
+- **`schedule_kill_sequence`** (function): Schedule a kill sequence for common desktop applications at a given time using at(1).
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {string} start_time - Time in HH:MM format.`
+- **`schedule-kill-sequence`** (alias → `schedule_kill_sequence`): Schedule a kill sequence for common desktop applications at a given time using at(1).
+  - Source: `desktop_environment.sh`
+- **`wait_sync_and_terminate`** (function): Waits for any running rsync or find processes to complete, then terminates a list of common applications and finally powers off the system after a delay.
+  - Source: `desktop_environment.sh`
+- **`wait-sync-and-terminate`** (alias → `wait_sync_and_terminate`): Waits for any running rsync or find processes to complete, then terminates a list of common applications and finally powers off the system after a delay.
+  - Source: `desktop_environment.sh`
+- **`set-ps-critical`** (alias → `set_ps_critical`): Alias for set_ps_critical.
+  - Source: `desktop_environment.sh`
+- **`set-ps-very-important`** (alias → `set_ps_very_important`): Alias for set_ps_very_important.
+  - Source: `desktop_environment.sh`
+- **`set-ps-important`** (alias → `set_ps_important`): Alias for set_ps_important.
+  - Source: `desktop_environment.sh`
+- **`set-ps-normal`** (alias → `set_ps_normal`): Alias for set_ps_normal.
+  - Source: `desktop_environment.sh`
+- **`set-ps-low`** (alias → `set_ps_low`): Alias for set_ps_low.
+  - Source: `desktop_environment.sh`
+- **`set-ps-very-low`** (alias → `set_ps_very_low`): Alias for set_ps_very_low.
+  - Source: `desktop_environment.sh`
+- **`set-ps-irrelevant`** (alias → `set_ps_irrelevant`): Alias for set_ps_irrelevant.
+  - Source: `desktop_environment.sh`
+- **`dbus-asses-desktop-portal`** (alias → `dbus-send`): Alias for dbus-send.
+  - Source: `desktop_environment.sh`
+- **`dbus-asses-xdg-desktop-introspect-portal`** (alias → `dbus-send`): Alias for dbus-send.
+  - Source: `desktop_environment.sh`
+- **`dbus-asses-xdg-desktop-portal`** (alias → `dbus-send`): Alias for dbus-send.
+  - Source: `desktop_environment.sh`
+- **`dbus-asses-portal`** (alias → `dbus-send`): Alias for dbus-send.
+  - Source: `desktop_environment.sh`
+- **`busctl-list-inhibitors`** (alias → `busctl`): Alias for busctl.
+  - Source: `desktop_environment.sh`
+- **`gdbus-list-inhibitors`** (alias → `gdbus`): Alias for gdbus.
+  - Source: `desktop_environment.sh`
+- **`gdbus_get_inhibitors`** (function): List GNOME session inhibitors, parsing object paths to show inhibitor numbers.
+  - Source: `desktop_environment.sh`
+- **`gdbus-get-inhibitors`** (alias → `gdbus_get_inhibitors`): List GNOME session inhibitors, parsing object paths to show inhibitor numbers.
+  - Source: `desktop_environment.sh`
+- **`gdbus_get_inhibitor_app_id`** (function): Show app ID for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {number} inhibitor number (required)`
+- **`gdbus-get-inhibitor-app-id`** (alias → `gdbus_get_inhibitor_app_id`): Show app ID for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+- **`gdbus-get-app-id`** (alias → `gdbus_get_inhibitor_app_id`): Show app ID for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+- **`gdbus_get_inhibitor_reason`** (function): Show reason for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {number} inhibitor number (required)`
+- **`gdbus-get-inhibitor-reason`** (alias → `gdbus_get_inhibitor_reason`): Show reason for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+- **`gdbus-get-reason`** (alias → `gdbus_get_inhibitor_reason`): Show reason for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+- **`gdbus_get_inhibitor_flags`** (function): Show flags for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+  - Params: `$1 {number} inhibitor number (required)`
+- **`gdbus-get-inhibitor-flags`** (alias → `gdbus_get_inhibitor_flags`): Show flags for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+- **`gdbus-get-flags`** (alias → `gdbus_get_inhibitor_flags`): Show flags for a given GNOME session inhibitor number.
+  - Source: `desktop_environment.sh`
+
+
+### System Info Aliases
+
+#### Kernel and OS
+
+- **`cat-grub-boot`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-grub-boot`** (alias → `sudo`): Alias for cat-grub-boot.
+  - Source: `system_info_aliases.sh`
+- **`show-grub-boot`** (alias → `sudo`): Alias for cat-grub-boot.
+  - Source: `system_info_aliases.sh`
+- **`cat-def-grub`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`cat-default-grub`** (alias → `cat-def-grub`): Alias for cat-def-grub.
+  - Source: `system_info_aliases.sh`
+- **`cat-grub-etc`** (alias → `cat-def-grub`): Alias for cat-def-grub.
+  - Source: `system_info_aliases.sh`
+- **`ls-grub-etc`** (alias → `cat-def-grub`): Alias for cat-grub-etc.
+  - Source: `system_info_aliases.sh`
+- **`show-grub-etc`** (alias → `cat-def-grub`): Alias for cat-grub-etc.
+  - Source: `system_info_aliases.sh`
+- **`cat-k-os`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-k-os`** (alias → `sudo`): Alias for cat-k-os.
+  - Source: `system_info_aliases.sh`
+- **`show-k-os`** (alias → `sudo`): Alias for cat-k-os.
+  - Source: `system_info_aliases.sh`
+- **`cat-etc-os`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-etc-os`** (alias → `sudo`): Alias for cat-etc-os.
+  - Source: `system_info_aliases.sh`
+- **`show-etc-os`** (alias → `sudo`): Alias for cat-etc-os.
+  - Source: `system_info_aliases.sh`
+- **`cat-os-v`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-os-v`** (alias → `sudo`): Alias for cat-os-v.
+  - Source: `system_info_aliases.sh`
+- **`show-os-v`** (alias → `sudo`): Alias for cat-os-v.
+  - Source: `system_info_aliases.sh`
+- **`cat-linux-v`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-linux-v`** (alias → `sudo`): Alias for cat-linux-v.
+  - Source: `system_info_aliases.sh`
+- **`show-linux-v`** (alias → `sudo`): Alias for cat-linux-v.
+  - Source: `system_info_aliases.sh`
+- **`cat-distro-n`** (alias → `(.`): Show distro ID (debian, ubuntu, fedora, etc.).
+  - Source: `system_info_aliases.sh`
+- **`ls-distro-n`** (alias → `(.`): Alias for cat-distro-n.
+  - Source: `system_info_aliases.sh`
+- **`show-distro-n`** (alias → `(.`): Alias for cat-distro-n.
+  - Source: `system_info_aliases.sh`
+- **`cat-distro-v`** (alias → `(.`): Show distro version number.
+  - Source: `system_info_aliases.sh`
+- **`ls-distro-v`** (alias → `(.`): Alias for cat-distro-v.
+  - Source: `system_info_aliases.sh`
+- **`show-distro-v`** (alias → `(.`): Alias for cat-distro-v.
+  - Source: `system_info_aliases.sh`
+- **`cat-distro`** (alias → `(.`): Show full distro name with version.
+  - Source: `system_info_aliases.sh`
+- **`ls-distro`** (alias → `(.`): Alias for cat-distro.
+  - Source: `system_info_aliases.sh`
+- **`show-distro`** (alias → `(.`): Alias for cat-distro.
+  - Source: `system_info_aliases.sh`
+- **`cat-k-host`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-k-host`** (alias → `sudo`): Alias for cat-k-host.
+  - Source: `system_info_aliases.sh`
+- **`show-k-host`** (alias → `sudo`): Alias for cat-k-host.
+  - Source: `system_info_aliases.sh`
+- **`cat-cmdline`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-cmdline`** (alias → `sudo`): Alias for cat-cmdline.
+  - Source: `system_info_aliases.sh`
+- **`show-cmdline`** (alias → `sudo`): Alias for cat-cmdline.
+  - Source: `system_info_aliases.sh`
+- **`cat-mimeapps`** (alias → `cat`): Show mimeapps list in ~/.config
+  - Source: `system_info_aliases.sh`
+- **`ls-mimeapps`** (alias → `cat`): Alias for cat-mimeapps.
+  - Source: `system_info_aliases.sh`
+- **`show-mimeapps`** (alias → `cat`): Alias for cat-mimeapps.
+  - Source: `system_info_aliases.sh`
+- **`cat-share-mimeapps`** (alias → `cat`): Show mimeapps list in ~/.local/share/applications
+  - Source: `system_info_aliases.sh`
+- **`ls-share-mimeapps`** (alias → `cat`): Alias for cat-share-mimeapps.
+  - Source: `system_info_aliases.sh`
+- **`show-share-mimeapps`** (alias → `cat`): Alias for cat-share-mimeapps.
+  - Source: `system_info_aliases.sh`
+- **`cat-all-mimeapps`** (alias → `cat`): Show both mimeapps lists (config and local share)
+  - Source: `system_info_aliases.sh`
+- **`ls-all-mimeapps`** (alias → `cat`): Alias for cat-all-mimeapps.
+  - Source: `system_info_aliases.sh`
+- **`show-all-mimeapps`** (alias → `cat`): Alias for cat-all-mimeapps.
+  - Source: `system_info_aliases.sh`
+- **`cat-share-mimecache`** (alias → `sudo`): Show mimeinfo.cache
+  - Source: `system_info_aliases.sh`
+- **`ls-share-mimecache`** (alias → `sudo`): Alias for cat-share-mimecache.
+  - Source: `system_info_aliases.sh`
+- **`show-share-mimecache`** (alias → `sudo`): Alias for cat-share-mimecache.
+  - Source: `system_info_aliases.sh`
+- **`show-gnome-global-shortcuts`** (alias → `gsettings`): Show GNOME global keyboard shortcuts (keybindings).
+  - Source: `system_info_aliases.sh`
+- **`list-gnome-global-shortcuts`** (alias → `gsettings`): Alias for show-gnome-global-shortcuts.
+  - Source: `system_info_aliases.sh`
+- **`ls-gnome-global-shortcuts`** (alias → `gsettings`): Alias for show-gnome-global-shortcuts.
+  - Source: `system_info_aliases.sh`
+- **`show-kde-global-shortcuts`** (alias → `cat`): Show KDE global keyboard shortcuts from kglobalshortcutsrc.
+  - Source: `system_info_aliases.sh`
+- **`list-kde-global-shortcuts`** (alias → `cat`): Alias for show-kde-global-shortcuts.
+  - Source: `system_info_aliases.sh`
+- **`ls-kde-global-shortcuts`** (alias → `cat`): Alias for show-kde-global-shortcuts.
+  - Source: `system_info_aliases.sh`
+- **`show-global-shortcuts`** (alias → `show-gnome-global-shortcuts;`): Show all global keyboard shortcuts (GNOME + KDE).
+  - Source: `system_info_aliases.sh`
+- **`list-global-shortcuts`** (alias → `list-gnome-global-shortcuts;`): Alias for show-global-shortcuts.
+  - Source: `system_info_aliases.sh`
+- **`ls-global-shortcuts`** (alias → `show-gnome-global-shortcuts;`): Alias for show-global-shortcuts.
+  - Source: `system_info_aliases.sh`
+#### VM and Memory
+
+- **`cat-vm-swap`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-vm-swap`** (alias → `sudo`): Alias for cat-vm-swap.
+  - Source: `system_info_aliases.sh`
+- **`show-vm-swap`** (alias → `sudo`): Alias for cat-vm-swap.
+  - Source: `system_info_aliases.sh`
+- **`cat-vm-over-mem`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-vm-over-mem`** (alias → `sudo`): Alias for cat-vm-over-mem.
+  - Source: `system_info_aliases.sh`
+- **`show-vm-over-mem`** (alias → `sudo`): Alias for cat-vm-over-mem.
+  - Source: `system_info_aliases.sh`
+- **`cat-vm-over-ratio`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-vm-over-ratio`** (alias → `sudo`): Alias for cat-vm-over-ratio.
+  - Source: `system_info_aliases.sh`
+- **`show-vm-over-ratio`** (alias → `sudo`): Alias for cat-vm-over-ratio.
+  - Source: `system_info_aliases.sh`
+- **`cat-cpu-inf`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-cpu-inf`** (alias → `sudo`): Alias for cat-cpu-inf.
+  - Source: `system_info_aliases.sh`
+- **`show-cpu-inf`** (alias → `sudo`): Alias for cat-cpu-inf.
+  - Source: `system_info_aliases.sh`
+- **`cat-mem-inf`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-mem-inf`** (alias → `sudo`): Alias for cat-mem-inf.
+  - Source: `system_info_aliases.sh`
+- **`show-mem-inf`** (alias → `sudo`): Alias for cat-mem-inf.
+  - Source: `system_info_aliases.sh`
+- **`cat-oom-conf`** (alias → `sudo`): Show systemd OOM daemon configuration from /etc/systemd/oomd.conf.
+  - Source: `system_info_aliases.sh`
+- **`ls-oom-conf`** (alias → `sudo`): Alias for cat-oom-conf.
+  - Source: `system_info_aliases.sh`
+- **`show-oom-conf`** (alias → `sudo`): Alias for cat-oom-conf.
+  - Source: `system_info_aliases.sh`
+- **`show-oom-kill-alloc`** (alias → `sudo`): Show the vm.oom_kill_allocating_task sysctl value (0=kill random, 1=kill allocating task).
+  - Source: `system_info_aliases.sh`
+- **`ls-oom-kill-alloc`** (alias → `show-oom-kill-alloc`): Alias for show-oom-kill-alloc.
+  - Source: `system_info_aliases.sh`
+- **`follow_early_oom_rec`** (function): Follow earlyoom daemon output with verbose reporting at a set interval.
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {int} interval - Reporting interval in seconds (default: 2)`
+- **`follow-early-oom-rec`** (alias → `follow_early_oom_rec`): Follow earlyoom daemon output with verbose reporting at a set interval.
+  - Source: `system_info_aliases.sh`
+- **`watch-early-oom-rec`** (alias → `follow_early_oom_rec`): Follow earlyoom daemon output with verbose reporting at a set interval.
+  - Source: `system_info_aliases.sh`
+- **`follow-early-oom`** (alias → `follow_early_oom_rec`): Follow earlyoom daemon output with verbose reporting at a set interval.
+  - Source: `system_info_aliases.sh`
+- **`watch-early-oom`** (alias → `follow_early_oom_rec`): Follow earlyoom daemon output with verbose reporting at a set interval.
+  - Source: `system_info_aliases.sh`
+- **`cat-def-earlyoom`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-def-earlyoom`** (alias → `cat-def-earlyoom`): Alias for cat-def-earlyoom.
+  - Source: `system_info_aliases.sh`
+- **`cat-default-earlyoom`** (alias → `cat-def-earlyoom`): Alias for cat-def-earlyoom.
+  - Source: `system_info_aliases.sh`
+- **`ls-default-earlyoom`** (alias → `cat-def-earlyoom`): Alias for cat-def-earlyoom.
+  - Source: `system_info_aliases.sh`
+- **`watch_mem_hogs`** (function): Watch memory-hungry processes sorted by RSS in real time.
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {float} interval - Refresh interval in seconds (default: 0.25)`
+- **`watch-mem-hogs`** (alias → `watch_mem_hogs`): Watch memory-hungry processes sorted by RSS in real time.
+  - Source: `system_info_aliases.sh`
+- **`watch_cpu_hogs`** (function): Watch CPU-hungry processes sorted by CPU usage in real time.
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {float} interval - Refresh interval in seconds (default: 0.25)`
+- **`watch-cpu-hogs`** (alias → `watch_cpu_hogs`): Watch CPU-hungry processes sorted by CPU usage in real time.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_vm_overcommit`** (function): Function ls_sys_vm_overcommit.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-overcommit`** (alias → `ls_sys_vm_overcommit`): Function ls_sys_vm_overcommit.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-over-mem`** (alias → `ls_sys_vm_overcommit`): Function ls_sys_vm_overcommit.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_vm_oom_kill_alloc`** (function): Function ls_sys_vm_oom_kill_alloc.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-oom-kill-alloc`** (alias → `ls_sys_vm_oom_kill_alloc`): Function ls_sys_vm_oom_kill_alloc.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-oom-kill-allocating-task`** (alias → `ls_sys_vm_oom_kill_alloc`): Function ls_sys_vm_oom_kill_alloc.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_vm_swappiness`** (function): Function ls_sys_vm_swappiness.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-swappiness`** (alias → `ls_sys_vm_swappiness`): Function ls_sys_vm_swappiness.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-swap`** (alias → `ls_sys_vm_swappiness`): Function ls_sys_vm_swappiness.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_vm_dirty_ratios`** (function): Function ls_sys_vm_dirty_ratios.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-dirty-ratios`** (alias → `ls_sys_vm_dirty_ratios`): Function ls_sys_vm_dirty_ratios.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-dirtyness`** (alias → `ls_sys_vm_dirty_ratios`): Function ls_sys_vm_dirty_ratios.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_kernel_hungs`** (function): Function ls_sys_kernel_hungs.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-kernel-hungs`** (alias → `ls_sys_kernel_hungs`): Function ls_sys_kernel_hungs.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-k-hungs`** (alias → `ls_sys_kernel_hungs`): Function ls_sys_kernel_hungs.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-kernel-hung-tasks`** (alias → `ls_sys_kernel_hungs`): Function ls_sys_kernel_hungs.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-k-hung-tasks`** (alias → `ls_sys_kernel_hungs`): Function ls_sys_kernel_hungs.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_kernel_schedules`** (function): Function ls_sys_kernel_schedules.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-kernel-schedules`** (alias → `ls_sys_kernel_schedules`): Function ls_sys_kernel_schedules.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-k-schedules`** (alias → `ls_sys_kernel_schedules`): Function ls_sys_kernel_schedules.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_kernel_info`** (function): Aggregated view of kernel hung-task and scheduler parameters.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-kernel-info`** (alias → `ls_sys_kernel_info`): Aggregated view of kernel hung-task and scheduler parameters.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-k-info`** (alias → `ls_sys_kernel_info`): Aggregated view of kernel hung-task and scheduler parameters.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_vm_info`** (function): Aggregated view of VM overcommit, OOM, swappiness, and dirty-ratio parameters.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-vm-info`** (alias → `ls_sys_vm_info`): Aggregated view of VM overcommit, OOM, swappiness, and dirty-ratio parameters.
+  - Source: `system_info_aliases.sh`
+- **`ls_sys_info`** (function): Show all kernel and VM sysctl info (calls ls_sys_kernel_info + ls_sys_vm_info).
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-info`** (alias → `ls_sys_info`): Show all kernel and VM sysctl info (calls ls_sys_kernel_info + ls_sys_vm_info).
+  - Source: `system_info_aliases.sh`
+- **`find_zombies`** (function): List zombie processes (state Z) from ps aux output.
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {int} head - Max number of results to display (default: 20)`
+- **`find-zombies`** (alias → `find_zombies`): List zombie processes (state Z) from ps aux output.
+  - Source: `system_info_aliases.sh`
+- **`cat_pid_oom_kill_score`** (function): Show the OOM kill score for a process (higher = more likely to be killed).
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {int} pid - Process ID (required)`
+- **`cat-pid-oom-kill-score`** (alias → `cat_pid_oom_kill_score`): Show the OOM kill score for a process (higher = more likely to be killed).
+  - Source: `system_info_aliases.sh`
+- **`follow_pid_oom_kill_score`** (function): Function follow_pid_oom_kill_score.
+  - Source: `system_info_aliases.sh`
+- **`follow-pid-oom-kill-score`** (alias → `follow_pid_oom_kill_score`): Function follow_pid_oom_kill_score.
+  - Source: `system_info_aliases.sh`
+- **`watch-pid-oom-kill-score`** (alias → `follow_pid_oom_kill_score`): Function follow_pid_oom_kill_score.
+  - Source: `system_info_aliases.sh`
+- **`cat_pid_oom_adj_score`** (function): Show the OOM adjustment score for a process (-1000 to 1000; lower = less likely to be killed).
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {int} pid - Process ID (required)`
+- **`cat-pid-oom-adj-score`** (alias → `cat_pid_oom_adj_score`): Show the OOM adjustment score for a process (-1000 to 1000; lower = less likely to be killed).
+  - Source: `system_info_aliases.sh`
+- **`cat_pid_oom_scores`** (function): Show both OOM kill score and adjustment score for a process.
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {int} pid - Process ID (required)`
+- **`cat-pid-oom-scores`** (alias → `cat_pid_oom_scores`): Show both OOM kill score and adjustment score for a process.
+  - Source: `system_info_aliases.sh`
+- **`journal-earlyoom`** (alias → `sudo`): Follow the earlyoom systemd journal (sudo journalctl -u earlyoom).
+  - Source: `system_info_aliases.sh`
+- **`journal-sysoomd`** (alias → `sudo`): Follow the systemd-oomd journal (sudo journalctl -u systemd-oomd).
+  - Source: `system_info_aliases.sh`
+#### Storage and Partitions
+
+- **`cat-partitions`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-partitions`** (alias → `sudo`): Alias for cat-partitions.
+  - Source: `system_info_aliases.sh`
+- **`show-partitions`** (alias → `sudo`): Alias for cat-partitions.
+  - Source: `system_info_aliases.sh`
+- **`cat-fstab`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-fstab`** (alias → `sudo`): Alias for cat-fstab.
+  - Source: `system_info_aliases.sh`
+- **`show-fstab`** (alias → `sudo`): Alias for cat-fstab.
+  - Source: `system_info_aliases.sh`
+#### Drivers and Modules
+
+- **`cat-nvidia-v`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-nvidia-v`** (alias → `sudo`): Alias for cat-nvidia-v.
+  - Source: `system_info_aliases.sh`
+- **`show-nvidia-v`** (alias → `sudo`): Alias for cat-nvidia-v.
+  - Source: `system_info_aliases.sh`
+- **`stringify-snapd`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-services`** (alias → `sudo`): Alias for cat-sys-services.
+  - Source: `system_info_aliases.sh`
+- **`cat-systemd-conf`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`cat-systemd-config`** (alias → `cat-systemd-conf`): Alias for cat-systemd-conf.
+  - Source: `system_info_aliases.sh`
+- **`ls-systemd-conf`** (alias → `cat-systemd-conf`): Alias for cat-systemd-conf.
+  - Source: `system_info_aliases.sh`
+- **`ls-systemd-config`** (alias → `cat-systemd-conf`): Alias for cat-systemd-conf.
+  - Source: `system_info_aliases.sh`
+- **`show-systemd-conf`** (alias → `cat-systemd-conf`): Alias for cat-systemd-conf.
+  - Source: `system_info_aliases.sh`
+- **`show-systemd-config`** (alias → `cat-systemd-conf`): Alias for cat-systemd-conf.
+  - Source: `system_info_aliases.sh`
+- **`cat_sysctl_conf`** (function): Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
+  - Source: `system_info_aliases.sh`
+- **`cat-sysctl-conf`** (alias → `cat_sysctl_conf`): Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
+  - Source: `system_info_aliases.sh`
+- **`cat-sysctl-config`** (alias → `cat_sysctl_conf`): Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
+  - Source: `system_info_aliases.sh`
+- **`ls-sysctl-conf`** (alias → `cat_sysctl_conf`): Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
+  - Source: `system_info_aliases.sh`
+- **`ls-sysctl-config`** (alias → `cat_sysctl_conf`): Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
+  - Source: `system_info_aliases.sh`
+- **`show-sysctl-conf`** (alias → `cat_sysctl_conf`): Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
+  - Source: `system_info_aliases.sh`
+- **`show-sysctl-config`** (alias → `cat_sysctl_conf`): Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
+  - Source: `system_info_aliases.sh`
+- **`cat_systemd_sysctl_services`** (function): Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
+  - Source: `system_info_aliases.sh`
+- **`cat-sysctl-services`** (alias → `cat_systemd_sysctl_services`): Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
+  - Source: `system_info_aliases.sh`
+- **`ls-sysctl-services`** (alias → `cat_systemd_sysctl_services`): Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
+  - Source: `system_info_aliases.sh`
+- **`show-sysctl-services`** (alias → `cat_systemd_sysctl_services`): Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
+  - Source: `system_info_aliases.sh`
+- **`cat-sctl-svc`** (alias → `cat_systemd_sysctl_services`): Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
+  - Source: `system_info_aliases.sh`
+- **`ls-sctl-svc`** (alias → `cat_systemd_sysctl_services`): Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
+  - Source: `system_info_aliases.sh`
+- **`show-sctl-svc`** (alias → `cat_systemd_sysctl_services`): Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
+  - Source: `system_info_aliases.sh`
+- **`ls-mod-dkms`** (alias → `sudo`): Alias for cat-mod-dkms.
+  - Source: `system_info_aliases.sh`
+- **`glx-info`** (alias → `glxinfo`): Show OpenGL renderer, version, and direct rendering status.
+  - Source: `system_info_aliases.sh`
+#### System Config Files
+
+- **`cat-gdm3-conf`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`cat-gdm3-config`** (alias → `cat-gdm3-conf`): Alias for cat-gdm3-conf.
+  - Source: `system_info_aliases.sh`
+- **`ls-gdm3-conf`** (alias → `sudo`): Alias for cat-gdm3-conf.
+  - Source: `system_info_aliases.sh`
+- **`ls-gdm3-config`** (alias → `ls-gdm3-conf`): Alias for ls-gdm3-conf.
+  - Source: `system_info_aliases.sh`
+- **`show-gdm3-conf`** (alias → `sudo`): Alias for cat-gdm3-conf.
+  - Source: `system_info_aliases.sh`
+- **`show-gdm3-config`** (alias → `show-gdm3-conf`): Alias for show-gdm3-conf.
+  - Source: `system_info_aliases.sh`
+- **`show-libvirt-conf`** (alias → `sudo`): Show libvirt daemon configuration from /etc/libvirt/libvirtd.conf.
+  - Source: `system_info_aliases.sh`
+- **`show-libvirt-config`** (alias → `show-libvirt-conf`): Alias for show-libvirt-conf.
+  - Source: `system_info_aliases.sh`
+- **`ls-libvirt-conf`** (alias → `sudo`): Alias for show-libvirt-conf.
+  - Source: `system_info_aliases.sh`
+- **`ls-libvirt-config`** (alias → `ls-libvirt-conf`): Alias for ls-libvirt-conf.
+  - Source: `system_info_aliases.sh`
+- **`cat-libvirt-conf`** (alias → `sudo`): Alias for show-libvirt-conf.
+  - Source: `system_info_aliases.sh`
+- **`cat-libvirt-config`** (alias → `cat-libvirt-conf`): Alias for cat-libvirt-conf.
+  - Source: `system_info_aliases.sh`
+- **`show-libv-conf`** (alias → `sudo`): Alias for show-libvirt-conf (short form).
+  - Source: `system_info_aliases.sh`
+- **`show-libv-config`** (alias → `show-libv-conf`): Alias for show-libv-conf.
+  - Source: `system_info_aliases.sh`
+- **`ls-libv-conf`** (alias → `sudo`): Alias for show-libvirt-conf (short form).
+  - Source: `system_info_aliases.sh`
+- **`ls-libv-config`** (alias → `ls-libv-conf`): Alias for ls-libv-conf.
+  - Source: `system_info_aliases.sh`
+- **`cat-libv-conf`** (alias → `sudo`): Alias for show-libvirt-conf (short form).
+  - Source: `system_info_aliases.sh`
+- **`cat-libv-config`** (alias → `cat-libv-conf`): Alias for cat-libv-conf.
+  - Source: `system_info_aliases.sh`
+- **`cat-hosts`** (alias → `sudo`): Show the system hosts file (/etc/hosts).
+  - Source: `system_info_aliases.sh`
+- **`ls-hosts`** (alias → `sudo`): Alias for cat-hosts.
+  - Source: `system_info_aliases.sh`
+- **`show-hosts`** (alias → `sudo`): Alias for cat-hosts.
+  - Source: `system_info_aliases.sh`
+- **`cat-users`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-users`** (alias → `sudo`): Alias for cat-users.
+  - Source: `system_info_aliases.sh`
+- **`show-users`** (alias → `sudo`): Alias for cat-users.
+  - Source: `system_info_aliases.sh`
+- **`cat-ssh-cfg`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-ssh-cfg`** (alias → `sudo`): Alias for cat-ssh-cfg.
+  - Source: `system_info_aliases.sh`
+- **`show-ssh-cfg`** (alias → `sudo`): Alias for cat-ssh-cfg.
+  - Source: `system_info_aliases.sh`
+- **`cat-ssh-service`** (alias → `sudo`): Show the SSH systemd service unit file.
+  - Source: `system_info_aliases.sh`
+- **`ls-ssh-service`** (alias → `sudo`): Alias for cat-ssh-service.
+  - Source: `system_info_aliases.sh`
+- **`show-ssh-service`** (alias → `sudo`): Alias for cat-ssh-service.
+  - Source: `system_info_aliases.sh`
+- **`cat-sudoers`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-sudoers`** (alias → `sudo`): Alias for cat-sudoers.
+  - Source: `system_info_aliases.sh`
+- **`show-sudoers`** (alias → `sudo`): Alias for cat-sudoers.
+  - Source: `system_info_aliases.sh`
+- **`_cat_sysctl_conf`** (function): Function _cat_sysctl_conf.
+  - Source: `system_info_aliases.sh`
+- **`cat-sysctl-conf`** (alias → `_cat_sysctl_conf`): Function _cat_sysctl_conf.
+  - Source: `system_info_aliases.sh`
+- **`cat-sysctl-config`** (alias → `_cat_sysctl_conf`): Function _cat_sysctl_conf.
+  - Source: `system_info_aliases.sh`
+- **`_cat_ssh_hosts`** (function): Function _cat_ssh_hosts.
+  - Source: `system_info_aliases.sh`
+- **`cat-ssh-hosts`** (alias → `_cat_ssh_hosts`): Function _cat_ssh_hosts.
+  - Source: `system_info_aliases.sh`
+- **`_cat_src_lists`** (function): Function _cat_src_lists.
+  - Source: `system_info_aliases.sh`
+- **`cat-src-lists`** (alias → `_cat_src_lists`): Function _cat_src_lists.
+  - Source: `system_info_aliases.sh`
+- **`_cat_users_verbose`** (function): Function _cat_users_verbose.
+  - Source: `system_info_aliases.sh`
+- **`cat-users-verbose`** (alias → `_cat_users_verbose`): Function _cat_users_verbose.
+  - Source: `system_info_aliases.sh`
+- **`_cat_modeprobe_confs`** (function): Function _cat_modeprobe_confs.
+  - Source: `system_info_aliases.sh`
+- **`cat-modeprobe-confs`** (alias → `_cat_modeprobe_confs`): Function _cat_modeprobe_confs.
+  - Source: `system_info_aliases.sh`
+#### Logs and Crashes
+
+- **`_stringify_crashes`** (function): Function _stringify_crashes.
+  - Source: `system_info_aliases.sh`
+- **`stringify-crashes`** (alias → `_stringify_crashes`): Function _stringify_crashes.
+  - Source: `system_info_aliases.sh`
+- **`stringify-pkgcache`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`stringify-srcpkgcache`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`cat-var-locks`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-var-locks`** (alias → `sudo`): Alias for cat-var-locks.
+  - Source: `system_info_aliases.sh`
+- **`show-var-locks`** (alias → `sudo`): Alias for cat-var-locks.
+  - Source: `system_info_aliases.sh`
+- **`cat-dpkg-log`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-dpkg-log`** (alias → `sudo`): Alias for cat-dpkg-log.
+  - Source: `system_info_aliases.sh`
+- **`show-dpkg-log`** (alias → `sudo`): Alias for cat-dpkg-log.
+  - Source: `system_info_aliases.sh`
+- **`cat-sys-log`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-sys-log`** (alias → `sudo`): Alias for cat-sys-log.
+  - Source: `system_info_aliases.sh`
+- **`show-sys-log`** (alias → `sudo`): Alias for cat-sys-log.
+  - Source: `system_info_aliases.sh`
+- **`cat-history-log`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-history-log`** (alias → `sudo`): Alias for cat-history-log.
+  - Source: `system_info_aliases.sh`
+- **`show-history-log`** (alias → `sudo`): Alias for cat-history-log.
+  - Source: `system_info_aliases.sh`
+- **`cat-term-log`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-term-log`** (alias → `sudo`): Alias for cat-term-log.
+  - Source: `system_info_aliases.sh`
+- **`show-term-log`** (alias → `sudo`): Alias for cat-term-log.
+  - Source: `system_info_aliases.sh`
+- **`stringify_xorg_logs`** (function): Extract strings from Xorg log files.
+  - Source: `system_info_aliases.sh`
+- **`stringify-xorg-logs`** (alias → `stringify_xorg_logs`): Extract strings from Xorg log files.
+  - Source: `system_info_aliases.sh`
+- **`journal_gpu_errors`** (function): Show GPU/display/compositor errors from current boot journal.
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {number} lines - Number of journal lines to scan (default: 200)`
+- **`journal-gpu-errors`** (alias → `journal_gpu_errors`): Show GPU/display/compositor errors from current boot journal.
+  - Source: `system_info_aliases.sh`
+- **`journal_gnome_errors`** (function): Show GNOME Shell errors from user journal.
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {number} lines - Number of journal lines to scan (default: 100)`
+- **`journal-gnome-errors`** (alias → `journal_gnome_errors`): Show GNOME Shell errors from user journal.
+  - Source: `system_info_aliases.sh`
+- **`ls-xsession-errors`** (alias → `ls`): List xsession error files and Xorg log directory.
+  - Source: `system_info_aliases.sh`
+- **`grep-xorg-errors`** (alias → `grep`): Grep Xorg log for errors (EE) and warnings (WW).
+  - Source: `system_info_aliases.sh`
+- **`stringify-vscode-crash`** (alias → `sudo`): Extract crash-relevant strings from VS Code crash files.
+  - Source: `system_info_aliases.sh`
+#### Applications and Icons
+
+- **`ls-apps`** (alias → `sudo`): Alias for cat-apps.
+  - Source: `system_info_aliases.sh`
+- **`ls-apps-u`** (alias → `ls`): Alias for cat-apps-u.
+  - Source: `system_info_aliases.sh`
+- **`ls-icons`** (alias → `sudo`): Alias for cat-icons.
+  - Source: `system_info_aliases.sh`
+- **`get_all_icons`** (function): Function for listing ALL icons in the system
+  - Source: `system_info_aliases.sh`
+- **`get-all-icons`** (alias → `get_all_icons`): Function for listing ALL icons in the system
+  - Source: `system_info_aliases.sh`
+- **`ls-all-icons`** (alias → `get_all_icons`): Function for listing ALL icons in the system
+  - Source: `system_info_aliases.sh`
+- **`stringify-sign-files`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`find_system_kde_bins`** (function): Find system/KDE/Plasma binaries in /usr/bin.
+  - Source: `system_info_aliases.sh`
+- **`find-system-kde-bins`** (alias → `find_system_kde_bins`): Find system/KDE/Plasma binaries in /usr/bin.
+  - Source: `system_info_aliases.sh`
+- **`man_fopt`** (function): Search for a specific flag or option in a command's man page.
+  - Source: `system_info_aliases.sh`
+  - Params: `$1 {string} cmd - Command name or "cmd subcmd" (default: ls)`; `$2 {int} is_flag_or_option - 0 for flag (-), 1 for option (--) (default: 0)`; `$3 {string} flag_or_option - Flag/option name to search for (default: l)`
+- **`man-fopt`** (alias → `man_fopt`): Search for a specific flag or option in a command's man page.
+  - Source: `system_info_aliases.sh`
+- **`stringify-self`** (alias → `sudo`): Extract printable strings from the current shell's own executable (/proc/self/exe).
+  - Source: `system_info_aliases.sh`
+- **`ls-self`** (alias → `sudo`): List details of the current shell's executable symlink (/proc/self/exe).
+  - Source: `system_info_aliases.sh`
+#### VSCode and GTK
+
+- **`cat-gtk4-settings`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-gtk4-settings`** (alias → `sudo`): Alias for cat-gtk4-settings.
+  - Source: `system_info_aliases.sh`
+- **`show-gtk4-settings`** (alias → `sudo`): Alias for cat-gtk4-settings.
+  - Source: `system_info_aliases.sh`
+- **`cat-vscode-settings`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-vscode-settings`** (alias → `sudo`): Alias for cat-vscode-settings.
+  - Source: `system_info_aliases.sh`
+- **`show-vscode-settings`** (alias → `sudo`): Alias for cat-vscode-settings.
+  - Source: `system_info_aliases.sh`
+- **`cat-vscode-keybindings`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-vscode-keybindings`** (alias → `sudo`): Alias for cat-vscode-keybindings.
+  - Source: `system_info_aliases.sh`
+- **`show-vscode-keybindings`** (alias → `sudo`): Alias for cat-vscode-keybindings.
+  - Source: `system_info_aliases.sh`
+- **`cat-vscode-extensions`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-vscode-extensions`** (alias → `sudo`): Alias for cat-vscode-extensions.
+  - Source: `system_info_aliases.sh`
+- **`show-vscode-extensions`** (alias → `sudo`): Alias for cat-vscode-extensions.
+  - Source: `system_info_aliases.sh`
+- **`cat-vscode-snippets`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-vscode-snippets`** (alias → `sudo`): Alias for cat-vscode-snippets.
+  - Source: `system_info_aliases.sh`
+- **`show-vscode-snippets`** (alias → `sudo`): Alias for cat-vscode-snippets.
+  - Source: `system_info_aliases.sh`
+- **`cat-vscode-sqlite-state`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`ls-vscode-sqlite-state`** (alias → `sudo`): Alias for cat-vscode-sqlite-state.
+  - Source: `system_info_aliases.sh`
+- **`show-vscode-sqlite-state`** (alias → `sudo`): Alias for cat-vscode-sqlite-state.
+  - Source: `system_info_aliases.sh`
+- **`stringify-vscode-logs`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`stringify-recent-xbel`** (alias → `sudo`): Alias for sudo.
+  - Source: `system_info_aliases.sh`
+- **`stringify_copilot_context`** (function): Extract strings from Copilot chat context files.
+  - Source: `system_info_aliases.sh`
+- **`stringify-copilot-context`** (alias → `stringify_copilot_context`): Extract strings from Copilot chat context files.
+  - Source: `system_info_aliases.sh`
+- **`find_all_vscode_workspace_files`** (function): List unique workspaceStorage files (potentially containing chat context, logs, etc.).
+  - Source: `system_info_aliases.sh`
+- **`find-all-vscode-workspace-files`** (alias → `find_all_vscode_workspace_files`): List unique workspaceStorage files (potentially containing chat context, logs, etc.).
+  - Source: `system_info_aliases.sh`
+- **`find-vscode-gpu-logs`** (alias → `find`): Find VS Code GPU process log files.
+  - Source: `system_info_aliases.sh`
+- **`cat-vscode-sharedprocess-gpu`** (alias → `cat`): Show GPU/render/display entries from VS Code shared process log.
+  - Source: `system_info_aliases.sh`
+- **`ls-vscode-sharedprocess-gpu`** (alias → `cat`): Alias for cat-vscode-sharedprocess-gpu.
+  - Source: `system_info_aliases.sh`
+- **`show-vscode-sharedprocess-gpu`** (alias → `cat`): Alias for cat-vscode-sharedprocess-gpu.
+  - Source: `system_info_aliases.sh`
+- **`cat-vscode-argv`** (alias → `cat`): Show VS Code argv.json (launch flags).
+  - Source: `system_info_aliases.sh`
+- **`ls-vscode-argv`** (alias → `cat`): Alias for cat-vscode-argv.
+  - Source: `system_info_aliases.sh`
+- **`show-vscode-argv`** (alias → `cat`): Alias for cat-vscode-argv.
+  - Source: `system_info_aliases.sh`
+- **`vscode_disable_gpu`** (function): Disable GPU in VS Code argv.json (with backup).
+  - Source: `system_info_aliases.sh`
+- **`vscode-disable-gpu`** (alias → `vscode_disable_gpu`): Disable GPU in VS Code argv.json (with backup).
+  - Source: `system_info_aliases.sh`
+
+
+### Pretty Output Helpers
+
+- **`_pretty_hdr`** (function): Function _pretty_hdr.
+  - Source: `pretty_output_helpers.sh`
+- **`_pretty_ftr`** (function): Function _pretty_ftr.
+  - Source: `pretty_output_helpers.sh`
+- **`_pretty_nl`** (function): Function _pretty_nl.
+  - Source: `pretty_output_helpers.sh`
+
+
+### Pretty Aliases
+
+#### Pretty VM Memory
+
+- **`follow_early_oom_pretty`** (function): Follow earlyoom daemon output with pretty header and a set interval.
+  - Source: `pretty_aliases.sh`
+  - Params: `$1 {int} interval - Reporting interval in seconds (default: 2)`
+- **`follow-early-oom-pretty`** (alias → `follow_early_oom_pretty`): Follow earlyoom daemon output with pretty header and a set interval.
+  - Source: `pretty_aliases.sh`
+- **`watch-early-oom-pretty`** (alias → `follow_early_oom_pretty`): Follow earlyoom daemon output with pretty header and a set interval.
+  - Source: `pretty_aliases.sh`
+- **`ls-all-mimeapps-pretty`** (alias → `cat-all-mimeapps-pretty`): ls-*/show-* pretty aliases (point to cat-*-pretty).
+  - Source: `pretty_aliases.sh`
+- **`show-all-mimeapps-pretty`** (alias → `cat-all-mimeapps-pretty`): Alias for cat-all-mimeapps-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-cmdline-pretty`** (alias → `cat-cmdline-pretty`): Alias for cat-cmdline-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-cmdline-pretty`** (alias → `cat-cmdline-pretty`): Alias for cat-cmdline-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-compose-chars-pretty`** (alias → `cat-compose-chars-pretty`): Alias for cat-compose-chars-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-compose-chars-pretty`** (alias → `cat-compose-chars-pretty`): Alias for cat-compose-chars-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-cpu-inf-pretty`** (alias → `cat-cpu-inf-pretty`): Alias for cat-cpu-inf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-cpu-inf-pretty`** (alias → `cat-cpu-inf-pretty`): Alias for cat-cpu-inf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-dpkg-log-pretty`** (alias → `cat-dpkg-log-pretty`): Alias for cat-dpkg-log-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-dpkg-log-pretty`** (alias → `cat-dpkg-log-pretty`): Alias for cat-dpkg-log-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-etc-os-pretty`** (alias → `cat-etc-os-pretty`): Alias for cat-etc-os-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-etc-os-pretty`** (alias → `cat-etc-os-pretty`): Alias for cat-etc-os-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-fstab-pretty`** (alias → `cat-fstab-pretty`): Alias for cat-fstab-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-fstab-pretty`** (alias → `cat-fstab-pretty`): Alias for cat-fstab-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-gdm3-conf-pretty`** (alias → `cat-gdm3-conf-pretty`): Alias for cat-gdm3-conf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-gdm3-conf-pretty`** (alias → `cat-gdm3-conf-pretty`): Alias for cat-gdm3-conf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-gdm3-custom-pretty`** (alias → `cat-gdm3-custom-pretty`): Alias for cat-gdm3-custom-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-gdm3-custom-pretty`** (alias → `cat-gdm3-custom-pretty`): Alias for cat-gdm3-custom-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-gdm3-daemon-pretty`** (alias → `cat-gdm3-daemon-pretty`): Alias for cat-gdm3-daemon-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-gdm3-daemon-pretty`** (alias → `cat-gdm3-daemon-pretty`): Alias for cat-gdm3-daemon-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-grub-boot-pretty`** (alias → `cat-grub-boot-pretty`): Alias for cat-grub-boot-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-grub-boot-pretty`** (alias → `cat-grub-boot-pretty`): Alias for cat-grub-boot-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-grub-etc-pretty`** (alias → `cat-grub-etc-pretty`): Alias for cat-grub-etc-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-grub-etc-pretty`** (alias → `cat-grub-etc-pretty`): Alias for cat-grub-etc-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-gtk4-settings-pretty`** (alias → `cat-gtk4-settings-pretty`): Alias for cat-gtk4-settings-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-gtk4-settings-pretty`** (alias → `cat-gtk4-settings-pretty`): Alias for cat-gtk4-settings-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-history-log-pretty`** (alias → `cat-history-log-pretty`): Alias for cat-history-log-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-history-log-pretty`** (alias → `cat-history-log-pretty`): Alias for cat-history-log-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-hosts-pretty`** (alias → `cat-hosts-pretty`): Alias for cat-hosts-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-hosts-pretty`** (alias → `cat-hosts-pretty`): Alias for cat-hosts-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-indexed-pretty`** (alias → `cat-indexed-pretty`): Alias for cat-indexed-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-indexed-pretty`** (alias → `cat-indexed-pretty`): Alias for cat-indexed-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-k-host-pretty`** (alias → `cat-k-host-pretty`): Alias for cat-k-host-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-k-host-pretty`** (alias → `cat-k-host-pretty`): Alias for cat-k-host-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-k-os-pretty`** (alias → `cat-k-os-pretty`): Alias for cat-k-os-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-k-os-pretty`** (alias → `cat-k-os-pretty`): Alias for cat-k-os-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-kde-settings-pretty`** (alias → `cat-kde-settings-pretty`): Alias for cat-kde-settings-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-kde-settings-pretty`** (alias → `cat-kde-settings-pretty`): Alias for cat-kde-settings-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-linux-v-pretty`** (alias → `cat-linux-v-pretty`): Alias for cat-linux-v-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-linux-v-pretty`** (alias → `cat-linux-v-pretty`): Alias for cat-linux-v-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-mem-inf-pretty`** (alias → `cat-mem-inf-pretty`): Alias for cat-mem-inf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-mem-inf-pretty`** (alias → `cat-mem-inf-pretty`): Alias for cat-mem-inf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-mimeapps-pretty`** (alias → `cat-mimeapps-pretty`): Alias for cat-mimeapps-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-mimeapps-pretty`** (alias → `cat-mimeapps-pretty`): Alias for cat-mimeapps-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-modeprobe-confs-pretty`** (alias → `cat-modeprobe-confs-pretty`): Alias for cat-modeprobe-confs-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-modeprobe-confs-pretty`** (alias → `cat-modeprobe-confs-pretty`): Alias for cat-modeprobe-confs-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-nvidia-v-pretty`** (alias → `cat-nvidia-v-pretty`): Alias for cat-nvidia-v-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-nvidia-v-pretty`** (alias → `cat-nvidia-v-pretty`): Alias for cat-nvidia-v-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-oom-conf-pretty`** (alias → `cat-oom-conf-pretty`): Alias for cat-oom-conf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-oom-conf-pretty`** (alias → `cat-oom-conf-pretty`): Alias for cat-oom-conf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-os-v-pretty`** (alias → `cat-os-v-pretty`): Alias for cat-os-v-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-os-v-pretty`** (alias → `cat-os-v-pretty`): Alias for cat-os-v-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-partitions-pretty`** (alias → `cat-partitions-pretty`): Alias for cat-partitions-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-partitions-pretty`** (alias → `cat-partitions-pretty`): Alias for cat-partitions-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-pid-oom-adj-score-pretty`** (alias → `cat-pid-oom-adj-score-pretty`): Alias for cat-pid-oom-adj-score-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-pid-oom-adj-score-pretty`** (alias → `cat-pid-oom-adj-score-pretty`): Alias for cat-pid-oom-adj-score-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-pid-oom-kill-score-pretty`** (alias → `cat-pid-oom-kill-score-pretty`): Alias for cat-pid-oom-kill-score-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-pid-oom-kill-score-pretty`** (alias → `cat-pid-oom-kill-score-pretty`): Alias for cat-pid-oom-kill-score-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-pid-oom-scores-pretty`** (alias → `cat-pid-oom-scores-pretty`): Alias for cat-pid-oom-scores-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-pid-oom-scores-pretty`** (alias → `cat-pid-oom-scores-pretty`): Alias for cat-pid-oom-scores-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-share-mimeapps-pretty`** (alias → `cat-share-mimeapps-pretty`): Alias for cat-share-mimeapps-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-share-mimeapps-pretty`** (alias → `cat-share-mimeapps-pretty`): Alias for cat-share-mimeapps-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-share-mimecache-pretty`** (alias → `cat-share-mimecache-pretty`): Alias for cat-share-mimecache-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-share-mimecache-pretty`** (alias → `cat-share-mimecache-pretty`): Alias for cat-share-mimecache-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-src-lists-pretty`** (alias → `cat-src-lists-pretty`): Alias for cat-src-lists-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-src-lists-pretty`** (alias → `cat-src-lists-pretty`): Alias for cat-src-lists-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-ssh-cfg-pretty`** (alias → `cat-ssh-cfg-pretty`): Alias for cat-ssh-cfg-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-ssh-cfg-pretty`** (alias → `cat-ssh-cfg-pretty`): Alias for cat-ssh-cfg-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-ssh-hosts-pretty`** (alias → `cat-ssh-hosts-pretty`): Alias for cat-ssh-hosts-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-ssh-hosts-pretty`** (alias → `cat-ssh-hosts-pretty`): Alias for cat-ssh-hosts-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-ssh-service-pretty`** (alias → `cat-ssh-service-pretty`): Alias for cat-ssh-service-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-ssh-service-pretty`** (alias → `cat-ssh-service-pretty`): Alias for cat-ssh-service-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-sudoers-pretty`** (alias → `cat-sudoers-pretty`): Alias for cat-sudoers-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-sudoers-pretty`** (alias → `cat-sudoers-pretty`): Alias for cat-sudoers-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-sys-log-pretty`** (alias → `cat-sys-log-pretty`): Alias for cat-sys-log-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-sys-log-pretty`** (alias → `cat-sys-log-pretty`): Alias for cat-sys-log-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-sysctl-conf-pretty`** (alias → `cat-sysctl-conf-pretty`): Alias for cat-sysctl-conf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-sysctl-conf-pretty`** (alias → `cat-sysctl-conf-pretty`): Alias for cat-sysctl-conf-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-term-log-pretty`** (alias → `cat-term-log-pretty`): Alias for cat-term-log-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-term-log-pretty`** (alias → `cat-term-log-pretty`): Alias for cat-term-log-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-users-pretty`** (alias → `cat-users-pretty`): Alias for cat-users-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-users-pretty`** (alias → `cat-users-pretty`): Alias for cat-users-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-users-verbose-pretty`** (alias → `cat-users-verbose-pretty`): Alias for cat-users-verbose-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-users-verbose-pretty`** (alias → `cat-users-verbose-pretty`): Alias for cat-users-verbose-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-var-locks-pretty`** (alias → `cat-var-locks-pretty`): Alias for cat-var-locks-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-var-locks-pretty`** (alias → `cat-var-locks-pretty`): Alias for cat-var-locks-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vm-over-mem-pretty`** (alias → `cat-vm-over-mem-pretty`): Alias for cat-vm-over-mem-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vm-over-mem-pretty`** (alias → `cat-vm-over-mem-pretty`): Alias for cat-vm-over-mem-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vm-over-ratio-pretty`** (alias → `cat-vm-over-ratio-pretty`): Alias for cat-vm-over-ratio-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vm-over-ratio-pretty`** (alias → `cat-vm-over-ratio-pretty`): Alias for cat-vm-over-ratio-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vm-swap-pretty`** (alias → `cat-vm-swap-pretty`): Alias for cat-vm-swap-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vm-swap-pretty`** (alias → `cat-vm-swap-pretty`): Alias for cat-vm-swap-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vscode-argv-pretty`** (alias → `cat-vscode-argv-pretty`): Alias for cat-vscode-argv-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vscode-argv-pretty`** (alias → `cat-vscode-argv-pretty`): Alias for cat-vscode-argv-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vscode-extensions-pretty`** (alias → `cat-vscode-extensions-pretty`): Alias for cat-vscode-extensions-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vscode-extensions-pretty`** (alias → `cat-vscode-extensions-pretty`): Alias for cat-vscode-extensions-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vscode-keybindings-pretty`** (alias → `cat-vscode-keybindings-pretty`): Alias for cat-vscode-keybindings-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vscode-keybindings-pretty`** (alias → `cat-vscode-keybindings-pretty`): Alias for cat-vscode-keybindings-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vscode-settings-pretty`** (alias → `cat-vscode-settings-pretty`): Alias for cat-vscode-settings-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vscode-settings-pretty`** (alias → `cat-vscode-settings-pretty`): Alias for cat-vscode-settings-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vscode-sharedprocess-gpu-pretty`** (alias → `cat-vscode-sharedprocess-gpu-pretty`): Alias for cat-vscode-sharedprocess-gpu-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vscode-sharedprocess-gpu-pretty`** (alias → `cat-vscode-sharedprocess-gpu-pretty`): Alias for cat-vscode-sharedprocess-gpu-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vscode-snippets-pretty`** (alias → `cat-vscode-snippets-pretty`): Alias for cat-vscode-snippets-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vscode-snippets-pretty`** (alias → `cat-vscode-snippets-pretty`): Alias for cat-vscode-snippets-pretty.
+  - Source: `pretty_aliases.sh`
+- **`ls-vscode-sqlite-state-pretty`** (alias → `cat-vscode-sqlite-state-pretty`): Alias for cat-vscode-sqlite-state-pretty.
+  - Source: `pretty_aliases.sh`
+- **`show-vscode-sqlite-state-pretty`** (alias → `cat-vscode-sqlite-state-pretty`): Alias for cat-vscode-sqlite-state-pretty.
+  - Source: `pretty_aliases.sh`
 
-- **`install_protonvpn_deb_13`**: Installs ProtonVPN on Debian 13 systems.
-- **`shutdown-now`**: Kills all common apps and immediately powers off.
-- **`shutdown_now`**: Alias variant for shutdown-now.
-- **`schedule-kill-sequence`**: Schedules a process kill at a specific time.
-- **`wait-sync-and-terminate`**: Monitors rsync/find processes; upon completion, kills apps and powers off.
-- **`set-ps-critical`**: Sets OOM score adjustment for a process to critical (-1000).
-- **`set-ps-very-important`**: Sets OOM score adjustment to very important (-800).
-- **`set-ps-important`**: Sets OOM score adjustment to important (-500).
-- **`set-ps-normal`**: Sets OOM score adjustment to normal (0).
-- **`set-ps-low`**: Sets OOM score adjustment to low (300).
-- **`set-ps-very-low`**: Sets OOM score adjustment to very low (600).
-- **`set-ps-irrelevant`**: Sets OOM score adjustment to irrelevant (1000).
-
-
-- **`install_stremio_gnome`**: Downloads and installs Flathub repo (if missing) and then installs Stremio launching it in background mode, ensuring compatibility for both Wayland and X11 sessions.
-
-[Enable software GL rendering (Mesa llvmpipe), persist to bashrc, optionally disable X11 compositing — flags: --no-persist, --no-composite]
-
-- setup-software-gl
-
-[List all environment variables (env), sorted alphabetically]
-
-- show-all-env-vars
-
-[List all exported variables (printenv), sorted alphabetically]
-
-- show-all-printenv-vars
-
-[List all shell variables (set -o posix; set), sorted alphabetically]
-
-- show-all-sh-vars
-
-[Show current display session type (x11 or wayland)]
-
-- show-display-session
-
-[Show current desktop session name]
-
-- show-desktop-session
-
-[Show the active display manager service unit name via systemctl]
-
-- show-display-manager
-
-[Show the default display manager binary from /etc/X11/default-display-manager]
-
-- show-display-manager-x11
-
-[Show the current desktop environment identifier ($XDG_CURRENT_DESKTOP)]
-
-- show-current-de
-
-[Detect active display manager and show its greeter config (supports LightDM, GDM3, SDDM, LXDM, XDM, SLiM)]
-
-- show-greeter
-
-[Show SDDM KDE settings from /etc/sddm.conf.d/kde_settings.conf]
-
-- cat-kde-settings
-
-[Show GDM3 main config from /etc/gdm3/gdm3.conf]
-
-- cat-gdm3-conf
-
-[Show GDM3 daemon config from /etc/gdm3/daemon.conf]
-
-- cat-gdm3-daemon
-
-[Show GDM3 custom config from /etc/gdm3/custom.conf]
-
-- cat-gdm3-custom
-
-[Install wmctrl if missing and show window manager info via wmctrl -m]
-
-- show-win-mng-m
-
-[Detect running window manager by scanning process list against 50+ known X11/Wayland WMs]
-
-- show-win-mng
-
-[Show running screen compositor processes (picom, compton, kwin, mutter, xfwm, wayfire)]
-
-- show-screen-compositor
-
-[Show running screen locker processes (xscreensaver, light-locker, swaylock, i3lock)]
-
-- show-screen-locker
-
-[List installed GUI toolkit runtime libraries (GTK and Qt, excluding -dev packages)]
-
-- show-installed-tks
-
-[Install plasma-discover Flatpak and Snap backends]
-
-- install-plasma-backends
-
-[Show XDG data directories path list ($XDG_DATA_DIRS)]
-
-- show-datadirs-session
-
-[Show host machine type (e.g., x86_64)]
-
-- show-hosttype
-
-[Show current user's home directory path]
-
-- show-home
-
-[Show current username]
-
-- show-user
-
-[Show current shell binary path]
-
-- show-shell
-
-[Show current working directory (alias for pwd)]
-
-- show-wrkdir
-
-[Show display server type code (x11 or wayland)]
-
-- show-display-server-code
-
-[Show human-readable display server info]
-
-- show-display-server
-
-[Show D-Bus session bus address]
-
-- show-dbus-addr
-
-[Show current desktop environment identifier (alias for show-current-de)]
-
-- show-desktop-env
-
-[Show verbose greeter/display-manager configuration]
-
-- show-greeter-verbose
-
-[Show comprehensive display environment info (session, DM, greeter, compositor, WM)]
-
-- show-full-display-info
-
-[Show compact desktop environment summary]
-
-- show-desktop
-
-[ls- alias variant for show-all-env-vars]
-
-- ls-all-env-vars
-
-[ls- alias variant for show-all-printenv-vars]
-
-- ls-all-printenv-vars
-
-[ls- alias variant for show-all-sh-vars]
-
-- ls-all-sh-vars
-
-[ls- alias variant for show-display-session]
-
-- ls-display-session
-
-[echo- alias variant for show-display-session]
-
-- echo-display-session
-
-[ls- alias variant for show-desktop-session]
-
-- ls-desktop-session
-
-[echo- alias variant for show-desktop-session]
-
-- echo-desktop-session
-
-[ls- alias variant for show-display-manager]
-
-- ls-display-manager
-
-[ls- alias variant for show-display-manager-x11]
-
-- ls-display-manager-x11
-
-[ls- alias variant for show-current-de]
-
-- ls-current-de
-
-[echo- alias variant for show-current-de]
-
-- echo-current-de
-
-[ls- alias variant for show-greeter]
-
-- ls-greeter
-
-[echo- alias variant for show-greeter]
-
-- echo-greeter
-
-[ls- alias variant for show-win-mng-m]
-
-- ls-win-mng-m
-
-[echo- alias variant for show-win-mng-m]
-
-- echo-win-mng-m
-
-[ls- alias variant for show-win-mng]
-
-- ls-win-mng
-
-[ls- alias variant for show-screen-compositor]
-
-- ls-screen-compositor
-
-[ls- alias variant for show-screen-locker]
-
-- ls-screen-locker
-
-[ls- alias variant for show-installed-tks]
-
-- ls-installed-tks
-
-[ls- alias variant for show-datadirs-session]
-
-- ls-datadirs-session
-
-[echo- alias variant for show-datadirs-session]
-
-- echo-datadirs-session
-
-[ls- alias variant for show-hosttype]
-
-- ls-hosttype
-
-[echo- alias variant for show-hosttype]
-
-- echo-hosttype
-
-[ls- alias variant for show-home]
-
-- ls-home
-
-[echo- alias variant for show-home]
-
-- echo-home
-
-[ls- alias variant for show-user]
-
-- ls-user
-
-[echo- alias variant for show-user]
-
-- echo-user
-
-[ls- alias variant for show-shell]
-
-- ls-shell
-
-[echo- alias variant for show-shell]
-
-- echo-shell
-
-[ls- alias variant for show-wrkdir]
-
-- ls-wrkdir
-
-[echo- alias variant for show-wrkdir]
-
-- echo-wrkdir
-
-[Show current user directories config content (from ~/.config/user-dirs.dirs)]
-
-- show-user-dirs
-- ls-user-dirs
-
-[ls- alias variant for show-display-server-code]
-
-- ls-display-server-code
-
-[echo- alias variant for show-display-server-code]
-
-- echo-display-server-code
-
-[ls- alias variant for show-display-server]
-
-- ls-display-server
-
-[echo- alias variant for show-display-server]
-
-- echo-display-server
-
-[ls- alias variant for show-dbus-addr]
-
-- ls-dbus-addr
-
-[echo- alias variant for show-dbus-addr]
-
-- echo-dbus-addr
-
-[ls- alias variant for show-desktop-env]
-
-- ls-desktop-env
-
-[echo- alias variant for show-desktop-env]
-
-- echo-desktop-env
-
-[ls- alias variant for show-greeter-verbose]
-
-- ls-greeter-verbose
-
-[echo- alias variant for show-greeter-verbose]
-
-- echo-greeter-verbose
-
-[ls- alias variant for show-full-display-info]
-
-- ls-full-display-info
-
-[echo- alias variant for show-full-display-info]
-
-- echo-full-display-info
-
-[ls- alias variant for show-desktop]
-
-- ls-desktop
-
-[echo- alias variant for show-desktop]
-
-- echo-desktop
-
-
-[Show environment variables, exported variables, shell variables, aliases, and functions]
-
-- ls-env-profile
-- show-env-profile
-- ls-env-prof
-- show-env-prof
-
-[Show fstab and crypttab contents]
-
-- ls-tabs-profile
-- show-tabs-profile
-- ls-fstab-profile
-- show-fstab-profile
-
-[Show sudo/admin groups, sudoers, MOTD, /etc/profile, chrony config, and APT keyrings]
-
-- ls-rbac-profile
-- show-rbac-profile
-- ls-rbac-prof
-- show-rbac-prof
-
-[Show SLiM display manager config]
-
-- ls-dm-slim
-- show-dm-slim
-
-[Show SDDM display manager config and drop-in files]
-
-- ls-dm-sddm
-- show-dm-sddm
-
-[Show GDM3 display manager configs]
-
-- ls-dm-gdm3
-- show-dm-gdm3
-- ls-dm-gdm
-- show-dm-gdm
-
-[Show LightDM display manager configs]
-
-- ls-dm-lightdm
-- show-dm-lightdm
-
-[Show LXDM display manager config]
-
-- ls-dm-lxdm
-- show-dm-lxdm
-
-[Show X11/XDM display config and default display manager (binary-safe with strings)]
-
-- ls-dm-x11
-- show-dm-x11
-- ls-x11-config
-- show-x11-config
-
-[Aggregated display manager profile: SLiM, SDDM, GDM3, LightDM, LXDM, X11]
-
-- ls-full-display-profile
-- show-full-display-profile
-- ls-dm-profile
-- show-dm-profile
-
-### Network_Procedures
-
-[Probe a network host with ARP, ping, netcat, and route lookup — $1: target IP (required), $2: target port (optional) — flags: --gateway, --local]
-
-- net-probe
-
-[Show /proc/net/tcp, tcp6, and IPv4 TCP config files]
-
-- ls-tcp-proc-config
-- ls-tcp-config-proc
-- ls-tcp-conf-proc
-- ls-tcp-proc-conf
-
-[Show IPv4 and IPv6 socket statistics from /proc/net/sockstat]
-
-- ls-net-sockstats
-- ls-sockstats
-- ls-sock-statistics
-
-[Show SNMP TCP statistics from /proc/net/snmp and snmp6]
-
-- ls-net-snmp
-- ls-snmp
-
-[Show iptables rules filtered for TCP across filter, nat, and raw tables]
-
-- ls-tcp-iptables
-- ls-iptables-tcp
-- ls-tcp-iptables-rules
-
-[Show TCP congestion control algorithm and available algorithms]
-
-- ls-sys-tcp-v4-congestion-control
-- ls-sysctl-tcp-v4-congestion-control
-- ls-tcp-sysctl-v4-congestion-control
-- ls-sys-tcp-congestion-control
-- ls-sys-tcp-cgt-ctrl
-- ls-sysctl-tcp-cgt-ctrl
-- show-sys-tcp-v4-congestion-control
-- show-sys-tcp-cgt-ctrl
-
-[Show TCP keepalive, timeout, and retry sysctl parameters]
-
-- ls-sys-tcp-v4-time-control
-- ls-sysctl-tcp-v4-time-control
-- ls-tcp-sysctl-v4-time-control
-- ls-tcp-sys-time-control
-- show-sys-tcp-v4-time-control
-
-[Show TCP backlog, orphan, and TIME_WAIT bucket limits]
-
-- ls-sys-tcp-v4-limits
-- ls-sysctl-tcp-v4-limits
-- ls-tcp-sysctl-v4-limits
-- ls-tcp-sys-limits
-- show-sys-tcp-v4-limits
-
-[Show TCP base MSS and MTU probing sysctl settings]
-
-- ls-sys-tcp-v4-mtu
-- ls-sysctl-tcp-v4-mtu
-- ls-tcp-sysctl-v4-mtu
-- show-sys-tcp-v4-mtu
-
-[Show TCP buffer sizes, fast open, and syncookies sysctl settings]
-
-- ls-tcp-sys-base-v4-config
-- ls-tcp-sysctl-base-v4-config
-- ls-tcp-sysctl-base-v4-conf
-- ls-tcp-sys-tcp-base-v4-conf
-- ls-sys-base-v4-config
-- ls-sysctl-base-v4-config
-- ls-sys-tcp-base-config
-- show-tcp-sys-base-v4-config
-- show-sys-tcp-base-config
-
-[Aggregated view of all IPv4 TCP sysctl settings]
-
-- ls-sys-tcp-v4
-- ls-sysctl-tcp-v4
-- ls-tcp-sysctl-v4
-- ls-sys-tcp
-- ls-tcp-sys
-- show-sys-tcp-v4
-- show-sysctl-tcp-v4
-- show-sys-tcp
-
-[Show listening TCP ports via lsof]
-
-- ls-tcp-listening-ports
-- ls-tcp-listen-ports
-- ls-tcp-lp
-
-[Show established TCP connections via lsof]
-
-- ls-tcp-established-connections
-- ls-tcp-established-conns
-- ls-tcp-est-conns
-- ls-tcp-est-connections
-
-[Show all active TCP connections, listening ports, and established connections]
-
-- ls-tcp-active-connections
-- ls-tcp-active-conns
-- ls-tcp-act-conns
-
-[Show TCP sockets via ss and netstat (with deprecation warning for netstat)]
-
-- ls-active-tcp-net-sockets
-- ls-active-tcp-sockets
-- ls-act-tcp-sockets
-- ls-act-tcp-net-sockets
-- ls-act-tcp-s
-- ls-act-tcp-ns
-- ls-act-tcp-net-s
-
-[Full TCP diagnostic: proc files, sockstats, SNMP, iptables, sysctl, connections, and sockets]
-
-- ls-tcp-config
-- ls-tcp-conf
-- ls-tcp-all
-
-[Show DNS config, hostname, and IP addresses]
-
-- ls-net-dns
-- show-net-dns
-- ls-dns-info
-- show-dns-info
-
-[Show public IP address via curl ifconfig.me (IPv4 and IPv6)]
-
-- ls-net-public-ip
-- show-net-public-ip
-- ls-public-ip
-- show-public-ip
-
-[Show IP addresses via ip addr and ifconfig]
-
-- ls-net-ip-addrs
-- show-net-ip-addrs
-- ls-ip-addrs
-- show-ip-addrs
-
-[Show /etc/hosts and /etc/network/interfaces]
-
-- ls-net-hosts
-- show-net-hosts
-- ls-hosts-info
-- show-hosts-info
-
-[Show NetworkManager connections and service status]
-
-- ls-net-nm-status
-- show-net-nm-status
-- ls-nm-status
-- show-nm-status
-
-[Show iptables and ufw firewall rules]
-
-- ls-net-firewall
-- show-net-firewall
-- ls-firewall
-- show-firewall
-
-[Aggregated network profile: DNS, public IP, sysctl, IP addresses, hosts, NetworkManager, firewall]
-
-- ls-net-profile
-- show-net-profile
-- ls-network-profile
-- show-network-profile
-
-[Show dconf user config (binary), loginctl sessions/user info, and home directory listing]
-
-- ls-home-profile
-- show-home-profile
-- ls-dconf-profile
-- show-dconf-profile
-
-[Full system profile: env, fstab, RBAC, display managers, network, and home config]
-
-- ls-full-profile
-- show-full-profile
-- ls-all-profiles
-- show-all-profiles
-
-[Run powerstat (RAPL) and tee output to ~/.logs/ — $1: duration in seconds (default: 3600), $2: sampling interval in seconds (default: 1)]
-
-- track-power-usage
-
-### User_Management
-
-- **`ls-sudoers`**: Alias for cat-sudoers.
-- **`show-sudoers`**: Alias for cat-sudoers.
-- **`ls-sudoers-timestamp`**: Alias for cat-sudoers-timestamp.
-- **`show-sudoers-timestamp`**: Alias for cat-sudoers-timestamp.
-
-[Scan sudo health: validates timestamp, shows TTY, sudo sessions, environment vars, and sudoers content]
-
-- scan-sudo-health
-
-[Create a new user and add them to the sudo group — $1: username (required)]
-
-- add-sudo-user
-
-[Display sudoers file content (requires permissions)]
-
-- cat-sudoers
-
-[Show sudoers timestamp_timeout setting]
-
-- cat-sudoers-timestamp
-
-### Desktop_Environment
-
-- **`ls-kde-settings`**: Alias for cat-kde-settings.
-- **`show-kde-settings`**: Alias for cat-kde-settings.
-- **`ls-gdm3-conf`**: Alias for cat-gdm3-conf.
-- **`show-gdm3-conf`**: Alias for cat-gdm3-conf.
-- **`ls-gdm3-daemon`**: Alias for cat-gdm3-daemon.
-- **`show-gdm3-daemon`**: Alias for cat-gdm3-daemon.
-- **`ls-gdm3-custom`**: Alias for cat-gdm3-custom.
-- **`show-gdm3-custom`**: Alias for cat-gdm3-custom.
-- **`show-window-manager`**: Shows current window manager.
-- **`ls-window-manager`**: Shows current window manager.
-- **`apply-gtk-dark`**: Applies dark theme for GTK4/GTK3.
-- **`fix-gtk-dark`**: Alias for apply-gtk-dark.
-- **`check-gtk-dark`**: Checks current GTK dark theme status.
-- **`install-portal-dark-autostart`**: Installs GNOME autostart entry to restart xdg-desktop-portals for dark-mode.
-- **`check-portal-dark-autostart`**: Shows current portal dark autostart entry without modifying.
-- **`remove-portal-dark-autostart`**: Removes the portal dark autostart entry.
-- **`dbus-asses-desktop-portal`**: Introspects the D-Bus Desktop Portal.
-- **`dbus-asses-xdg-desktop-portal`**: Reads XDG Desktop Portal color scheme setting.
-
-[Purge Cinnamon DE and its config files, reconfigure GDM3 — flags: --keep-config]
-
-- remove-cinnamon
-
-[Set Nautilus as default file manager, update XFCE helpers and MIME cache]
-
-- set-nautilus-default
-
-[Hide Thunar from MIME associations via user-level desktop override]
-
-- hide-thunar-mime
-
-[List running compositor/window manager processes (gnome-shell, xfwm4, mutter, kwin)]
-
-- ps-compositors
-
-[Show Mutter experimental features via gsettings]
-
-- get-mutter-features
-
-[Reset Mutter experimental features to empty array (with confirmation)]
-
-- reset-mutter-features
-
-[Show root window geometry (width, height, depth) via xwininfo]
-
-- xwin-root-info
-
-[List connected monitors via xrandr]
-
-- ls-monitors
-
-[Detect connected monitors via EDID and audit panel technology (IPS/VA/TN/OLED) by hardware ID]
-
-- audit-monitors
-
-[Alias for detect_and_audit_monitors]
-
-- ls-display-techs
-
-[Check availability of DE-related programs (KDE/GNOME/XFCE system monitors, Discover, etc.)]
-
-- check-de-programs
-
-[Mark a .desktop file as trusted for GNOME/DING — $1: filename or path]
-
-- trust-desktop
-
-[Install essential KDE packages for GTK integration and productivity (configs, Discover backends, KDE Connect, Dolphin plugins, Okular)]
-
-- install-kde-pkgs
-
-[Ensure ~/Templates directory and "Empty File" template exist]
-
-- ensure-templates
-
-[Install Nautilus extensions (nautilus-admin, gnome-terminal, image-converter) and ensure Templates directory]
-
-- install-nautilus-ext
-
-[Create a Nautilus script for creating new files via Zenity dialog]
-
-- create-nautilus-newfile
-
-[Show recent journal entries related to screen recording, PipeWire, and desktop portals — $1: tail lines (default: 50)]
-
-- show-journal-screens
-
-[ls- alias variant for show-journal-screens]
-
-- ls-journal-screens
-
-[echo- alias variant for show-journal-screens]
-
-- echo-journal-screens
-
-[Set the default GNOME application for a MIME type via xdg-mime default — $1: app name (e.g., Nautilus), $2: MIME type (e.g., inode/directory)]
-
-- def-org-gnome-xmime
-
-[Query the default application for a MIME type via xdg-mime query default — $1: MIME type]
-
-- get-org-gnome-xmime
-
-[Set the default GNOME application for a MIME type (alias for def-org-gnome-xmime) — $1: app name, $2: MIME type]
-
-- set-org-gnome-xmime
-
-[Reset a GNOME gsettings key to its default value via gsettings reset — $1: schema suffix (e.g., desktop.interface), $2: key name]
-
-- def-org-gnome-gset
-
-[Get a GNOME gsettings value via gsettings get — $1: schema suffix (e.g., desktop.interface), $2: key name]
-
-- get-org-gnome-gset
-
-[Set a GNOME gsettings value with schema/key/value validation — $1: schema suffix, $2: key name, $3: value]
-
-- set-org-gnome-gset
-
-### System_Info_Aliases
-
-#### Kernel_and_OS
-
-- **`ls-grub-boot`**: Alias for cat-grub-boot.
-- **`show-grub-boot`**: Alias for cat-grub-boot.
-- **`cat-def-grub`**: Show GRUB default configuration from /etc/default/grub.
-- **`cat-default-grub`**: Alias for cat-def-grub.
-- **`cat-grub-etc`**: Alias for cat-def-grub.
-- **`ls-grub-etc`**: Alias for cat-def-grub.
-- **`show-grub-etc`**: Alias for cat-def-grub.
-- **`ls-k-os`**: Alias for cat-k-os.
-- **`show-k-os`**: Alias for cat-k-os.
-- **`ls-etc-os`**: Alias for cat-etc-os.
-- **`show-etc-os`**: Alias for cat-etc-os.
-- **`ls-os-v`**: Alias for cat-os-v.
-- **`show-os-v`**: Alias for cat-os-v.
-- **`ls-linux-v`**: Alias for cat-linux-v.
-- **`show-linux-v`**: Alias for cat-linux-v.
-- **`ls-distro-n`**: Alias for cat-distro-n.
-- **`show-distro-n`**: Alias for cat-distro-n.
-- **`ls-distro-v`**: Alias for cat-distro-v.
-- **`show-distro-v`**: Alias for cat-distro-v.
-- **`ls-distro`**: Alias for cat-distro.
-- **`show-distro`**: Alias for cat-distro.
-- **`ls-k-host`**: Alias for cat-k-host.
-- **`show-k-host`**: Alias for cat-k-host.
-- **`ls-cmdline`**: Alias for cat-cmdline.
-- **`show-cmdline`**: Alias for cat-cmdline.
-- **`ls-mimeapps`**: Alias for cat-mimeapps.
-- **`show-mimeapps`**: Alias for cat-mimeapps.
-- **`ls-share-mimeapps`**: Alias for cat-share-mimeapps.
-- **`show-share-mimeapps`**: Alias for cat-share-mimeapps.
-- **`ls-all-mimeapps`**: Alias for cat-all-mimeapps.
-- **`show-all-mimeapps`**: Alias for cat-all-mimeapps.
-- **`ls-share-mimecache`**: Alias for cat-share-mimecache.
-- **`show-share-mimecache`**: Alias for cat-share-mimecache.
-
-- **`list-gnome-global-shortcuts`**: Alias for show-gnome-global-shortcuts.
-- **`ls-gnome-global-shortcuts`**: Alias for show-gnome-global-shortcuts.
-- **`list-kde-global-shortcuts`**: Alias for show-kde-global-shortcuts.
-- **`ls-kde-global-shortcuts`**: Alias for show-kde-global-shortcuts.
-- **`list-global-shortcuts`**: Alias for show-global-shortcuts.
-- **`ls-global-shortcuts`**: Alias for show-global-shortcuts.
-
-[Show GNOME global keyboard shortcuts (keybindings)]
-
-- show-gnome-global-shortcuts
-
-[Show KDE global keyboard shortcuts from kglobalshortcutsrc]
-
-- show-kde-global-shortcuts
-
-[Show all global keyboard shortcuts (GNOME + KDE)]
-
-- show-global-shortcuts: Displays the user's default applications list and MIME configurations (`~/.config/mimeapps.list`).
-- **`cat-share-mimeapps`**: Displays system-wide MIME configurations list installed under user or system applications (`~/.local/share/applications/mimeapps.list`).
-- **`cat-all-mimeapps`**: Tries reading all major known locations for MIME config.
-- **`cat-share-mimecache`**: Reads the compiled MIME cache to understand database mapping.
-
-[Show GRUB boot configuration from /boot/grub/grub.cfg]
-
-- cat-grub-boot
-
-[Show GRUB defaults from /etc/default/grub]
-
-- cat-grub-etc
-
-[Show kernel OS release from /proc/sys/kernel/osrelease]
-
-- cat-k-os
-
-[Show OS release info from /etc/os-release]
-
-- cat-etc-os
-
-[Show kernel version from /proc/version]
-
-- cat-os-v
-
-[Show Linux version from /proc/version]
-
-- cat-linux-v
-
-[Show distro ID (debian, ubuntu, fedora, etc.)]
-
-- cat-distro-n
-
-[Show distro version number]
-
-- cat-distro-v
-
-[Show full distro name with version]
-
-- cat-distro
-
-[Show kernel hostname from /proc/sys/kernel/hostname]
-
-- cat-k-host
-
-[Show kernel command line from /proc/cmdline]
-
-- cat-cmdline
-
-#### VM_and_Memory
-
-- **`ls-vm-swap`**: Alias for cat-vm-swap.
-- **`show-vm-swap`**: Alias for cat-vm-swap.
-- **`ls-vm-over-mem`**: Alias for cat-vm-over-mem.
-- **`show-vm-over-mem`**: Alias for cat-vm-over-mem.
-- **`ls-vm-over-ratio`**: Alias for cat-vm-over-ratio.
-- **`show-vm-over-ratio`**: Alias for cat-vm-over-ratio.
-- **`ls-cpu-inf`**: Alias for cat-cpu-inf.
-- **`show-cpu-inf`**: Alias for cat-cpu-inf.
-- **`ls-mem-inf`**: Alias for cat-mem-inf.
-- **`show-mem-inf`**: Alias for cat-mem-inf.
-- **`ls-oom-conf`**: Alias for cat-oom-conf.
-- **`show-oom-conf`**: Alias for cat-oom-conf.
-
-[Show VM swappiness value from /proc/sys/vm/swappiness]
-
-- cat-vm-swap
-
-[Show VM overcommit memory mode from /proc/sys/vm/overcommit_memory]
-
-- cat-vm-over-mem
-
-[Show VM overcommit ratio from /proc/sys/vm/overcommit_ratio]
-
-- cat-vm-over-ratio
-
-[Show CPU information from /proc/cpuinfo]
-
-- cat-cpu-inf
-
-[Show memory information from /proc/meminfo]
-
-- cat-mem-inf
-
-[Show systemd OOM daemon configuration from /etc/systemd/oomd.conf]
-
-- cat-oom-conf
-
-[Show the vm.oom_kill_allocating_task sysctl value (0=kill random, 1=kill allocating task)]
-
-- show-oom-kill-alloc
-
-[ls- alias variant for show-oom-kill-alloc]
-
-- ls-oom-kill-alloc
-
-[Follow earlyoom daemon output with verbose reporting at a set interval — $1: interval in seconds (default: 2)]
-
-- follow-early-oom-rec
-- watch-early-oom-rec
-- follow-early-oom
-- watch-early-oom
-
-[Show default earlyoom configuration from /etc/default/earlyoom]
-
-- cat-def-earlyoom
-- ls-def-earlyoom
-- cat-default-earlyoom
-- ls-default-earlyoom
-
-[Watch memory-hungry processes sorted by RSS in real time — $1: refresh interval in seconds (default: 0.25)]
-
-- watch-mem-hogs
-
-[Watch CPU-hungry processes sorted by CPU usage in real time — $1: refresh interval in seconds (default: 0.25)]
-
-- watch-cpu-hogs
-
-[Show VM overcommit memory and ratio settings]
-
-- ls-sys-vm-overcommit
-- ls-sys-vm-over-mem
-
-[Show VM OOM kill allocating task setting]
-
-- ls-sys-vm-oom-kill-alloc
-- ls-sys-vm-oom-kill-allocating-task
-
-[Show VM swappiness setting]
-
-- ls-sys-vm-swappiness
-- ls-sys-vm-swap
-
-[Show VM dirty ratio and dirty background ratio]
-
-- ls-sys-vm-dirty-ratios
-- ls-sys-vm-dirtyness
-
-[Show kernel hung task timeout, warnings, and backtrace settings]
-
-- ls-sys-kernel-hungs
-- ls-sys-k-hungs
-- ls-sys-kernel-hung-tasks
-- ls-sys-k-hung-tasks
-
-[Show kernel scheduler settings (latency, granularity, autogroup, migration cost)]
-
-- ls-sys-kernel-schedules
-- ls-sys-k-schedules
-
-[Aggregated view of kernel hung-task and scheduler parameters]
-
-- ls-sys-kernel-info
-- ls-sys-k-info
-
-[Aggregated view of VM overcommit, OOM, swappiness, and dirty-ratio parameters]
-
-- ls-sys-vm-info
-
-[Show all kernel and VM sysctl info (calls ls_sys_kernel_info + ls_sys_vm_info)]
-
-- ls-sys-info
-
-[List zombie processes (state Z) from ps aux output — $1: max number of results (default: 20)]
-
-- find-zombies
-
-[Show the OOM kill score for a process — $1: pid (required)]
-
-- cat-pid-oom-kill-score
-
-[Follow (watch) the OOM kill score for a process in real time — $1: pid (required)]
-
-- follow-pid-oom-kill-score
-- watch-pid-oom-kill-score
-
-[Show the OOM adjustment score for a process (-1000 to 1000) — $1: pid (required)]
-
-- cat-pid-oom-adj-score
-
-[Show both OOM kill score and adjustment score for a process — $1: pid (required)]
-
-- cat-pid-oom-scores
-
-[Follow the earlyoom systemd journal]
-
-- journal-earlyoom
-
-[Follow the systemd-oomd journal]
-
-- journal-sysoomd
-
-#### Storage_and_Partitions
-
-- **`ls-partitions`**: Alias for cat-partitions.
-- **`show-partitions`**: Alias for cat-partitions.
-- **`ls-fstab`**: Alias for cat-fstab.
-- **`show-fstab`**: Alias for cat-fstab.
-
-[Show partition table from /proc/partitions]
-
-- cat-partitions
-
-[Show filesystem table from /etc/fstab]
-
-- cat-fstab
-
-#### Drivers_and_Modules
-
-- **`ls-nvidia-v`**: Alias for cat-nvidia-v.
-- **`show-nvidia-v`**: Alias for cat-nvidia-v.
-
-[Show NVIDIA driver version from /proc/driver/nvidia/version]
-
-- cat-nvidia-v
-
-[Extract strings from /lib/snapd/snapd binary]
-
-- stringify-snapd
-
-[List systemd service unit files in /lib/systemd/system/]
-
-- ls-sys-services
-
-[Show systemd system.conf configuration]
-
-- cat-systemd-conf
-- ls-systemd-conf
-- show-systemd-conf
-
-[Display /etc/sysctl.conf and all files in /etc/sysctl.d/]
-
-- cat-sysctl-conf
-- ls-sysctl-conf
-- show-sysctl-conf
-
-[Display systemd-sysctl.service and sysinit.target.wants sysctl overrides]
-
-- cat-sysctl-services
-- ls-sysctl-services
-- show-sysctl-services
-- cat-sctl-svc
-- ls-sctl-svc
-- show-sctl-svc
-
-[List DKMS kernel modules for current kernel]
-
-- ls-mod-dkms
-
-[Show OpenGL renderer, version, and direct rendering status via glxinfo]
-
-- glx-info
-
-#### System_Config_Files
-
-- **`ls-hosts`**: Alias for cat-hosts.
-- **`show-hosts`**: Alias for cat-hosts.
-- **`ls-libvirt-conf`**: Alias for show-libvirt-conf.
-- **`cat-libvirt-conf`**: Alias for show-libvirt-conf.
-- **`show-libv-conf`**: Alias for show-libvirt-conf (short form).
-- **`ls-libv-conf`**: Alias for show-libvirt-conf (short form).
-- **`cat-libv-conf`**: Alias for show-libvirt-conf (short form).
-- **`ls-ssh-cfg`**: Alias for cat-ssh-cfg.
-- **`show-ssh-cfg`**: Alias for cat-ssh-cfg.
-- **`ls-ssh-service`**: Alias for cat-ssh-service.
-- **`show-ssh-service`**: Alias for cat-ssh-service.
-
-[Show GDM3 configuration from /etc/gdm3/custom.conf]
-
-- cat-gdm3-conf
-
-[Show libvirt daemon configuration from /etc/libvirt/libvirtd.conf]
-
-- show-libvirt-conf
-
-[Show hosts file from /etc/hosts]
-
-- cat-hosts
-
-[List system usernames from /etc/passwd]
-
-- cat-users
-
-[Show SSH server configuration from /etc/ssh/sshd_config]
-
-- cat-ssh-cfg
-
-[Show the SSH systemd service unit file]
-
-- cat-ssh-service
-
-[Show sudoers file from /etc/sudoers]
-
-- cat-sudoers
-
-[Show all sysctl config files from /etc/sysctl.d/]
-
-- cat-sysctl-conf
-
-[Show all SSH host key files from /etc/ssh/]
-
-- cat-ssh-hosts
-
-[Show all APT source list files from /etc/apt/sources.list.d/]
-
-- cat-src-lists
-
-[List system users with description field (username:gecos) from /etc/passwd]
-
-- cat-users-verbose
-
-[Show all modprobe config files from /etc/modprobe.d/]
-
-- cat-modeprobe-confs
-
-#### Logs_and_Crashes
-
-- **`ls-var-locks`**: Alias for cat-var-locks.
-- **`show-var-locks`**: Alias for cat-var-locks.
-- **`ls-dpkg-log`**: Alias for cat-dpkg-log.
-- **`show-dpkg-log`**: Alias for cat-dpkg-log.
-- **`ls-sys-log`**: Alias for cat-sys-log.
-- **`show-sys-log`**: Alias for cat-sys-log.
-- **`ls-history-log`**: Alias for cat-history-log.
-- **`show-history-log`**: Alias for cat-history-log.
-- **`ls-term-log`**: Alias for cat-term-log.
-- **`show-term-log`**: Alias for cat-term-log.
-
-[Extract strings from crash files in /var/crash/ (excluding opt and most usr_bin crashes)]
-
-- stringify-crashes
-
-[Extract strings from APT package cache binary]
-
-- stringify-pkgcache
-
-[Extract strings from APT source package cache binary]
-
-- stringify-srcpkgcache
-
-[List APT archive lock files in /var/cache/apt/archives/]
-
-- cat-var-locks
-
-[Show dpkg log from /var/log/dpkg.log]
-
-- cat-dpkg-log
-
-[Show system log from /var/log/syslog]
-
-- cat-sys-log
-
-[Show APT history log from /var/log/apt/history.log]
-
-- cat-history-log
-
-[Show APT terminal log from /var/log/apt/term.log]
-
-- cat-term-log
-
-[Extract strings from Xorg log files in /var/log/]
-
-- stringify-xorg-logs
-
-[Show GPU/display/compositor errors from current boot journal — $1: number of lines to scan (default: 200)]
-
-- journal-gpu-errors
-
-[Show GNOME Shell errors from user journal — $1: number of lines to scan (default: 100)]
-
-- journal-gnome-errors
-
-[List xsession error files and Xorg log directory]
-
-- ls-xsession-errors
-
-[Grep Xorg.0.log for errors (EE) and warnings (WW)]
-
-- grep-xorg-errors
-
-[Extract crash-relevant strings (segfault, sigsegv, GPU, etc.) from VS Code crash file]
-
-- stringify-vscode-crash
-
-#### Applications_and_Icons
-
-[List system .desktop application files in /usr/share/applications/]
-
-- ls-apps
-
-[List user .desktop application files in ~/.local/share/applications/]
-
-- ls-apps-u
-
-[List icon themes in /usr/share/icons/]
-
-- ls-icons
-
-[List ALL icons in the system (user, legacy, system-wide, snap, flatpak, pixmaps)]
-
-- get-all-icons
-- ls-all-icons
-
-[Extract strings from kernel headers sign-file script]
-
-- stringify-sign-files
-
-[Find system/KDE/Plasma binaries in /usr/bin]
-
-- find-system-kde-bins
-
-[Search for a specific flag or option in a command's man page — $1: command (default: ls), $2: 0=flag 1=option (default: 0), $3: flag/option name (default: l)]
-
-- man-fopt
-
-[Extract printable strings from the current shell's own executable (/proc/self/exe)]
-
-- stringify-self
-
-[List details of the current shell's executable symlink (/proc/self/exe)]
-
-- ls-self
-
-#### VSCode_and_GTK
-
-- **`ls-gtk4-settings`**: Alias for cat-gtk4-settings.
-- **`show-gtk4-settings`**: Alias for cat-gtk4-settings.
-- **`ls-vscode-settings`**: Alias for cat-vscode-settings.
-- **`show-vscode-settings`**: Alias for cat-vscode-settings.
-- **`ls-vscode-keybindings`**: Alias for cat-vscode-keybindings.
-- **`show-vscode-keybindings`**: Alias for cat-vscode-keybindings.
-- **`ls-vscode-extensions`**: Alias for cat-vscode-extensions.
-- **`show-vscode-extensions`**: Alias for cat-vscode-extensions.
-- **`ls-vscode-snippets`**: Alias for cat-vscode-snippets.
-- **`show-vscode-snippets`**: Alias for cat-vscode-snippets.
-- **`ls-vscode-sqlite-state`**: Alias for cat-vscode-sqlite-state.
-- **`show-vscode-sqlite-state`**: Alias for cat-vscode-sqlite-state.
-- **`ls-vscode-sharedprocess-gpu`**: Alias for cat-vscode-sharedprocess-gpu.
-- **`show-vscode-sharedprocess-gpu`**: Alias for cat-vscode-sharedprocess-gpu.
-- **`ls-vscode-argv`**: Alias for cat-vscode-argv.
-- **`show-vscode-argv`**: Alias for cat-vscode-argv.
-
-[Show GTK4 settings from ~/.config/gtk-4.0/settings.ini]
-
-- cat-gtk4-settings
-
-[Show VS Code settings.json]
-
-- cat-vscode-settings
-
-[Show VS Code keybindings.json]
-
-- cat-vscode-keybindings
-
-[Show VS Code extensions.json]
-
-- cat-vscode-extensions
-
-[Show VS Code user snippets]
-
-- cat-vscode-snippets
-
-[Show VS Code SQLite state database (binary)]
-
-- cat-vscode-sqlite-state
-
-[Extract strings from all VS Code log files]
-
-- stringify-vscode-logs
-
-[Extract strings from recently-used.xbel file]
-
-- stringify-recent-xbel
-
-[Extract strings from GitHub Copilot chat context files]
-
-- stringify-copilot-context
-
-[List unique workspaceStorage files (potentially containing chat context, logs, etc.).]
-
-- find-all-vscode-workspace-files
-
-[Find VS Code GPU process log files]
-
-- find-vscode-gpu-logs
-
-[Show GPU/render/display entries from VS Code shared process log]
-
-- cat-vscode-sharedprocess-gpu
-
-[Show VS Code argv.json launch flags]
-
-- cat-vscode-argv
-
-[Disable GPU in VS Code argv.json by adding disable-gpu flags (with backup)]
-
-- vscode-disable-gpu
-
-### Pretty_Aliases
-
-#### Pretty_Kernel_OS
-
-
-- **`cat-mimeapps-pretty`**: Formatted output.
-
-[Pretty-print GRUB boot config with line numbers and syntax coloring]
-
-- cat-grub-boot-pretty
-
-[Pretty-print GRUB defaults with line numbers and syntax coloring]
-
-- cat-grub-etc-pretty
-
-[Pretty-print kernel OS release with header/footer]
-
-- cat-k-os-pretty
-
-[Pretty-print OS release info with highlighted keys]
-
-- cat-etc-os-pretty
-
-[Pretty-print kernel version with header/footer]
-
-- cat-os-v-pretty
-
-[Pretty-print Linux version with header/footer]
-
-- cat-linux-v-pretty
-
-[Pretty-print kernel hostname with header/footer]
-
-- cat-k-host-pretty
-
-[Pretty-print kernel command line, one argument per line]
-
-- cat-cmdline-pretty
-
-#### Pretty_VM_Memory
-
-[Pretty-print VM swappiness value with label]
-
-- cat-vm-swap-pretty
-
-[Pretty-print VM overcommit memory mode with explanation]
-
-- cat-vm-over-mem-pretty
-
-[Pretty-print VM overcommit ratio percentage]
-
-- cat-vm-over-ratio-pretty
-
-[Pretty-print CPU information with highlighted field names]
-
-- cat-cpu-inf-pretty
-
-[Pretty-print memory information with highlighted field names]
-
-- cat-mem-inf-pretty
-
-[Pretty-print systemd OOM daemon configuration]
-
-- cat-oom-conf-pretty
-
-[Pretty-print vm.oom_kill_allocating_task sysctl value with explanation]
-
-- show-oom-kill-alloc-pretty
-
-[Follow earlyoom daemon output with pretty header — $1: interval in seconds (default: 2)]
-
-- follow-early-oom-pretty
-
-[Watch memory-hungry processes sorted by RSS with pretty header — $1: refresh interval in seconds (default: 0.25)]
-
-- watch-mem-hogs-pretty
-
-[Watch CPU-hungry processes sorted by CPU usage with pretty header — $1: refresh interval in seconds (default: 0.25)]
-
-- watch-cpu-hogs-pretty
-
-[List zombie processes with pretty header — $1: max number of results (default: 20)]
-
-- find-zombies-pretty
-
-[Pretty-print OOM kill score for a process — $1: pid (required)]
-
-- cat-pid-oom-kill-score-pretty
-
-[Pretty-print earlyoom output with formatted header — $1: interval in seconds (default: 2)]
-
-- follow-early-oom-pretty
-- watch-early-oom-pretty
-
-[Pretty-print OOM adjustment score for a process — $1: pid (required)]
-
-- cat-pid-oom-adj-score-pretty
-
-[Pretty-print both OOM scores for a process — $1: pid (required)]
-
-- cat-pid-oom-scores-pretty
-
-[Pretty-print earlyoom systemd journal]
-
-- journal-earlyoom-pretty
-
-[Pretty-print systemd-oomd journal]
-
-- journal-sysoomd-pretty
-
-#### Pretty_Storage
-
-[Pretty-print partitions with header row underline]
-
-- cat-partitions-pretty
-
-[Pretty-print filesystem table with line numbers]
-
-- cat-fstab-pretty
-
-#### Pretty_Drivers_Modules
-
-[Pretty-print NVIDIA driver version with line numbers]
-
-- cat-nvidia-v-pretty
-
-[Pretty-print snapd strings (first 200 lines)]
-
-- stringify-snapd-pretty
-
-[Pretty-list systemd services with color-coded types (service/timer/socket)]
-
-- ls-sys-services-pretty
-
-[Pretty-list DKMS modules with size details]
-
-- ls-mod-dkms-pretty
-
-[Pretty-print modprobe config files with per-file headers]
-
-- cat-modeprobe-confs-pretty
-
-[Pretty-print OpenGL/GLX information with color-coded renderer and direct rendering status]
-
-- glx-info-pretty
-
-#### Pretty_System_Config
-
-
-- **`cat-compose-chars-pretty`**: Formatted output.
-
-[Pretty-print GDM3 configuration with line numbers]
-
-- cat-gdm3-conf-pretty
-
-[Pretty-print hosts file with highlighted IP addresses]
-
-- cat-hosts-pretty
-
-[Pretty-print system usernames sorted in columns with root highlighted]
-
-- cat-users-pretty
-
-[Pretty-print users with descriptions in two-column format]
-
-- cat-users-verbose-pretty
-
-[Pretty-print SSH server config with line numbers]
-
-- cat-ssh-cfg-pretty
-
-[Pretty-print sudoers file with line numbers]
-
-- cat-sudoers-pretty
-
-[Pretty-print sysctl config files with per-file headers]
-
-- cat-sysctl-conf-pretty
-
-[Pretty-print SSH host key files with per-file headers]
-
-- cat-ssh-hosts-pretty
-
-[Pretty-print APT source list files with per-file headers]
-
-- cat-src-lists-pretty
-
-#### Pretty_Logs
-
-[Pretty-print crash file strings with per-file headers (first 50 lines each)]
-
-- stringify-crashes-pretty
-
-[Pretty-print package cache strings (first 200 lines)]
-
-- stringify-pkgcache-pretty
-
-[Pretty-print source package cache strings (first 200 lines)]
-
-- stringify-srcpkgcache-pretty
-
-[Pretty-print APT archive lock with lock icon]
-
-- cat-var-locks-pretty
-
-[Pretty-print dpkg log (last 100 lines) with color-coded install/remove/upgrade]
-
-- cat-dpkg-log-pretty
-
-[Pretty-print system log (last 100 lines) with color-coded errors and warnings]
-
-- cat-sys-log-pretty
-
-[Pretty-print APT history log with color-coded Start-Date/End-Date/Commandline]
-
-- cat-history-log-pretty
-
-[Pretty-print APT terminal log (last 200 lines)]
-
-- cat-term-log-pretty
-
-[Pretty-print Xorg log strings with per-file headers (last 40 lines each)]
-
-- stringify-xorg-logs-pretty
-
-[Pretty-print GPU/display errors from journal with color-coded severity — $1: lines (default: 200)]
-
-- journal-gpu-errors-pretty
-
-[Pretty-print GNOME Shell errors with color-coded severity — $1: lines (default: 100)]
-
-- journal-gnome-errors-pretty
-
-[Pretty-list xsession error files with file icons]
-
-- ls-xsession-errors-pretty
-
-[Pretty-print Xorg errors (EE) and warnings (WW) with color coding]
-
-- grep-xorg-errors-pretty
-
-[Pretty-print VS Code crash analysis with color-coded signal names]
-
-- stringify-vscode-crash-pretty
-
-#### Pretty_Apps_Icons
-
-[Pretty-list system applications with colored .desktop suffix]
-
-- ls-apps-pretty
-
-[Pretty-list user applications with colored .desktop suffix]
-
-- ls-apps-u-pretty
-
-[Pretty-list icon themes in columns]
-
-- ls-icons-pretty
-
-[Pretty-print sign-file strings (first 100 lines)]
-
-- stringify-sign-files-pretty
-
-[Pretty-list system/KDE/Plasma binaries with color-coded categories]
-
-- find-system-kde-bins-pretty
-
-[Pretty-print man page flag/option search results with banner]
-
-- man-fopt-pretty
-
-[Pretty-print strings from /proc/self/exe (first 80 lines)]
-
-- stringify-self-pretty
-
-[Pretty-print shell executable details with colored output]
-
-- ls-self-pretty
-
-#### Pretty_VSCode_GTK
-
-[Pretty-print GTK4 settings with line numbers]
-
-- cat-gtk4-settings-pretty
-
-[Pretty-print VS Code settings.json (formatted via python3)]
-
-- cat-vscode-settings-pretty
-
-[Pretty-print VS Code keybindings.json (formatted via python3)]
-
-- cat-vscode-keybindings-pretty
-
-[Pretty-print VS Code extensions.json (formatted via python3)]
-
-- cat-vscode-extensions-pretty
-
-[Pretty-print VS Code snippets with per-file headers]
-
-- cat-vscode-snippets-pretty
-
-[Pretty-print VS Code state DB strings (first 100 extracted strings)]
-
-- cat-vscode-sqlite-state-pretty
-
-[Pretty-print VS Code log files with per-file headers]
-
-- stringify-vscode-logs-pretty
-
-[Pretty-print recent files from xbel, extracting file:// hrefs]
-
-- stringify-recent-xbel-pretty
-
-[Pretty-print Copilot chat context files (first 30 lines each)]
-
-- stringify-copilot-context-pretty
-
-[Pretty-print VS Code GPU process logs (last 20 lines each)]
-
-- find-vscode-gpu-logs-pretty
-
-[Pretty-print VS Code shared process GPU/render entries with color-coded severity]
-
-- cat-vscode-sharedprocess-gpu-pretty
-
-[Pretty-print VS Code argv.json launch flags (formatted via python3)]
-
-- cat-vscode-argv-pretty
-
-#### Pretty_Desktop_Environment
-
-[Pretty-list running compositors/window managers with PID]
-
-- ps-compositors-pretty
-
-[Pretty-print Mutter experimental features value]
-
-- get-mutter-features-pretty
-
-[Pretty-print root window geometry with monitor icon]
-
-- xwin-root-info-pretty
-
-[Pretty-list connected monitors with indexed entries]
-
-- ls-monitors-pretty
-
-[Pretty-check DE-related programs with checkmark/cross status]
-
-- check-de-programs-pretty
-
-[Pretty-print display session type with header]
-
-- show-display-session-pretty
-
-[Pretty-print desktop session name with header]
-
-- show-desktop-session-pretty
-
-[Pretty-print display manager service name with header]
-
-- show-display-manager-pretty
-
-[Pretty-print display manager binary path from X11 config]
-
-- show-display-manager-x11-pretty
-
-[Pretty-print current desktop environment with header]
-
-- show-current-de-pretty
-
-[Pretty-print greeter configuration with DM detection and per-section headers]
-
-- show-greeter-pretty
-
-[Pretty-print SDDM KDE settings with colored section headers and keys]
-
-- cat-kde-settings-pretty
-
-[Pretty-print GDM3 main config with colored section headers and keys]
-
-- cat-gdm3-conf-pretty
-
-[Pretty-print GDM3 daemon config with colored section headers and keys]
-
-- cat-gdm3-daemon-pretty
-
-[Pretty-print GDM3 custom config with colored section headers and keys]
-
-- cat-gdm3-custom-pretty
-
-[Pretty-print wmctrl window manager info with colored fields]
-
-- show-win-mng-m-pretty
-
-[Pretty-print detected window manager(s) with indicator arrows]
-
-- show-win-mng-pretty
-
-[Pretty-print running screen compositors with PID]
-
-- show-screen-compositor-pretty
-
-[Pretty-print running screen lockers with PID]
-
-- show-screen-locker-pretty
-
-[Pretty-print installed GTK/Qt runtime libraries with version columns]
-
-- show-installed-tks-pretty
-
-[Pretty-print journal entries related to screen recording and desktop portals with color-coded errors/warnings]
-
-- show-journal-screens-pretty
-
-#### Pretty_System_Setup
-
-[Pretty-print all environment variables with header and numbered lines]
-
-- show-all-env-vars-pretty
-
-[Pretty-print all exported variables with header and numbered lines]
-
-- show-all-printenv-vars-pretty
-
-[Pretty-print all shell variables with header and numbered lines]
-
-- show-all-sh-vars-pretty
-
-#### Pretty_System_Config
-
-[Pretty-print SSH systemd service unit file with header and numbered lines]
-
-- cat-ssh-service-pretty
-
-#### Pretty_Basic_Commands
-
-[Pretty-open GNOME Text Editor with header message]
-
-- gted-pretty
-
-[Pretty-decode a URI string showing input and decoded output]
-
-- uri-decode-pretty
-
-[Pretty-print printf-tr result with formatted header]
-
-- printf-tr-pretty
-
-[Pretty-list files by index with optional file content display]
-
-- cat-indexed-pretty
-
-[Pretty-run multiple commands against a target with formatted output per command]
-
-- run-cmds-pretty
-
-#### Pretty_HTML_CSS_Tools
-
-[Pretty-strip HTML comments showing before/after count]
-
-- strip-html-comments-pretty
-
-[Pretty-extract and minify CSS with byte-size comparison]
-
-- extract-min-css-pretty
-
-[Pretty-count HTML comments and lines in a file]
-
-- count-html-comments-pretty
-
-[Pretty-check CSS minifier availability with checkmark/cross status]
-
-- check-css-minifier-pretty
-
-[Pretty-inject minified CSS into HTML with line count comparison]
-
-- inject-min-css-pretty
-
-#### Pretty_Git
-
-[Pretty-print Git work tree info with colored fields]
-
-- git-tree-info-pretty
 
 ### Utilities
 
-#### Package_Management
+#### Package Management
 
-[Remove all disabled snap package revisions]
+- **`prune-snap`** (alias → `sudo`): Alias for sudo.
+  - Source: `utilities.sh`
+- **`install_pt_lang_pack`** (function): Install Portuguese (pt) language packs (with confirmation).
+  - Source: `utilities.sh`
+- **`install-pt-lang-pack`** (alias → `install_pt_lang_pack`): Install Portuguese (pt) language packs (with confirmation).
+  - Source: `utilities.sh`
+#### Network Monitoring
 
-- prune-snap
-
-[Install Portuguese (pt) language packs with confirmation prompt]
-
-- install-pt-lang-pack
-
-#### Network_Monitoring
-
-[Measure network bandwidth usage between start and Enter keypress (based on Luke Smith script)]
-
-- cat-band
-
-[Like cat-band but tee the bandwidth result to a timestamped log in ~/.logs/cat-band/]
-
-- cat-band-tee
-
-[Like cat-band-tee but with automatic duration instead of Enter — $1: seconds to track (default: 60)]
-
-- cat-band-tee-d
-
+- **`cat_band`** (function): Function cat_band.
+  - Source: `utilities.sh`
+- **`cat-band`** (alias → `cat_band`): Function cat_band.
+  - Source: `utilities.sh`
 #### Backup
 
-[Rsync backup with progress/checksum, excluding node_modules, venv, __pycache__, .gradle, .m2, vendor, target, .next, dist, build]
-
-- backup-projects
-
-[Forensic scan of Chromium download traces — $1: format, flags: -b/--browser, -p/--profile, -d/--days, --filter-existing, --redownload, --search-root]
-
-- search-chromium-download-traces
-
-[Re-download YouTube URLs/IDs using browser cookies — $1: dest_dir, $@: urls/ids, flags: --browser, --format, --quality, --no-thumb]
-
-- recover-chromium-yt-downloads-by-traces
-
-
-#### File_Analysis
-
-[Show recently used files from XDG recent files database — $1: search filter pattern (default: ".")]
-
-- ls-rec-files
-
-[Check if a file has multiple consecutive blank lines — $1: file path (required)]
-
-- is-mblank
-
-[List files in current directory that have multiple consecutive blank lines]
-
-- ls-mblank
-
-[List files with name, path, and size]
-
-- list-files
-
-[Check which directories in current dir contain files — flag: -r for recursive]
-
-- contains-files
-
-#### Hardware_Shortcuts
-
-[Check ECC memory support via dmidecode]
-
-- check-ecc
-
-[Shortcut for bluetoothctl]
-
-- btctl
-
-[Shortcut for systemctl]
-
-- stctl
-
-[Shortcut for sudo systemctl]
-
-- su-stctl
-
-[Disconnect all connected Bluetooth devices]
-
-- disconnect-all-bt
-
-#### Basic_Commands
-
-[Shortcut for mkdir]
-
-- mkd
-
-[Grep with automatic color output]
-
-- grep
-
-[Open GNOME Text Editor]
-
-- gted
-
-[Short alias for rhythmbox-client]
-
-- rtb
-
-[Shuffle the Rhythmbox play order N times by toggling shuffle off and back on — $1: times (default: 5)]
-
-- rtb-mshuffle
-
-[Print D-Bus introspection XML for the Rhythmbox MPRIS2 interface]
-
-- ls-mpris-dbus-sender
-
-[Alias for ls-mpris-dbus-sender]
-
-- show-mpris-dbus-sender
-
-[Alias for ls-mpris-dbus-sender]
-
-- get-mpris-dbus-sender
-
-[Decode a percent-encoded URI string (e.g. %20 → space) — $1: uri (required)]
-
-- uri-decode
-
-[Printf with field-width, delimiter, and tr-based substitution — $1: delimiter, $2: width, $3: type, $4: target (required), $5: pattern (required), $6: substitute (required), $7: tr_from, $8: tr_to]
-
-- printf-tr
-
-[List files with index numbers and display file contents by index — $1: index (default: 1)]
-
-- cat-indexed
-
-[Run multiple commands against a single target argument — $1: target (required), $@: commands]
-
-- run-cmds
-
-[Download Ubuntu 24.04.3 Desktop amd64 ISO]
-
-- wget-ubuntu-iso
-
-[Custom ls output showing time, size, and name columns — $1: path (default: ".")]
-
-- ls-lah-859
-
-[Count total lines in directory excluding vendor, node_modules, and .git folders]
-
-- wc-l-novendors
-
-[List block devices that are not mounted]
-
-- ls-nomount
-
-[Mount NTFS drive with ntfsfix, proper mount options, and add to /etc/fstab — $1: mount destination path (required), $2: block device path (required)]
-
-- mount-recover-ntfs
-
-[Mount /dev/sda2 to /mnt/sda2 (plain ext4)]
-
-- mount-sda2
-
-[Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ) — $1: digit string, $2: modulus base]
-
-- calculate-check-sum
-- **`calc-checksum`**: Alias for calculate-check-sum.
-
-[Change directory up N levels using dots or .{N} — e.g., cdup ... or cdup .{3}]
-
-- cdup
-
-[Find common web image formats in a directory — $1: path (default: .), remaining args passed to find]
-
-- ls-web-images
-- show-web-images
-
-[Find a broad set of image formats (web + RAW + design files) — $1: path (default: .), remaining args passed to find]
-
-- ls-all-images
-- show-all-images
-
-[Find common web image formats with depth controls — flags: --path/-p, --min-depth/-m, --max-depth/-M, --help]
-
-- ls-web-images-deep
-- show-web-images-deep
-
-[Find a broad set of image formats with depth controls — flags: --path/-p, --min-depth/-m, --max-depth/-M, --help]
-
-- ls-all-images-deep
-- show-all-images-deep
-
-### Git_Aliases
-
-[Pretty git log showing author email, date, and subject for all branches]
-
-- git-log-pretty
-
-[Show git stats: lines added/removed, project line count, file count, commit counts]
-
-- git-stats
-
-#### Git_Basic
-
-[git remote add]
-
-- gra
-
-[git remote add origin]
-
-- gra-o
-
-[git add]
-
-- ga
-
-[git add .]
-
-- gal
-
-[git commit]
-
-- gc
-
-[git commit -a -m]
-
-- gca
-
-[cd to repo root, then git add . && git commit -am]
-
-- galps
-
-#### Git_Log_Status
-
-[git log]
-
-- gl
-
-[git log --oneline]
-
-- gl-o
-
-[git status]
-
-- gs
-
-[git show]
-
-- gsw
-
-[git reflog]
-
-- grl
-
-[git shortlog]
-
-- gsl
-
-[git check-ignore -v]
-
-- gci
-
-[git ls-remote]
-
-- glr
-
-[git ls-tree]
-
-- glt
-
-[git fsck --lost-found]
-
-- glost
-
-[git fsck --full]
-
-- gfsckf
-
-[git gc --aggressive --prune=now]
-
-- gitgcagro
-
-#### Git_Remote
-
-[git push]
-
-- gps
-
-[git push origin HEAD]
-
-- gps-oh
-
-[git push origin HEAD:main]
-
-- gps-ohm
-
-[git pull]
-
-- gpl
-
-[git fetch]
-
-- gf
-
-#### Git_Branch_Diff
-
-[git diff]
-
-- gd
-
-[git branch]
-
-- gb
-
-[git branch -v]
-
-- gbv
-
-[git switch -c (create new branch)]
-
-- gsc
-
-[git checkout]
-
-- gco
-
-[git rev-parse --show-toplevel (show repo root)]
-
-- gtop
-
-[git merge]
-
-- gm
-
-[git rebase]
-
-- grb
-
-#### Git_Reset_Revert
-
-[git reset]
-
-- grs
-
-[git reset --hard]
-
-- grs-h
-
-[git reset --soft]
-
-- grs-s
-
-[git reset HEAD~1 (undo last commit, keep changes)]
-
-- grs--1
-
-[git reset --hard HEAD~1 (undo last commit, discard changes)]
-
-- grs-h--1
-
-[git reset --soft HEAD~1 (undo last commit, keep staged)]
-
-- grs-s--1
-
-[git reset origin]
-
-- grs--og
-
-[git reset --hard origin]
-
-- grs-h--og
-
-[git reset --soft origin]
-
-- grs-s--og
-
-[git revert]
-
-- grv
-
-[git revert --no-commit]
-
-- grv-nc
-
-[git revert HEAD]
-
-- grv--h
-
-[git revert -m 1 (revert a merge commit, keep first parent)]
-
-- grv-m--1
-
-#### Git_Stash
-
-[git stash]
-
-- gst
-
-[git stash push]
-
-- gst-ps
-
-[git stash push --include-untracked]
-
-- gst-pp-u
-
-[git stash push --all]
-
-- gst-pp-a
-
-[git stash push --keep-index]
-
-- gst-pp-ki
-
-[git stash pop]
-
-- gst-pp
-
-[git stash apply]
-
-- gst-a
-
-[git stash drop]
-
-- gst-d
-
-[git stash list]
-
-- gst-l
-
-[git stash show]
-
-- gst-s
-
-[git stash clear]
-
-- gst-c
-
-[git filter-branch to forcefully remove README.md from entire history]
-
-- gst-filter-rdm
-
-[Show Git work tree info: repo dir, common dir, top level, and superproject status]
-
-- git-tree-info
-
-### Navigation_Aliases
-
-[cd to ~/Desktop]
-
-- desk
-
-[cd to ~/Documents]
-
-- docs
-
-[cd to ~/Downloads]
-
-- dl
-
-[cd up one directory level]
-
-- ..
-
-[cd up two directory levels]
-
-- ...
-
-[cd to _inc/laravel]
-
-- .ilv
-
-### Laravel_PHP_Aliases
-
-[Run php artisan migrate:reset]
-
-- artmrs
-
-[Run php artisan migrate:fresh --seed]
-
-- artmsd
-
-[Run php artisan migrate:status]
-
-- artmst
-
-[Run migrate:status, migrate:reset, then migrate:fresh --seed in sequence]
-
-- artmrs-sd
-
-[Clear all Laravel caches (permissions, config, cache, optimize, route, view, compiled)]
-
-- artcl
-
-[Run php artisan serve]
-
-- artsv
-
-[Full Laravel reset: clear all caches, remove bootstrap cache files, dump autoload, reset & reseed migrations, list routes, then serve]
-
-- artclrs
-
-[Run php artisan route:list --sort=uri]
-
-- artrtl
-
-[Remove Laravel bootstrap cache files (services, packages, compiled, routes)]
-
-- laravel-rm-cache
-
-[Run composer dump-autoload -o]
-
-- compdp
-
-[MySQL login as root with password prompt]
-
-- mysqlr
-
-### Filesystem_Utilities
-
-- **`show-compose-chars`**: Alias for cat-compose-chars.
-
-
-- **`cat-compose-chars`**: Displays the correct native sequence of Compose keys available under `en_US.UTF-8/Compose`.
-- **`ls-compose-chars`**: Lists Compose map details in standard `ls -ld` format.
-- **`less-compose-chars`**: Views the long Compose character mapping scheme with `less` pagination.
-- **`edit-compose-chars`**: Opens original Compose database dictionary for possible modification resolutions.
-
-[List files with name, path, and size (inline alias version)]
-
-- list-files
-
-[Find directories containing files recursively]
-
-- contains-files--r
-
-[Find directories in current dir containing files]
-
-- contains-files
-
-[Count total lines excluding vendor/node_modules/.git with running total (inline alias version)]
-
-- wc-l-total-novendors
-
-[Find compressed files (7z/rar/zip) with matching extracted files and optionally delete the archives]
-
-- clear-compressed
-
-[Pack all files in current directory into subdirectories of 100 files each]
-
-- packf
-
-[Find and sort files by path length, excluding vendor/node_modules/backup directories — $1: extension (required) $2: src (default: .) $3: max_depth (default: 15) $4: cut_indexes (default: 0)]
-
-- list-paths-no-vendors
-
-[List journal files under /var/log/journal with type, size, and strings preview]
-
-- ls-journal-files
-- show-journal-files
-
-### Audiovisual_Processing
-
-[Convert AAC to AIFF.]
-
-- ffmpeg-aac-to-aiff
-- aac-to-aiff
-
-[Convert AAC to ALAC.]
-
-- ffmpeg-aac-to-alac
-- aac-to-alac
-
-[Convert AAC to FLAC.]
-
-- ffmpeg-aac-to-flac
-- aac-to-flac
-
-[Convert AAC to MP3.]
-
-- ffmpeg-aac-to-mp3
-- aac-to-mp3
-
-[Convert AAC to OGA.]
-
-- ffmpeg-aac-to-oga
-- aac-to-oga
-
-[Convert AAC to OGG.]
-
-- ffmpeg-aac-to-ogg
-- aac-to-ogg
-
-[Convert AAC to WAV.]
-
-- ffmpeg-aac-to-wav
-- aac-to-wav
-
-[Convert AAC to WMA.]
-
-- ffmpeg-aac-to-wma
-- aac-to-wma
-
-[Convert AIFF to AAC.]
-
-- ffmpeg-aiff-to-aac
-- aiff-to-aac
-
-[Convert AIFF to ALAC.]
-
-- ffmpeg-aiff-to-alac
-- aiff-to-alac
-
-[Convert AIFF to FLAC.]
-
-- ffmpeg-aiff-to-flac
-- aiff-to-flac
-
-[Convert AIFF to MP3.]
-
-- ffmpeg-aiff-to-mp3
-- aiff-to-mp3
-
-[Convert AIFF to OGA.]
-
-- ffmpeg-aiff-to-oga
-- aiff-to-oga
-
-[Convert AIFF to OGG.]
-
-- ffmpeg-aiff-to-ogg
-- aiff-to-ogg
-
-[Convert AIFF to WAV.]
-
-- ffmpeg-aiff-to-wav
-- aiff-to-wav
-
-[Convert AIFF to WMA.]
-
-- ffmpeg-aiff-to-wma
-- aiff-to-wma
-
-[Convert ALAC to AAC.]
-
-- ffmpeg-alac-to-aac
-- alac-to-aac
-
-[Convert ALAC to AIFF.]
-
-- ffmpeg-alac-to-aiff
-- alac-to-aiff
-
-[Convert ALAC to FLAC.]
-
-- ffmpeg-alac-to-flac
-- alac-to-flac
-
-[Convert ALAC to MP3.]
-
-- ffmpeg-alac-to-mp3
-- alac-to-mp3
-
-[Convert ALAC to OGA.]
-
-- ffmpeg-alac-to-oga
-- alac-to-oga
-
-[Convert ALAC to OGG.]
-
-- ffmpeg-alac-to-ogg
-- alac-to-ogg
-
-[Convert ALAC to WAV.]
-
-- ffmpeg-alac-to-wav
-- alac-to-wav
-
-[Convert ALAC to WMA.]
-
-- ffmpeg-alac-to-wma
-- alac-to-wma
-
-[Convert AVI to AAC.]
-
-- ffmpeg-avi-to-aac
-- avi-to-aac
-
-[Convert AVI to AIFF.]
-
-- ffmpeg-avi-to-aiff
-- avi-to-aiff
-
-[Convert AVI to ALAC.]
-
-- ffmpeg-avi-to-alac
-- avi-to-alac
-
-[Convert AVI to FLAC.]
-
-- ffmpeg-avi-to-flac
-- avi-to-flac
-
-[Convert AVI to FLV.]
-
-- ffmpeg-avi-to-flv
-- avi-to-flv
-
-[Convert AVI to MOV.]
-
-- ffmpeg-avi-to-mov
-- avi-to-mov
-
-[Convert AVI to MP3.]
-
-- ffmpeg-avi-to-mp3
-- avi-to-mp3
-
-[Convert AVI to MP4.]
-
-- ffmpeg-avi-to-mp4
-- avi-to-mp4
-
-[Convert AVI to MPG.]
-
-- ffmpeg-avi-to-mpg
-- avi-to-mpg
-
-[Convert AVI to OGA.]
-
-- ffmpeg-avi-to-oga
-- avi-to-oga
-
-[Convert AVI to OGG.]
-
-- ffmpeg-avi-to-ogg
-- avi-to-ogg
-
-[Convert AVI to WAV.]
-
-- ffmpeg-avi-to-wav
-- avi-to-wav
-
-[Convert AVI to WEBM.]
-
-- ffmpeg-avi-to-webm
-- avi-to-webm
-
-[Convert AVI to WMA.]
-
-- ffmpeg-avi-to-wma
-- avi-to-wma
-
-[Concatenate .m4s segments into a single output file.]
-
-- ffmpeg-concat-m4s
-- concat-m4s
-
-[Convert FLAC to AAC.]
-
-- ffmpeg-flac-to-aac
-- flac-to-aac
-
-[Convert FLAC to AIFF.]
-
-- ffmpeg-flac-to-aiff
-- flac-to-aiff
-
-[Convert FLAC to ALAC.]
-
-- ffmpeg-flac-to-alac
-- flac-to-alac
-
-[Convert FLAC to MP3.]
-
-- ffmpeg-flac-to-mp3
-- flac-to-mp3
-
-[Convert FLAC to OGA.]
-
-- ffmpeg-flac-to-oga
-- flac-to-oga
-
-[Convert FLAC to OGG.]
-
-- ffmpeg-flac-to-ogg
-- flac-to-ogg
-
-[Convert FLAC to WAV.]
-
-- ffmpeg-flac-to-wav
-- flac-to-wav
-
-[Convert FLAC to WMA.]
-
-- ffmpeg-flac-to-wma
-- flac-to-wma
-
-[Convert FLV to AAC.]
-
-- ffmpeg-flv-to-aac
-- flv-to-aac
-
-[Convert FLV to AIFF.]
-
-- ffmpeg-flv-to-aiff
-- flv-to-aiff
-
-[Convert FLV to ALAC.]
-
-- ffmpeg-flv-to-alac
-- flv-to-alac
-
-[Convert FLV to AVI.]
-
-- ffmpeg-flv-to-avi
-- flv-to-avi
-
-[Convert FLV to FLAC.]
-
-- ffmpeg-flv-to-flac
-- flv-to-flac
-
-[Convert FLV to MOV.]
-
-- ffmpeg-flv-to-mov
-- flv-to-mov
-
-[Convert FLV to MP3.]
-
-- ffmpeg-flv-to-mp3
-- flv-to-mp3
-
-[Convert FLV to MP4.]
-
-- ffmpeg-flv-to-mp4
-- flv-to-mp4
-
-[Convert FLV to MPG.]
-
-- ffmpeg-flv-to-mpg
-- flv-to-mpg
-
-[Convert FLV to OGA.]
-
-- ffmpeg-flv-to-oga
-- flv-to-oga
-
-[Convert FLV to OGG.]
-
-- ffmpeg-flv-to-ogg
-- flv-to-ogg
-
-[Convert FLV to WAV.]
-
-- ffmpeg-flv-to-wav
-- flv-to-wav
-
-[Convert FLV to WEBM.]
-
-- ffmpeg-flv-to-webm
-- flv-to-webm
-
-[Convert FLV to WMA.]
-
-- ffmpeg-flv-to-wma
-- flv-to-wma
-
-[Convert GIF to MP4 (libx264 yuv420p).]
-
-- ffmpeg-gif-to-mp4
-- gif-to-mp4
-
-[Convert MOV to AAC.]
-
-- ffmpeg-mov-to-aac
-- mov-to-aac
-
-[Convert MOV to AIFF.]
-
-- ffmpeg-mov-to-aiff
-- mov-to-aiff
-
-[Convert MOV to ALAC.]
-
-- ffmpeg-mov-to-alac
-- mov-to-alac
-
-[Convert MOV to AVI.]
-
-- ffmpeg-mov-to-avi
-- mov-to-avi
-
-[Convert MOV to FLAC.]
-
-- ffmpeg-mov-to-flac
-- mov-to-flac
-
-[Convert MOV to FLV.]
-
-- ffmpeg-mov-to-flv
-- mov-to-flv
-
-[Convert MOV to MP3.]
-
-- ffmpeg-mov-to-mp3
-- mov-to-mp3
-
-[Convert MOV to MP4.]
-
-- ffmpeg-mov-to-mp4
-- mov-to-mp4
-
-[Convert MOV to MPG.]
-
-- ffmpeg-mov-to-mpg
-- mov-to-mpg
-
-[Convert MOV to OGA.]
-
-- ffmpeg-mov-to-oga
-- mov-to-oga
-
-[Convert MOV to OGG.]
-
-- ffmpeg-mov-to-ogg
-- mov-to-ogg
-
-[Convert MOV to WAV.]
-
-- ffmpeg-mov-to-wav
-- mov-to-wav
-
-[Convert MOV to WEBM.]
-
-- ffmpeg-mov-to-webm
-- mov-to-webm
-
-[Convert MOV to WMA.]
-
-- ffmpeg-mov-to-wma
-- mov-to-wma
-
-[Convert MP3 to AAC.]
-
-- ffmpeg-mp3-to-aac
-- mp3-to-aac
-
-[Convert MP3 to AIFF.]
-
-- ffmpeg-mp3-to-aiff
-- mp3-to-aiff
-
-[Convert MP3 to ALAC.]
-
-- ffmpeg-mp3-to-alac
-- mp3-to-alac
-
-[Convert MP3 to FLAC.]
-
-- ffmpeg-mp3-to-flac
-- mp3-to-flac
-
-[Convert MP3 to OGA (libvorbis).]
-
-- ffmpeg-mp3-to-oga
-- mp3-to-oga
-
-[Convert MP3 to OGG.]
-
-- ffmpeg-mp3-to-ogg
-- mp3-to-ogg
-
-[Convert MP3 to WAV.]
-
-- ffmpeg-mp3-to-wav
-- mp3-to-wav
-
-[Convert MP3 to WMA.]
-
-- ffmpeg-mp3-to-wma
-- mp3-to-wma
-
-[Convert MP4 to AAC.]
-
-- ffmpeg-mp4-to-aac
-- mp4-to-aac
-
-[Convert MP4 to AIFF.]
-
-- ffmpeg-mp4-to-aiff
-- mp4-to-aiff
-
-[Convert MP4 to ALAC.]
-
-- ffmpeg-mp4-to-alac
-- mp4-to-alac
-
-[Convert MP4 to AVI.]
-
-- ffmpeg-mp4-to-avi
-- mp4-to-avi
-
-[Convert MP4 to FLAC.]
-
-- ffmpeg-mp4-to-flac
-- mp4-to-flac
-
-[Convert MP4 to FLV.]
-
-- ffmpeg-mp4-to-flv
-- mp4-to-flv
-
-[Convert MP4 to GIF with palette-based dithering.]
-
-- ffmpeg-mp4-to-gif
-- mp4-to-gif
-
-[Convert MP4 to MOV.]
-
-- ffmpeg-mp4-to-mov
-- mp4-to-mov
-
-[Convert MP4 to MP3.]
-
-- ffmpeg-mp4-to-mp3
-- mp4-to-mp3
-
-[Convert MP4 to MPG.]
-
-- ffmpeg-mp4-to-mpg
-- mp4-to-mpg
-
-[Convert MP4 to OGA.]
-
-- ffmpeg-mp4-to-oga
-- mp4-to-oga
-
-[Convert MP4 to OGG.]
-
-- ffmpeg-mp4-to-ogg
-- mp4-to-ogg
-
-[Convert MP4 to WAV.]
-
-- ffmpeg-mp4-to-wav
-- mp4-to-wav
-
-[Convert MP4 to WEBM.]
-
-- ffmpeg-mp4-to-webm
-- mp4-to-webm
-
-[Convert MP4 to WMA.]
-
-- ffmpeg-mp4-to-wma
-- mp4-to-wma
-
-[Convert MPG to AAC.]
-
-- ffmpeg-mpg-to-aac
-- mpg-to-aac
-
-[Convert MPG to AIFF.]
-
-- ffmpeg-mpg-to-aiff
-- mpg-to-aiff
-
-[Convert MPG to ALAC.]
-
-- ffmpeg-mpg-to-alac
-- mpg-to-alac
-
-[Convert MPG to AVI.]
-
-- ffmpeg-mpg-to-avi
-- mpg-to-avi
-
-[Convert MPG to FLAC.]
-
-- ffmpeg-mpg-to-flac
-- mpg-to-flac
-
-[Convert MPG to FLV.]
-
-- ffmpeg-mpg-to-flv
-- mpg-to-flv
-
-[Convert MPG to MOV.]
-
-- ffmpeg-mpg-to-mov
-- mpg-to-mov
-
-[Convert MPG to MP3.]
-
-- ffmpeg-mpg-to-mp3
-- mpg-to-mp3
-
-[Convert MPG to MP4.]
-
-- ffmpeg-mpg-to-mp4
-- mpg-to-mp4
-
-[Convert MPG to OGA.]
-
-- ffmpeg-mpg-to-oga
-- mpg-to-oga
-
-[Convert MPG to OGG.]
-
-- ffmpeg-mpg-to-ogg
-- mpg-to-ogg
-
-[Convert MPG to WAV.]
-
-- ffmpeg-mpg-to-wav
-- mpg-to-wav
-
-[Convert MPG to WEBM.]
-
-- ffmpeg-mpg-to-webm
-- mpg-to-webm
-
-[Convert MPG to WMA.]
-
-- ffmpeg-mpg-to-wma
-- mpg-to-wma
-
-[Convert OGA to AAC.]
-
-- ffmpeg-oga-to-aac
-- oga-to-aac
-
-[Convert OGA to AIFF.]
-
-- ffmpeg-oga-to-aiff
-- oga-to-aiff
-
-[Convert OGA to ALAC.]
-
-- ffmpeg-oga-to-alac
-- oga-to-alac
-
-[Convert OGA to FLAC.]
-
-- ffmpeg-oga-to-flac
-- oga-to-flac
-
-[Convert OGA to MP3.]
-
-- ffmpeg-oga-to-mp3
-- oga-to-mp3
-
-[Convert OGA to OGG.]
-
-- ffmpeg-oga-to-ogg
-- oga-to-ogg
-
-[Convert OGA to WAV.]
-
-- ffmpeg-oga-to-wav
-- oga-to-wav
-
-[Convert OGA to WMA.]
-
-- ffmpeg-oga-to-wma
-- oga-to-wma
-
-[Convert OGG to AAC.]
-
-- ffmpeg-ogg-to-aac
-- ogg-to-aac
-
-[Convert OGG to AIFF.]
-
-- ffmpeg-ogg-to-aiff
-- ogg-to-aiff
-
-[Convert OGG to ALAC.]
-
-- ffmpeg-ogg-to-alac
-- ogg-to-alac
-
-[Convert OGG to AVI.]
-
-- ffmpeg-ogg-to-avi
-- ogg-to-avi
-
-[Convert OGG to FLAC.]
-
-- ffmpeg-ogg-to-flac
-- ogg-to-flac
-
-[Convert OGG to FLV.]
-
-- ffmpeg-ogg-to-flv
-- ogg-to-flv
-
-[Convert OGG to MOV.]
-
-- ffmpeg-ogg-to-mov
-- ogg-to-mov
-
-[Convert OGG to MP3.]
-
-- ffmpeg-ogg-to-mp3
-- ogg-to-mp3
-
-[Convert OGG to MP4.]
-
-- ffmpeg-ogg-to-mp4
-- ogg-to-mp4
-
-[Convert OGG to MPG.]
-
-- ffmpeg-ogg-to-mpg
-- ogg-to-mpg
-
-[Convert OGG to OGA.]
-
-- ffmpeg-ogg-to-oga
-- ogg-to-oga
-
-[Convert OGG to OGG.]
-
-- ffmpeg-ogg-to-ogg
-- ogg-to-ogg
-
-[Convert OGG to WAV.]
-
-- ffmpeg-ogg-to-wav
-- ogg-to-wav
-
-[Convert OGG to WEBM.]
-
-- ffmpeg-ogg-to-webm
-- ogg-to-webm
-
-[Convert OGG to WMA.]
-
-- ffmpeg-ogg-to-wma
-- ogg-to-wma
-
-[Split a video into GIF chunks.]
-
-- ffmpeg-video-to-gif-chunks
-- video-to-gif-chunks
-
-[Convert WAV to AAC.]
-
-- ffmpeg-wav-to-aac
-- wav-to-aac
-
-[Convert WAV to AIFF.]
-
-- ffmpeg-wav-to-aiff
-- wav-to-aiff
-
-[Convert WAV to ALAC.]
-
-- ffmpeg-wav-to-alac
-- wav-to-alac
-
-[Convert WAV to FLAC.]
-
-- ffmpeg-wav-to-flac
-- wav-to-flac
-
-[Convert WAV to MP3.]
-
-- ffmpeg-wav-to-mp3
-- wav-to-mp3
-
-[Convert WAV to OGA.]
-
-- ffmpeg-wav-to-oga
-- wav-to-oga
-
-[Convert WAV to OGG.]
-
-- ffmpeg-wav-to-ogg
-- wav-to-ogg
-
-[Convert WAV to WMA.]
-
-- ffmpeg-wav-to-wma
-- wav-to-wma
-
-[Convert WEBM to AAC.]
-
-- ffmpeg-webm-to-aac
-- webm-to-aac
-
-[Convert WEBM to AIFF.]
-
-- ffmpeg-webm-to-aiff
-- webm-to-aiff
-
-[Convert WEBM to ALAC.]
-
-- ffmpeg-webm-to-alac
-- webm-to-alac
-
-[Convert WEBM to AVI.]
-
-- ffmpeg-webm-to-avi
-- webm-to-avi
-
-[Convert WEBM to FLAC.]
-
-- ffmpeg-webm-to-flac
-- webm-to-flac
-
-[Convert WEBM to FLV.]
-
-- ffmpeg-webm-to-flv
-- webm-to-flv
-
-[Convert WEBM to MOV.]
-
-- ffmpeg-webm-to-mov
-- webm-to-mov
-
-[Convert WEBM to MP3.]
-
-- ffmpeg-webm-to-mp3
-- webm-to-mp3
-
-[Convert WebM to MP4 (even dimensions, libx264 + AAC).]
-
-- ffmpeg-webm-to-mp4
-- webm-to-mp4
-
-[Convert WEBM to MPG.]
-
-- ffmpeg-webm-to-mpg
-- webm-to-mpg
-
-[Convert WEBM to OGA.]
-
-- ffmpeg-webm-to-oga
-- webm-to-oga
-
-[Convert WEBM to OGG.]
-
-- ffmpeg-webm-to-ogg
-- webm-to-ogg
-
-[Convert WEBM to WAV.]
-
-- ffmpeg-webm-to-wav
-- webm-to-wav
-
-[Convert WEBM to WMA.]
-
-- ffmpeg-webm-to-wma
-- webm-to-wma
-
-[Convert WMA to AAC.]
-
-- ffmpeg-wma-to-aac
-- wma-to-aac
-
-[Convert WMA to AIFF.]
-
-- ffmpeg-wma-to-aiff
-- wma-to-aiff
-
-[Convert WMA to ALAC.]
-
-- ffmpeg-wma-to-alac
-- wma-to-alac
-
-[Convert WMA to FLAC.]
-
-- ffmpeg-wma-to-flac
-- wma-to-flac
-
-[Convert WMA to MP3.]
-
-- ffmpeg-wma-to-mp3
-- wma-to-mp3
-
-[Convert WMA to OGA.]
-
-- ffmpeg-wma-to-oga
-- wma-to-oga
-
-[Convert WMA to OGG.]
-
-- ffmpeg-wma-to-ogg
-- wma-to-ogg
-
-[Convert WMA to WAV.]
-
-- ffmpeg-wma-to-wav
-- wma-to-wav
-
----
-
-## POWERSHELL_PROFILE_EQUIVALENTS
-
-### Power_Management
-
-[Suspend/sleep the system via systemctl suspend]
-
-- p-sleep
-
-[Show memory usage summary (free -h)]
-
-- diag-mem
-
-### Quick_Open_Folders
-
-[Open recycle bin (trash://) in the desktop's file manager]
-
-- ls-cbin
-
-[Open Documents folder in the desktop's file manager]
-
-- ls-docs
-
-[Open Desktop folder in the desktop's file manager]
-
-- ls-desk
-
-[Open Pictures folder in the desktop's file manager]
-
-- ls-pics
-
-[Open user fonts folder in the desktop's file manager]
-
-- ls-fonts
-
-### Hardware_Inspection
-
-[List USB devices via lsusb]
-
-- ls-usb-dev
-
-[Show CPU information via lscpu]
-
-- ls-cpu
-
-[List USB controllers via lspci]
-
-- ls-usb
-
-[Show physical memory usage via free -h]
-
-- ls-mem
-
-[List disk drives via lsblk -d]
-
-- ls-disks
-
-[Show logical disk (filesystem) usage via df -h]
-
-- ls-ldisk
-
-[Show battery status via acpi -b]
-
-- ls-batt
-
-[Show power profile settings via powerprofilesctl]
-
-- ls-pwr
-
-[List printers via lpstat]
-
-- ls-prin
-
-[Show GPU/video controller info via lspci]
-
-- ls-gpu
-
-[List connected monitors via xrandr]
-
-- ls-mons
-
-### System_Info
-
-[Show network adapter configuration via nmcli or ip addr]
-
-- ls-net
-
-[Show BIOS information via dmidecode -t bios]
-
-- ls-bios
-
-[Show system journal via journalctl]
-
-- ls-logs
-
-[List all user accounts via getent passwd]
-
-- ls-users
-
-[Show computer/system info via uname -a]
-
-- ls-host
-
-[List all groups via getent group]
-
-- ls-groups
-
-[Show OS information via lsb_release -a or hostnamectl]
-
-- ls-os
-
-[List installed packages via dpkg-query or rpm]
-
-- ls-pkgs
-
-### Hardware_Data_Functions
-
-[Show detailed CPU information via lscpu]
-
-- cpu-info
-
-[Show memory hardware details via dmidecode -t memory]
-
-- ssram-info
-
-[Show storage info: block devices with mount points (lsblk) and filesystem usage (df -h)]
-
-- storage-info
-
-[List USB devices via lsusb]
-
-- usb-info
-
-[Show GPU/video controller info via lspci]
-
-- video-info
-
-[Show PCI devices with kernel driver info via lspci -k]
-
-- pnp-info
-
-[Show OpenGL version string via glxinfo]
-
-- wddm-info
-
-[Show grouped hardware summary via lshw -short]
-
-- lshw
-
-### Services_Network
-
-[List active services via systemctl or service --status-all]
-
-- ls-svc
-
-[List open sockets via ss -tunap]
-
-- ls-sock
-
-[List available WiFi networks via nmcli or iwlist]
-
-- ls-wlan
-
-[Show wireless capabilities via iw list or nmcli]
-
-- ls-wcap
-
-[Show network drivers via lspci -nnk]
-
-- ls-netdrv
-
-### File_Utilities
-
-[Calculate total storage used under a drive/directory path — $1: target path (default: "c:")]
-
-- calc-storage
-
-[Compress current directory into a zip file, excluding node_modules and vendor]
-
-- compdir
-
-[Unzip all archives (zip/7z/rar) found recursively in current directory]
-
-- uz-all
-
-[Delete all compressed files (zip/7z/rar) in current directory]
-
-- del-comp
-
-[Convert snake_case string to PascalCase — $1: input string (required)]
-
-- topascal
-
-[Convert PascalCase/camelCase string to snake_case — $1: input string (required)]
-
-- tosnake
-
-[Sanitize directory names: replace special chars with underscores, lowercase — flag: -r for recursive]
-
-- sanitize-d
-
-[Sanitize file names: replace special chars with underscores, lowercase — flag: -r for recursive]
-
-- sanitize-f
-
-[Sanitize all names (directories then files) interactively — flag: -r for recursive]
-
-- sanitize-a
-
-### Backup_Analysis
-
-[Rsync backup with automatic retry on failure — $1: source (required), $2: destination (required), $3: retry count (default: 3), $4: wait seconds (default: 5)]
-
-- bcp
-
-[Show heaviest folders by size in GB — $1: root path (default: "."), $2: top N results (default: 10)]
-
-- hfold
-
-[Show heaviest files by size in GB — $1: root path (default: "."), $2: top N results (default: 10)]
-
-- hfile
-
-[Show disk usage of immediate children, sorted by size — $1: path (default: ".")]
-
-- du-surface
-
-[Measure file distribution between root folder and a subfolder — $1: root path (required), $2: subdirectory name (required), $3: glob filter (default: "*")]
-
-- mfd
-
-[Interactive file search: prompts for a filename pattern and searches current directory tree]
-
-- sint
-
-[Search files recursively with output format options — $1: path (default: "."), $2: output index 0=full path, 1=name only, 2=stat (default: 1), $3: glob filter (default: "*")]
-
-- rsf
-
-[cd into a directory by numeric index from current dir listing — $1: index (default: 0)]
-
-- cd-i
-
-[Extract all .7z files in a directory — $1: path (default: ".")]
-
-- exp-7z
-
-[Open a file by numeric index in VS Code — $1: path (default: "."), $2: file index (default: 0)]
-
-- code-i
-
-[Open an Excel file (.xls/.xlsx/.xlsm) in LibreOffice Calc — $1: file path (required)]
-
-- xcl
-
-### Data_Extraction
-
-[Concatenate GPT token values from a JSON file using jq — $1: JSON file path (required)]
-
-- join-tokens
-
-[Count and list all .java files with total file and line counts]
-
-- jdata
-
-[Count and list all JS/TS/Vue files (.js, .cjs, .mjs, .jsx, .ts, .cts, .mts, .tsx, .vue) with total counts]
-
-- jsdata
-
-[Count and list all .php files with total file and line counts]
-
-- phpdata
-
-[Count and list all .py files with total file and line counts]
-
-- pydata
-
-[Count and list files matching custom glob patterns with total counts — $@: glob patterns (e.g., "*.go" "*.rs")]
-
-- pldata
-
-[Remove double underscores from filenames interactively — $1: path (default: "."), $2: --no-interactive to skip prompts]
-
-- rmmultius
-
-[Rename all files in the current directory to random 16-char alphanumeric names, preserving extensions. Requires sudo]
-
-- fully-randomized-file-names
-
-[Alias for fully_randomized_file_names]
-
-- randomize-filenames
-
-[Alias for fully_randomized_file_names (short form)]
-
-- rand-fn
-
-### Browser_Dev
-
-[Clear Chrome/Chromium fetch code cache directories]
-
-- rm-chromefetch
-
-[Activate Python virtual environment from ./env/bin/activate]
-
-- py-venv
-
-[Run Django manage.py commands — $@: manage.py arguments (e.g., runserver, migrate)]
-
-- pymng
-
-[Alias for pymng (Django manage.py)]
-
-- django
-
-[Kill all Chrome processes (SIGKILL)]
-
-- killchrome
-
-[Clear Chrome/Chromium fetch cache (duplicate variant)]
-
-- rmchrome-fetch
-
-### HTML_CSS_Tools
-
-[Strip all HTML comments from a file and reformat with Prettier]
-
-- strip-html-comments
-
-[Extract &lt;style&gt; content from an HTML file, minify with clean-css-cli, and display original vs minified byte sizes]
-
-- extract-min-css
-
-[Count HTML comments and total lines in a file]
-
-- count-html-comments
-
-[Check which CSS minifier CLI is available (csso or clean-css-cli)]
-
-- check-css-minifier
-
-[Inject a minified CSS file into the &lt;style&gt; block of an HTML file, then restore @media and @container at-rules collapsed by minification]
-
-- inject-min-css
-
-### Android_ADB
-
-[List heaviest files on an Android device via ADB with interim reports and pause/resume support]
-
-- ls-heavy-adb
-
-[List heaviest directories on an Android device via ADB with interim reports and pause/resume support]
-
-- ls-heavy-adb-dirs
-
-### Alias_Shortcuts
-
-#### Complex_Functions
-
-[Alias for convert_to_snake_case]
-
-- tosnake
-
-[Alias for compress_current_directory]
-
-- compweb
-
-[Alias for unzip_all]
-
-- unzipall
-
-[Alias for delete_all_compressed]
-
-- deletezip
-
-[Alias for heavy_files]
-
-- getheavfiles
-
-[Alias for heavy_folders]
-
-- getheavdirs
-
-[Alias for measure_file_distribution]
-
-- filedistrib
-
-[Alias for search_interactive]
-
-- isearch
-
-[Alias for recursive_search_files]
-
-- lsrf
-
-[Alias for code_by_index]
-
-- idxcode
-
-[Alias for get_concatenated_gpt_tokens]
-
-- getgpttokens
-
-[Alias for get_java_files_data]
-
-- getjavadata
-
-[Alias for get_js_files_data]
-
-- getjsdata
-
-[Alias for get_php_files_data]
-
-- getphpdata
-
-[Alias for get_python_files_data]
-
-- getpydata
-
-[Alias for get_prog_lang_files_data]
-
-- getplngdata
-
-#### Hardware_Aliases
-
-[Alias for processor_data (lscpu)]
-
-- getprocfull
-
-[Alias for ssram_data (dmidecode -t memory)]
-
-- getssramfull
-
-[Alias for storage_data (lsblk + df)]
-
-- getstoragefull
-
-[Alias for storage_data (lsblk + df)]
-
-- lshw-storage
-
-[Alias for usb_data (lsusb)]
-
-- getusbportfull
-
-[Alias for usb_data (lsusb)]
-
-- lsusb
-
-[Alias for video_data (lspci VGA/3D/display)]
-
-- getvcfull
-
-[Alias for grouped_hardware (lshw -short)]
-
-- gethwfull
-
-#### Storage_Aliases
-
-[Alias for open_recycle_bin (trash://)]
-
-- cbin
-
-#### USB_Aliases
-
-[Alias for get_usb_controller_device (lsusb)]
-
-- getusbcd
-
-[Alias for get_usb_controller (lspci USB)]
-
-- getusbc
-
-#### Proc_Mem_Aliases
-
-[Alias for get_processor (lscpu)]
-
-- getproc
-
-[Alias for get_physical_memory (free -h)]
-
-- getpmem
-
-[Alias for get_disk_drive (lsblk -d)]
-
-- getdd
-
-[Alias for get_logical_disk (df -h)]
-
-- getld
-
-[Alias for get_video_controller (lspci VGA/3D)]
-
-- getvc
-
-[Alias for wddm_version (glxinfo OpenGL version)]
-
-- getwddm
-
-#### Core_System_Aliases
-
-[Alias for get_battery (acpi -b)]
-
-- getbt
-
-[Alias for get_power_setting (powerprofilesctl)]
-
-- getpws
-
-[Alias for get_printers (lpstat)]
-
-- getprn
-
-[Alias for get_bios (dmidecode -t bios)]
-
-- getbios
-
-[Alias for get_computer_system (uname -a)]
-
-- getcs
-
-[Alias for get_operating_system (lsb_release / hostnamectl)]
-
-- getos
-
-[Alias for get_product (dpkg-query / rpm)]
-
-- getprod
-
-[Alias for get_services (systemctl list-units)]
-
-- getsvc
-
-#### Administration_Aliases
-
-[Alias for get_user_account (getent passwd)]
-
-- getua
-
-[Alias for get_group_user (getent group)]
-
-- getgu
-
-[List users belonging to a specific group — $1: group_name (required)]
-
-- get-group-users
-- **`ls-group-users`**: Alias for get-group-users.
-
-[Dump dconf user settings database as readable strings]
-
-- stringify-user-settings
-- **`str-user-stg`**: Alias for stringify-user-settings.
-
-[Alias for get_ntlog_event (journalctl)]
-
-- getntlog
-
-#### Network_Aliases
-
-[Alias for get_network_adapter_configuration (nmcli / ip addr)]
-
-- getnac
-
-[Alias for netsh_winsock_catalog (ss -tunap)]
-
-- netshv
-
-[Alias for netsh_wlan (nmcli wifi list)]
-
-- netsha
-
-[Alias for get_wireless_capabilities (iw list)]
-
-- netshc
-
-[Alias for get_net_drivers (lspci network)]
-
-- getndv
-
-#### Quick_Open_Aliases
-
-[Alias for open_recycle_bin]
-
-- recyclebin
-
-[Alias for open_documents]
-
-- documents
-
-[Alias for open_documents]
-
-- docs
-
-[Alias for open_desktop]
-
-- desktop
-
-[Alias for open_desktop]
-
-- dkt
-
-[Alias for open_pictures]
-
-- pictures
-
-[Alias for open_pictures]
-
-- pct
-
-[Alias for diagnose_memory (free -h)]
-
-- memdiag
-
-[Alias for open_fonts]
-
-- fonts
-
-[Alias for open_personalization]
-
-- personalization
-
-### XFCE_Settings
-
-[Open XFCE display settings]
-
-- deb-st-display
-
-[Open XFCE power manager settings (night light equivalent)]
-
-- deb-st-nightlight
-
-[Open XFCE display settings (screen resolution)]
-
-- deb-st-screenresolution
-
-[Open XFCE workspace settings (multitasking/virtual desktops)]
-
-- deb-st-multitasking
-
-[Show XFCE about dialog]
-
-- deb-st-about
-
-[Show XFCE about dialog (system info)]
-
-- deb-st-systeminfo
-
-[Open PulseAudio volume control (sound settings)]
-
-- deb-st-sound
-
-[Open PulseAudio volume control (sound devices)]
-
-- deb-st-sound-devices
-
-[Open PulseAudio volume control (audio)]
-
-- deb-st-audio
-
-[Open NetworkManager connection editor]
-
-- deb-st-network
-
-[Open NetworkManager connection editor (WiFi)]
-
-- deb-st-wifi
-
-[Open NetworkManager connection editor (Ethernet)]
-
-- deb-st-ethernet
-
-[Open Blueman Bluetooth manager]
-
-- deb-st-bluetooth
-
-[Open Blueman Bluetooth manager (shorthand)]
-
-- st-bt
-
-[Open NetworkManager connection editor (proxy)]
-
-- deb-st-proxy
-
-[Open XFCE settings manager (personalization)]
-
-- deb-st-personalization
-
-[Open XFCE appearance settings (themes)]
-
-- deb-st-themes
-
-[Open XFCE appearance settings (colors)]
-
-- deb-st-colors
-
-[Open XFCE desktop settings (background/wallpaper)]
-
-- deb-st-background
-
-[Open XFCE screensaver preferences (lock screen)]
-
-- deb-st-lockscreen
-
-[Open XFCE panel preferences (taskbar)]
-
-- deb-st-taskbar
-
-[Open XFCE appearance settings (fonts)]
-
-- deb-st-fonts
-
-[Open XFCE mouse settings (cursor/pointer)]
-
-- deb-st-cursormousepointer
-
-[Open system-config-printer (printers)]
-
-- deb-st-printers
-
-[Open XFCE mouse settings]
-
-- deb-st-mouse
-
-[Open XFCE mouse settings (touchpad)]
-
-- deb-st-touchpad
-
-[Open XFCE keyboard settings]
-
-- deb-st-keyboard
-
-[Open XFCE mouse settings (pen/tablet)]
-
-- deb-st-pen
-
-[Open Thunar preferences (autoplay)]
-
-- deb-st-autoplay
-
-[Open Thunar file manager (USB)]
-
-- deb-st-usb
-
-[Open XFCE time/date admin]
-
-- deb-st-dateandtime
-
-[Open XFCE settings manager (region/language)]
-
-- deb-st-regionlanguage
-
-[Open XFCE settings manager (language)]
-
-- deb-st-language
-
-[Open XFCE power manager settings (power/sleep)]
-
-- deb-st-powersleep
-
-[Open XFCE power manager settings (battery saver)]
-
-- deb-st-batterysaver
-
-[Open XFCE power manager settings (power options)]
-
-- deb-st-poweroptions
-
-[Open Thunar file manager (storage sense equivalent)]
-
-- deb-st-storagesense
-
-[Open XFCE MIME settings (default apps)]
-
-- deb-st-defaultapps
-
-[Open Google Maps in default browser]
-
-- deb-st-maps
-
-[Open XFCE application finder (apps & features)]
-
-- deb-st-appsfeatures
-
-[Open Synaptic package manager (optional features)]
-
-- deb-st-optionalfeatures
-
-[Open Synaptic package manager (programs & features)]
-
-- deb-st-programsfeatures
-
-[Open XFCE MIME settings (app defaults)]
-
-- deb-st-appdefaults
-
-[Open users-admin (your info)]
-
-- deb-st-yourinfo
-
-[Open users-admin (sign-in options)]
-
-- deb-st-signinoptions
-
-[Open users-admin (workplace)]
-
-- deb-st-workplace
-
-[Open users-admin (other users)]
-
-- deb-st-otherusers
-
-[Launch Steam (gaming)]
-
-- deb-st-gaming
-
-[Launch gamemode]
-
-- deb-st-gamemode
-
-[Open XFCE accessibility settings (ease of access)]
-
-- deb-st-easeofaccess
-
-[Open XFCE display settings (display ease of access)]
-
-- deb-st-display-easeofaccess
-
-[Open XFCE mouse settings (mouse pointer)]
-
-- deb-st-mousepointer
-
-[Open XFCE keyboard settings (keyboard ease of access)]
-
-- deb-st-keyboard-easeofaccess
-
-[Open XFCE settings manager (privacy)]
-
-- deb-st-privacy
-
-[Run ClamAV freshclam update (Windows Defender equivalent)]
-
-- deb-st-windowsdefender
-
-[Run sudo apt update && sudo apt upgrade (Windows Update equivalent)]
-
-- deb-st-windowsupdate
-
-[Open Déjà Dup backup preferences]
-
-- deb-st-backup
-
-[Open XFCE settings manager (troubleshoot)]
-
-- deb-st-troubleshoot
-
-[Echo "Use GRUB recovery mode" (recovery)]
-
-- deb-st-recovery
-
-[Echo "No activation needed in Linux"]
-
-- deb-st-activation
-
-[Echo "Feature not available in Linux" (find my device)]
-
-- deb-st-findmydevice
-
-[Open XFCE settings manager (developer settings)]
-
-- deb-st-developers
-
-[Open XFCE application finder (Cortana equivalent)]
-
-- deb-st-cortana
-
-[Open XFCE application finder (search)]
-
-- deb-st-search
-
-[Echo "Mixed reality not natively supported" (holographic)]
-
-- deb-st-holographic
-
-[Open Thunar file manager (Explorer equivalent)]
-
-- deb-st-explorer
-
-[Open Thunar file manager (This PC equivalent)]
-
-- deb-st-thispc
-
-[Open Thunar on ~/Documents]
-
-- deb-st-documents
-
-[Open Thunar on ~/Downloads]
-
-- deb-st-downloads
-
-[Open Thunar on ~/Music]
-
-- deb-st-music
-
-[Open Thunar on ~/Pictures]
-
-- deb-st-pictures
-
-[Open Thunar on ~/Videos]
-
-- deb-st-videos
-
-[Open Thunar on ~/Desktop]
-
-- deb-st-desktop
-
-[Open XFCE settings manager (Control Panel equivalent)]
-
-- deb-st-controlpanel
-
-[Open XFCE settings manager (Admin Tools equivalent)]
-
-- deb-st-admintools
-
-[Open lshw-gtk (Device Manager equivalent)]
-
-- deb-st-devicemanager
-
-[Open GNOME Disks (Disk Management equivalent)]
-
-- deb-st-diskmgmt
-
-[Open GNOME Logs (Event Viewer equivalent)]
-
-- deb-st-eventvwr
-
-[Open systemd-manager (Services equivalent)]
-
-- deb-st-services
-
-[Open htop (Task Manager equivalent)]
-
-- deb-st-taskmanager
-
-[Open dconf-editor (Registry Editor equivalent)]
-
-- deb-st-regedit
-
-[Open XFCE terminal]
-
-- deb-st-terminal
-
-[Open Thunar file manager]
-
-- deb-st-filemanager
-
-[Open galculator (Calculator equivalent)]
-
-- deb-st-calculator
-
-[Open Mousepad text editor (Notepad equivalent)]
-
-- deb-st-notepad
-
-[Open GIMP (Paint equivalent)]
-
-- deb-st-paint
-
-[Open XFCE screenshooter (Screenshot tool)]
-
-- deb-st-screenshot
-
-[Open Hardinfo (msinfo32 equivalent)]
-
-- deb-st-msinfo32
-
-[Open systemd-manager (msconfig equivalent)]
-
-- deb-st-msconfig
-
-[Open XFCE terminal (cmd equivalent)]
-
-- deb-st-cmd
-
-[Open XFCE terminal (PowerShell equivalent)]
-
-- deb-st-powershell
-
-[Open XFCE application finder collapsed (Run dialog equivalent)]
-
-- deb-st-run
+- **`cleanup_before_sync`** (function): Function cleanup_before_sync.
+  - Source: `utilities.sh`
+- **`run_backup_projects`** (function): Function run_backup_projects.
+  - Source: `utilities.sh`
+- **`backup_projects`** (alias → `rsync`): Alias for rsync.
+  - Source: `utilities.sh`
+- **`backup-projects`** (alias → `backup_projects`): Alias for backup_projects.
+  - Source: `utilities.sh`
+- **`search_chromium_download_traces`** (function): Forensic scan of a Chromium-based browser profile for download traces of a given file format. Runs every query class used during a generic media-recovery workflow: History DB (downloads table, downloads_url_chains, urls, visits, Cookies), per-site IndexedDB, Local/Session Storage strings dumps, and recently-used.xbel. Prints a categorized summary, optionally cross-checks against the filesystem with `find`, and optionally hands off to recover_chromium_yt_downloads_by_traces for re-download.
+  - Source: `utilities.sh`
+  - Params: `$1 {string} format          - File extension to search for, e.g. mp3, webm, m4a (MANDATORY)`
+  - Flags: `b, --browser <name>         Chromium variant: brave (default), chromium, chrome, edge, vivaldi, opera`; `p, --profile <name>         Profile directory name (default: Default)`; `d, --days <N>               Lookback window in days (default: since browser install)`; `-filter-existing            After scan, run `find` to drop entries that already exist locally`; `-redownload                 If any traces look YouTube-shaped, prompt to call recover_chromium_yt_downloads_by_traces`; `-search-root <dir>          Root for the existing-file `find` (default: $HOME and /media)`; `h, --help                   Show usage`
+- **`search-chromium-download-traces`** (alias → `search_chromium_download_traces`): Forensic scan of a Chromium-based browser profile for download traces of a given file format. Runs every query class used during a generic media-recovery workflow: History DB (downloads table, downloads_url_chains, urls, visits, Cookies), per-site IndexedDB, Local/Session Storage strings dumps, and recently-used.xbel. Prints a categorized summary, optionally cross-checks against the filesystem with `find`, and optionally hands off to recover_chromium_yt_downloads_by_traces for re-download.
+  - Source: `utilities.sh`
+- **`recover_chromium_yt_downloads_by_traces`** (function): Re-download a list of YouTube URLs (or video IDs) into a target directory. Companion to search_chromium_download_traces — the body holds the actual yt-dlp invocation, browser cookies, node JS runtime, and the post-process / verify step.
+  - Source: `utilities.sh`
+  - Params: `$1 {string} dest_dir  - Destination directory (required, must exist + writable)`; `$@ {url...}           - One or more YouTube URLs or 11-char IDs`
+  - Flags: `-browser <name>       Browser to extract cookies from (default: brave)`; `-format <ext>         Audio container (default: mp3)`; `-quality <0-9>        --audio-quality (default: 0 = best)`; `-no-thumb             Skip embed-thumbnail step`
+- **`recover-chromium-yt-downloads-by-traces`** (alias → `recover_chromium_yt_downloads_by_traces`): Re-download a list of YouTube URLs (or video IDs) into a target directory. Companion to search_chromium_download_traces — the body holds the actual yt-dlp invocation, browser cookies, node JS runtime, and the post-process / verify step.
+  - Source: `utilities.sh`
+#### File Analysis
+
+- **`show_recent_files`** (function): Show recently used files from XDG recent files database.
+  - Source: `utilities.sh`
+  - Params: `$1 {string} search_term - Optional filter pattern (default: ".")`
+- **`ls-rec-files`** (alias → `show_recent_files`): Show recently used files from XDG recent files database.
+  - Source: `utilities.sh`
+- **`has_multiple_blank_lines`** (function): Check if a file has multiple consecutive blank lines.
+  - Source: `utilities.sh`
+  - Params: `$1 {string} file - File path to check (required)`
+- **`is-mblank`** (alias → `has_multiple_blank_lines`): Check if a file has multiple consecutive blank lines.
+  - Source: `utilities.sh`
+- **`show_multiple_blank_lines_files`** (function): List files in current directory that have multiple consecutive blank lines.
+  - Source: `utilities.sh`
+- **`ls-mblank`** (alias → `show_multiple_blank_lines_files`): List files in current directory that have multiple consecutive blank lines.
+  - Source: `utilities.sh`
+- **`list_files_detail`** (function): List files with name, path, and size.
+  - Source: `utilities.sh`
+- **`list-files`** (alias → `list_files_detail`): List files with name, path, and size.
+  - Source: `utilities.sh`
+- **`contains_files`** (function): Check which directories in current dir contain files.
+  - Source: `utilities.sh`
+  - Flags: `r  Recurse into subdirectories`
+- **`contains-files`** (alias → `contains_files`): Check which directories in current dir contain files.
+  - Source: `utilities.sh`
+#### Hardware Shortcuts
+
+- **`check-ecc`** (alias → `sudo`): Alias for sudo.
+  - Source: `utilities.sh`
+- **`btctl`** (alias → `bluetoothctl`): Alias for bluetoothctl.
+  - Source: `utilities.sh`
+- **`stctl`** (alias → `systemctl`): Alias for systemctl.
+  - Source: `utilities.sh`
+- **`su-stctl`** (alias → `sudo`): Alias for sudo.
+  - Source: `utilities.sh`
+- **`disconnect-all-bt`** (alias → `for`): Alias for for.
+  - Source: `utilities.sh`
+#### Basic Commands
+
+- **`alct`** (alias → `alacritty`): Alias for alacritty.
+  - Source: `utilities.sh`
+- **`alct-nohup`** (alias → `nohup`): Alias for nohup.
+  - Source: `utilities.sh`
+- **`gted`** (alias → `gnome-text-editor`): Open GNOME Text Editor.
+  - Source: `utilities.sh`
+- **`rtb`** (alias → `rhythmbox-client`): Short alias for rhythmbox-client.
+  - Source: `utilities.sh`
+- **`rtb_multishuffle`** (function): Shuffle the Rhythmbox play order N times by toggling shuffle off and back on so each iteration forces a fresh random sequence.
+  - Source: `utilities.sh`
+  - Params: `$1 {number} times - Number of reshuffle iterations (default: 5)`
+- **`rtb-mshuffle`** (alias → `rtb_multishuffle`): Alias for rtb_multishuffle.
+  - Source: `utilities.sh`
+- **`ls-mpris-dbus-sender`** (alias → `dbus-send`): Print D-Bus introspection XML for the Rhythmbox MPRIS2 interface.
+  - Source: `utilities.sh`
+- **`show-mpris-dbus-sender`** (alias → `ls-mpris-dbus-sender`): Alias for ls-mpris-dbus-sender.
+  - Source: `utilities.sh`
+- **`get-mpris-dbus-sender`** (alias → `ls-mpris-dbus-sender`): Alias for ls-mpris-dbus-sender.
+  - Source: `utilities.sh`
+- **`mkd`** (alias → `mkdir`): Alias for mkdir.
+  - Source: `utilities.sh`
+- **`grep`** (alias → `grep`): Alias grep.
+  - Source: `utilities.sh`
+- **`wget-ubuntu-iso`** (alias → `wget`): Alias for wget.
+  - Source: `utilities.sh`
+- **`uri_decode`** (function): Decode a percent-encoded URI string (e.g. %20 -> space).
+  - Source: `utilities.sh`
+  - Params: `$1 {string} uri - Percent-encoded string to decode (required)`
+- **`uri-decode`** (alias → `uri_decode`): Decode a percent-encoded URI string (e.g. %20 -> space).
+  - Source: `utilities.sh`
+- **`printftr`** (function): Printf with field-width, delimiter, and tr-based substitution.
+  - Source: `utilities.sh`
+  - Params: `$1 {string} delimiter - Fill character flag (-, 0, +, or empty)`; `$2 {number} width     - Field width`; `$3 {string} type      - Format type (%b or %s, default: %b)`; `$4 {string} target    - String to format (required)`; `$5 {string} pattern   - Pattern to replace in target (required)`; `$6 {string} substitute - Replacement string (required)`; `$7 {string} tr_from   - tr source character (optional)`; `$8 {string} tr_to     - tr destination character (optional, default: space)`
+- **`printf-tr`** (alias → `printftr`): Printf with field-width, delimiter, and tr-based substitution.
+  - Source: `utilities.sh`
+- **`cat_indexed`** (function): List files with index numbers and display the contents of a file by index.
+  - Source: `utilities.sh`
+  - Params: `$1 {number} index - 1-based index of the file to display (default: 1)`
+- **`cat-indexed`** (alias → `cat_indexed`): List files with index numbers and display the contents of a file by index.
+  - Source: `utilities.sh`
+- **`run_cmds`** (function): Run multiple commands against a single target argument.
+  - Source: `utilities.sh`
+  - Params: `$1 {string} target - The target argument for all commands (required)`; `$@ {string} cmds   - Commands to run against the target`
+- **`run-cmds`** (alias → `run_cmds`): Run multiple commands against a single target argument.
+  - Source: `utilities.sh`
+- **`ls_lah_859`** (function): Custom ls output: time, size, name.
+  - Source: `utilities.sh`
+- **`ls-lah-859`** (alias → `ls_lah_859`): Custom ls output: time, size, name.
+  - Source: `utilities.sh`
+- **`wc_lines_novendors`** (function): Count total lines in directory excluding vendor folders.
+  - Source: `utilities.sh`
+- **`wc-l-novendors`** (alias → `wc_lines_novendors`): Count total lines in directory excluding vendor folders.
+  - Source: `utilities.sh`
+- **`ls-nomount`** (alias → `sudo`): List block devices that are not mounted.
+  - Source: `utilities.sh`
+- **`mount_ntfs_media_drive`** (function): Mount NTFS drive with proper options and add to fstab.
+  - Source: `utilities.sh`
+  - Params: `$1 {string} media_path - Mount destination path (required)`; `$2 {string} device - Block device path (required)`
+- **`mount-recover-ntfs`** (alias → `mount_ntfs_media_drive`): Mount NTFS drive with proper options and add to fstab.
+  - Source: `utilities.sh`
+- **`calculate_check_sum`** (function): Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ).
+  - Source: `utilities.sh`
+  - Params: `$1 {string} state - Digit string (e.g. "123456789")`; `$2 {number} total - Modulus base (e.g. 11)`
+- **`calculate-check-sum`** (alias → `calculate_check_sum`): Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ).
+  - Source: `utilities.sh`
+- **`calc-checksum`** (alias → `calculate_check_sum`): Calculate Modulus N check digits for a numeric string (e.g. CPF mod-11, CNPJ).
+  - Source: `utilities.sh`
+- **`cdup`** (function): Change directory up N levels using dots or .{N}.
+  - Source: `utilities.sh`
+  - Params: `$1 {string} dots - Dot pattern (e.g., ... or .{3})`
+- **`find_web_images`** (function): Function find_web_images.
+  - Source: `utilities.sh`
+- **`ls-web-images`** (alias → `find_web_images`): Function find_web_images.
+  - Source: `utilities.sh`
+- **`show-web-images`** (alias → `find_web_images`): Function find_web_images.
+  - Source: `utilities.sh`
+- **`find_all_images`** (function): Function find_all_images.
+  - Source: `utilities.sh`
+- **`ls-all-images`** (alias → `find_all_images`): Function find_all_images.
+  - Source: `utilities.sh`
+- **`show-all-images`** (alias → `find_all_images`): Function find_all_images.
+  - Source: `utilities.sh`
+- **`parse_find_options`** (function): Function parse_find_options.
+  - Source: `utilities.sh`
+- **`find_web_images_deep`** (function): Function find_web_images_deep.
+  - Source: `utilities.sh`
+- **`ls-web-images-deep`** (alias → `find_web_images_deep`): Function find_web_images_deep.
+  - Source: `utilities.sh`
+- **`show-web-images-deep`** (alias → `find_web_images_deep`): Function find_web_images_deep.
+  - Source: `utilities.sh`
+- **`find_all_images_deep`** (function): Function find_all_images_deep.
+  - Source: `utilities.sh`
+- **`ls-all-images-deep`** (alias → `find_all_images_deep`): Function find_all_images_deep.
+  - Source: `utilities.sh`
+- **`show-all-images-deep`** (alias → `find_all_images_deep`): Function find_all_images_deep.
+  - Source: `utilities.sh`
+
+
+### Git Aliases
+
+- **`git-log-pretty`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`git-stats`** (alias): Show Git contribution stats, repository line/file totals, and commit counts.
+  - Source: `git_aliases.sh`
+- **`git-tree-info`** (alias → `git_tree_info`): Alias for git_tree_info.
+  - Source: `git_aliases.sh`
+#### Git Basic
+
+- **`gra`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gra-o`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`ga`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gal`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gc`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gca`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`galps`** (alias → `cd`): Alias for cd.
+  - Source: `git_aliases.sh`
+#### Git Log Status
+
+- **`gl`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gl-o`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gs`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gsw`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grl`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gsl`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gci`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`glr`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`glt`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`glost`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gfsckf`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gitgcagro`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+#### Git Remote
+
+- **`gps`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gps-oh`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gps-ohm`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gpl`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gf`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+#### Git Branch Diff
+
+- **`gd`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gb`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gbv`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gsc`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gco`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gtop`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gm`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grb`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+#### Git Reset Revert
+
+- **`grs`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grs-h`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grs-s`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grs--1`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grs-h--1`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grs-s--1`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grs--og`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grs-h--og`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grs-s--og`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grv`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grv-nc`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grv--h`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`grv-m--1`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+#### Git Stash
+
+- **`gst`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-ps`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-pp-u`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-pp-a`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-pp-ki`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-pp`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-a`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-d`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-l`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-s`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-c`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+- **`gst-filter-rdm`** (alias → `git`): Alias for git.
+  - Source: `git_aliases.sh`
+
+
+### Navigation Aliases
+
+- **`desk`** (alias → `cd`): Alias for cd.
+  - Source: `navigation_aliases.sh`
+- **`docs`** (alias → `cd`): Alias for cd.
+  - Source: `navigation_aliases.sh`
+- **`dl`** (alias → `cd`): Alias for cd.
+  - Source: `navigation_aliases.sh`
+- **`..`** (alias → `cd`): Alias for cd.
+  - Source: `navigation_aliases.sh`
+- **`...`** (alias → `cd`): Alias for cd.
+  - Source: `navigation_aliases.sh`
+- **`.ilv`** (alias → `cd`): Alias for cd.
+  - Source: `navigation_aliases.sh`
+- **`brave`** (alias → `brave-browser`): Alias for brave-browser.
+  - Source: `navigation_aliases.sh`
+- **`brave-i`** (alias → `brave-browser`): Alias for brave-browser.
+  - Source: `navigation_aliases.sh`
+- **`brave-def`** (alias → `brave-browser`): Alias for brave-browser.
+  - Source: `navigation_aliases.sh`
+- **`brave-list-profiles`** (alias → `ls`): Alias for ls.
+  - Source: `navigation_aliases.sh`
+- **`ffx-list-profiles`** (alias → `cat`): Alias for cat.
+  - Source: `navigation_aliases.sh`
+- **`google-chrome-list-profiles`** (alias → `ls`): Alias for ls.
+  - Source: `navigation_aliases.sh`
+- **`ms-edge-list-profiles`** (alias → `ls`): Alias for ls.
+  - Source: `navigation_aliases.sh`
+- **`vivaldi-list-profiles`** (alias → `ls`): Alias for ls.
+  - Source: `navigation_aliases.sh`
+- **`ffx-i`** (alias → `firefox`): Alias for firefox.
+  - Source: `navigation_aliases.sh`
+- **`brave-tor`** (alias → `brave-browser`): Alias for brave-browser.
+  - Source: `navigation_aliases.sh`
+
+
+### Laravel/PHP Aliases
+
+- **`artmrs`** (alias → `php`): Alias for php.
+  - Source: `laravel_php_aliases.sh`
+- **`artmsd`** (alias → `php`): Alias for php.
+  - Source: `laravel_php_aliases.sh`
+- **`artmst`** (alias → `php`): Alias for php.
+  - Source: `laravel_php_aliases.sh`
+- **`artmrs-sd`** (alias → `php`): Alias for php.
+  - Source: `laravel_php_aliases.sh`
+- **`artcl`** (alias → `php`): Alias for php.
+  - Source: `laravel_php_aliases.sh`
+- **`artsv`** (alias → `php`): Alias for php.
+  - Source: `laravel_php_aliases.sh`
+- **`artclrs`** (alias): Alias artclrs.
+  - Source: `laravel_php_aliases.sh`
+- **`artrtl`** (alias → `php`): Alias for php.
+  - Source: `laravel_php_aliases.sh`
+- **`laravel-rm-cache`** (alias → `rm`): Alias for rm.
+  - Source: `laravel_php_aliases.sh`
+- **`compdp`** (alias → `composer`): Alias for composer.
+  - Source: `laravel_php_aliases.sh`
+- **`mysqlr`** (alias → `mysql`): Alias for mysql.
+  - Source: `laravel_php_aliases.sh`
+
+
+### Filesystem Utilities
+
+- **`list-files`** (alias → `find`): Alias for find.
+  - Source: `filesystem_utilities.sh`
+- **`contains-files--r`** (alias → `find`): Alias for find.
+  - Source: `filesystem_utilities.sh`
+- **`contains-files`** (alias → `find`): Alias for find.
+  - Source: `filesystem_utilities.sh`
+- **`wc-l-total-novendors`** (alias → `files=0;`): Alias for files=0;.
+  - Source: `filesystem_utilities.sh`
+- **`clear-compressed`** (alias → `_find_matching_files()`): Alias for _find_matching_files().
+  - Source: `filesystem_utilities.sh`
+- **`pack_files`** (function): Function pack_files.
+  - Source: `filesystem_utilities.sh`
+- **`packf`** (alias → `pack_files`): Function pack_files.
+  - Source: `filesystem_utilities.sh`
+- **`cat-compose-chars`** (alias → `sudo`): View or edit the X11 Compose key character definitions.
+  - Source: `filesystem_utilities.sh`
+- **`show-compose-chars`** (alias → `sudo`): Alias for cat-compose-chars.
+  - Source: `filesystem_utilities.sh`
+- **`ls-compose-chars`** (alias → `cat-compose-chars`): Alias for cat-compose-chars.
+  - Source: `filesystem_utilities.sh`
+- **`less-compose-chars`** (alias → `sudo`): Alias for sudo.
+  - Source: `filesystem_utilities.sh`
+- **`edit-compose-chars`** (alias → `sudo`): Alias for sudo.
+  - Source: `filesystem_utilities.sh`
+- **`list-paths-no-vendors`** (alias → `list_paths_no_vendors`): Alias for list_paths_no_vendors.
+  - Source: `filesystem_utilities.sh`
+- **`ls_journal_files`** (function): Function ls_journal_files.
+  - Source: `filesystem_utilities.sh`
+- **`ls-journal-files`** (alias → `ls_journal_files`): Function ls_journal_files.
+  - Source: `filesystem_utilities.sh`
+- **`show-journal-files`** (alias → `ls_journal_files`): Function ls_journal_files.
+  - Source: `filesystem_utilities.sh`
+
+
+### Audiovisual Processing
+
+- **`gif_to_mp4`** (function): Function gif_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`webm_to_mp4`** (function): Function webm_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`video_to_gif_chunks`** (function): Function video_to_gif_chunks.
+  - Source: `audiovisual_processing.sh`
+- **`concat_m4s`** (function): Function concat_m4s.
+  - Source: `audiovisual_processing.sh`
+- **`mp3_to_oga`** (function): Function mp3_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`mp4_to_gif`** (function): Function mp4_to_gif.
+  - Source: `audiovisual_processing.sh`
+- **`webm_to_mp3`** (function): Function webm_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, defaults to input name with .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`webm_to_aac`** (function): Function webm_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional)`; `$3 audio bitrate (optional, default 192k)`
+- **`webm_to_wav`** (function): Function webm_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional)`; `$3 ignored (kept for interface consistency)`
+- **`webm_to_aiff`** (function): Function webm_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional)`; `$3 ignored`
+- **`webm_to_flac`** (function): Function webm_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional)`; `$3 compression level 0-8 (optional, default 5)`
+- **`webm_to_alac`** (function): Function webm_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a container for ALAC)`; `$3 ignored (ALAC is lossless)`
+- **`webm_to_ogg`** (function): Function webm_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$3 audio bitrate (optional, default 192k)`
+- **`webm_to_oga`** (function): Function webm_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$3 audio bitrate (optional, default 192k)`
+- **`webm_to_wma`** (function): Function webm_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$3 audio bitrate (optional, default 192k)`
+- **`mp4_to_mp3`** (function): Function mp4_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`mp4_to_aac`** (function): Function mp4_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`mp4_to_wav`** (function): Function mp4_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`mp4_to_aiff`** (function): Function mp4_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`mp4_to_flac`** (function): Function mp4_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`mp4_to_alac`** (function): Function mp4_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`mp4_to_ogg`** (function): Function mp4_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`mp4_to_oga`** (function): Function mp4_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`mp4_to_wma`** (function): Function mp4_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`mpg_to_mp3`** (function): Function mpg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`mpg_to_aac`** (function): Function mpg_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`mpg_to_wav`** (function): Function mpg_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`mpg_to_aiff`** (function): Function mpg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`mpg_to_flac`** (function): Function mpg_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`mpg_to_alac`** (function): Function mpg_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`mpg_to_ogg`** (function): Function mpg_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`mpg_to_oga`** (function): Function mpg_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`mpg_to_wma`** (function): Function mpg_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`ogg_to_mp3`** (function): Function ogg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`ogg_to_aac`** (function): Function ogg_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`ogg_to_wav`** (function): Function ogg_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`ogg_to_aiff`** (function): Function ogg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`ogg_to_flac`** (function): Function ogg_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`ogg_to_alac`** (function): Function ogg_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`ogg_to_oga`** (function): Function ogg_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`ogg_to_wma`** (function): Function ogg_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`avi_to_mp3`** (function): Function avi_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`avi_to_aac`** (function): Function avi_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`avi_to_wav`** (function): Function avi_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`avi_to_aiff`** (function): Function avi_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`avi_to_flac`** (function): Function avi_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`avi_to_alac`** (function): Function avi_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`avi_to_ogg`** (function): Function avi_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`avi_to_oga`** (function): Function avi_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`avi_to_wma`** (function): Function avi_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`mov_to_mp3`** (function): Function mov_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`mov_to_aac`** (function): Function mov_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`mov_to_wav`** (function): Function mov_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`mov_to_aiff`** (function): Function mov_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`mov_to_flac`** (function): Function mov_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`mov_to_alac`** (function): Function mov_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`mov_to_ogg`** (function): Function mov_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`mov_to_oga`** (function): Function mov_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`mov_to_wma`** (function): Function mov_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`flv_to_mp3`** (function): Function flv_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`flv_to_aac`** (function): Function flv_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`flv_to_wav`** (function): Function flv_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`flv_to_aiff`** (function): Function flv_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`flv_to_flac`** (function): Function flv_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`flv_to_alac`** (function): Function flv_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`flv_to_ogg`** (function): Function flv_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`flv_to_oga`** (function): Function flv_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`webm_to_mpg`** (function): Function webm_to_mpg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mpg)`; `$3 video CRF quality 18-28 (optional, default 23)`; `$4 scale (optional, e.g., "1280:-1" or "640x480")`
+- **`webm_to_ogg`** (function): Function webm_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogv)`; `$3 video quality 0-10 (optional, default 7)`; `$4 scale (optional)`
+- **`webm_to_avi`** (function): Function webm_to_avi.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .avi)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`webm_to_mov`** (function): Function webm_to_mov.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mov)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`webm_to_flv`** (function): Function webm_to_flv.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flv)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mp4_to_mpg`** (function): Function mp4_to_mpg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mpg)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mp4_to_ogg`** (function): Function mp4_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogv)`; `$3 video quality 0-10 (optional, default 7)`; `$4 scale (optional)`
+- **`mp4_to_avi`** (function): Function mp4_to_avi.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .avi)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mp4_to_mov`** (function): Function mp4_to_mov.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mov)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mp4_to_flv`** (function): Function mp4_to_flv.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flv)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mpg_to_webm`** (function): Function mpg_to_webm.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .webm)`; `$3 video CRF 0-63 (optional, default 30)`; `$4 scale (optional, e.g., "1280:-1")`
+- **`mpg_to_mp4`** (function): Function mpg_to_mp4.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp4)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mpg_to_ogg`** (function): Function mpg_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogv)`; `$3 video quality 0-10 (optional, default 7)`; `$4 scale (optional)`
+- **`mpg_to_avi`** (function): Function mpg_to_avi.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .avi)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mpg_to_mov`** (function): Function mpg_to_mov.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mov)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mpg_to_flv`** (function): Function mpg_to_flv.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flv)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`ogg_to_webm`** (function): Function ogg_to_webm.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .webm)`; `$3 video CRF 0-63 (optional, default 30)`; `$4 scale (optional)`
+- **`ogg_to_mp4`** (function): Function ogg_to_mp4.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp4)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`ogg_to_mpg`** (function): Function ogg_to_mpg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mpg)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`ogg_to_avi`** (function): Function ogg_to_avi.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .avi)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mp4_to_webm`** (function): Function mp4_to_webm.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .webm)`; `$3 video CRF 0-63 (optional, default 30)`; `$4 scale (optional, e.g., "1280:-1")`
+- **`ogg_to_mov`** (function): Function ogg_to_mov.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mov)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`ogg_to_flv`** (function): Function ogg_to_flv.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flv)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`avi_to_webm`** (function): Function avi_to_webm.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .webm)`; `$3 video CRF 0-63 (optional, default 30)`; `$4 scale (optional)`
+- **`avi_to_mp4`** (function): Function avi_to_mp4.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp4)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`avi_to_mpg`** (function): Function avi_to_mpg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mpg)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`avi_to_ogg`** (function): Function avi_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogv)`; `$3 video quality 0-10 (optional, default 7)`; `$4 scale (optional)`
+- **`avi_to_mov`** (function): Function avi_to_mov.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mov)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`avi_to_flv`** (function): Function avi_to_flv.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flv)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mov_to_webm`** (function): Function mov_to_webm.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .webm)`; `$3 video CRF 0-63 (optional, default 30)`; `$4 scale (optional)`
+- **`mov_to_mp4`** (function): Function mov_to_mp4.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp4)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional, e.g., "1280:-1")`
+- **`mov_to_mpg`** (function): Function mov_to_mpg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mpg)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mov_to_ogg`** (function): Function mov_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogv)`; `$3 video quality 0-10 (optional, default 7)`; `$4 scale (optional)`
+- **`mov_to_avi`** (function): Function mov_to_avi.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .avi)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`mov_to_flv`** (function): Function mov_to_flv.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flv)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`flv_to_webm`** (function): Function flv_to_webm.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .webm)`; `$3 video CRF 0-63 (optional, default 30)`; `$4 scale (optional)`
+- **`flv_to_mp4`** (function): Function flv_to_mp4.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp4)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`flv_to_mpg`** (function): Function flv_to_mpg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mpg)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`flv_to_ogg`** (function): Function flv_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogv)`; `$3 video quality 0-10 (optional, default 7)`; `$4 scale (optional)`
+- **`flv_to_avi`** (function): Function flv_to_avi.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .avi)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional)`
+- **`flv_to_mov`** (function): Function flv_to_mov.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mov)`; `$3 video CRF 18-28 (optional, default 23)`; `$4 scale (optional, e.g., "1280:-1")`
+- **`mp3_to_aac`** (function): Function mp3_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`mp3_to_wav`** (function): Function mp3_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`mp3_to_aiff`** (function): Function mp3_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`mp3_to_flac`** (function): Function mp3_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`mp3_to_alac`** (function): Function mp3_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`mp3_to_ogg`** (function): Function mp3_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`mp3_to_oga`** (function): Function mp3_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`mp3_to_wma`** (function): Function mp3_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`aac_to_mp3`** (function): Function aac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`aac_to_wav`** (function): Function aac_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`aac_to_aiff`** (function): Function aac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`aac_to_flac`** (function): Function aac_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`aac_to_alac`** (function): Function aac_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`aac_to_ogg`** (function): Function aac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`aac_to_oga`** (function): Function aac_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`aac_to_wma`** (function): Function aac_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`wav_to_mp3`** (function): Function wav_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`wav_to_aac`** (function): Function wav_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`wav_to_aiff`** (function): Function wav_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`wav_to_flac`** (function): Function wav_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`wav_to_alac`** (function): Function wav_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`wav_to_ogg`** (function): Function wav_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`wav_to_oga`** (function): Function wav_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`wav_to_wma`** (function): Function wav_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`aiff_to_mp3`** (function): Function aiff_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`aiff_to_aac`** (function): Function aiff_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`aiff_to_wav`** (function): Function aiff_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`aiff_to_flac`** (function): Function aiff_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`aiff_to_alac`** (function): Function aiff_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`aiff_to_ogg`** (function): Function aiff_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`aiff_to_oga`** (function): Function aiff_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`aiff_to_wma`** (function): Function aiff_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`flac_to_mp3`** (function): Function flac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`flac_to_aac`** (function): Function flac_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`flac_to_wav`** (function): Function flac_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`flac_to_aiff`** (function): Function flac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`flac_to_alac`** (function): Function flac_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`flac_to_ogg`** (function): Function flac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`flac_to_oga`** (function): Function flac_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`flac_to_wma`** (function): Function flac_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`alac_to_mp3`** (function): Function alac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file (usually .m4a)`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`alac_to_aac`** (function): Function alac_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`alac_to_wav`** (function): Function alac_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`alac_to_aiff`** (function): Function alac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`alac_to_flac`** (function): Function alac_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`alac_to_ogg`** (function): Function alac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`alac_to_oga`** (function): Function alac_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`alac_to_wma`** (function): Function alac_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`ogg_to_mp3`** (function): Function ogg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`ogg_to_aac`** (function): Function ogg_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`ogg_to_wav`** (function): Function ogg_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`ogg_to_aiff`** (function): Function ogg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`ogg_to_flac`** (function): Function ogg_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`ogg_to_alac`** (function): Function ogg_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`ogg_to_oga`** (function): Function ogg_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`ogg_to_wma`** (function): Function ogg_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`oga_to_mp3`** (function): Function oga_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`oga_to_aac`** (function): Function oga_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`oga_to_wav`** (function): Function oga_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`oga_to_aiff`** (function): Function oga_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`oga_to_flac`** (function): Function oga_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`oga_to_alac`** (function): Function oga_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`oga_to_ogg`** (function): Function oga_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`oga_to_wma`** (function): Function oga_to_wma.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wma)`; `$3 audio bitrate (optional, default 192k)`
+- **`wma_to_mp3`** (function): Function wma_to_mp3.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .mp3)`; `$3 audio bitrate (optional, default 192k)`
+- **`wma_to_aac`** (function): Function wma_to_aac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aac)`; `$3 audio bitrate (optional, default 192k)`
+- **`wma_to_wav`** (function): Function wma_to_wav.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .wav)`; `$3 ignored`
+- **`wma_to_aiff`** (function): Function wma_to_aiff.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .aiff)`; `$3 ignored`
+- **`wma_to_flac`** (function): Function wma_to_flac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .flac)`; `$3 compression level 0-8 (optional, default 5)`
+- **`wma_to_alac`** (function): Function wma_to_alac.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .m4a)`; `$3 ignored`
+- **`wma_to_ogg`** (function): Function wma_to_ogg.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .ogg)`; `$3 audio bitrate (optional, default 192k)`
+- **`wma_to_oga`** (function): Function wma_to_oga.
+  - Source: `audiovisual_processing.sh`
+  - Params: `$1 input file`; `$2 output file (optional, default .oga)`; `$3 audio bitrate (optional, default 192k)`
+- **`gif-to-mp4`** (alias → `gif_to_mp4`): Function gif_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-mp4`** (alias → `webm_to_mp4`): Function webm_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`video-to-gif-chunks`** (alias → `video_to_gif_chunks`): Function video_to_gif_chunks.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-oga`** (alias → `mp3_to_oga`): Function mp3_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`concat-m4s`** (alias → `concat_m4s`): Function concat_m4s.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-gif`** (alias → `mp4_to_gif`): Function mp4_to_gif.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-gif-to-mp4`** (alias → `gif_to_mp4`): Function gif_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-mp4`** (alias → `webm_to_mp4`): Function webm_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-video-to-gif-chunks`** (alias → `video_to_gif_chunks`): Function video_to_gif_chunks.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-oga`** (alias → `mp3_to_oga`): Function mp3_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-concat-m4s`** (alias → `concat_m4s`): Function concat_m4s.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-gif`** (alias → `mp4_to_gif`): Function mp4_to_gif.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-mp3`** (alias → `webm_to_mp3`): Function webm_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-mp3`** (alias → `webm_to_mp3`): Function webm_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-aac`** (alias → `webm_to_aac`): Function webm_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-aac`** (alias → `webm_to_aac`): Function webm_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-wav`** (alias → `webm_to_wav`): Function webm_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-wav`** (alias → `webm_to_wav`): Function webm_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-aiff`** (alias → `webm_to_aiff`): Function webm_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-aiff`** (alias → `webm_to_aiff`): Function webm_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-flac`** (alias → `webm_to_flac`): Function webm_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-flac`** (alias → `webm_to_flac`): Function webm_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-alac`** (alias → `webm_to_alac`): Function webm_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-alac`** (alias → `webm_to_alac`): Function webm_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-ogg`** (alias → `webm_to_ogg`): Function webm_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-ogg`** (alias → `webm_to_ogg`): Function webm_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-oga`** (alias → `webm_to_oga`): Function webm_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-oga`** (alias → `webm_to_oga`): Function webm_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-wma`** (alias → `webm_to_wma`): Function webm_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-wma`** (alias → `webm_to_wma`): Function webm_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-mp3`** (alias → `mp4_to_mp3`): Function mp4_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-mp3`** (alias → `mp4_to_mp3`): Function mp4_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-aac`** (alias → `mp4_to_aac`): Function mp4_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-aac`** (alias → `mp4_to_aac`): Function mp4_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-wav`** (alias → `mp4_to_wav`): Function mp4_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-wav`** (alias → `mp4_to_wav`): Function mp4_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-aiff`** (alias → `mp4_to_aiff`): Function mp4_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-aiff`** (alias → `mp4_to_aiff`): Function mp4_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-flac`** (alias → `mp4_to_flac`): Function mp4_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-flac`** (alias → `mp4_to_flac`): Function mp4_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-alac`** (alias → `mp4_to_alac`): Function mp4_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-alac`** (alias → `mp4_to_alac`): Function mp4_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-ogg`** (alias → `mp4_to_ogg`): Function mp4_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-ogg`** (alias → `mp4_to_ogg`): Function mp4_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-oga`** (alias → `mp4_to_oga`): Function mp4_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-oga`** (alias → `mp4_to_oga`): Function mp4_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-wma`** (alias → `mp4_to_wma`): Function mp4_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-wma`** (alias → `mp4_to_wma`): Function mp4_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-mp3`** (alias → `mpg_to_mp3`): Function mpg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-mp3`** (alias → `mpg_to_mp3`): Function mpg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-aac`** (alias → `mpg_to_aac`): Function mpg_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-aac`** (alias → `mpg_to_aac`): Function mpg_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-wav`** (alias → `mpg_to_wav`): Function mpg_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-wav`** (alias → `mpg_to_wav`): Function mpg_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-aiff`** (alias → `mpg_to_aiff`): Function mpg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-aiff`** (alias → `mpg_to_aiff`): Function mpg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-flac`** (alias → `mpg_to_flac`): Function mpg_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-flac`** (alias → `mpg_to_flac`): Function mpg_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-alac`** (alias → `mpg_to_alac`): Function mpg_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-alac`** (alias → `mpg_to_alac`): Function mpg_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-ogg`** (alias → `mpg_to_ogg`): Function mpg_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-ogg`** (alias → `mpg_to_ogg`): Function mpg_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-oga`** (alias → `mpg_to_oga`): Function mpg_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-oga`** (alias → `mpg_to_oga`): Function mpg_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-wma`** (alias → `mpg_to_wma`): Function mpg_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-wma`** (alias → `mpg_to_wma`): Function mpg_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-mp3`** (alias → `ogg_to_mp3`): Function ogg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-mp3`** (alias → `ogg_to_mp3`): Function ogg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-aac`** (alias → `ogg_to_aac`): Function ogg_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-aac`** (alias → `ogg_to_aac`): Function ogg_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-wav`** (alias → `ogg_to_wav`): Function ogg_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-wav`** (alias → `ogg_to_wav`): Function ogg_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-aiff`** (alias → `ogg_to_aiff`): Function ogg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-aiff`** (alias → `ogg_to_aiff`): Function ogg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-flac`** (alias → `ogg_to_flac`): Function ogg_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-flac`** (alias → `ogg_to_flac`): Function ogg_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-alac`** (alias → `ogg_to_alac`): Function ogg_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-alac`** (alias → `ogg_to_alac`): Function ogg_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-ogg`** (alias → `ogg_to_ogg`): Alias for ogg_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-ogg`** (alias → `ogg_to_ogg`): Alias for ogg_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-oga`** (alias → `ogg_to_oga`): Function ogg_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-oga`** (alias → `ogg_to_oga`): Function ogg_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-wma`** (alias → `ogg_to_wma`): Function ogg_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-wma`** (alias → `ogg_to_wma`): Function ogg_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-mp3`** (alias → `avi_to_mp3`): Function avi_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-mp3`** (alias → `avi_to_mp3`): Function avi_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-aac`** (alias → `avi_to_aac`): Function avi_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-aac`** (alias → `avi_to_aac`): Function avi_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-wav`** (alias → `avi_to_wav`): Function avi_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-wav`** (alias → `avi_to_wav`): Function avi_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-aiff`** (alias → `avi_to_aiff`): Function avi_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-aiff`** (alias → `avi_to_aiff`): Function avi_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-flac`** (alias → `avi_to_flac`): Function avi_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-flac`** (alias → `avi_to_flac`): Function avi_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-alac`** (alias → `avi_to_alac`): Function avi_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-alac`** (alias → `avi_to_alac`): Function avi_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-ogg`** (alias → `avi_to_ogg`): Function avi_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-ogg`** (alias → `avi_to_ogg`): Function avi_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-oga`** (alias → `avi_to_oga`): Function avi_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-oga`** (alias → `avi_to_oga`): Function avi_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-wma`** (alias → `avi_to_wma`): Function avi_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-wma`** (alias → `avi_to_wma`): Function avi_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-mp3`** (alias → `mov_to_mp3`): Function mov_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-mp3`** (alias → `mov_to_mp3`): Function mov_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-aac`** (alias → `mov_to_aac`): Function mov_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-aac`** (alias → `mov_to_aac`): Function mov_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-wav`** (alias → `mov_to_wav`): Function mov_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-wav`** (alias → `mov_to_wav`): Function mov_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-aiff`** (alias → `mov_to_aiff`): Function mov_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-aiff`** (alias → `mov_to_aiff`): Function mov_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-flac`** (alias → `mov_to_flac`): Function mov_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-flac`** (alias → `mov_to_flac`): Function mov_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-alac`** (alias → `mov_to_alac`): Function mov_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-alac`** (alias → `mov_to_alac`): Function mov_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-ogg`** (alias → `mov_to_ogg`): Function mov_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-ogg`** (alias → `mov_to_ogg`): Function mov_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-oga`** (alias → `mov_to_oga`): Function mov_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-oga`** (alias → `mov_to_oga`): Function mov_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-wma`** (alias → `mov_to_wma`): Function mov_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-wma`** (alias → `mov_to_wma`): Function mov_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-mp3`** (alias → `flv_to_mp3`): Function flv_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-mp3`** (alias → `flv_to_mp3`): Function flv_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-aac`** (alias → `flv_to_aac`): Function flv_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-aac`** (alias → `flv_to_aac`): Function flv_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-wav`** (alias → `flv_to_wav`): Function flv_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-wav`** (alias → `flv_to_wav`): Function flv_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-aiff`** (alias → `flv_to_aiff`): Function flv_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-aiff`** (alias → `flv_to_aiff`): Function flv_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-flac`** (alias → `flv_to_flac`): Function flv_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-flac`** (alias → `flv_to_flac`): Function flv_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-alac`** (alias → `flv_to_alac`): Function flv_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-alac`** (alias → `flv_to_alac`): Function flv_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-ogg`** (alias → `flv_to_ogg`): Function flv_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-ogg`** (alias → `flv_to_ogg`): Function flv_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-oga`** (alias → `flv_to_oga`): Function flv_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-oga`** (alias → `flv_to_oga`): Function flv_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-wma`** (alias → `flv_to_wma`): Alias for flv_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-wma`** (alias → `flv_to_wma`): Alias for flv_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-mpg`** (alias → `webm_to_mpg`): Function webm_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-mpg`** (alias → `webm_to_mpg`): Function webm_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-ogg`** (alias → `webm_to_ogg`): Function webm_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-ogg`** (alias → `webm_to_ogg`): Function webm_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-avi`** (alias → `webm_to_avi`): Function webm_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-avi`** (alias → `webm_to_avi`): Function webm_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-mov`** (alias → `webm_to_mov`): Function webm_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-mov`** (alias → `webm_to_mov`): Function webm_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-webm-to-flv`** (alias → `webm_to_flv`): Function webm_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`webm-to-flv`** (alias → `webm_to_flv`): Function webm_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-webm`** (alias → `mp4_to_webm`): Function mp4_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-webm`** (alias → `mp4_to_webm`): Function mp4_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-mpg`** (alias → `mp4_to_mpg`): Function mp4_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-mpg`** (alias → `mp4_to_mpg`): Function mp4_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-ogg`** (alias → `mp4_to_ogg`): Function mp4_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-ogg`** (alias → `mp4_to_ogg`): Function mp4_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-avi`** (alias → `mp4_to_avi`): Function mp4_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-avi`** (alias → `mp4_to_avi`): Function mp4_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-mov`** (alias → `mp4_to_mov`): Function mp4_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-mov`** (alias → `mp4_to_mov`): Function mp4_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp4-to-flv`** (alias → `mp4_to_flv`): Function mp4_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`mp4-to-flv`** (alias → `mp4_to_flv`): Function mp4_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-webm`** (alias → `mpg_to_webm`): Function mpg_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-webm`** (alias → `mpg_to_webm`): Function mpg_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-mp4`** (alias → `mpg_to_mp4`): Function mpg_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-mp4`** (alias → `mpg_to_mp4`): Function mpg_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-ogg`** (alias → `mpg_to_ogg`): Function mpg_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-ogg`** (alias → `mpg_to_ogg`): Function mpg_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-avi`** (alias → `mpg_to_avi`): Function mpg_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-avi`** (alias → `mpg_to_avi`): Function mpg_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-mov`** (alias → `mpg_to_mov`): Function mpg_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-mov`** (alias → `mpg_to_mov`): Function mpg_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mpg-to-flv`** (alias → `mpg_to_flv`): Function mpg_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`mpg-to-flv`** (alias → `mpg_to_flv`): Function mpg_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-webm`** (alias → `ogg_to_webm`): Function ogg_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-webm`** (alias → `ogg_to_webm`): Function ogg_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-mp4`** (alias → `ogg_to_mp4`): Function ogg_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-mp4`** (alias → `ogg_to_mp4`): Function ogg_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-mpg`** (alias → `ogg_to_mpg`): Function ogg_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-mpg`** (alias → `ogg_to_mpg`): Function ogg_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-avi`** (alias → `ogg_to_avi`): Function ogg_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-avi`** (alias → `ogg_to_avi`): Function ogg_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-mov`** (alias → `ogg_to_mov`): Function ogg_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-mov`** (alias → `ogg_to_mov`): Function ogg_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-flv`** (alias → `ogg_to_flv`): Function ogg_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-flv`** (alias → `ogg_to_flv`): Function ogg_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-webm`** (alias → `avi_to_webm`): Function avi_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-webm`** (alias → `avi_to_webm`): Function avi_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-mp4`** (alias → `avi_to_mp4`): Function avi_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-mp4`** (alias → `avi_to_mp4`): Function avi_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-mpg`** (alias → `avi_to_mpg`): Function avi_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-mpg`** (alias → `avi_to_mpg`): Function avi_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-ogg`** (alias → `avi_to_ogg`): Function avi_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-ogg`** (alias → `avi_to_ogg`): Function avi_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-mov`** (alias → `avi_to_mov`): Function avi_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-mov`** (alias → `avi_to_mov`): Function avi_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-avi-to-flv`** (alias → `avi_to_flv`): Function avi_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`avi-to-flv`** (alias → `avi_to_flv`): Function avi_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-webm`** (alias → `mov_to_webm`): Function mov_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-webm`** (alias → `mov_to_webm`): Function mov_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-mp4`** (alias → `mov_to_mp4`): Function mov_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-mp4`** (alias → `mov_to_mp4`): Function mov_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-mpg`** (alias → `mov_to_mpg`): Function mov_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-mpg`** (alias → `mov_to_mpg`): Function mov_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-ogg`** (alias → `mov_to_ogg`): Function mov_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-ogg`** (alias → `mov_to_ogg`): Function mov_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-avi`** (alias → `mov_to_avi`): Function mov_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-avi`** (alias → `mov_to_avi`): Function mov_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mov-to-flv`** (alias → `mov_to_flv`): Function mov_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`mov-to-flv`** (alias → `mov_to_flv`): Function mov_to_flv.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-webm`** (alias → `flv_to_webm`): Function flv_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-webm`** (alias → `flv_to_webm`): Function flv_to_webm.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-mp4`** (alias → `flv_to_mp4`): Function flv_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-mp4`** (alias → `flv_to_mp4`): Function flv_to_mp4.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-mpg`** (alias → `flv_to_mpg`): Function flv_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-mpg`** (alias → `flv_to_mpg`): Function flv_to_mpg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-ogg`** (alias → `flv_to_ogg`): Function flv_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-ogg`** (alias → `flv_to_ogg`): Function flv_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-avi`** (alias → `flv_to_avi`): Function flv_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-avi`** (alias → `flv_to_avi`): Function flv_to_avi.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flv-to-mov`** (alias → `flv_to_mov`): Function flv_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`flv-to-mov`** (alias → `flv_to_mov`): Function flv_to_mov.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-aac`** (alias → `mp3_to_aac`): Function mp3_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-aac`** (alias → `mp3_to_aac`): Function mp3_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-wav`** (alias → `mp3_to_wav`): Function mp3_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-wav`** (alias → `mp3_to_wav`): Function mp3_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-aiff`** (alias → `mp3_to_aiff`): Function mp3_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-aiff`** (alias → `mp3_to_aiff`): Function mp3_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-flac`** (alias → `mp3_to_flac`): Function mp3_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-flac`** (alias → `mp3_to_flac`): Function mp3_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-alac`** (alias → `mp3_to_alac`): Function mp3_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-alac`** (alias → `mp3_to_alac`): Function mp3_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-ogg`** (alias → `mp3_to_ogg`): Function mp3_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-ogg`** (alias → `mp3_to_ogg`): Function mp3_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-oga`** (alias → `mp3_to_oga`): Function mp3_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-oga`** (alias → `mp3_to_oga`): Function mp3_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-mp3-to-wma`** (alias → `mp3_to_wma`): Function mp3_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`mp3-to-wma`** (alias → `mp3_to_wma`): Function mp3_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aac-to-mp3`** (alias → `aac_to_mp3`): Function aac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`aac-to-mp3`** (alias → `aac_to_mp3`): Function aac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aac-to-wav`** (alias → `aac_to_wav`): Function aac_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`aac-to-wav`** (alias → `aac_to_wav`): Function aac_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aac-to-aiff`** (alias → `aac_to_aiff`): Function aac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`aac-to-aiff`** (alias → `aac_to_aiff`): Function aac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aac-to-flac`** (alias → `aac_to_flac`): Function aac_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`aac-to-flac`** (alias → `aac_to_flac`): Function aac_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aac-to-alac`** (alias → `aac_to_alac`): Function aac_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`aac-to-alac`** (alias → `aac_to_alac`): Function aac_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aac-to-ogg`** (alias → `aac_to_ogg`): Function aac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`aac-to-ogg`** (alias → `aac_to_ogg`): Function aac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aac-to-oga`** (alias → `aac_to_oga`): Function aac_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`aac-to-oga`** (alias → `aac_to_oga`): Function aac_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aac-to-wma`** (alias → `aac_to_wma`): Function aac_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`aac-to-wma`** (alias → `aac_to_wma`): Function aac_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wav-to-mp3`** (alias → `wav_to_mp3`): Function wav_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`wav-to-mp3`** (alias → `wav_to_mp3`): Function wav_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wav-to-aac`** (alias → `wav_to_aac`): Function wav_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`wav-to-aac`** (alias → `wav_to_aac`): Function wav_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wav-to-aiff`** (alias → `wav_to_aiff`): Function wav_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`wav-to-aiff`** (alias → `wav_to_aiff`): Function wav_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wav-to-flac`** (alias → `wav_to_flac`): Function wav_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`wav-to-flac`** (alias → `wav_to_flac`): Function wav_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wav-to-alac`** (alias → `wav_to_alac`): Function wav_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`wav-to-alac`** (alias → `wav_to_alac`): Function wav_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wav-to-ogg`** (alias → `wav_to_ogg`): Function wav_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`wav-to-ogg`** (alias → `wav_to_ogg`): Function wav_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wav-to-oga`** (alias → `wav_to_oga`): Function wav_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`wav-to-oga`** (alias → `wav_to_oga`): Function wav_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wav-to-wma`** (alias → `wav_to_wma`): Function wav_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`wav-to-wma`** (alias → `wav_to_wma`): Function wav_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aiff-to-mp3`** (alias → `aiff_to_mp3`): Function aiff_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`aiff-to-mp3`** (alias → `aiff_to_mp3`): Function aiff_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aiff-to-aac`** (alias → `aiff_to_aac`): Function aiff_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`aiff-to-aac`** (alias → `aiff_to_aac`): Function aiff_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aiff-to-wav`** (alias → `aiff_to_wav`): Function aiff_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`aiff-to-wav`** (alias → `aiff_to_wav`): Function aiff_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aiff-to-flac`** (alias → `aiff_to_flac`): Function aiff_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`aiff-to-flac`** (alias → `aiff_to_flac`): Function aiff_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aiff-to-alac`** (alias → `aiff_to_alac`): Function aiff_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`aiff-to-alac`** (alias → `aiff_to_alac`): Function aiff_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aiff-to-ogg`** (alias → `aiff_to_ogg`): Function aiff_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`aiff-to-ogg`** (alias → `aiff_to_ogg`): Function aiff_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aiff-to-oga`** (alias → `aiff_to_oga`): Function aiff_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`aiff-to-oga`** (alias → `aiff_to_oga`): Function aiff_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-aiff-to-wma`** (alias → `aiff_to_wma`): Function aiff_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`aiff-to-wma`** (alias → `aiff_to_wma`): Function aiff_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flac-to-mp3`** (alias → `flac_to_mp3`): Function flac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`flac-to-mp3`** (alias → `flac_to_mp3`): Function flac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flac-to-aac`** (alias → `flac_to_aac`): Function flac_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`flac-to-aac`** (alias → `flac_to_aac`): Function flac_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flac-to-wav`** (alias → `flac_to_wav`): Function flac_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`flac-to-wav`** (alias → `flac_to_wav`): Function flac_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flac-to-aiff`** (alias → `flac_to_aiff`): Function flac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`flac-to-aiff`** (alias → `flac_to_aiff`): Function flac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flac-to-alac`** (alias → `flac_to_alac`): Function flac_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`flac-to-alac`** (alias → `flac_to_alac`): Function flac_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flac-to-ogg`** (alias → `flac_to_ogg`): Function flac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`flac-to-ogg`** (alias → `flac_to_ogg`): Function flac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flac-to-oga`** (alias → `flac_to_oga`): Function flac_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`flac-to-oga`** (alias → `flac_to_oga`): Function flac_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-flac-to-wma`** (alias → `flac_to_wma`): Function flac_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`flac-to-wma`** (alias → `flac_to_wma`): Function flac_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-alac-to-mp3`** (alias → `alac_to_mp3`): Function alac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`alac-to-mp3`** (alias → `alac_to_mp3`): Function alac_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-alac-to-aac`** (alias → `alac_to_aac`): Function alac_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`alac-to-aac`** (alias → `alac_to_aac`): Function alac_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-alac-to-wav`** (alias → `alac_to_wav`): Function alac_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`alac-to-wav`** (alias → `alac_to_wav`): Function alac_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-alac-to-aiff`** (alias → `alac_to_aiff`): Function alac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`alac-to-aiff`** (alias → `alac_to_aiff`): Function alac_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-alac-to-flac`** (alias → `alac_to_flac`): Function alac_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`alac-to-flac`** (alias → `alac_to_flac`): Function alac_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-alac-to-ogg`** (alias → `alac_to_ogg`): Function alac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`alac-to-ogg`** (alias → `alac_to_ogg`): Function alac_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-alac-to-oga`** (alias → `alac_to_oga`): Function alac_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`alac-to-oga`** (alias → `alac_to_oga`): Function alac_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-alac-to-wma`** (alias → `alac_to_wma`): Function alac_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`alac-to-wma`** (alias → `alac_to_wma`): Function alac_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-mp3`** (alias → `ogg_to_mp3`): Function ogg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-mp3`** (alias → `ogg_to_mp3`): Function ogg_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-aac`** (alias → `ogg_to_aac`): Function ogg_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-aac`** (alias → `ogg_to_aac`): Function ogg_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-wav`** (alias → `ogg_to_wav`): Function ogg_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-wav`** (alias → `ogg_to_wav`): Function ogg_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-aiff`** (alias → `ogg_to_aiff`): Function ogg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-aiff`** (alias → `ogg_to_aiff`): Function ogg_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-flac`** (alias → `ogg_to_flac`): Function ogg_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-flac`** (alias → `ogg_to_flac`): Function ogg_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-alac`** (alias → `ogg_to_alac`): Function ogg_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-alac`** (alias → `ogg_to_alac`): Function ogg_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-oga`** (alias → `ogg_to_oga`): Function ogg_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-oga`** (alias → `ogg_to_oga`): Function ogg_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-ogg-to-wma`** (alias → `ogg_to_wma`): Function ogg_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ogg-to-wma`** (alias → `ogg_to_wma`): Function ogg_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-oga-to-mp3`** (alias → `oga_to_mp3`): Function oga_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`oga-to-mp3`** (alias → `oga_to_mp3`): Function oga_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-oga-to-aac`** (alias → `oga_to_aac`): Function oga_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`oga-to-aac`** (alias → `oga_to_aac`): Function oga_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-oga-to-wav`** (alias → `oga_to_wav`): Function oga_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`oga-to-wav`** (alias → `oga_to_wav`): Function oga_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-oga-to-aiff`** (alias → `oga_to_aiff`): Function oga_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`oga-to-aiff`** (alias → `oga_to_aiff`): Function oga_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-oga-to-flac`** (alias → `oga_to_flac`): Function oga_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`oga-to-flac`** (alias → `oga_to_flac`): Function oga_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-oga-to-alac`** (alias → `oga_to_alac`): Function oga_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`oga-to-alac`** (alias → `oga_to_alac`): Function oga_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-oga-to-ogg`** (alias → `oga_to_ogg`): Function oga_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`oga-to-ogg`** (alias → `oga_to_ogg`): Function oga_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-oga-to-wma`** (alias → `oga_to_wma`): Function oga_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`oga-to-wma`** (alias → `oga_to_wma`): Function oga_to_wma.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wma-to-mp3`** (alias → `wma_to_mp3`): Function wma_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`wma-to-mp3`** (alias → `wma_to_mp3`): Function wma_to_mp3.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wma-to-aac`** (alias → `wma_to_aac`): Function wma_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`wma-to-aac`** (alias → `wma_to_aac`): Function wma_to_aac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wma-to-wav`** (alias → `wma_to_wav`): Function wma_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`wma-to-wav`** (alias → `wma_to_wav`): Function wma_to_wav.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wma-to-aiff`** (alias → `wma_to_aiff`): Function wma_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`wma-to-aiff`** (alias → `wma_to_aiff`): Function wma_to_aiff.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wma-to-flac`** (alias → `wma_to_flac`): Function wma_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`wma-to-flac`** (alias → `wma_to_flac`): Function wma_to_flac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wma-to-alac`** (alias → `wma_to_alac`): Function wma_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`wma-to-alac`** (alias → `wma_to_alac`): Function wma_to_alac.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wma-to-ogg`** (alias → `wma_to_ogg`): Function wma_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`wma-to-ogg`** (alias → `wma_to_ogg`): Function wma_to_ogg.
+  - Source: `audiovisual_processing.sh`
+- **`ffmpeg-wma-to-oga`** (alias → `wma_to_oga`): Function wma_to_oga.
+  - Source: `audiovisual_processing.sh`
+- **`wma-to-oga`** (alias → `wma_to_oga`): Function wma_to_oga.
+  - Source: `audiovisual_processing.sh`

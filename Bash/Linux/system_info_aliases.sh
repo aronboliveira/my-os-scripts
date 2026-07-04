@@ -170,8 +170,22 @@
       alias watch-cpu-hogs='watch_cpu_hogs'
       ls_sys_vm_overcommit() {
         printf "[*] Checking vm.overcommit_memory...\n"
-        sudo sysctl vm.overcommit_memory 2>/dev/null || printf "[-] No overcommit_memory info available\n"
-        printf "[*] Checking vm.overcommit_ratio...\n"
+        local overcommit_mode=$(sudo sysctl vm.overcommit_memory 2>/dev/null || printf "[-] No overcommit_memory info available\n")
+        case "$overcommit_mode" in
+          *"vm.overcommit_memory = 0"*)
+            printf "  → Overcommit mode: Heuristic (0, default)\n"
+            ;;
+          *"vm.overcommit_memory = 1"*)
+            printf "  → Overcommit mode: Always overcommit (1)\n"
+            ;;
+          *"vm.overcommit_memory = 2"*)
+            printf "  → Overcommit mode: Don't overcommit (2)\n"
+            ;;
+          *)
+            printf "  → Overcommit mode: Unknown or not available\n"
+            ;;
+        esac
+        printf "[*] Checking vm.overcommit_ratio (only relevant for mode 2)...\n"
         sudo sysctl vm.overcommit_ratio 2>/dev/null || printf "[-] No overcommit_ratio info available\n"
       }
       alias ls-sys-vm-overcommit='ls_sys_vm_overcommit'
@@ -189,17 +203,17 @@
       alias ls-sys-vm-swappiness='ls_sys_vm_swappiness'
       alias ls-sys-vm-swap='ls_sys_vm_swappiness'
       ls_sys_vm_dirty_ratios() {
-        printf "[*] Checking vm.dirty_ratio...\n"
+        printf "[*] Checking vm.dirty_ratio (unblocked, no flushing threads, R or S alternating state)...\n"
         sudo sysctl vm.dirty_ratio 2>/dev/null || printf "[-] No dirty_ratio info available\n"
-        printf "[*] Checking vm.dirty_background_ratio...\n"
+        printf "[*] Checking vm.dirty_background_ratio... (asynchronous writing, like flush-*, kworker/u*, jbd, kswapd, etc., OR stuck in D | S state)\n"
         sudo sysctl vm.dirty_background_ratio 2>/dev/null || printf "[-] No dirty_background_ratio info available\n"
       }
       alias ls-sys-vm-dirty-ratios='ls_sys_vm_dirty_ratios'
       alias ls-sys-vm-dirtyness='ls_sys_vm_dirty_ratios'
       ls_sys_kernel_hungs() {
-        printf "[*] Checking for kernel hungs...\n"
+        printf "[*] Checking for kernel hungs (stuck at D state)...\n"
         sudo sysctl kernel.hung_task_timeout_secs 2>/dev/null || printf "[-] No hung task timeout info available\n"
-        printf "[*] Checking for warning about hung tasks...\n"
+        printf "[*] Checking for warning about hung tasks (limit)...\n"
         sudo sysctl kernel.hung_task_warnings 2>/dev/null || printf "[-] No hung task warning info available\n"
         printf "[*] Checking for hung task backtraces...\n"
         sudo sysctl kernel.hung_task_all_cpu_backtrace 2>/dev/null || printf "[-] No hung task backtrace info available\n"
@@ -322,8 +336,11 @@
       ## @description Alias for cat-sys-services.
       alias ls-sys-services='sudo ls /lib/systemd/system/'
       alias cat-systemd-conf='sudo cat /etc/systemd/system.conf 2>/dev/null || printf "[-] No systemd system.conf file found\n"'
+      alias cat-systemd-config='cat-systemd-conf'
       alias ls-systemd-conf='cat-systemd-conf'
+      alias ls-systemd-config='cat-systemd-conf'
       alias show-systemd-conf='cat-systemd-conf'
+      alias show-systemd-config='cat-systemd-conf'
       ## @description Display /etc/sysctl.conf and all files in /etc/sysctl.d/.
       cat_sysctl_conf() {
         printf "[*] Checking /etc/sysctl.conf...\n"
@@ -333,8 +350,11 @@
         sudo find /etc/sysctl.d/ -type f -exec sh -c 'printf "[=== %s ===]\n" "$1"; sleep 1; cat "$1" 2>/dev/null' _ {} \;
       }
       alias cat-sysctl-conf='cat_sysctl_conf'
+      alias cat-sysctl-config='cat_sysctl_conf'
       alias ls-sysctl-conf='cat_sysctl_conf'
+      alias ls-sysctl-config='cat_sysctl_conf'
       alias show-sysctl-conf='cat_sysctl_conf'
+      alias show-sysctl-config='cat_sysctl_conf'
       ## @description Display systemd-sysctl.service and sysinit.target.wants sysctl overrides.
       cat_systemd_sysctl_services() {
         printf "[*] Checking systemd-sysctl.service for sysctl overrides...\n"
@@ -358,22 +378,31 @@
 
     #region System_Config_Files
       alias cat-gdm3-conf='sudo cat /etc/gdm3/custom.conf'
+      alias cat-gdm3-config='cat-gdm3-conf'
       ## @description Alias for cat-gdm3-conf.
       alias ls-gdm3-conf='sudo cat /etc/gdm3/custom.conf'
+      alias ls-gdm3-config='ls-gdm3-conf'
       ## @description Alias for cat-gdm3-conf.
       alias show-gdm3-conf='sudo cat /etc/gdm3/custom.conf'
+      alias show-gdm3-config='show-gdm3-conf'
       ## @description Show libvirt daemon configuration from /etc/libvirt/libvirtd.conf.
       alias show-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias show-libvirt-config='show-libvirt-conf'
       ## @description Alias for show-libvirt-conf.
       alias ls-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias ls-libvirt-config='ls-libvirt-conf'
       ## @description Alias for show-libvirt-conf.
       alias cat-libvirt-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias cat-libvirt-config='cat-libvirt-conf'
       ## @description Alias for show-libvirt-conf (short form).
       alias show-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias show-libv-config='show-libv-conf'
       ## @description Alias for show-libvirt-conf (short form).
       alias ls-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias ls-libv-config='ls-libv-conf'
       ## @description Alias for show-libvirt-conf (short form).
       alias cat-libv-conf='sudo cat /etc/libvirt/libvirtd.conf'
+      alias cat-libv-config='cat-libv-conf'
       ## @description Show the system hosts file (/etc/hosts).
       alias cat-hosts='sudo cat /etc/hosts'
       ## @description Alias for cat-hosts.
@@ -405,6 +434,7 @@
         sudo find /etc/sysctl.d/ -type f -exec sh -c 'echo "=== $1 ==="; sleep 1; cat "$1" 2>/dev/null' _ {} \;
       }
       alias cat-sysctl-conf='_cat_sysctl_conf'
+      alias cat-sysctl-config='_cat_sysctl_conf'
 
       _cat_ssh_hosts() {
         sudo find /etc/ssh/ -name "ssh_host_*" -exec sh -c 'echo "=== $1 ==="; sleep 1; cat "$1" 2>/dev/null' _ {} \;
@@ -707,4 +737,3 @@ print('✅ GPU disabled in argv.json')
       alias vscode-disable-gpu='vscode_disable_gpu'
 #endregion VSCode_and_GTK
   #endregion System_Info_Aliases
-

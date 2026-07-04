@@ -1220,5 +1220,40 @@ KILL_SCRIPT_EOF
     alias dbus-asses-xdg-desktop-introspect-portal='dbus-send --session --dest=org.freedesktop.portal.Desktop --type=method_call --print-reply /org/freedesktop/portal/desktop org.freedesktop.DBus.Introspectable.Introspect'
     alias dbus-asses-xdg-desktop-portal='dbus-send --print-reply=literal --dest=org.freedesktop.portal.Desktop /org/freedesktop/portal/desktop org.freedesktop.portal.Settings.Read string:"org.freedesktop.appearance" string:"color-scheme"'
     alias dbus-asses-portal='dbus-send --session --dest=org.freedesktop.portal.Desktop --type=method_call --print-reply /org/freedesktop/portal/desktop org.freedesktop.DBus.Introspectable.Introspect'
+    alias busctl-list-inhibitors='busctl call org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager ListInhibitors'
+    alias gdbus-list-inhibitors='gdbus call --system --dest org.freedesktop.login1 --object-path /org/freedesktop/login1 --method org.freedesktop.login1.Manager.ListInhibitors'
+    ## @description List GNOME session inhibitors, parsing object paths to show inhibitor numbers.
+    gdbus_get_inhibitors() {
+      [[ "$1" == "--help" || "$1" == "-h" ]] && { echo -e "📖 \033[1mgdbus-get-inhibitors\033[0m — List GNOME session inhibitor numbers"; return 0; }
+      local out
+      out=$(gdbus call --session --dest org.gnome.SessionManager --object-path /org/gnome/SessionManager --method org.gnome.SessionManager.GetInhibitors 2>/dev/null) || {
+        echo -e "❌ \033[1;31mFailed to call GNOME SessionManager\033[0m"; return 1
+      }
+      echo "$out" | grep -oP 'Inhibitor\d+' | sed 's/Inhibitor//' || echo "No inhibitors found"
+    }
+    alias gdbus-get-inhibitors='gdbus_get_inhibitors'
+    ## @description Show app ID for a given GNOME session inhibitor number.
+    ## @param $1 {number} inhibitor number (required)
+    gdbus_get_inhibitor_app_id() {
+      [[ -z "${1:-}" || "$1" == "--help" || "$1" == "-h" ]] && { echo -e "📖 \033[1mgdbus-get-inhibitor-app-id\033[0m <number> — Show app ID for an inhibitor"; return 0; }
+      gdbus call --session --dest org.gnome.SessionManager --object-path "/org/gnome/SessionManager/Inhibitor${1}" --method org.gnome.SessionManager.Inhibitor.GetAppId
+    }
+    alias gdbus-get-inhibitor-app-id='gdbus_get_inhibitor_app_id'
+    alias gdbus-get-app-id='gdbus_get_inhibitor_app_id'
+    ## @description Show reason for a given GNOME session inhibitor number.
+    ## @param $1 {number} inhibitor number (required)
+    gdbus_get_inhibitor_reason() {
+      [[ -z "${1:-}" || "$1" == "--help" || "$1" == "-h" ]] && { echo -e "📖 \033[1mgdbus-get-inhibitor-reason\033[0m <number> — Show reason for an inhibitor"; return 0; }
+      gdbus call --session --dest org.gnome.SessionManager --object-path "/org/gnome/SessionManager/Inhibitor${1}" --method org.gnome.SessionManager.Inhibitor.GetReason
+    }
+    alias gdbus-get-inhibitor-reason='gdbus_get_inhibitor_reason'
+    alias gdbus-get-reason='gdbus_get_inhibitor_reason'
+    ## @description Show flags for a given GNOME session inhibitor number.
+    ## @param $1 {number} inhibitor number (required)
+    gdbus_get_inhibitor_flags() {
+      [[ -z "${1:-}" || "$1" == "--help" || "$1" == "-h" ]] && { echo -e "📖 \033[1mgdbus-get-inhibitor-flags\033[0m <number> — Show flags for an inhibitor"; return 0; }
+      gdbus call --session --dest org.gnome.SessionManager --object-path "/org/gnome/SessionManager/Inhibitor${1}" --method org.gnome.SessionManager.Inhibitor.GetFlags
+    }
+    alias gdbus-get-inhibitor-flags='gdbus_get_inhibitor_flags'
+    alias gdbus-get-flags='gdbus_get_inhibitor_flags'
 #endregion Desktop_Environment
-

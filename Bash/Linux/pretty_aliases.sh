@@ -1260,4 +1260,3 @@
       alias show-vscode-sqlite-state-pretty='cat-vscode-sqlite-state-pretty'
 
   #endregion Pretty_Aliases
-
