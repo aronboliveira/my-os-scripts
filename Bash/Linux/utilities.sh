@@ -1049,6 +1049,13 @@
       }
       alias ls-all-images-deep='find_all_images_deep'
       alias show-all-images-deep='find_all_images_deep'
-
+	print_b64_pass() {
+	  node -e "for (const i of process.argv.slice(1)) console.log(Buffer.from(i).toString('base64'))" "$@"
+	}
+	alias print-b64-pass='print_b64_pass'
+	alias print-btoa-pass='print_b64_pass'
+	alias log-b64-pass='print_b64_pass'
+	alias log-btoa-pass='print_b64_pass'
+	alias log-btoa='print_b64_pass'
 #endregion Basic_Commands
   #endregion Utilities
